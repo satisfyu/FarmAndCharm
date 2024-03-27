@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "id": "modname",
+  "id": "farm_and_charm",
   "version": "${version}",
-  "name": "Modname",
+  "name": "farmcharm",
   "description": "Your Description",
   "authors": [
-    "Your Name"
+    "satisfy"
   ],
   "contact": {
     "homepage": "link",
@@ -16,18 +16,18 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "example.modname.fabric.ModnameFabric"
+      "satisfy.farmcharm.fabric.FarmCharmFabric"
     ],
     "client": [
-      "example.modname.fabric.ModnameClientFabric"
+      "satisfy.farmcharm.fabric.FarmCharmClientFabric"
     ],
     "doapi": [
-      "example.modname.util.api.ModnameDoApi"
+      "satisfy.farmcharm.util.api.ModnameDoApi"
     ]
   },
   "mixins": [
-    "modname.mixins.json",
-    "modname-common.mixins.json"
+    "farmcharm.mixins.json",
+    "farmcharm-common.mixins.json"
   ],
   "depends": {
     "fabric-api": "*",
