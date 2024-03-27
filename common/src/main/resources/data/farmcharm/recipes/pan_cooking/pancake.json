@@ -1,0 +1,21 @@
+{
+  "type": "farmcharm:pan_cooking",
+  "ingredients": [
+    {
+      "tag": "farmcharm:dough"
+    },
+    {
+      "tag": "farmcharm:butter"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:pancake",
+    "count": 6
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "farmcharm:tomato_crate"
+        }
+    },
+    "result": {
+        "item": "farmcharm:tomato",
+        "count": 9
+    }
+}

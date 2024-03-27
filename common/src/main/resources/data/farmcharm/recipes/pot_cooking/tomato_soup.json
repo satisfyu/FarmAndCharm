@@ -1,0 +1,21 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "tag": "farmcharm:crops/tomato"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "tag": "farmcharm:all_effects"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:tomato_soup",
+    "count": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "farmcharm:stove",
+  "ingredients": [
+    {
+      "item": "farmcharm:sweet_dough"
+    },
+    {
+      "tag": "farmcharm:dough"
+    },
+    {
+      "item": "farmcharm:yeast"
+    }
+  ],
+  "item": "farmcharm:baguette",
+  "count": 3,
+  "experience": 0.15
+}

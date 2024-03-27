@@ -1,0 +1,17 @@
+{
+  "type": "farmcharm:stove",
+  "ingredients": [
+    {
+      "tag": "farmcharm:chocolate"
+    },
+    {
+      "item": "farmcharm:sweet_dough"
+    },
+    {
+      "item": "farmcharm:yeast"
+    }
+  ],
+  "item": "farmcharm:chocolate_tart",
+  "count": 1,
+  "experience": 0.35
+}

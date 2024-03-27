@@ -1,0 +1,79 @@
+{
+  "variants": {
+    "cuts=4,facing=north": {
+      "model": "farmcharm:block/bread_crate_1"
+    },
+    "cuts=3,facing=north": {
+      "model": "farmcharm:block/bread_crate_2"
+    },
+    "cuts=2,facing=north": {
+      "model": "farmcharm:block/bread_crate_3"
+    },
+    "cuts=1,facing=north": {
+      "model": "farmcharm:block/bread_crate_4"
+    },
+    "cuts=0,facing=north": {
+      "model": "farmcharm:block/bread_crate_5"
+    },
+    "cuts=4,facing=east": {
+      "model": "farmcharm:block/bread_crate_1",
+      "y": 90
+    },
+    "cuts=3,facing=east": {
+      "model": "farmcharm:block/bread_crate_2",
+      "y": 90
+    },
+    "cuts=2,facing=east": {
+      "model": "farmcharm:block/bread_crate_3",
+      "y": 90
+    },
+    "cuts=1,facing=east": {
+      "model": "farmcharm:block/bread_crate_4",
+      "y": 90
+    },
+    "cuts=0,facing=east": {
+      "model": "farmcharm:block/bread_crate_5",
+      "y": 90
+    },
+    "cuts=4,facing=south": {
+      "model": "farmcharm:block/bread_crate_1",
+      "y": 180
+    },
+    "cuts=3,facing=south": {
+      "model": "farmcharm:block/bread_crate_2",
+      "y": 180
+    },
+    "cuts=2,facing=south": {
+      "model": "farmcharm:block/bread_crate_3",
+      "y": 180
+    },
+    "cuts=1,facing=south": {
+      "model": "farmcharm:block/bread_crate_4",
+      "y": 180
+    },
+    "cuts=0,facing=south": {
+      "model": "farmcharm:block/bread_crate_5",
+      "y": 180
+    },
+    "cuts=4,facing=west": {
+      "model": "farmcharm:block/bread_crate_1",
+      "y": 270
+    },
+    "cuts=3,facing=west": {
+      "model": "farmcharm:block/bread_crate_2",
+      "y": 270
+    },
+    "cuts=2,facing=west": {
+      "model": "farmcharm:block/bread_crate_3",
+      "y": 270
+    },
+    "cuts=1,facing=west": {
+      "model": "farmcharm:block/bread_crate_4",
+      "y": 270
+    },
+    "cuts=0,facing=west": {
+      "model": "farmcharm:block/bread_crate_5",
+      "y": 270
+    }
+  }
+}

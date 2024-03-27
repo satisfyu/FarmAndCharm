@@ -1,0 +1,21 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "tag": "farmcharm:pasta"
+    },
+    {
+      "item": "farmcharm:tomato_soup"
+    },
+    {
+      "tag": "farmcharm:red_effect"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:pasta",
+    "count": 4
+  }
+}

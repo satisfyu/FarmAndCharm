@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "farmcharm:milk"
+    }
+  ],
+  "result": {
+    "item": "farmcharm:butter",
+        "count": 10
+  }
+}

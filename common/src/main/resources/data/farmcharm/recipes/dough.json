@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    "###"
+  ],
+  "key": {
+    "B": {
+      "tag": "farmcharm:water_bottles"
+    },
+    "#": {
+      "tag": "farmcharm:wheat"
+    }
+  },
+  "result": {
+    "item": "farmcharm:dough",
+    "count": 4
+  }
+}

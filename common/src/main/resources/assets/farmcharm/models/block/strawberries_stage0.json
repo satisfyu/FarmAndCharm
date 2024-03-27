@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/crop",
+	"textures": {
+		"crop": "farmcharm:block/strawberries_stage0"
+	}
+}

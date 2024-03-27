@@ -1,0 +1,22 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "item": "farmcharm:bolognese"
+    },
+    {
+      "tag": "farmcharm:pasta"
+    },
+    {
+      "tag": "farmcharm:cheese"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:lasagne",
+    "count": 6,
+    "experience": 0.15
+  }
+}

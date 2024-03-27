@@ -1,0 +1,58 @@
+{
+  "variants": {
+    "age=0": [
+      {
+        "model": "farmcharm:block/corn_stage0",
+        "weight": 1
+      }
+    ],
+    "age=1": [
+      {
+        "model": "farmcharm:block/corn_stage1",
+        "weight": 1
+      }
+    ],
+    "age=2": [
+      {
+        "model": "farmcharm:block/corn_stage2",
+        "weight": 1
+      }
+    ],
+    "age=3": [
+      {
+        "model": "farmcharm:block/corn_stage3-1",
+        "weight": 1
+      },
+      {
+        "model": "farmcharm:block/corn_stage3-2",
+        "weight": 1
+      },
+      {
+        "model": "farmcharm:block/corn_stage3-3",
+        "weight": 1
+      }
+    ],
+    "age=4": [
+      {
+        "model": "farmcharm:block/corn_stage4-1",
+        "weight": 1
+      },
+      {
+        "model": "farmcharm:block/corn_stage4-2",
+        "weight": 1
+      },
+      {
+        "model": "farmcharm:block/corn_stage4-3",
+        "weight": 1
+      },
+      {
+        "model": "farmcharm:block/corn_stage4-4",
+        "weight": 1
+      },
+      {
+        "model": "farmcharm:block/corn_stage4-5",
+        "weight": 1
+      }
+    ]
+  }
+}

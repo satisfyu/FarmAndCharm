@@ -1,0 +1,17 @@
+{
+  "type": "farmcharm:stove",
+  "ingredients": [
+    {
+      "tag": "farmcharm:dough"
+    },
+    {
+      "item": "farmcharm:yeast"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "item": "farmcharm:crusty_bread",
+  "count": 4,
+  "experience": 0.35
+}

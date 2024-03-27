@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "farmcharm:block/oat_block_top",
+    "top": "farmcharm:block/oat_block_top",
+    "side": "farmcharm:block/oat_block_side"
+  }
+}

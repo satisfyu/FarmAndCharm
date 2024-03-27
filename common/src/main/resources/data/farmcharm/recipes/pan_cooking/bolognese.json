@@ -1,0 +1,20 @@
+{
+  "type": "farmcharm:pan_cooking",
+  "ingredients": [
+    {
+      "item": "farmcharm:tomato_soup"
+    },
+    {
+      "tag": "farmcharm:cooked_beef"
+    },
+    {
+      "tag": "farmcharm:red_effect"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:bolognese"
+  }
+}

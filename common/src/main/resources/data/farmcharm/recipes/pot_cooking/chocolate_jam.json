@@ -1,0 +1,20 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "tag": "farmcharm:milk"
+    },
+    {
+      "tag": "farmcharm:chocolate"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "container": {
+    "item": "farmcharm:jar"
+  },
+  "result": {
+    "item": "farmcharm:chocolate_jam"
+  }
+}

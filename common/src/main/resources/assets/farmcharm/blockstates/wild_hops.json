@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "farmcharm:block/wild_hops_bottom"
+    },
+    "half=upper": {
+      "model": "farmcharm:block/wild_hops_top"
+    }
+  }
+}

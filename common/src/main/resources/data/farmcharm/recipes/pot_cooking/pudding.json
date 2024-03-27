@@ -1,0 +1,21 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "tag": "farmcharm:jam"
+    },
+    {
+      "tag": "farmcharm:milk"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:pudding",
+    "count": 1
+  }
+}

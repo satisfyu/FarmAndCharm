@@ -1,0 +1,17 @@
+{
+  "type": "farmcharm:stove",
+  "ingredients": [
+    {
+      "item": "farmcharm:apple_jam"
+    },
+    {
+      "item": "farmcharm:sweet_dough"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "item": "farmcharm:cornet",
+  "count": 4,
+  "experience": 0.35
+}

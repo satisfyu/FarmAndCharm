@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"end": "farmcharm:block/oat_block_top",
+		"side": "farmcharm:block/oat_block_side"
+	}
+}

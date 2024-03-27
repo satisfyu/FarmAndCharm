@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cobblestone_kitchen",
+  "pattern": [
+    "BBB",
+    "BCB",
+    "B B"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:bamboo_planks"
+    },
+    "C": {
+      "item": "minecraft:campfire"
+    }
+  },
+  "result": {
+    "item": "farmcharm:bamboo_stove"
+  }
+}

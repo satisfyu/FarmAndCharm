@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "farmcharm:milk"
+    },
+    {
+      "tag": "farmcharm:water_bottles"
+    }
+  ],
+  "result": {
+    "item": "farmcharm:mozzarella",
+    "count": 4
+  }
+}

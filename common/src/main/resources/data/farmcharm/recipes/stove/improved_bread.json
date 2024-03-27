@@ -1,0 +1,17 @@
+{
+  "type": "farmcharm:stove",
+  "ingredients": [
+    {
+      "tag": "farmcharm:wheat"
+    },
+    {
+      "tag": "farmcharm:wheat"
+    },
+    {
+      "tag": "farmcharm:wheat"
+    }
+  ],
+  "item": "minecraft:bread",
+  "count": 3,
+  "experience": 0.15
+}

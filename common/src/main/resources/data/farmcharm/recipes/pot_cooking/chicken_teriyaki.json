@@ -1,0 +1,22 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "item": "farmcharm:veggie_plate"
+    },
+    {
+      "item": "minecraft:chicken"
+    },
+    {
+      "tag": "farmcharm:crops/cabbage"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:chicken_teriyaki",
+    "count": 4,
+    "experience": 0.4
+  }
+}

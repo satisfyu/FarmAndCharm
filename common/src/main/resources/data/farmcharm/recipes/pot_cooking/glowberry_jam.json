@@ -1,0 +1,17 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:glow_berries"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "container": {
+    "item": "farmcharm:jar"
+  },
+  "result": {
+    "item": "farmcharm:glowberry_jam"
+  }
+}

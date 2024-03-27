@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "farmcharm:block/tomatoes_wild_stage3"
+  }
+}

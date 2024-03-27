@@ -1,0 +1,6 @@
+{
+	"parent": "farmcharm:block/tall_crop",
+	"textures": {
+		"crop": "farmcharm:block/barley_stage3-1"
+	}
+}

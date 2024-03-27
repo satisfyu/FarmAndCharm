@@ -1,0 +1,21 @@
+{
+  "type": "farmcharm:pan_cooking",
+
+  "ingredients": [
+    {
+      "tag": "farmcharm:crops/cabbage"
+    },
+    {
+      "tag": "farmcharm:pasta"
+    },
+    {
+      "tag": "farmcharm:cheese"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:pasta_lettuce"
+  }
+}

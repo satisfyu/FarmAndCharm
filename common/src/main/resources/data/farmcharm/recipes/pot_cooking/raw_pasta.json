@@ -1,0 +1,15 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "tag": "farmcharm:dough"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:pasta_raw",
+    "count": 4
+  }
+}

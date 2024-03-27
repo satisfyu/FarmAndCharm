@@ -1,0 +1,17 @@
+{
+  "type": "farmcharm:stove",
+  "ingredients": [
+    {
+      "item": "farmcharm:strawberry"
+    },
+    {
+      "item": "farmcharm:sweet_dough"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "item": "farmcharm:linzer_tart",
+  "count": 1,
+  "experience": 0.35
+}

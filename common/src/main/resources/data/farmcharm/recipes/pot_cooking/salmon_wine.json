@@ -1,0 +1,22 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:salmon"
+    },
+    {
+      "tag": "farmcharm:white_effect"
+    },
+    {
+      "tag": "farmcharm:butter"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:salmon_wine",
+    "count": 2,
+    "experience": 0.25
+  }
+}

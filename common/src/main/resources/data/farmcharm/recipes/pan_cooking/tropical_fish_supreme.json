@@ -1,0 +1,21 @@
+{
+  "type": "farmcharm:pan_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:tropical_fish"
+    },
+    {
+      "tag": "farmcharm:crops/cabbage"
+    },
+    {
+      "tag": "farmcharm:white_effect"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:tropical_fish_supreme",
+    "count": 1
+  }
+}

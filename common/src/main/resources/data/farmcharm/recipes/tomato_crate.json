@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "grape_crate",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "farmcharm:tomato"
+    }
+  },
+  "result": {
+    "item": "farmcharm:tomato_crate"
+  }
+}

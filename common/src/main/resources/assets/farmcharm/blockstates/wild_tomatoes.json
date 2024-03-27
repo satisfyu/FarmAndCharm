@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "farmcharm:block/wild_tomatoes_1",
+        "weight": 1
+      },
+      {
+        "model": "farmcharm:block/wild_tomatoes_2",
+        "weight": 1
+      },
+      {
+        "model": "farmcharm:block/wild_tomatoes_3",
+        "weight": 1
+      }
+    ]
+  }
+}

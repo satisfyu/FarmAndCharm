@@ -1,0 +1,21 @@
+{
+  "type": "farmcharm:pan_cooking",
+  "ingredients": [
+    {
+      "item": "farmcharm:bolognese"
+    },
+    {
+      "tag": "farmcharm:dough"
+    },
+    {
+      "item": "farmcharm:mushroom_soup"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:beef_wellington",
+    "count": 1
+  }
+}

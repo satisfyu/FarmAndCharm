@@ -1,0 +1,17 @@
+{
+  "type": "farmcharm:stove",
+  "ingredients": [
+    {
+      "item": "farmcharm:dough"
+    },
+    {
+      "item": "farmcharm:yeast"
+    },
+    {
+      "tag": "farmcharm:eggs"
+    }
+  ],
+  "item": "farmcharm:bun",
+  "count": 5,
+  "experience": 0.15
+}

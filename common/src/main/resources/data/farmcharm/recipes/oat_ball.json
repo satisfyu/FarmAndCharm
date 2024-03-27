@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "farmcharm:oat"
+    }
+  },
+  "result": {
+    "item": "farmcharm:oat_block",
+    "count": 1
+  }
+}

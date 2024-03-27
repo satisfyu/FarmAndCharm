@@ -1,0 +1,24 @@
+{
+  "type": "farmcharm:pot_cooking",
+  "ingredients": [
+    {
+      "tag": "farmcharm:mushrooms"
+    },
+    {
+      "tag": "farmcharm:red_effect"
+    },
+    {
+      "tag": "farmcharm:butter"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farmcharm:mushroom_soup",
+    "count": 1
+  }
+}

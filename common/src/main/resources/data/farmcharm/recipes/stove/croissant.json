@@ -1,0 +1,17 @@
+{
+  "type": "farmcharm:stove",
+  "ingredients": [
+    {
+      "item": "farmcharm:sweet_dough"
+    },
+    {
+      "item": "farmcharm:yeast"
+    },
+    {
+      "item":"minecraft:sugar"
+    }
+  ],
+  "item": "farmcharm:croissant",
+  "count": 8,
+  "experience": 0.15
+}
