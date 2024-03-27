@@ -1,0 +1,31 @@
+architectury {
+    common(rootProject.enabled_platforms.split(","))
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/modname.accesswidener")
+}
+
+repositories {
+}
+
+dependencies {
+    modImplementation( "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}")
+            { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    modApi ("dev.architectury:architectury:${rootProject.architectury_version}")
+            { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+
+    modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
+}
+
+publishing {
+    publications {
+        mavenCommon(MavenPublication) {
+            artifactId = rootProject.archives_base_name
+            from components.java
+        }
+    }
+
+    repositories {
+    }
+}

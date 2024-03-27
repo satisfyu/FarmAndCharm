@@ -1,0 +1,40 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "Custom"
+
+[[mods]]
+modId = "modname"
+version = "${version}"
+displayName = "Modname"
+authors = "Your Name"
+description = '''
+Your Description'''
+logoFile = "pack.png"
+
+[[dependencies.modname]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.modname]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.modname]]
+modId = "doapi"
+mandatory = true
+versionRange = "[1.2.8,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.modname]]
+modId = "architectury"
+mandatory = true
+versionRange = "[9.0.8,)"
+ordering = "AFTER"
+side = "BOTH"

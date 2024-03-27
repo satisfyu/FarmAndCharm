@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "modname",
+  "version": "${version}",
+  "name": "Modname",
+  "description": "Your Description",
+  "authors": [
+    "Your Name"
+  ],
+  "contact": {
+    "homepage": "link",
+    "sources": "link"
+  },
+  "license": "custom",
+  "icon": "pack.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "example.modname.fabric.ModnameFabric"
+    ],
+    "client": [
+      "example.modname.fabric.ModnameClientFabric"
+    ],
+    "doapi": [
+      "example.modname.util.api.ModnameDoApi"
+    ]
+  },
+  "mixins": [
+    "modname.mixins.json",
+    "modname-common.mixins.json"
+  ],
+  "depends": {
+    "fabric-api": "*",
+    "minecraft": ">=1.20",
+    "architectury": ">=9.0.8",
+    "doapi": ">=1.2.8"
+  }
+}
