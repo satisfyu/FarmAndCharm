@@ -1,0 +1,9 @@
+{
+	"credit": "Made by Satisfy",
+	"textures": {
+			"all": "farm_and_charm:block/water_sprinkler",
+			"particle": "farm_and_charm:block/water_sprinkler",
+			"0": "farm_and_charm:block/water_sprinkler"
+		},
+		"render_type": "translucent"
+	}

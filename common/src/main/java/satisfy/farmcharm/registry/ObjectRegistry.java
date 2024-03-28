@@ -14,6 +14,7 @@ import satisfy.farmcharm.FarmCharmIdentifier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import satisfy.farmcharm.block.WaterSprinklerBlock;
 import satisfy.farmcharm.block.CookingPanBlock;
 import satisfy.farmcharm.block.CookingPotBlock;
 import satisfy.farmcharm.block.ToolRackBlock;
@@ -67,7 +68,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> COOKING_PAN = registerWithoutItem("cooking_pan", () -> new CookingPanBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
     public static final RegistrySupplier<Item> COOKING_PAN_ITEM = registerItem("cooking_pan", () -> new CookingPanItem(COOKING_PAN.get(), getSettings()));
 
-
+    public static final RegistrySupplier<Block> WATER_SPRINKLER = registerWithItem("water_sprinkler", () -> new WaterSprinklerBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
     public static final RegistrySupplier<Block> TOOL_RACK = registerWithItem("tool_rack", () -> new ToolRackBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT).noCollission()));
 
     public static final RegistrySupplier<Item> BUTTER = registerItem("butter", () -> new Item(getSettings()));

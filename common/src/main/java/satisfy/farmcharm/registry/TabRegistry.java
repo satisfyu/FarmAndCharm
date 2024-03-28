@@ -35,6 +35,7 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.OAT_STAIRS.get());
                 output.accept(ObjectRegistry.OAT_SLAB.get());
 
+                output.accept(ObjectRegistry.WATER_SPRINKLER.get());
                 output.accept(ObjectRegistry.TOOL_RACK.get());
                 output.accept(ObjectRegistry.COOKING_POT.get());
                 output.accept(ObjectRegistry.COOKING_PAN.get());
