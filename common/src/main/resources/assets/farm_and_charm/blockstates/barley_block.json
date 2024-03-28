@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "farm_and_charm:block/barley_block_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "farm_and_charm:block/barley_block"
+    },
+    "axis=z": {
+      "model": "farm_and_charm:block/barley_block_horizontal",
+      "x": 90
+    }
+  }
+}

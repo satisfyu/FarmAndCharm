@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "farm_and_charm:block/oat_block_top",
-    "top": "farm_and_charm:block/oat_block_top",
-    "side": "farm_and_charm:block/oat_block_side"
-  }
-}

@@ -62,7 +62,7 @@ public class ToolRackBlock extends StorageBlock {
 
     @Override
     public boolean canInsertStack(ItemStack stack) {
-        return stack.getItem() instanceof TieredItem || stack.getItem() == ObjectRegistry.COOKING_PAN.get().asItem();
+        return stack.getItem() instanceof TieredItem || stack.getItem() == ObjectRegistry.COOKING_PAN.get().asItem() || stack.getItem() == ObjectRegistry.COOKING_SAUCEPAN.get().asItem();
     }
 
 

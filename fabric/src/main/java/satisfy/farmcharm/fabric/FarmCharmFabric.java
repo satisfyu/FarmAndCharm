@@ -1,8 +1,8 @@
 package satisfy.farmcharm.fabric;
 
+import net.fabricmc.api.ModInitializer;
 import satisfy.farmcharm.FarmCharm;
 import satisfy.farmcharm.registry.CompostableRegistry;
-import net.fabricmc.api.ModInitializer;
 
 public class FarmCharmFabric implements ModInitializer {
     @Override

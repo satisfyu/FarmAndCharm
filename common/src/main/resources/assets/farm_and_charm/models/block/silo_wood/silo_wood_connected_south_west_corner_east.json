@@ -1,0 +1,21 @@
+{
+	"credit": "Made by Satisfy",
+	"texture_size": [64, 64],
+	"textures": {
+		"6": "farm_and_charm:block/silo/silo_connected_wood",
+		"particle": "farm_and_charm:block/silo/silo_connected_wood"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 16]},
+			"faces": {
+				"south": {"uv": [12, 12, 8, 16], "texture": "#6"},
+				"west": {"uv": [8, 12, 12, 16], "texture": "#6"},
+				"up": {"uv": [4, 4, 0, 0], "texture": "#6"},
+				"down": {"uv": [4, 0, 0, 4], "texture": "#6"}
+			}
+		}
+	]
+}

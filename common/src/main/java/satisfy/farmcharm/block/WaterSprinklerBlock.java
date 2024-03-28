@@ -6,7 +6,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -85,7 +84,6 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
 
                 for (double length = 0; length < 3; length += 0.5) {
                     world.addParticle(ParticleTypes.SPLASH, startX + dx * length, y, startZ + dz * length, dx, 0.0D, dz);
-                    world.playSound(null, pos, SoundEvents.POINTED_DRIPSTONE_DRIP_WATER, SoundSource.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
                 }
             }
         }

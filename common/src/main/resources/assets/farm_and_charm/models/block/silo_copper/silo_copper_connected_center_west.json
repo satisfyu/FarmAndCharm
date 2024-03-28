@@ -1,0 +1,18 @@
+{
+	"credit": "Made by Satisfy",
+	"texture_size": [64, 64],
+	"textures": {
+		"5": "farm_and_charm:block/silo/silo_connected",
+		"particle": "farm_and_charm:block/silo/silo_connected"
+	},
+	"elements": [
+		{
+			"from": [1, 0, 0],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
+			"faces": {
+				"west": {"uv": [8, 4, 12, 8], "texture": "#5"}
+			}
+		}
+	]
+}

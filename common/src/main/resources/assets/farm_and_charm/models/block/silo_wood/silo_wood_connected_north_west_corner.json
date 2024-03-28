@@ -1,0 +1,33 @@
+{
+	"credit": "Made by Satisfy",
+	"texture_size": [64, 64],
+	"textures": {
+		"1": "farm_and_charm:block/silo/stone_bricks_silo",
+		"2": "farm_and_charm:block/silo/stone_bricks_silo_top",
+		"3": "farm_and_charm:block/silo/stone_bricks_silo_connected",
+		"6": "farm_and_charm:block/silo/silo_connected_wood",
+		"particle": "farm_and_charm:block/silo/stone_bricks_silo_connected"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 12, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 16]},
+			"faces": {
+				"north": {"uv": [0, 4, 16, 16], "texture": "#1"},
+				"west": {"uv": [16, 4, 0, 16], "texture": "#1"},
+				"up": {"uv": [0, 16, 16, 0], "rotation": 90, "texture": "#2"},
+				"down": {"uv": [0, 16, 16, 0], "rotation": 270, "texture": "#3"}
+			}
+		},
+		{
+			"from": [1, 12, 1],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 16]},
+			"faces": {
+				"north": {"uv": [12.25, 11, 16, 12], "texture": "#6"},
+				"west": {"uv": [16, 11, 12.25, 12], "texture": "#6"}
+			}
+		}
+	]
+}

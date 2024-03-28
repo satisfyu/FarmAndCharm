@@ -1,0 +1,48 @@
+{
+	"credit": "Made by Satisfy",
+	"texture_size": [64, 64],
+	"textures": {
+		"4": "farm_and_charm:block/silo/silo_top_connected",
+		"5": "farm_and_charm:block/silo/silo_connected",
+		"particle": "farm_and_charm:block/silo/silo_connected"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 1],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
+			"faces": {
+				"north": {"uv": [7.75, 0, 11.75, 4], "texture": "#5"},
+				"up": {"uv": [12, 0.25, 8, 4], "texture": "#4"}
+			}
+		},
+		{
+			"from": [0, 16, 16],
+			"to": [1, 16, 32],
+			"faces": {
+				"up": {"uv": [11.75, 4, 12, 8], "texture": "#4"}
+			}
+		},
+		{
+			"from": [15, 16, 16],
+			"to": [16, 16, 32],
+			"faces": {
+				"up": {"uv": [8, 4, 8.25, 8], "texture": "#4"}
+			}
+		},
+		{
+			"from": [1, 16, 16],
+			"to": [15, 16, 17],
+			"faces": {
+				"up": {"uv": [8.25, 4.25, 11.75, 4], "texture": "#4"}
+			}
+		},
+		{
+			"from": [1, 16, 31],
+			"to": [15, 16, 32],
+			"faces": {
+				"up": {"uv": [12, 4.25, 11.75, 7.75], "rotation": 90, "texture": "#4"}
+			}
+		}
+	]
+}

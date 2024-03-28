@@ -1,0 +1,892 @@
+{
+  "variants": {
+    "shape=none,facing=north,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_open"
+    },
+    "shape=none,facing=east,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_open",
+      "y": 90
+    },
+    "shape=none,facing=south,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_open",
+      "y": 180
+    },
+    "shape=none,facing=west,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_open",
+      "y": 270
+    },
+    "shape=none,facing=north,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_closed"
+    },
+    "shape=none,facing=east,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_closed",
+      "y": 90
+    },
+    "shape=none,facing=south,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_closed",
+      "y": 180
+    },
+    "shape=none,facing=west,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_closed",
+      "y": 270
+    },
+    "shape=none,facing=north,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_open_bottom"
+    },
+    "shape=none,facing=east,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_open_bottom",
+      "y": 90
+    },
+    "shape=none,facing=south,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_open_bottom",
+      "y": 180
+    },
+    "shape=none,facing=west,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_open_bottom",
+      "y": 270
+    },
+    "shape=none,facing=north,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_closed_bottom"
+    },
+    "shape=none,facing=east,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_closed_bottom",
+      "y": 90
+    },
+    "shape=none,facing=south,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_closed_bottom",
+      "y": 180
+    },
+    "shape=none,facing=west,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_closed_bottom",
+      "y": 270
+    },
+    "shape=none,facing=north,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_top"
+    },
+    "shape=none,facing=east,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_top",
+      "y": 90
+    },
+    "shape=none,facing=south,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_top",
+      "y": 180
+    },
+    "shape=none,facing=west,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_top",
+      "y": 270
+    },
+    "shape=none,facing=north,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_top"
+    },
+    "shape=none,facing=east,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_top",
+      "y": 90
+    },
+    "shape=none,facing=south,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_top",
+      "y": 180
+    },
+    "shape=none,facing=west,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_top",
+      "y": 270
+    },
+    "shape=none,facing=north,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_mid"
+    },
+    "shape=none,facing=east,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_mid",
+      "y": 90
+    },
+    "shape=none,facing=south,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_mid",
+      "y": 180
+    },
+    "shape=none,facing=west,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_mid",
+      "y": 270
+    },
+    "shape=none,facing=north,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_mid"
+    },
+    "shape=none,facing=east,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_mid",
+      "y": 90
+    },
+    "shape=none,facing=south,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_mid",
+      "y": 180
+    },
+    "shape=none,facing=west,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_single_mid",
+      "y": 270
+    },
+    "shape=north_west,facing=north,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_open"
+    },
+    "shape=north_west,facing=east,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_corner_east"
+    },
+    "shape=north_west,facing=south,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_open_bottom_east_corner"
+    },
+    "shape=north_west,facing=west,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_open_west"
+    },
+    "shape=north_west,facing=north,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_closed"
+    },
+    "shape=north_west,facing=east,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_corner_east"
+    },
+    "shape=north_west,facing=south,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_open_bottom_east_corner"
+    },
+    "shape=north_west,facing=west,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_closed_west_"
+    },
+    "shape=north_east,facing=north,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_open"
+    },
+    "shape=north_east,facing=east,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_open_bottom_east"
+    },
+    "shape=north_east,facing=south,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_open_bottom_east_corner"
+    },
+    "shape=north_east,facing=west,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_open_bottom_east_corner_west"
+    },
+    "shape=north_east,facing=north,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_closed"
+    },
+    "shape=north_east,facing=east,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_closed_east"
+    },
+    "shape=north_east,facing=south,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_open_bottom_east_corner"
+    },
+    "shape=north_east,facing=west,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_open_bottom_east_corner_west"
+    },
+    "shape=south_east,facing=north,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east"
+    },
+    "shape=south_east,facing=east,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_open_east"
+    },
+    "shape=south_east,facing=south,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_open_south_east_south"
+    },
+    "shape=south_east,facing=west,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east"
+    },
+    "shape=south_east,facing=north,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east"
+    },
+    "shape=south_east,facing=east,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_closed_east"
+    },
+    "shape=south_east,facing=south,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_closed_south"
+    },
+    "shape=south_east,facing=west,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east"
+    },
+    "shape=south_west,facing=north,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west"
+    },
+    "shape=south_west,facing=east,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_corner_east"
+    },
+    "shape=south_west,facing=south,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_open_south_west_south"
+    },
+    "shape=south_west,facing=west,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_open_west"
+    },
+    "shape=south_west,facing=north,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west"
+    },
+    "shape=south_west,facing=east,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_corner_east"
+    },
+    "shape=south_west,facing=south,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_closed_south_west_south"
+    },
+    "shape=south_west,facing=west,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_closed_west"
+    },
+    "shape=north_west,facing=north,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_open_bottom"
+    },
+    "shape=north_west,facing=east,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_corner"
+    },
+    "shape=north_west,facing=south,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_corner"
+    },
+    "shape=north_west,facing=west,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_open_bottom_west2"
+    },
+    "shape=north_west,facing=north,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_closed_bottom"
+    },
+    "shape=north_west,facing=east,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_corner"
+    },
+    "shape=north_west,facing=south,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_corner"
+    },
+    "shape=north_west,facing=west,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_closed_bottom_west2"
+    },
+    "shape=north_east,facing=north,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_open_bottom"
+    },
+    "shape=north_east,facing=east,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_open_bottom_east3"
+    },
+    "shape=north_east,facing=south,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_corner"
+    },
+    "shape=north_east,facing=west,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_bottom2"
+    },
+    "shape=north_east,facing=north,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_closed_bottom"
+    },
+    "shape=north_east,facing=east,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_closed_bottom_east3"
+    },
+    "shape=north_east,facing=south,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_corner"
+    },
+    "shape=north_east,facing=west,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_bottom2"
+    },
+    "shape=south_east,facing=north,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_bottom"
+    },
+    "shape=south_east,facing=east,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_open_bottom_east2"
+    },
+    "shape=south_east,facing=south,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_open_bottom_south2"
+    },
+    "shape=south_east,facing=west,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_corner_west2"
+    },
+    "shape=south_east,facing=north,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_bottom"
+    },
+    "shape=south_east,facing=east,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_closed_bottom_east"
+    },
+    "shape=south_east,facing=south,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_closed_bottom_south2"
+    },
+    "shape=south_east,facing=west,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_corner_west2"
+    },
+    "shape=south_west,facing=north,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_bottom"
+    },
+    "shape=south_west,facing=east,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_bottom"
+    },
+    "shape=south_west,facing=south,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_open_bottom_south2"
+    },
+    "shape=south_west,facing=west,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_open_bottom_west2"
+    },
+    "shape=south_west,facing=north,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_bottom"
+    },
+    "shape=south_west,facing=east,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_bottom"
+    },
+    "shape=south_west,facing=south,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_closed_bottom_south2"
+    },
+    "shape=south_west,facing=west,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_closed_bottom_west2"
+    },
+    "shape=north_west,facing=north,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_top"
+    },
+    "shape=north_west,facing=east,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_top"
+    },
+    "shape=north_west,facing=south,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_top"
+    },
+    "shape=north_west,facing=west,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_closed_west"
+    },
+    "shape=north_west,facing=north,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_top"
+    },
+    "shape=north_west,facing=east,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_top"
+    },
+    "shape=north_west,facing=south,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_top"
+    },
+    "shape=north_west,facing=west,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_top"
+    },
+    "shape=north_east,facing=north,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_top"
+    },
+    "shape=north_east,facing=east,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_top"
+    },
+    "shape=north_east,facing=south,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_top"
+    },
+    "shape=north_east,facing=west,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_top"
+    },
+    "shape=north_east,facing=north,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_top"
+    },
+    "shape=north_east,facing=east,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_top"
+    },
+    "shape=north_east,facing=south,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_top"
+    },
+    "shape=north_east,facing=west,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_top"
+    },
+    "shape=south_east,facing=north,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_top"
+    },
+    "shape=south_east,facing=east,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_top"
+    },
+    "shape=south_east,facing=south,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_closed_south_east_south"
+    },
+    "shape=south_east,facing=west,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_top"
+    },
+    "shape=south_east,facing=north,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_top"
+    },
+    "shape=south_east,facing=east,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_top"
+    },
+    "shape=south_east,facing=south,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_top"
+    },
+    "shape=south_east,facing=west,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_top"
+    },
+    "shape=south_west,facing=north,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_top"
+    },
+    "shape=south_west,facing=east,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_top"
+    },
+    "shape=south_west,facing=south,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_top"
+    },
+    "shape=south_west,facing=west,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_top"
+    },
+    "shape=south_west,facing=north,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_top"
+    },
+    "shape=south_west,facing=east,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_top"
+    },
+    "shape=south_west,facing=south,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_top"
+    },
+    "shape=south_west,facing=west,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_top"
+    },
+    "shape=north_west,facing=north,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_mid"
+    },
+    "shape=north_west,facing=east,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_mid"
+    },
+    "shape=north_west,facing=south,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_mid"
+    },
+    "shape=north_west,facing=west,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_mid"
+    },
+    "shape=north_west,facing=north,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_mid"
+    },
+    "shape=north_west,facing=east,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_mid"
+    },
+    "shape=north_west,facing=south,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_mid"
+    },
+    "shape=north_west,facing=west,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_west_mid"
+    },
+    "shape=north_east,facing=north,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_mid"
+    },
+    "shape=north_east,facing=east,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_mid"
+    },
+    "shape=north_east,facing=south,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_mid"
+    },
+    "shape=north_east,facing=west,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_mid"
+    },
+    "shape=north_east,facing=north,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_mid"
+    },
+    "shape=north_east,facing=east,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_mid"
+    },
+    "shape=north_east,facing=south,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_mid"
+    },
+    "shape=north_east,facing=west,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north_east_mid"
+    },
+    "shape=south_east,facing=north,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_mid"
+    },
+    "shape=south_east,facing=east,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_mid"
+    },
+    "shape=south_east,facing=south,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_mid"
+    },
+    "shape=south_east,facing=west,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_mid"
+    },
+    "shape=south_east,facing=north,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_mid"
+    },
+    "shape=south_east,facing=east,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_mid"
+    },
+    "shape=south_east,facing=south,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_mid"
+    },
+    "shape=south_east,facing=west,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_east_mid"
+    },
+    "shape=south_west,facing=north,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_mid"
+    },
+    "shape=south_west,facing=east,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_mid"
+    },
+    "shape=south_west,facing=south,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_mid"
+    },
+    "shape=south_west,facing=west,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_mid"
+    },
+    "shape=south_west,facing=north,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_mid"
+    },
+    "shape=south_west,facing=east,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_mid"
+    },
+    "shape=south_west,facing=south,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_mid"
+    },
+    "shape=south_west,facing=west,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south_west_mid"
+    },
+    "shape=north,facing=north,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_closed"
+    },
+    "shape=north,facing=east,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_north"
+    },
+    "shape=north,facing=south,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_north"
+    },
+    "shape=north,facing=west,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_north"
+    },
+    "shape=north,facing=north,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_open"
+    },
+    "shape=north,facing=east,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_north"
+    },
+    "shape=north,facing=south,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_north"
+    },
+    "shape=north,facing=west,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_north"
+    },
+    "shape=east,facing=north,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_east"
+    },
+    "shape=east,facing=east,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_closed_east"
+    },
+    "shape=east,facing=south,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_east"
+    },
+    "shape=east,facing=west,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_east"
+    },
+    "shape=east,facing=north,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_east"
+    },
+    "shape=east,facing=east,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_open_east"
+    },
+    "shape=east,facing=south,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_east"
+    },
+    "shape=east,facing=west,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_east"
+    },
+    "shape=south,facing=north,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south"
+    },
+    "shape=south,facing=east,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south"
+    },
+    "shape=south,facing=south,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_closed_south"
+    },
+    "shape=south,facing=west,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south"
+    },
+    "shape=south,facing=north,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south"
+    },
+    "shape=south,facing=east,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south"
+    },
+    "shape=south,facing=south,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_open_south"
+    },
+    "shape=south,facing=west,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_south"
+    },
+    "shape=west,facing=north,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_west"
+    },
+    "shape=west,facing=east,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_west"
+    },
+    "shape=west,facing=south,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_west"
+    },
+    "shape=west,facing=west,bottom=true,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_closed_west"
+    },
+    "shape=west,facing=north,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_west"
+    },
+    "shape=west,facing=east,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_west"
+    },
+    "shape=west,facing=south,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_west"
+    },
+    "shape=west,facing=west,bottom=true,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_bottom_open_west"
+    },
+    "shape=north,facing=north,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_closed"
+    },
+    "shape=north,facing=east,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_east2"
+    },
+    "shape=north,facing=south,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north2"
+    },
+    "shape=north,facing=west,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north"
+    },
+    "shape=north,facing=north,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_open"
+    },
+    "shape=north,facing=east,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_east2"
+    },
+    "shape=north,facing=south,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north2"
+    },
+    "shape=north,facing=west,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north"
+    },
+    "shape=east,facing=north,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_east"
+    },
+    "shape=east,facing=east,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_closed_east"
+    },
+    "shape=east,facing=south,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_east"
+    },
+    "shape=east,facing=west,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_east"
+    },
+    "shape=east,facing=north,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_east"
+    },
+    "shape=east,facing=east,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_open_east"
+    },
+    "shape=east,facing=south,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_east"
+    },
+    "shape=east,facing=west,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_east"
+    },
+    "shape=west,facing=north,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north3"
+    },
+    "shape=west,facing=east,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_west"
+    },
+    "shape=west,facing=south,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_west"
+    },
+    "shape=west,facing=west,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_closed_west"
+    },
+    "shape=west,facing=north,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_north3"
+    },
+    "shape=west,facing=east,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_west"
+    },
+    "shape=west,facing=south,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_west"
+    },
+    "shape=west,facing=west,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_open_west"
+    },
+    "shape=south,facing=north,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_south"
+    },
+    "shape=south,facing=east,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_south"
+    },
+    "shape=south,facing=south,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_closed_south"
+    },
+    "shape=south,facing=west,bottom=true,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_south"
+    },
+    "shape=south,facing=north,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_south"
+    },
+    "shape=south,facing=east,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_south"
+    },
+    "shape=south,facing=south,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_open_south"
+    },
+    "shape=south,facing=west,bottom=true,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_south"
+    },
+    "shape=north,facing=north,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_north"
+    },
+    "shape=north,facing=east,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_north"
+    },
+    "shape=north,facing=south,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_north"
+    },
+    "shape=north,facing=west,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_north"
+    },
+    "shape=north,facing=north,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_north"
+    },
+    "shape=north,facing=east,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_north"
+    },
+    "shape=north,facing=south,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_north"
+    },
+    "shape=north,facing=west,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_north"
+    },
+    "shape=east,facing=north,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_east"
+    },
+    "shape=east,facing=east,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_east"
+    },
+    "shape=east,facing=south,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_east"
+    },
+    "shape=east,facing=west,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_east"
+    },
+    "shape=east,facing=north,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_east"
+    },
+    "shape=east,facing=east,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_east"
+    },
+    "shape=east,facing=south,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_east"
+    },
+    "shape=east,facing=west,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_east"
+    },
+    "shape=south,facing=north,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_south"
+    },
+    "shape=south,facing=east,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_south"
+    },
+    "shape=south,facing=south,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_south"
+    },
+    "shape=south,facing=west,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_south"
+    },
+    "shape=south,facing=north,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_south"
+    },
+    "shape=south,facing=east,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_south"
+    },
+    "shape=south,facing=south,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_south"
+    },
+    "shape=south,facing=west,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_south"
+    },
+    "shape=west,facing=north,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_west"
+    },
+    "shape=west,facing=east,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_west"
+    },
+    "shape=west,facing=south,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_west"
+    },
+    "shape=west,facing=west,bottom=false,open=false,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_west"
+    },
+    "shape=west,facing=north,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_west"
+    },
+    "shape=west,facing=east,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_west"
+    },
+    "shape=west,facing=south,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_west"
+    },
+    "shape=west,facing=west,bottom=false,open=true,top=true": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_top_west"
+    },
+    "shape=north,facing=north,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_north"
+    },
+    "shape=north,facing=east,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_north"
+    },
+    "shape=north,facing=south,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_north"
+    },
+    "shape=north,facing=west,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_north"
+    },
+    "shape=north,facing=north,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_north"
+    },
+    "shape=north,facing=east,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_north"
+    },
+    "shape=north,facing=south,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_north"
+    },
+    "shape=north,facing=west,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_mid_north"
+    },
+    "shape=east,facing=north,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_east"
+    },
+    "shape=east,facing=east,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_east"
+    },
+    "shape=east,facing=south,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_east"
+    },
+    "shape=east,facing=west,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_east"
+    },
+    "shape=east,facing=north,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_east"
+    },
+    "shape=east,facing=east,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_east"
+    },
+    "shape=east,facing=south,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_east"
+    },
+    "shape=east,facing=west,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_east"
+    },
+    "shape=south,facing=north,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_south"
+    },
+    "shape=south,facing=east,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_south"
+    },
+    "shape=south,facing=south,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_south"
+    },
+    "shape=south,facing=west,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_south"
+    },
+    "shape=south,facing=north,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_south"
+    },
+    "shape=south,facing=east,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_south"
+    },
+    "shape=south,facing=south,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_south"
+    },
+    "shape=south,facing=west,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_south"
+    },
+    "shape=west,facing=north,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_west"
+    },
+    "shape=west,facing=east,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_west"
+    },
+    "shape=west,facing=south,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_west"
+    },
+    "shape=west,facing=west,bottom=false,open=false,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_west"
+    },
+    "shape=west,facing=north,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_west"
+    },
+    "shape=west,facing=east,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_west"
+    },
+    "shape=west,facing=south,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_west"
+    },
+    "shape=west,facing=west,bottom=false,open=true,top=false": {
+      "model": "farm_and_charm:block/silo_wood/silo_wood_connected_center_west"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 package satisfy.farmcharm.fabric;
 
-import satisfy.farmcharm.client.FarmCharmClient;
 import net.fabricmc.api.ClientModInitializer;
+import satisfy.farmcharm.client.FarmCharmClient;
 
 public class FarmCharmClientFabric implements ClientModInitializer {
     @Override
