@@ -47,6 +47,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.*;
 
+@SuppressWarnings("unused, deprecation")
 public class GeneralUtil {
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
