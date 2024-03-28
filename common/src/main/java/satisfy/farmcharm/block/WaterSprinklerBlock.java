@@ -1,15 +1,12 @@
 package satisfy.farmcharm.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -23,15 +20,18 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
         super(properties);
     }
 
-    @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        Vec3 offset = state.getOffset(world, pos);
-        return (Shapes.or(box(3, 0, 3, 13, 8, 13), box(4, 3, 4, 12, 8, 12))).move(offset.x, offset.y, offset.z);
-    }
+    private static final VoxelShape SHAPE = Shapes.or(
+            Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375),
+            Shapes.box(0.0625, 0.0625, 0.0625, 0.125, 0.75, 0.9375),
+            Shapes.box(0.875, 0.0625, 0.0625, 0.9375, 0.75, 0.9375),
+            Shapes.box(0.125, 0.0625, 0.0625, 0.875, 0.75, 0.125),
+            Shapes.box(0.125, 0.0625, 0.875, 0.875, 0.75, 0.9375),
+            Shapes.box(0.4375, 0.125, 0.4375, 0.5625, 1.0625, 0.5625)
+    );
 
     @Override
-    public void tick(BlockState blockState, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.tick(blockState, level, pos, random);
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return SHAPE;
     }
 
     @Override

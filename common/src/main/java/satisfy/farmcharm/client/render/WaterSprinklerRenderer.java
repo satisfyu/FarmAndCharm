@@ -34,11 +34,17 @@ public class WaterSprinklerRenderer implements BlockEntityRenderer<WaterSprinkle
         VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entitySolid(TEXTURE));
 
         matrixStack.pushPose();
+
         long gameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
         float speedMultiplier = 5.0F;
-        float angle = ((gameTime * speedMultiplier) % 360) + (partialTicks * speedMultiplier);
-        matrixStack.mulPose(new Quaternionf().rotateX((float) Math.toRadians(angle)));
+        float angle = (gameTime + partialTicks) * speedMultiplier % 360;
+
+        matrixStack.translate(0.5, 0, 0.5);
+        matrixStack.mulPose(new Quaternionf().rotationY((float) Math.toRadians(-angle)));
+        matrixStack.translate(-0.5, 0, -0.5);
+
         rotating.render(matrixStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY);
+
         matrixStack.popPose();
 
         basin.render(matrixStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY);

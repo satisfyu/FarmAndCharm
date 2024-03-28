@@ -19,9 +19,13 @@ import satisfy.farmcharm.registry.ScreenhandlerTypeRegistry;
 public class FarmCharmClient {
 
     public static void onInitializeClient() {
+        RenderTypeRegistry.register(RenderType.cutout(),
+                ObjectRegistry.WATER_SPRINKLER.get()
+        );
+
 
         ClientStorageTypes.init();
-        RenderTypeRegistry.register(RenderType.translucent(), ObjectRegistry.WATER_SPRINKLER.get());
+        RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.WATER_SPRINKLER.get());
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.SPRINKLER_BLOCK_ENTITY.get(), WaterSprinklerRenderer::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_PAN_SCREEN_HANDLER.get(), CookingPanGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_POT_SCREEN_HANDLER.get(), CookingPotGui::new);

@@ -20,29 +20,28 @@ public class WaterSprinklerModel<T extends Entity> extends EntityModel<T> {
         this.rotating = root.getChild("rotating");
         this.basin = root.getChild("basin");
     }
-    
+
     @SuppressWarnings("unused")
     public static LayerDefinition getTexturedModelData() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
+        PartDefinition rotating = partdefinition.addOrReplaceChild("rotating", CubeListBuilder.create().texOffs(0, 28).addBox(7.0F, -14.0F, 7.0F, 2.0F, 15.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(28, 26).addBox(7.0F, -2.0F, 1.0F, 2.0F, 2.0F, 14.0F, new CubeDeformation(0.0F))
+                .texOffs(28, 15).addBox(1.0F, -2.0F, 7.0F, 14.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 9).addBox(6.0F, -3.0F, 15.0F, 4.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(42, 9).addBox(6.0F, -3.0F, 0.0F, 4.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(42, 0).addBox(0.0F, -3.0F, 6.0F, 1.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(15.0F, -3.0F, 6.0F, 1.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 16.0F, 0.0F));
 
-        PartDefinition rotating = partdefinition.addOrReplaceChild("rotating", CubeListBuilder.create().texOffs(0, 28).addBox(-1.0F, -9.0F, -1.0F, 2.0F, 15.0F, 2.0F, new CubeDeformation(0.0F))
-                .texOffs(28, 26).addBox(-1.0F, -8.0F, -7.0F, 2.0F, 2.0F, 14.0F, new CubeDeformation(0.0F))
-                .texOffs(28, 15).addBox(-7.0F, -8.0F, -1.0F, 14.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 9).addBox(-2.0F, -9.0F, 7.0F, 4.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 9).addBox(-2.0F, -9.0F, -8.0F, 4.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 0).addBox(-8.0F, -9.0F, -2.0F, 1.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 0).addBox(7.0F, -9.0F, -2.0F, 1.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 16.0F, 0.0F));
-
-        PartDefinition basin = partdefinition.addOrReplaceChild("basin", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, 7.0F, -7.0F, 14.0F, 1.0F, 14.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 16).mirror().addBox(-6.0F, -4.0F, -7.0F, 12.0F, 11.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
-                .texOffs(0, 16).mirror().addBox(-6.0F, -4.0F, 6.0F, 12.0F, 11.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
-                .texOffs(12, 15).addBox(6.0F, -4.0F, -7.0F, 1.0F, 11.0F, 14.0F, new CubeDeformation(0.0F))
-                .texOffs(12, 15).addBox(-7.0F, -4.0F, -7.0F, 1.0F, 11.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 16.0F, 0.0F));
+        PartDefinition basin = partdefinition.addOrReplaceChild("basin", CubeListBuilder.create().texOffs(0, 0).addBox(1.0F, -16.0F, 1.0F, 14.0F, 1.0F, 14.0F, new CubeDeformation(0.0F))
+                .texOffs(1, 45).addBox(2.0F, -9.0F, 2.0F, 12.0F, 0.0F, 12.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 16).mirror().addBox(2.0F, -15.0F, 1.0F, 12.0F, 11.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(0, 16).mirror().addBox(2.0F, -15.0F, 14.0F, 12.0F, 11.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
+                .texOffs(12, 15).addBox(14.0F, -15.0F, 1.0F, 1.0F, 11.0F, 14.0F, new CubeDeformation(0.0F))
+                .texOffs(12, 15).addBox(1.0F, -15.0F, 1.0F, 1.0F, 11.0F, 14.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 16.0F, 0.0F));
 
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
-
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
