@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    "###"
+  ],
+  "key": {
+    "B": {
+      "tag": "farm_and_charm:water_bottles"
+    },
+    "#": {
+      "tag": "farm_and_charm:wheat"
+    }
+  },
+  "result": {
+    "item": "farm_and_charm:bag",
+    "count": 4
+  }
+}

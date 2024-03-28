@@ -1,6 +1,0 @@
-{
-	"parent": "farmcharm:block/tall_crop",
-	"textures": {
-		"crop": "farmcharm:block/corn_stage2"
-	}
-}

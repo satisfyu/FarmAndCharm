@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:potato_bag"
+    }
+  ],
+  "result": {
+    "item": "minecraft:potato",
+    "count": 9
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:beetroot_bag"
+    }
+  ],
+  "result": {
+    "item": "minecraft:beetroot",
+    "count": 9
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:strawberry"
+    }
+  ],
+  "result": {
+    "item": "farm_and_charm:strawberry_seeds",
+    "count": 1
+  }
+}

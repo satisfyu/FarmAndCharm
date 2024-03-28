@@ -24,16 +24,26 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.TOMATO.get());
                 output.accept(ObjectRegistry.LETTUCE_CROP.get());
                 output.accept(ObjectRegistry.LETTUCE.get());
-                output.accept(ObjectRegistry.LETTUCE_CRATE.get());
-                output.accept(ObjectRegistry.TOMATO_CRATE.get().asItem());
-                output.accept(ObjectRegistry.CARROT_CRATE.get());
-                output.accept(ObjectRegistry.POTATO_CRATE.get());
-                output.accept(ObjectRegistry.BEETROOT_CRATE.get());
-                output.accept(ObjectRegistry.STRAWBERRY_CRATE.get());
-                output.accept(ObjectRegistry.OAT_CRATE.get());
+                output.accept(ObjectRegistry.LETTUCE_BAG.get());
+                output.accept(ObjectRegistry.TOMATO_BAG.get().asItem());
+                output.accept(ObjectRegistry.CARROT_BAG.get());
+                output.accept(ObjectRegistry.POTATO_BAG.get());
+                output.accept(ObjectRegistry.BEETROOT_BAG.get());
+                output.accept(ObjectRegistry.STRAWBERRY_BAG.get());
+                output.accept(ObjectRegistry.OAT_BAG.get());
                 output.accept(ObjectRegistry.OAT_BLOCK.get());
                 output.accept(ObjectRegistry.OAT_STAIRS.get());
                 output.accept(ObjectRegistry.OAT_SLAB.get());
+
+                output.accept(ObjectRegistry.TOOL_RACK.get());
+                output.accept(ObjectRegistry.COOKING_POT.get());
+                output.accept(ObjectRegistry.COOKING_PAN.get());
+
+
+                output.accept(ObjectRegistry.BUTTER.get());
+                output.accept(ObjectRegistry.MOZZARELLA.get());
+                output.accept(ObjectRegistry.DOUGH.get());
+
             })
             .build());
 

@@ -1,0 +1,32 @@
+{
+	"credit": "Made by Satisfy",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"texture_size": [32, 16],
+	"textures": {
+		"particle": "farm_and_charm:block/wild_hops_top",
+		"cross": "farm_and_charm:block/wild_hops_top"
+	},
+	"elements": [
+		{
+			"from": [19.99988, 0, -3.99988],
+			"to": [19.99988, 16, 20.00012],
+			"shade": false,
+			"rotation": {"angle": -45, "axis": "y", "origin": [19.99988, 8, -3.99988], "rescale": true},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"west": {"uv": [16, 0, 0, 16], "texture": "#cross"}
+			}
+		},
+		{
+			"from": [8, 0, -4],
+			"to": [8, 16, 20],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+			"faces": {
+				"east": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+				"west": {"uv": [16, 0, 0, 16], "texture": "#cross"}
+			}
+		}
+	]
+}

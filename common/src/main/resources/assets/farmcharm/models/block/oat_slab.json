@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "farmcharm:block/oat_block_top",
-    "top": "farmcharm:block/oat_block_top",
-    "side": "farmcharm:block/oat_block_side"
-  }
-}

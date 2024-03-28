@@ -11,6 +11,11 @@ import net.minecraft.sounds.SoundEvent;
 
 public class SoundEventRegistry {
     private static final Registrar<SoundEvent> SOUND_EVENTS = DeferredRegister.create(FarmCharm.MOD_ID, Registries.SOUND_EVENT).getRegistrar();
+    public static final RegistrySupplier<SoundEvent> COOKING_POT_BOILING = create("cooking_pot_boiling");
+    public static final RegistrySupplier<SoundEvent> COOKING_PAN_COOKING = create("cooking_pan_cooking");
+    public static final RegistrySupplier<SoundEvent> COOKING_PAN_HIT = create("cooking_pan_hit");
+
+
 
     private static RegistrySupplier<SoundEvent> create(String name) {
         final ResourceLocation id = new FarmCharmIdentifier(name);

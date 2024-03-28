@@ -1,5 +1,7 @@
 package satisfy.farmcharm.block.crops;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
@@ -10,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import satisfy.farmcharm.registry.ObjectRegistry;
 
 public class OatCropBlock extends CropBlock {
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 5);
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 
     public OatCropBlock(Properties properties) {
         super(properties);
@@ -23,7 +25,7 @@ public class OatCropBlock extends CropBlock {
 
     @Override
     public int getMaxAge() {
-        return 5;
+        return 4;
     }
 
     @Override
@@ -35,4 +37,10 @@ public class OatCropBlock extends CropBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
+
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+        return true;
+    }
+
 }

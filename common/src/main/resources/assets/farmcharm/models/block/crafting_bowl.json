@@ -1,9 +1,0 @@
-{
-  "parent": "farmcharm:block/crafting_bowl_main",
-  "textures": {
-    "all": "farmcharm:block/crafting_bowl",
-    "particle": "farmcharm:block/crafting_bowl",
-    "0": "farmcharm:block/crafting_bowl"
-  },
-  "render_type": "translucent"
-}

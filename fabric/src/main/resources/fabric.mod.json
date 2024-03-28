@@ -22,7 +22,7 @@
       "satisfy.farmcharm.fabric.FarmCharmClientFabric"
     ],
     "doapi": [
-      "satisfy.farmcharm.util.api.ModnameDoApi"
+      "satisfy.farmcharm.util.api.FarmCharmDoAPI"
     ]
   },
   "mixins": [

@@ -1,0 +1,9 @@
+{
+  "parent": "farm_and_charm:block/crafting_bowl_main",
+  "textures": {
+    "all": "farm_and_charm:block/crafting_bowl",
+    "particle": "farm_and_charm:block/crafting_bowl",
+    "0": "farm_and_charm:block/crafting_bowl"
+  },
+  "render_type": "translucent"
+}

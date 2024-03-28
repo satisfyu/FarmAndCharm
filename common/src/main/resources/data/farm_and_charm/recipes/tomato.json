@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#"
+    ],
+    "key": {
+        "#": {
+            "item": "farm_and_charm:tomato_bag"
+        }
+    },
+    "result": {
+        "item": "farm_and_charm:tomato",
+        "count": 9
+    }
+}

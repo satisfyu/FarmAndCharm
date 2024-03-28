@@ -1,0 +1,79 @@
+{
+  "variants": {
+    "cuts=4,facing=north": {
+      "model": "farm_and_charm:block/bread_bag_1"
+    },
+    "cuts=3,facing=north": {
+      "model": "farm_and_charm:block/bread_bag_2"
+    },
+    "cuts=2,facing=north": {
+      "model": "farm_and_charm:block/bread_bag_3"
+    },
+    "cuts=1,facing=north": {
+      "model": "farm_and_charm:block/bread_bag_4"
+    },
+    "cuts=0,facing=north": {
+      "model": "farm_and_charm:block/bread_bag_5"
+    },
+    "cuts=4,facing=east": {
+      "model": "farm_and_charm:block/bread_bag_1",
+      "y": 90
+    },
+    "cuts=3,facing=east": {
+      "model": "farm_and_charm:block/bread_bag_2",
+      "y": 90
+    },
+    "cuts=2,facing=east": {
+      "model": "farm_and_charm:block/bread_bag_3",
+      "y": 90
+    },
+    "cuts=1,facing=east": {
+      "model": "farm_and_charm:block/bread_bag_4",
+      "y": 90
+    },
+    "cuts=0,facing=east": {
+      "model": "farm_and_charm:block/bread_bag_5",
+      "y": 90
+    },
+    "cuts=4,facing=south": {
+      "model": "farm_and_charm:block/bread_bag_1",
+      "y": 180
+    },
+    "cuts=3,facing=south": {
+      "model": "farm_and_charm:block/bread_bag_2",
+      "y": 180
+    },
+    "cuts=2,facing=south": {
+      "model": "farm_and_charm:block/bread_bag_3",
+      "y": 180
+    },
+    "cuts=1,facing=south": {
+      "model": "farm_and_charm:block/bread_bag_4",
+      "y": 180
+    },
+    "cuts=0,facing=south": {
+      "model": "farm_and_charm:block/bread_bag_5",
+      "y": 180
+    },
+    "cuts=4,facing=west": {
+      "model": "farm_and_charm:block/bread_bag_1",
+      "y": 270
+    },
+    "cuts=3,facing=west": {
+      "model": "farm_and_charm:block/bread_bag_2",
+      "y": 270
+    },
+    "cuts=2,facing=west": {
+      "model": "farm_and_charm:block/bread_bag_3",
+      "y": 270
+    },
+    "cuts=1,facing=west": {
+      "model": "farm_and_charm:block/bread_bag_4",
+      "y": 270
+    },
+    "cuts=0,facing=west": {
+      "model": "farm_and_charm:block/bread_bag_5",
+      "y": 270
+    }
+  }
+}

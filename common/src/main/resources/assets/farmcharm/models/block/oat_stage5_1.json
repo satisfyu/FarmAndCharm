@@ -1,6 +1,0 @@
-{
-	"parent": "farmcharm:block/oat_template",
-	"textures": {
-		"crop": "farmcharm:block/oat_stage5_1"
-	}
-}
