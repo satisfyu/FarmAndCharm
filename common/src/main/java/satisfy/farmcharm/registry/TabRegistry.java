@@ -57,6 +57,7 @@ public class TabRegistry {
 
                 output.accept(ObjectRegistry.SILO_WOOD.get());
                 output.accept(ObjectRegistry.SILO_COPPER.get());
+                output.accept(ObjectRegistry.WINDOW_SILL.get());
                 output.accept(ObjectRegistry.TOOL_RACK.get());
                 output.accept(ObjectRegistry.CRAFTING_BOWL.get());
                 output.accept(ObjectRegistry.COOKING_POT.get());
@@ -65,6 +66,7 @@ public class TabRegistry {
 
 
                 output.accept(ObjectRegistry.BUTTER.get());
+                output.accept(ObjectRegistry.YEAST.get());
                 output.accept(ObjectRegistry.MOZZARELLA.get());
                 output.accept(ObjectRegistry.DOUGH.get());
 
