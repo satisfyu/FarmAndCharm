@@ -78,7 +78,6 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
         return level.getBlockEntity(controller) instanceof SiloBlockEntity siloBE ? siloBE : null;
     }
 
-
     @Override
     public void removeController(boolean keepContents) {
         if (level == null || level.isClientSide)
@@ -291,8 +290,6 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
         return !isController() ? 0 : this.width * this.width * this.height;
     }
 
-    // Inventory
-
     @Override
     public NonNullList<ItemStack> getItems() {
         return items;
@@ -302,8 +299,6 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     public boolean hasInventory() {
         return isController();
     }
-
-    // NBT
 
     @Override
     protected void saveAdditional(CompoundTag compoundTag) {

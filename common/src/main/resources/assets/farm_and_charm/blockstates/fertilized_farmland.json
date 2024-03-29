@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "moisture=0": {
+      "model": "farm_and_charm:block/fertilized_farmland"
+    },
+    "moisture=1": {
+      "model": "farm_and_charm:block/fertilized_farmland"
+    },
+    "moisture=2": {
+      "model": "farm_and_charm:block/fertilized_farmland"
+    },
+    "moisture=3": {
+      "model": "farm_and_charm:block/fertilized_farmland"
+    },
+    "moisture=4": {
+      "model": "farm_and_charm:block/fertilized_farmland"
+    },
+    "moisture=5": {
+      "model": "farm_and_charm:block/fertilized_farmland"
+    },
+    "moisture=6": {
+      "model": "farm_and_charm:block/fertilized_farmland"
+    },
+    "moisture=7": {
+      "model": "farm_and_charm:block/fertilized_farmland_moist"
+    }
+  }
+}

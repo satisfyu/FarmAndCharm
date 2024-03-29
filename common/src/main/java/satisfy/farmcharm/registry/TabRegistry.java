@@ -35,14 +35,17 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.BEETROOT_BAG.get());
                 output.accept(ObjectRegistry.STRAWBERRY_BAG.get());
                 output.accept(ObjectRegistry.OAT_BAG.get());
-                output.accept(ObjectRegistry.OAT_BLOCK.get());
-                output.accept(ObjectRegistry.BARLEY_BLOCK.get());
+                output.accept(ObjectRegistry.OAT_BALL.get());
+                output.accept(ObjectRegistry.BARLEY_BALL.get());
+                output.accept(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
+                output.accept(ObjectRegistry.FERTILIZED_FARM_BLOCK.get());
                 output.accept(ObjectRegistry.FEEDING_TROUGH.get());
+                output.accept(ObjectRegistry.WATER_SPRINKLER.get());
 
                 output.accept(ObjectRegistry.SILO_WOOD.get());
                 output.accept(ObjectRegistry.SILO_COPPER.get());
-                output.accept(ObjectRegistry.WATER_SPRINKLER.get());
                 output.accept(ObjectRegistry.TOOL_RACK.get());
+                output.accept(ObjectRegistry.CRAFTING_BOWL.get());
                 output.accept(ObjectRegistry.COOKING_POT.get());
                 output.accept(ObjectRegistry.COOKING_PAN.get());
                 output.accept(ObjectRegistry.COOKING_SAUCEPAN.get());

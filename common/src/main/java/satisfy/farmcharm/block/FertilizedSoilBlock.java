@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.level.BlockGetter;
@@ -20,6 +21,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import satisfy.farmcharm.registry.ObjectRegistry;
 
 @SuppressWarnings("deprecation")
 public class FertilizedSoilBlock extends Block {
@@ -58,6 +60,10 @@ public class FertilizedSoilBlock extends Block {
                 applyBoneMealEffect(level, pos);
                 spawnBreakParticles(level, pos, state);
             }
+            itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
+            return InteractionResult.SUCCESS;
+        } else if (itemStack.getItem() instanceof HoeItem) {
+            level.setBlock(pos, ObjectRegistry.FERTILIZED_FARM_BLOCK.get().defaultBlockState(), 3);
             if (!player.isCreative()) {
                 itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
             }
@@ -65,6 +71,7 @@ public class FertilizedSoilBlock extends Block {
         }
         return InteractionResult.PASS;
     }
+
 
     private void spawnBreakParticles(Level level, BlockPos pos, BlockState state) {
         if (!level.isClientSide) {
