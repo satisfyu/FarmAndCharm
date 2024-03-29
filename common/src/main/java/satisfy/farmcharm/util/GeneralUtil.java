@@ -37,6 +37,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.phys.BlockHitResult;
@@ -276,6 +277,12 @@ public class GeneralUtil {
 		return blockSet;
 	}
 
+	public static final EnumProperty<LineConnectingType> LINE_CONNECTING_TYPE;
+
+	static {
+		LINE_CONNECTING_TYPE = EnumProperty.create("type", LineConnectingType.class);
+
+	}
 
 
 }

@@ -1,0 +1,304 @@
+{
+  "variants": {
+    "facing=north,size=0,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_0"
+    },
+    "facing=east,size=0,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_0",
+      "y": 90
+    },
+    "facing=south,size=0,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_0",
+      "y": 180
+    },
+    "facing=west,size=0,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_0",
+      "y": 270
+    },
+    "facing=north,size=1,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_1"
+    },
+    "facing=east,size=1,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_1",
+      "y": 90
+    },
+    "facing=south,size=1,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_1",
+      "y": 180
+    },
+    "facing=west,size=1,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_1",
+      "y": 270
+    },
+    "facing=north,size=2,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_2"
+    },
+    "facing=east,size=2,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_2",
+      "y": 90
+    },
+    "facing=south,size=2,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_2",
+      "y": 180
+    },
+    "facing=west,size=2,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_2",
+      "y": 270
+    },
+    "facing=north,size=3,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_3"
+    },
+    "facing=east,size=3,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_3",
+      "y": 90
+    },
+    "facing=south,size=3,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_3",
+      "y": 180
+    },
+    "facing=west,size=3,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_3",
+      "y": 270
+    },
+    "facing=north,size=4,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_4"
+    },
+    "facing=east,size=4,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_4",
+      "y": 90
+    },
+    "facing=south,size=4,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_4",
+      "y": 180
+    },
+    "facing=west,size=4,type=none": {
+      "model": "farm_and_charm:block/feeding_trough_size_4",
+      "y": 270
+    },
+    "facing=north,size=0,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_right"
+    },
+    "facing=east,size=0,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_right",
+      "y": 90
+    },
+    "facing=south,size=0,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_right",
+      "y": 180
+    },
+    "facing=west,size=0,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_right",
+      "y": 270
+    },
+    "facing=north,size=1,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_right"
+    },
+    "facing=east,size=1,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_right",
+      "y": 90
+    },
+    "facing=south,size=1,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_right",
+      "y": 180
+    },
+    "facing=west,size=1,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_right",
+      "y": 270
+    },
+    "facing=north,size=2,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_right"
+    },
+    "facing=east,size=2,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_right",
+      "y": 90
+    },
+    "facing=south,size=2,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_right",
+      "y": 180
+    },
+    "facing=west,size=2,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_right",
+      "y": 270
+    },
+    "facing=north,size=3,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_right"
+    },
+    "facing=east,size=3,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_right",
+      "y": 90
+    },
+    "facing=south,size=3,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_right",
+      "y": 180
+    },
+    "facing=west,size=3,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_right",
+      "y": 270
+    },
+    "facing=north,size=4,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_right"
+    },
+    "facing=east,size=4,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_right",
+      "y": 90
+    },
+    "facing=south,size=4,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_right",
+      "y": 180
+    },
+    "facing=west,size=4,type=right": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_right",
+      "y": 270
+    },
+    "facing=north,size=0,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_left"
+    },
+    "facing=east,size=0,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_left",
+      "y": 90
+    },
+    "facing=south,size=0,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_left",
+      "y": 180
+    },
+    "facing=west,size=0,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_left",
+      "y": 270
+    },
+    "facing=north,size=1,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_left"
+    },
+    "facing=east,size=1,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_left",
+      "y": 90
+    },
+    "facing=south,size=1,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_left",
+      "y": 180
+    },
+    "facing=west,size=1,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_left",
+      "y": 270
+    },
+    "facing=north,size=2,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_left"
+    },
+    "facing=east,size=2,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_left",
+      "y": 90
+    },
+    "facing=south,size=2,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_left",
+      "y": 180
+    },
+    "facing=west,size=2,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_left",
+      "y": 270
+    },
+    "facing=north,size=3,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_left"
+    },
+    "facing=east,size=3,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_left",
+      "y": 90
+    },
+    "facing=south,size=3,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_left",
+      "y": 180
+    },
+    "facing=west,size=3,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_left",
+      "y": 270
+    },
+    "facing=north,size=4,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_left"
+    },
+    "facing=east,size=4,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_left",
+      "y": 90
+    },
+    "facing=south,size=4,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_left",
+      "y": 180
+    },
+    "facing=west,size=4,type=left": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_left",
+      "y": 270
+    },
+    "facing=north,size=0,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_middle"
+    },
+    "facing=east,size=0,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_middle",
+      "y": 90
+    },
+    "facing=south,size=0,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_middle",
+      "y": 180
+    },
+    "facing=west,size=0,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_0_middle",
+      "y": 270
+    },
+    "facing=north,size=1,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_middle"
+    },
+    "facing=east,size=1,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_middle",
+      "y": 90
+    },
+    "facing=south,size=1,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_middle",
+      "y": 180
+    },
+    "facing=west,size=1,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_1_middle",
+      "y": 270
+    },
+    "facing=north,size=2,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_middle"
+    },
+    "facing=east,size=2,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_middle",
+      "y": 90
+    },
+    "facing=south,size=2,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_middle",
+      "y": 180
+    },
+    "facing=west,size=2,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_2_middle",
+      "y": 270
+    },
+    "facing=north,size=3,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_middle"
+    },
+    "facing=east,size=3,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_middle",
+      "y": 90
+    },
+    "facing=south,size=3,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_middle",
+      "y": 180
+    },
+    "facing=west,size=3,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_3_middle",
+      "y": 270
+    },
+    "facing=north,size=4,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_middle"
+    },
+    "facing=east,size=4,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_middle",
+      "y": 90
+    },
+    "facing=south,size=4,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_middle",
+      "y": 180
+    },
+    "facing=west,size=4,type=middle": {
+      "model": "farm_and_charm:block/feeding_trough_size_4_middle",
+      "y": 270
+    }
+  }
+}

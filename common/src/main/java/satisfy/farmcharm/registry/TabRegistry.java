@@ -37,6 +37,7 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.OAT_BAG.get());
                 output.accept(ObjectRegistry.OAT_BLOCK.get());
                 output.accept(ObjectRegistry.BARLEY_BLOCK.get());
+                output.accept(ObjectRegistry.FEEDING_TROUGH.get());
 
                 output.accept(ObjectRegistry.SILO_WOOD.get());
                 output.accept(ObjectRegistry.SILO_COPPER.get());
