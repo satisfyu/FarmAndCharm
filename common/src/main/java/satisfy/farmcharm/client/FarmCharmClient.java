@@ -51,6 +51,5 @@ public class FarmCharmClient {
     public static void registerEntityModelLayer() {
         EntityModelLayerRegistry.register(WaterSprinklerModel.LAYER_LOCATION, WaterSprinklerModel::getTexturedModelData);
         EntityModelLayerRegistry.register(CraftingBowlModel.LAYER_LOCATION, CraftingBowlModel::getTexturedModelData);
-
     }
 }

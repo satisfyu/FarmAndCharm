@@ -10,12 +10,11 @@ import satisfy.farmcharm.registry.CompostableRegistry;
 
 
 @Mod(FarmCharm.MOD_ID)
-public class ModnameForge {
+public class FarmCharmForge {
 
-    public ModnameForge() {
+    public FarmCharmForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         EventBuses.registerModEventBus(FarmCharm.MOD_ID, modEventBus);
-        PreInit.preInit();
         FarmCharm.init();
 
         modEventBus.addListener(this::commonSetup);

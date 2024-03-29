@@ -19,7 +19,7 @@
       "satisfy.farmcharm.fabric.FarmCharmFabric"
     ],
     "client": [
-      "satisfy.farmcharm.fabric.FarmCharmClientFabric"
+      "satisfy.farmcharm.fabric.client.FarmCharmClientFabric"
     ],
     "doapi": [
       "satisfy.farmcharm.util.api.FarmCharmDoAPI"

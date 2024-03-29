@@ -10,6 +10,7 @@ public class FarmCharm {
     
     public static void init() {
         TabRegistry.init();
+        EffectRegistry.init();
         ObjectRegistry.init();
         BlockEntityTypeRegistry.init();
         ScreenhandlerTypeRegistry.init();
@@ -19,9 +20,5 @@ public class FarmCharm {
 
     public static void commonSetup(){
         FlammableBlockRegistry.init();
-
-           }
+    }
 }
-
-
-

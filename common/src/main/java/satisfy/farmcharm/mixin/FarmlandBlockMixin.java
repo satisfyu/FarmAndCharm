@@ -1,6 +1,7 @@
 package satisfy.farmcharm.mixin;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FarmBlock;
@@ -10,22 +11,21 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import satisfy.farmcharm.registry.ObjectRegistry;
 
+import java.util.Iterator;
+
 @Mixin(FarmBlock.class)
 public class FarmlandBlockMixin {
     @Inject(method = "isNearWater", at = @At("HEAD"), cancellable = true)
     private static void injectWaterSprinklerCheck(LevelReader levelReader, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
-        Block targetBlock = ObjectRegistry.WATER_SPRINKLER.get();
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
-        for (int x = -8; x <= 8; ++x) {
-            for (int y = -1; y <= 1; ++y) {
-                for (int z = -8; z <= 8; ++z) {
-                    mutable.setWithOffset(blockPos, x, y, z);
-                    if (levelReader.getBlockState(mutable).is(targetBlock)) {
-                        cir.setReturnValue(true);
-                        return;
-                    }
-                }
+        Iterator<BlockPos> var2 = BlockPos.betweenClosed(blockPos.offset(-8, 1, -8), blockPos.offset(8, 1, 8)).iterator();
+
+        BlockPos blockPos2;
+        do {
+            if (!var2.hasNext()) {
+                return;
             }
-        }
+            blockPos2 = var2.next();
+        } while(!levelReader.getBlockState(blockPos2).is(ObjectRegistry.WATER_SPRINKLER.get()));
+        cir.setReturnValue(true);
     }
 }

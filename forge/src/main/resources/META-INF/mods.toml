@@ -3,36 +3,36 @@ loaderVersion = "[47,)"
 license = "Custom"
 
 [[mods]]
-modId = "modname"
+modId = "farm_and_charm"
 version = "${version}"
-displayName = "Modname"
+displayName = "Farm Charm"
 authors = "Your Name"
 description = '''
 Your Description'''
 logoFile = "pack.png"
 
-[[dependencies.modname]]
+[[dependencies.farm_and_charm]]
 modId = "forge"
 mandatory = true
 versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.modname]]
+[[dependencies.farm_and_charm]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.20,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.modname]]
+[[dependencies.farm_and_charm]]
 modId = "doapi"
 mandatory = true
 versionRange = "[1.2.8,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.modname]]
+[[dependencies.farm_and_charm]]
 modId = "architectury"
 mandatory = true
 versionRange = "[9.0.8,)"

@@ -12,8 +12,8 @@ loom {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-        mixinConfig "modname-common.mixins.json"
-        mixinConfig "modname.mixins.json"
+        mixinConfig "farmcharm-common.mixins.json"
+        mixinConfig "farmcharm.mixins.json"
     }
 }
 

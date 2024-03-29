@@ -7,6 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,7 +17,7 @@ import satisfy.farmcharm.registry.ObjectRegistry;
 
 public class FertilizedFarmlandBlock extends FarmBlock {
     public FertilizedFarmlandBlock(Properties properties) {
-        super(properties);this.stateDefinition.any();
+        super(properties);
     }
 
     @Override
@@ -34,11 +35,10 @@ public class FertilizedFarmlandBlock extends FarmBlock {
                     });
         }
 
-        int i = blockState.getValue(MOISTURE);
-        if (!shouldMaintainFarmland(serverLevel, blockPos)) {
+
+        // override dirt to soil
+        if (serverLevel.getBlockState(blockPos).getBlock().equals(Blocks.DIRT)) { //!serverLevel.getBlockState(blockPos).getBlock().equals(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get())
             turnToSoil(null, blockState, serverLevel, blockPos);
-        } else if (i < 7) {
-            serverLevel.setBlock(blockPos, blockState.setValue(MOISTURE, 7), 2);
         }
     }
 
@@ -48,7 +48,11 @@ public class FertilizedFarmlandBlock extends FarmBlock {
         level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(entity, blockState2));
     }
 
-    private static boolean shouldMaintainFarmland(BlockGetter blockGetter, BlockPos blockPos) {
-        return blockGetter.getBlockState(blockPos.above()).is(BlockTags.MAINTAINS_FARMLAND);
+
+    @Override
+    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+        if (!blockState.canSurvive(serverLevel, blockPos)) {
+            turnToSoil(null, blockState, serverLevel, blockPos);
+        }
     }
 }

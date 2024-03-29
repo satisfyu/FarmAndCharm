@@ -1,4 +1,4 @@
-package satisfy.farmcharm.fabric;
+package satisfy.farmcharm.fabric.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import satisfy.farmcharm.client.FarmCharmClient;
