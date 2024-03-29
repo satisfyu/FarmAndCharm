@@ -1,12 +1,14 @@
 package satisfy.farmcharm.client;
 
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
+import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.menu.MenuRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import satisfy.farmcharm.client.gui.CookingPanGui;
 import satisfy.farmcharm.client.gui.CookingPotGui;
 import satisfy.farmcharm.client.gui.CookingSaucepanGui;
@@ -16,6 +18,7 @@ import satisfy.farmcharm.client.model.WaterSprinklerModel;
 import satisfy.farmcharm.client.render.CraftingBowlRenderer;
 import satisfy.farmcharm.client.render.WaterSprinklerRenderer;
 import satisfy.farmcharm.registry.BlockEntityTypeRegistry;
+import satisfy.farmcharm.registry.EntityRegistry;
 import satisfy.farmcharm.registry.ObjectRegistry;
 import satisfy.farmcharm.registry.ScreenhandlerTypeRegistry;
 
@@ -39,7 +42,8 @@ public class FarmCharmClient {
     }
 
 
-    public static void registerEntityRenderers() {
+    public static void registerEntityRenderers(){
+        EntityRendererRegistry.register(EntityRegistry.RottenTomato, ThrownItemRenderer::new);
     }
 
 

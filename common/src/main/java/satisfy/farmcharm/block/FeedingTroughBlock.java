@@ -1,6 +1,5 @@
 package satisfy.farmcharm.block;
 
-
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

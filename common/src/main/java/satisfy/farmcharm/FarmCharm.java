@@ -12,6 +12,7 @@ public class FarmCharm {
         TabRegistry.init();
         EffectRegistry.init();
         ObjectRegistry.init();
+        EntityRegistry.init();
         BlockEntityTypeRegistry.init();
         ScreenhandlerTypeRegistry.init();
         RecipeTypesRegistry.init();

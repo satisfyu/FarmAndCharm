@@ -11,16 +11,16 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farmcharm.registry.ObjectRegistry;
 
-public class CornCropBlock extends CropBlock {
+public class OnionCropBlock extends CropBlock {
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 
-    public CornCropBlock(Properties properties) {
+    public OnionCropBlock(Properties properties) {
         super(properties);
     }
 
     @Override
     protected @NotNull ItemLike getBaseSeedId() {
-        return ObjectRegistry.CORN_SEEDS.get();
+        return ObjectRegistry.ONION.get();
     }
 
     @Override

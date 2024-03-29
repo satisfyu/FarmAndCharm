@@ -12,7 +12,7 @@ public class TabRegistry {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(FarmCharm.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
     public static final RegistrySupplier<CreativeModeTab> FARMCHARM_TAB = CREATIVE_MODE_TABS.register("farmcharm", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
-            .icon(() -> new ItemStack(ObjectRegistry.STRAWBERRY.get()))
+            .icon(() -> new ItemStack(ObjectRegistry.WATER_SPRINKLER.get()))
             .title(Component.translatable("creativetab.farmcharm.tab"))
             .displayItems((parameters, output) -> {
                 output.accept(ObjectRegistry.CORN_SEEDS.get());
@@ -21,26 +21,39 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.OAT.get());
                 output.accept(ObjectRegistry.BARLEY_SEEDS.get());
                 output.accept(ObjectRegistry.BARLEY.get());
-                output.accept(ObjectRegistry.STRAWBERRY_SEEDS.get());
-                output.accept(ObjectRegistry.STRAWBERRY.get());
                 output.accept(ObjectRegistry.LETTUCE_CROP.get());
                 output.accept(ObjectRegistry.LETTUCE.get());
+                output.accept(ObjectRegistry.ONION.get());
                 output.accept(ObjectRegistry.TOMATO_SEEDS.get());
                 output.accept(ObjectRegistry.TOMATO.get());
+                output.accept(ObjectRegistry.ROTTEN_TOMATO.get());
+                output.accept(ObjectRegistry.STRAWBERRY_SEEDS.get());
+                output.accept(ObjectRegistry.STRAWBERRY.get());
+
+                output.accept(ObjectRegistry.WILD_LETTUCE.get());
+                output.accept(ObjectRegistry.WILD_ONIONS.get());
+                output.accept(ObjectRegistry.WILD_TOMATOES.get());
+                output.accept(ObjectRegistry.WILD_STRAWBERRIES.get());
 
                 output.accept(ObjectRegistry.LETTUCE_BAG.get());
                 output.accept(ObjectRegistry.TOMATO_BAG.get());
                 output.accept(ObjectRegistry.CARROT_BAG.get());
                 output.accept(ObjectRegistry.POTATO_BAG.get());
+                output.accept(ObjectRegistry.ONION_BAG.get());
                 output.accept(ObjectRegistry.BEETROOT_BAG.get());
+                output.accept(ObjectRegistry.CORN_BAG.get());
                 output.accept(ObjectRegistry.STRAWBERRY_BAG.get());
-                output.accept(ObjectRegistry.OAT_BAG.get());
+                output.accept(ObjectRegistry.SWEETBERRY_BAG.get());
+
+                output.accept(ObjectRegistry.GRANITE_STOVE.get());
                 output.accept(ObjectRegistry.OAT_BALL.get());
                 output.accept(ObjectRegistry.BARLEY_BALL.get());
                 output.accept(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
                 output.accept(ObjectRegistry.FERTILIZED_FARM_BLOCK.get());
                 output.accept(ObjectRegistry.FEEDING_TROUGH.get());
                 output.accept(ObjectRegistry.WATER_SPRINKLER.get());
+
+
 
                 output.accept(ObjectRegistry.SILO_WOOD.get());
                 output.accept(ObjectRegistry.SILO_COPPER.get());
