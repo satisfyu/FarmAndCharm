@@ -7,6 +7,6 @@ import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
 
 public class ScarecrowBlockEntity extends BlockEntity {
     public ScarecrowBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityTypeRegistry.SCARECROW.get(), pos, state);
+        super(BlockEntityTypeRegistry.SCARECROW_BLOCK_ENTITY.get(), pos, state);
     }
 }

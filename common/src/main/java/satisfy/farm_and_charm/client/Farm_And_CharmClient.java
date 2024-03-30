@@ -14,9 +14,11 @@ import satisfy.farm_and_charm.client.gui.CookingPotGui;
 import satisfy.farm_and_charm.client.gui.CookingSaucepanGui;
 import satisfy.farm_and_charm.client.gui.StoveGui;
 import satisfy.farm_and_charm.client.model.CraftingBowlModel;
+import satisfy.farm_and_charm.client.model.MincerModel;
 import satisfy.farm_and_charm.client.model.ScarecrowModel;
 import satisfy.farm_and_charm.client.model.WaterSprinklerModel;
 import satisfy.farm_and_charm.client.render.CraftingBowlRenderer;
+import satisfy.farm_and_charm.client.render.MincerRenderer;
 import satisfy.farm_and_charm.client.render.ScarecrowRenderer;
 import satisfy.farm_and_charm.client.render.WaterSprinklerRenderer;
 import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
@@ -35,7 +37,8 @@ public class Farm_And_CharmClient {
 
         ClientStorageTypes.init();
         RenderTypeRegistry.register(RenderType.translucent(), ObjectRegistry.SCARECROW.get());
-        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.SCARECROW.get(), ScarecrowRenderer::new);
+        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.SCARECROW_BLOCK_ENTITY.get(), ScarecrowRenderer::new);
+        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.MINCER_BLOCK_ENTITY.get(), MincerRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.CRAFTING_BOWL_BLOCK_ENTITY.get(), CraftingBowlRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.SPRINKLER_BLOCK_ENTITY.get(), WaterSprinklerRenderer::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_PAN_SCREEN_HANDLER.get(), CookingPanGui::new);
@@ -60,6 +63,7 @@ public class Farm_And_CharmClient {
     public static void registerEntityModelLayer() {
         EntityModelLayerRegistry.register(WaterSprinklerModel.LAYER_LOCATION, WaterSprinklerModel::getTexturedModelData);
         EntityModelLayerRegistry.register(CraftingBowlModel.LAYER_LOCATION, CraftingBowlModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(MincerModel.LAYER_LOCATION, MincerModel::getTexturedModelData);
         EntityModelLayerRegistry.register(ScarecrowModel.LAYER_LOCATION, ScarecrowModel::getTexturedModelData);
     }
 }

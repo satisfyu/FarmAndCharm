@@ -29,6 +29,8 @@ public class RecipeTypesRegistry {
     public static final RegistrySupplier<RecipeSerializer<CookingSaucePanRecipe>> COOKING_SAUCEPAN_RECIPE_SERIALIZER = create("saucepan_cooking", CookingSaucePanRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<StoveRecipe>> STOVE_RECIPE_TYPE = create("stove");
     public static final RegistrySupplier<RecipeSerializer<StoveRecipe>> STOVE_RECIPE_SERIALIZER = create("stove", StoveRecipe.Serializer::new);
+    public static final RegistrySupplier<RecipeType<MincerRecipe>> MINCER_RECIPE_TYPE = create("mincer");
+    public static final RegistrySupplier<RecipeSerializer<MincerRecipe>> MINCER_RECIPE_SERIALIZER = create("mincer", MincerRecipe.Serializer::new);
 
 
     private static <T extends Recipe<?>> RegistrySupplier<RecipeSerializer<T>> create(String name, Supplier<RecipeSerializer<T>> serializer) {

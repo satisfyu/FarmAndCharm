@@ -40,7 +40,7 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     private int[] times = new int[MAX_CAPACITY];
 
     public SiloBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityTypeRegistry.SILO.get(), pos, state);
+        super(BlockEntityTypeRegistry.SILO_BLOCK_ENTITY.get(), pos, state);
         updateConnectivity = false;
         height = 1;
         width = 1;

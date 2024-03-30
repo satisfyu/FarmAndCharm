@@ -8,6 +8,6 @@ import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
 public class FeedingTroughBlockEntity extends BlockEntity {
 
     public FeedingTroughBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityTypeRegistry.FEEDING_TROUGH.get(), pos, state);
+        super(BlockEntityTypeRegistry.FEEDING_TROUGH_BLOCK_ENTITY.get(), pos, state);
     }
 }
