@@ -102,7 +102,7 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
     }
 
     static {
-        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.candlelight.recipebook.toggleRecipes.cookable");
+        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.farm_and_charm.recipebook.toggleRecipes.cookable");
     }
 
     @Override

@@ -158,14 +158,14 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     @Override
     public void tick(Level level, BlockPos blockPos, BlockState blockState, MincerBlockEntity blockEntity) {
         if (!level.isClientSide && level.getBlockState(blockPos).getBlock() instanceof MincerBlock) {
-            int stirring = blockState.getValue(MincerBlock.STIRRING);
-            int stirred = blockState.getValue(MincerBlock.STIRRED);
+            int crank = blockState.getValue(MincerBlock.CRANK);
+            int cranked = blockState.getValue(MincerBlock.CRANKED);
 
-            if (stirring > 0) {
-                if (stirred < MincerBlock.STIRS_NEEDED) {
-                    stirred++;
+            if (crank > 0) {
+                if (cranked < MincerBlock.STIRS_NEEDED) {
+                    cranked++;
                     MincerRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypesRegistry.MINCER_RECIPE_TYPE.get(), blockEntity, level).orElse(null);
-                    if (stirred == MincerBlock.STIRS_NEEDED && recipe != null) {
+                    if (cranked == MincerBlock.STIRS_NEEDED && recipe != null) {
                         recipe.getIngredients().forEach(ingredient -> {
                             int size = blockEntity.getItems().size();
                             for (int slot = 0; slot < size; slot++) {
@@ -188,10 +188,10 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                     }
                 }
 
-                stirring -= 1;
-                level.setBlock(blockPos, blockState.setValue(MincerBlock.STIRRING, stirring).setValue(MincerBlock.STIRRED, stirred), 3);
-            } else if (stirred > 0 && stirred < MincerBlock.STIRS_NEEDED) {
-                level.setBlock(blockPos, blockState.setValue(MincerBlock.STIRRED, 0), 3);
+                crank -= 1;
+                level.setBlock(blockPos, blockState.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked), 3);
+            } else if (cranked > 0 && cranked < MincerBlock.STIRS_NEEDED) {
+                level.setBlock(blockPos, blockState.setValue(MincerBlock.CRANKED, 0), 3);
             }
         }
     }

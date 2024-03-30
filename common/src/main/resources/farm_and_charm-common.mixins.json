@@ -8,7 +8,8 @@
   "mixins": [
     "AnimalEntityMixin",
     "CropBlockMixin",
-    "FarmlandBlockMixin"
+    "FarmlandBlockMixin",
+    "HorseMixin"
   ],
   "injectors": {
     "defaultRequire": 1

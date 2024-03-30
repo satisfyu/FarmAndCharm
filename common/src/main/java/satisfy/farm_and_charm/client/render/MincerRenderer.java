@@ -47,7 +47,7 @@ public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
 
         mincer.render(poseStack, vertexConsumer, i, j);
-        if (level.getBlockState(blockEntity.getBlockPos()).getValue(MincerBlock.STIRRING) > 0) poseStack.mulPose (Axis.XP.rotation(((float) (System.currentTimeMillis() % 100000) / 100f)% 360));
+        if (level.getBlockState(blockEntity.getBlockPos()).getValue(MincerBlock.CRANK) > 0) poseStack.mulPose (Axis.XP.rotation(((float) (System.currentTimeMillis() % 100000) / 100f)% 360));
         crank.render(poseStack, vertexConsumer, i, j);
 
 

@@ -82,7 +82,7 @@ public class StoveRecipeBook extends PrivateRecipeBookWidget {
     }
 
     static {
-        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.bakery.recipebook.toggleRecipes.cookable");
+        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.farm_and_charm.recipebook.toggleRecipes.cookable");
     }
 
 

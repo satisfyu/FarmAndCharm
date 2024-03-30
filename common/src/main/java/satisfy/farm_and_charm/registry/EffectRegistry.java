@@ -8,6 +8,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import satisfy.farm_and_charm.Farm_And_Charm;
 import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
+import satisfy.farm_and_charm.effect.DogFoodEffect;
+import satisfy.farm_and_charm.effect.HorseFodderEffect;
 import satisfy.farm_and_charm.effect.StuffedEffect;
 import satisfy.farm_and_charm.effect.SweetsEffect;
 
@@ -20,6 +22,8 @@ public class EffectRegistry {
 
     public static final RegistrySupplier<MobEffect> STUFFED;
     public static final RegistrySupplier<MobEffect> SWEETS;
+    public static final RegistrySupplier<MobEffect> HORSE_FODDER;
+    public static final RegistrySupplier<MobEffect> DOG_FOOD;
 
 
     private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect) {
@@ -37,5 +41,8 @@ public class EffectRegistry {
     static {
         STUFFED = registerEffect("stuffed", StuffedEffect::new);
         SWEETS = registerEffect("sweets", SweetsEffect::new);
+        HORSE_FODDER = registerEffect("horse_fodder", HorseFodderEffect::new);
+        DOG_FOOD = registerEffect("dog_food", DogFoodEffect::new);
+
     }
 }

@@ -23,9 +23,9 @@ public class SweetsEffect extends MobEffect {
             double percentIncrease = 0.02 * (amplifier + 1);
             percentIncrease = Math.min(percentIncrease, 0.3);
 
-            applyModifier(livingEntity, Attributes.MOVEMENT_SPEED, SPEED_MODIFIER_ID, percentIncrease, "Bakery speed boost");
-            applyModifier(livingEntity, Attributes.ATTACK_SPEED, ATTACK_SPEED_MODIFIER_ID, percentIncrease, "Bakery attack speed boost");
-            applyModifier(livingEntity, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_MODIFIER_ID, percentIncrease, "Bakery attack damage boost");
+            applyModifier(livingEntity, Attributes.MOVEMENT_SPEED, SPEED_MODIFIER_ID, percentIncrease, "Farm_And_Charm speed boost");
+            applyModifier(livingEntity, Attributes.ATTACK_SPEED, ATTACK_SPEED_MODIFIER_ID, percentIncrease, "Farm_And_Charm attack speed boost");
+            applyModifier(livingEntity, Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE_MODIFIER_ID, percentIncrease, "Farm_And_Charm attack damage boost");
         }
     }
 
