@@ -7,11 +7,13 @@
   ],
   "mixins": [
     "AnimalEntityMixin",
+    "CatAvoidEntityGoalMixin",
+    "CatMixin",
     "CropBlockMixin",
     "FarmlandBlockMixin",
     "HorseMixin",
     "TemptGoalAccessor",
-    "TemptGoalMixin"
+    "CatTemptGoalMixin"
   ],
   "injectors": {
     "defaultRequire": 1

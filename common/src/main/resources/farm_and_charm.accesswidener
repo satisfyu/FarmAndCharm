@@ -1,4 +1,5 @@
 accessWidener   v2  named
-accessible    class    net/minecraft/world/entity/ai/goal/TemptGoal
-accessible    field    net/minecraft/world/entity/ai/goal/TemptGoal    mob    Lnet/minecraft/world/entity/Entity;
-accessible    field    net/minecraft/world/entity/ai/goal/TemptGoal    player    Lnet/minecraft/world/entity/player/Player;
+
+accessible class net/minecraft/world/entity/animal/Cat$CatTemptGoal
+accessible class net/minecraft/world/entity/animal/Cat$CatAvoidEntityGoal
+accessible field net/minecraft/world/entity/ai/goal/AvoidEntityGoal toAvoid Lnet/minecraft/world/entity/LivingEntity;
