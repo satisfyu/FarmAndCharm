@@ -3,7 +3,7 @@ architectury {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/farmcharm.accesswidener")
+    accessWidenerPath = file("src/main/resources/farm_and_charm.accesswidener")
 }
 
 repositories {

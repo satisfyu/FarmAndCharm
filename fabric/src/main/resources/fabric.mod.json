@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "farm_and_charm",
   "version": "${version}",
-  "name": "farmcharm",
+  "name": "[Let's Do] Farm & Charm",
   "description": "Your Description",
   "authors": [
     "satisfy"
@@ -16,18 +16,18 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "satisfy.farmcharm.fabric.FarmCharmFabric"
+      "satisfy.farm_and_charm.fabric.Farm_And_CharmFabric"
     ],
     "client": [
-      "satisfy.farmcharm.fabric.client.FarmCharmClientFabric"
+      "satisfy.farm_and_charm.fabric.client.Farm_And_CharmClientFabric"
     ],
     "doapi": [
-      "satisfy.farmcharm.util.api.FarmCharmDoAPI"
+      "satisfy.farm_and_charm.util.api.Farm_And_CharmDoAPI"
     ]
   },
   "mixins": [
-    "farmcharm.mixins.json",
-    "farmcharm-common.mixins.json"
+    "farm_and_charm.mixins.json",
+    "farm_and_charm-common.mixins.json"
   ],
   "depends": {
     "fabric-api": "*",
