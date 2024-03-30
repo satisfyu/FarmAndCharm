@@ -1,11 +1,10 @@
 package satisfy.farmcharm.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
@@ -30,14 +29,13 @@ public class FertilizedFarmlandBlock extends FarmBlock {
                         if (state.getBlock() instanceof BonemealableBlock bonemealableBlock) {
                             if (bonemealableBlock.isValidBonemealTarget(serverLevel, pos, state, serverLevel.isClientSide)) {
                                 bonemealableBlock.performBonemeal(serverLevel, randomSource, pos, state);
+                                serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, 5, 0.5, 0.5, 0.5, 0.5);
                             }
                         }
                     });
         }
 
-
-        // override dirt to soil
-        if (serverLevel.getBlockState(blockPos).getBlock().equals(Blocks.DIRT)) { //!serverLevel.getBlockState(blockPos).getBlock().equals(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get())
+        if (serverLevel.getBlockState(blockPos).getBlock().equals(Blocks.DIRT)) {
             turnToSoil(null, blockState, serverLevel, blockPos);
         }
     }
@@ -48,6 +46,9 @@ public class FertilizedFarmlandBlock extends FarmBlock {
         level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(entity, blockState2));
     }
 
+    @Override
+    public void fallOn(Level level, BlockState blockState, BlockPos blockPos, Entity entity, float f) {
+    }
 
     @Override
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {

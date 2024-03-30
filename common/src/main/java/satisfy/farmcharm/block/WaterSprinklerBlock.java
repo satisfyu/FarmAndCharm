@@ -83,11 +83,14 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
                 double startZ = z + sin * startOffset;
 
                 for (double length = 0; length < 3; length += 0.5) {
-                    world.addParticle(ParticleTypes.SPLASH, startX + dx * length, y, startZ + dz * length, dx, 0.0D, dz);
+                    double currentX = startX + dx * length;
+                    double currentZ = startZ + dz * length;
+                    world.addParticle(ParticleTypes.SPLASH, currentX, y, currentZ, dx, 0.0D, dz);
                 }
             }
         }
     }
+
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {

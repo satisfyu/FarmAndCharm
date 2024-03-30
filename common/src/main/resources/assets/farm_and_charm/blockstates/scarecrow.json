@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "farm_and_charm:block/scarecrow",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "farm_and_charm:block/scarecrow"
+    },
+    "facing=south": {
+      "model": "farm_and_charm:block/scarecrow",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "farm_and_charm:block/scarecrow",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "facing=down,open=false": {
+      "model": "farm_and_charm:block/crate",
+      "x": 180
+    },
+    "facing=down,open=true": {
+      "model": "farm_and_charm:block/crate_open",
+      "x": 180
+    },
+    "facing=east,open=false": {
+      "model": "farm_and_charm:block/crate",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,open=true": {
+      "model": "farm_and_charm:block/crate_open",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,open=false": {
+      "model": "farm_and_charm:block/crate",
+      "x": 90
+    },
+    "facing=north,open=true": {
+      "model": "farm_and_charm:block/crate_open",
+      "x": 90
+    },
+    "facing=south,open=false": {
+      "model": "farm_and_charm:block/crate",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,open=true": {
+      "model": "farm_and_charm:block/crate_open",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,open=false": {
+      "model": "farm_and_charm:block/crate"
+    },
+    "facing=up,open=true": {
+      "model": "farm_and_charm:block/crate_open"
+    },
+    "facing=west,open=false": {
+      "model": "farm_and_charm:block/crate",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,open=true": {
+      "model": "farm_and_charm:block/crate_open",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

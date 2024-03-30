@@ -9,13 +9,16 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import satisfy.farmcharm.block.ScarecrowBlock;
 import satisfy.farmcharm.client.gui.CookingPanGui;
 import satisfy.farmcharm.client.gui.CookingPotGui;
 import satisfy.farmcharm.client.gui.CookingSaucepanGui;
 import satisfy.farmcharm.client.gui.StoveGui;
 import satisfy.farmcharm.client.model.CraftingBowlModel;
+import satisfy.farmcharm.client.model.ScarecrowModel;
 import satisfy.farmcharm.client.model.WaterSprinklerModel;
 import satisfy.farmcharm.client.render.CraftingBowlRenderer;
+import satisfy.farmcharm.client.render.ScarecrowRenderer;
 import satisfy.farmcharm.client.render.WaterSprinklerRenderer;
 import satisfy.farmcharm.registry.BlockEntityTypeRegistry;
 import satisfy.farmcharm.registry.EntityRegistry;
@@ -26,11 +29,14 @@ import satisfy.farmcharm.registry.ScreenhandlerTypeRegistry;
 public class FarmCharmClient {
 
     public static void onInitializeClient() {
-        RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.CRAFTING_BOWL.get(), ObjectRegistry.WATER_SPRINKLER.get()
+        RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.CRAFTING_BOWL.get(), ObjectRegistry.WATER_SPRINKLER.get(),
+                ObjectRegistry.SCARECROW.get()
         );
 
 
         ClientStorageTypes.init();
+        RenderTypeRegistry.register(RenderType.translucent(), ObjectRegistry.SCARECROW.get());
+        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.SCARECROW.get(), ScarecrowRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.CRAFTING_BOWL_BLOCK_ENTITY.get(), CraftingBowlRenderer::new);
         BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.SPRINKLER_BLOCK_ENTITY.get(), WaterSprinklerRenderer::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_PAN_SCREEN_HANDLER.get(), CookingPanGui::new);
@@ -55,5 +61,6 @@ public class FarmCharmClient {
     public static void registerEntityModelLayer() {
         EntityModelLayerRegistry.register(WaterSprinklerModel.LAYER_LOCATION, WaterSprinklerModel::getTexturedModelData);
         EntityModelLayerRegistry.register(CraftingBowlModel.LAYER_LOCATION, CraftingBowlModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(ScarecrowModel.LAYER_LOCATION, ScarecrowModel::getTexturedModelData);
     }
 }

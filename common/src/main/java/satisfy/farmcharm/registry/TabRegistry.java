@@ -70,6 +70,10 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.MOZZARELLA.get());
                 output.accept(ObjectRegistry.DOUGH.get());
 
+
+                output.accept(ObjectRegistry.SCARECROW.get());
+
+
             })
             .build());
 
