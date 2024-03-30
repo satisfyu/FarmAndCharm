@@ -9,7 +9,9 @@
     "AnimalEntityMixin",
     "CropBlockMixin",
     "FarmlandBlockMixin",
-    "HorseMixin"
+    "HorseMixin",
+    "TemptGoalAccessor",
+    "TemptGoalMixin"
   ],
   "injectors": {
     "defaultRequire": 1
