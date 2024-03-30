@@ -20,6 +20,7 @@ import satisfy.farmcharm.entity.ScarecrowBlockEntity;
 import java.util.Objects;
 
 public class ScarecrowRenderer implements BlockEntityRenderer<ScarecrowBlockEntity> {
+
     private final ModelPart scarecrow;
     private final ModelPart post;
 
@@ -27,28 +28,30 @@ public class ScarecrowRenderer implements BlockEntityRenderer<ScarecrowBlockEnti
 
     public ScarecrowRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart root = context.bakeLayer(ScarecrowModel.LAYER_LOCATION);
-
         this.scarecrow = root.getChild("scarecrow");
         this.post = root.getChild("post");
     }
 
     @Override
-    public void render(ScarecrowBlockEntity blockEntity, float partialTicks, PoseStack matrixStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay) {
+    public void render(ScarecrowBlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay) {
         Direction direction = blockEntity.getBlockState().getValue(ScarecrowBlock.FACING);
-        float rotationY = (float) Math.toRadians(-direction.toYRot());
-
-        matrixStack.pushPose();
-        matrixStack.mulPose(new Quaternionf().rotationY((float) Math.toRadians(rotationY)));
+        float rotationDegrees = -direction.toYRot() + 180;
 
         long gameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
         boolean isStormy = blockEntity.getLevel().isThundering() || blockEntity.getLevel().isRaining();
         float speedMultiplier = isStormy ? 0.1f : 0.05f;
-        float angleDegrees = Mth.sin((gameTime + partialTicks) * speedMultiplier);
-        matrixStack.mulPose(new Quaternionf().rotationY((float) Math.toRadians(rotationY)));
+        float angleDegrees = isStormy ? 2.0f : Mth.sin((gameTime + partialTicks) * speedMultiplier) * 1;
+        poseStack.pushPose();
+
+        poseStack.translate(0.5, 0, 0.5);
+        poseStack.mulPose(new Quaternionf().rotateY((float)Math.toRadians(rotationDegrees)));
+        poseStack.mulPose(new Quaternionf().rotateX((float)Math.toRadians(angleDegrees)));
+        poseStack.translate(-0.5, 0, -0.5);
 
         VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
-        scarecrow.render(matrixStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY);
-        post.render(matrixStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY);
-        matrixStack.popPose();
+        scarecrow.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        post.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+
+        poseStack.popPose();
     }
 }
