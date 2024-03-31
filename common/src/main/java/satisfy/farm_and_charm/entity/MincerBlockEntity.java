@@ -201,6 +201,11 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                 }
 
                 crank -= 1;
+                
+                if (cranked >= 20) {
+                    cranked = 0;
+                }
+                
                 level.setBlock(blockPos, blockState.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked), 3);
             } else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
                 level.setBlock(blockPos, blockState.setValue(MincerBlock.CRANKED, 0), 3);
