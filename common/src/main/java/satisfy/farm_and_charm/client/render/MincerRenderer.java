@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
+import org.joml.Vector3f;
 import satisfy.farm_and_charm.Farm_And_Charm;
 import satisfy.farm_and_charm.block.MincerBlock;
 import satisfy.farm_and_charm.client.model.MincerModel;
@@ -41,10 +42,32 @@ public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
         if (!(blockState.getBlock() instanceof MincerBlock)) return;
         
         poseStack.pushPose();
-        
-        float g = ((Direction)blockState.getValue(MincerBlock.FACING)).toYRot();
-        poseStack.mulPose(Axis.YP.rotationDegrees(-g));
-        
+
+        Direction facing = blockState.getValue(MincerBlock.FACING);
+        Vector3f offset = new Vector3f();
+        float rotationDegrees = 0;
+
+        switch (facing) {
+            case NORTH:
+                offset.set(1f, 0f, 1f);
+                rotationDegrees = 180;
+                break;
+            case EAST:
+                offset.set(0f, 0f, 1f);
+                rotationDegrees = 90;
+                break;
+            case SOUTH:
+                offset.set(0.0f, 0f, 0f);
+                break;
+            case WEST:
+                offset.set(1f, 0f, 0f);
+                rotationDegrees = 270;
+                break;
+        }
+
+        poseStack.translate(offset.x, offset.y, offset.z);
+        poseStack.mulPose(com.mojang.math.Axis.YP.rotationDegrees(rotationDegrees));
+
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
         
         mincer.render(poseStack, vertexConsumer, light, overlay);
