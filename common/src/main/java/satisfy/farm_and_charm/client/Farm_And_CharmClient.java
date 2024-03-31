@@ -31,7 +31,7 @@ public class Farm_And_CharmClient {
 
     public static void onInitializeClient() {
         RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.CRAFTING_BOWL.get(), ObjectRegistry.WATER_SPRINKLER.get(),
-                ObjectRegistry.SCARECROW.get()
+                ObjectRegistry.SCARECROW.get(), ObjectRegistry.REINFORCED_SMOKER.get()
         );
 
 
@@ -45,10 +45,7 @@ public class Farm_And_CharmClient {
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_POT_SCREEN_HANDLER.get(), CookingPotGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_SAUCEPAN_SCREEN_HANDLER.get(), CookingSaucepanGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.STOVE_SCREEN_HANDLER.get(), StoveGui::new);
-
-
     }
-
 
     public static void registerEntityRenderers(){
         EntityRendererRegistry.register(EntityRegistry.RottenTomato, ThrownItemRenderer::new);

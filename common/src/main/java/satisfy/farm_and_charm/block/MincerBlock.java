@@ -45,8 +45,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-//TODO
 
+//TODO
 @SuppressWarnings("deprecation")
 public class MincerBlock extends BaseEntityBlock {
     public static final int CRANKS_NEEDED = 20;

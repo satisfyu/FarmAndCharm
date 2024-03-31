@@ -45,11 +45,11 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.STRAWBERRY_BAG.get());
                 output.accept(ObjectRegistry.SWEETBERRY_BAG.get());
 
-                output.accept(ObjectRegistry.GRANITE_STOVE.get());
                 output.accept(ObjectRegistry.OAT_BALL.get());
                 output.accept(ObjectRegistry.BARLEY_BALL.get());
                 output.accept(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
                 output.accept(ObjectRegistry.FERTILIZED_FARM_BLOCK.get());
+                output.accept(ObjectRegistry.REINFORCED_SMOKER.get());
                 output.accept(ObjectRegistry.FEEDING_TROUGH.get());
                 output.accept(ObjectRegistry.WATER_SPRINKLER.get());
 
