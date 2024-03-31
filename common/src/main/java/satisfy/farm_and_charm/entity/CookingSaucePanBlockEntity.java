@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.CookingPotBlock;
 import satisfy.farm_and_charm.client.gui.handler.CookingPotGuiHandler;
 import satisfy.farm_and_charm.recipe.CookingSaucePanRecipe;
-import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
 import satisfy.farm_and_charm.registry.TagRegistry;
 
@@ -49,7 +49,7 @@ public class CookingSaucePanBlockEntity extends BlockEntity implements BlockEnti
     private final ContainerData delegate;
 
     public CookingSaucePanBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityTypeRegistry.COOKING_POT_BLOCK_ENTITY.get(), pos, state);
+        super(EntityTypeRegistry.COOKING_POT_BLOCK_ENTITY.get(), pos, state);
         this.delegate = new ContainerData() {
             @Override
             public int get(int index) {

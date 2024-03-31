@@ -33,7 +33,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.SiloBlockEntity;
-import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 import satisfy.farm_and_charm.util.ConnectivityHandler;
 
@@ -149,7 +149,7 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
 
     @Override
     public int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos blockPos) {
-        return level.getBlockEntity(blockPos, BlockEntityTypeRegistry.SILO_BLOCK_ENTITY.get()).map(AbstractContainerMenu::getRedstoneSignalFromContainer).orElse(0);
+        return level.getBlockEntity(blockPos, EntityTypeRegistry.SILO_BLOCK_ENTITY.get()).map(AbstractContainerMenu::getRedstoneSignalFromContainer).orElse(0);
     }
 
     static final VoxelShape CAMPFIRE_SMOKE_CLIP = Block.box(0, 4, 0, 16, 16, 16);

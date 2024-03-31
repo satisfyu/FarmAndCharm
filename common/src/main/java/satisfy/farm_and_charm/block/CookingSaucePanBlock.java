@@ -45,7 +45,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.CookingPotBlockEntity;
-import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.SoundEventRegistry;
 import satisfy.farm_and_charm.util.GeneralUtil;
 
@@ -180,7 +180,7 @@ public class CookingSaucePanBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, BlockEntityTypeRegistry.COOKING_SAUCEPAN_BLOCK_ENTITY.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
+        return createTickerHelper(type, EntityTypeRegistry.COOKING_SAUCEPAN_BLOCK_ENTITY.get(), (world1, pos, state1, be) -> be.tick(world1, pos, state1, be));
     }
 
     @Nullable

@@ -12,8 +12,7 @@ public class Farm_And_Charm {
         TabRegistry.init();
         EffectRegistry.init();
         ObjectRegistry.init();
-        EntityRegistry.init();
-        BlockEntityTypeRegistry.init();
+        EntityTypeRegistry.init();
         ScreenhandlerTypeRegistry.init();
         RecipeTypesRegistry.init();
         SoundEventRegistry.init();

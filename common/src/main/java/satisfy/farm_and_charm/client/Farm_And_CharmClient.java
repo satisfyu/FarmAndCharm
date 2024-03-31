@@ -21,8 +21,7 @@ import satisfy.farm_and_charm.client.render.CraftingBowlRenderer;
 import satisfy.farm_and_charm.client.render.MincerRenderer;
 import satisfy.farm_and_charm.client.render.ScarecrowRenderer;
 import satisfy.farm_and_charm.client.render.WaterSprinklerRenderer;
-import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
-import satisfy.farm_and_charm.registry.EntityRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
 
@@ -37,10 +36,10 @@ public class Farm_And_CharmClient {
 
         ClientStorageTypes.init();
         RenderTypeRegistry.register(RenderType.translucent(), ObjectRegistry.SCARECROW.get());
-        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.SCARECROW_BLOCK_ENTITY.get(), ScarecrowRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.MINCER_BLOCK_ENTITY.get(), MincerRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.CRAFTING_BOWL_BLOCK_ENTITY.get(), CraftingBowlRenderer::new);
-        BlockEntityRendererRegistry.register(BlockEntityTypeRegistry.SPRINKLER_BLOCK_ENTITY.get(), WaterSprinklerRenderer::new);
+        BlockEntityRendererRegistry.register(EntityTypeRegistry.SCARECROW_BLOCK_ENTITY.get(), ScarecrowRenderer::new);
+        BlockEntityRendererRegistry.register(EntityTypeRegistry.MINCER_BLOCK_ENTITY.get(), MincerRenderer::new);
+        BlockEntityRendererRegistry.register(EntityTypeRegistry.CRAFTING_BOWL_BLOCK_ENTITY.get(), CraftingBowlRenderer::new);
+        BlockEntityRendererRegistry.register(EntityTypeRegistry.SPRINKLER_BLOCK_ENTITY.get(), WaterSprinklerRenderer::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_PAN_SCREEN_HANDLER.get(), CookingPanGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_POT_SCREEN_HANDLER.get(), CookingPotGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_SAUCEPAN_SCREEN_HANDLER.get(), CookingSaucepanGui::new);
@@ -48,7 +47,7 @@ public class Farm_And_CharmClient {
     }
 
     public static void registerEntityRenderers(){
-        EntityRendererRegistry.register(EntityRegistry.RottenTomato, ThrownItemRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.RottenTomato, ThrownItemRenderer::new);
     }
 
 

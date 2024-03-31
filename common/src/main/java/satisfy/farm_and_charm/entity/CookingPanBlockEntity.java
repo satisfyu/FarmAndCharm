@@ -29,7 +29,7 @@ import satisfy.farm_and_charm.client.gui.handler.CookingPanGuiHandler;
 import satisfy.farm_and_charm.item.food.EffectFood;
 import satisfy.farm_and_charm.item.food.EffectFoodHelper;
 import satisfy.farm_and_charm.recipe.CookingPanRecipe;
-import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
 import satisfy.farm_and_charm.registry.TagRegistry;
 
@@ -53,7 +53,7 @@ public class CookingPanBlockEntity extends BlockEntity implements BlockEntityTic
 	private final ContainerData delegate;
 
 	public CookingPanBlockEntity(BlockPos pos, BlockState state) {
-		super(BlockEntityTypeRegistry.COOKING_PAN_BLOCK_ENTITY.get(), pos, state);
+		super(EntityTypeRegistry.COOKING_PAN_BLOCK_ENTITY.get(), pos, state);
 		this.delegate = new ContainerData() {
 			@Override
 			public int get(int index) {

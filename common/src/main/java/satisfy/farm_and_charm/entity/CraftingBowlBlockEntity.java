@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.CraftingBowlBlock;
 import satisfy.farm_and_charm.recipe.CraftingBowlRecipe;
-import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
 
 import java.util.Objects;
@@ -33,7 +33,7 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
 
 
     public CraftingBowlBlockEntity(BlockPos position, BlockState state) {
-        super(BlockEntityTypeRegistry.CRAFTING_BOWL_BLOCK_ENTITY.get(), position, state);
+        super(EntityTypeRegistry.CRAFTING_BOWL_BLOCK_ENTITY.get(), position, state);
     }
 
 

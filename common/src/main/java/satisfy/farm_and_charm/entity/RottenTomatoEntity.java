@@ -16,13 +16,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.registry.EntityRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class RottenTomatoEntity extends ThrowableItemProjectile {
 
     public RottenTomatoEntity(Level world, LivingEntity owner) {
-        super(EntityRegistry.RottenTomato.get(), owner, world);
+        super(EntityTypeRegistry.RottenTomato.get(), owner, world);
     }
 
     public RottenTomatoEntity(EntityType<? extends RottenTomatoEntity> entityType, Level world) {

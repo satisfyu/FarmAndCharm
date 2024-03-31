@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.MincerBlock;
 import satisfy.farm_and_charm.recipe.MincerRecipe;
-import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
 
 import java.util.Objects;
@@ -33,7 +33,7 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
 
 
     public MincerBlockEntity(BlockPos position, BlockState state) {
-        super(BlockEntityTypeRegistry.MINCER_BLOCK_ENTITY.get(), position, state);
+        super(EntityTypeRegistry.MINCER_BLOCK_ENTITY.get(), position, state);
     }
 
 

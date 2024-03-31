@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.SiloBlock;
-import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.util.ConnectivityHandler;
 import satisfy.farm_and_charm.util.GeneralUtil;
 import satisfy.farm_and_charm.util.IMultiBlockEntityContainer;
@@ -40,7 +40,7 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     private int[] times = new int[MAX_CAPACITY];
 
     public SiloBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityTypeRegistry.SILO_BLOCK_ENTITY.get(), pos, state);
+        super(EntityTypeRegistry.SILO_BLOCK_ENTITY.get(), pos, state);
         updateConnectivity = false;
         height = 1;
         width = 1;

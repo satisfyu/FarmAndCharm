@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.StoveBlock;
 import satisfy.farm_and_charm.client.gui.handler.StoveGuiHandler;
 import satisfy.farm_and_charm.recipe.StoveRecipe;
-import satisfy.farm_and_charm.registry.BlockEntityTypeRegistry;
+import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
 
 import java.util.HashMap;
@@ -93,7 +93,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     };
 
     public StoveBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityTypeRegistry.STOVE_BLOCK_ENTITY.get(), pos, state);
+        super(EntityTypeRegistry.STOVE_BLOCK_ENTITY.get(), pos, state);
         this.inventory = NonNullList.withSize(5, ItemStack.EMPTY);
     }
 
