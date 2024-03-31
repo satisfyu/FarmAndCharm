@@ -158,6 +158,18 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     @Override
     public void tick(Level level, BlockPos blockPos, BlockState blockState, MincerBlockEntity blockEntity) {
         if (!level.isClientSide && level.getBlockState(blockPos).getBlock() instanceof MincerBlock) {
+            
+            if (!this.stacks.get(4).isEmpty()) {
+                
+                ItemStack droppedStack = new ItemStack(blockEntity.stacks.get(4).getItem());
+                
+                droppedStack.setCount(blockEntity.stacks.get(4).getCount());
+                
+                this.stacks.set(4, ItemStack.EMPTY);
+                
+                level.addFreshEntity(new ItemEntity(level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), droppedStack));
+            }
+            
             int crank = blockState.getValue(MincerBlock.CRANK);
             int cranked = blockState.getValue(MincerBlock.CRANKED);
 
