@@ -2,11 +2,13 @@ package satisfy.farm_and_charm.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,12 +39,16 @@ public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
         assert level != null;
         BlockState blockState = level.getBlockState(blockEntity.getBlockPos());
         if (!(blockState.getBlock() instanceof MincerBlock)) return;
-
+        
         poseStack.pushPose();
-
+        
+        float g = ((Direction)blockState.getValue(MincerBlock.FACING)).toYRot();
+        poseStack.mulPose(Axis.YP.rotationDegrees(-g));
+        
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
-
+        
         mincer.render(poseStack, vertexConsumer, light, overlay);
+        
         if (blockState.getValue(MincerBlock.CRANK) > 0) {
             long time = System.currentTimeMillis();
             float angle = (time % 3600) / 5f;
