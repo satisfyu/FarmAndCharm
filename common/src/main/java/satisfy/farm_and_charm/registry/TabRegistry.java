@@ -53,13 +53,12 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.FEEDING_TROUGH.get());
                 output.accept(ObjectRegistry.WATER_SPRINKLER.get());
 
-
-
                 output.accept(ObjectRegistry.SILO_WOOD.get());
                 output.accept(ObjectRegistry.SILO_COPPER.get());
                 output.accept(ObjectRegistry.WINDOW_SILL.get());
                 output.accept(ObjectRegistry.TOOL_RACK.get());
                 output.accept(ObjectRegistry.CRAFTING_BOWL.get());
+                output.accept(ObjectRegistry.MINCER.get());
                 output.accept(ObjectRegistry.COOKING_POT.get());
                 output.accept(ObjectRegistry.COOKING_PAN.get());
                 output.accept(ObjectRegistry.COOKING_SAUCEPAN.get());
@@ -67,9 +66,12 @@ public class TabRegistry {
 
                 output.accept(ObjectRegistry.BUTTER.get());
                 output.accept(ObjectRegistry.YEAST.get());
-                output.accept(ObjectRegistry.MOZZARELLA.get());
                 output.accept(ObjectRegistry.DOUGH.get());
 
+                output.accept(ObjectRegistry.CAT_FOOD.get());
+                output.accept(ObjectRegistry.DOG_FOOD.get());
+                output.accept(ObjectRegistry.HORSE_FODDER.get());
+                output.accept(ObjectRegistry.FERTILIZER.get());
 
                 output.accept(ObjectRegistry.SCARECROW.get());
 

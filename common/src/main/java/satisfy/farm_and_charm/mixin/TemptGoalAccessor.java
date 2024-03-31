@@ -13,8 +13,4 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface TemptGoalAccessor {
     @Accessor("player")
     Player getPlayer();
-
-    @Accessor("mob")
-    PathfinderMob getMob();
-
 }

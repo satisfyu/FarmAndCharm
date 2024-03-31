@@ -20,7 +20,7 @@ public enum CookingPotRecipeBookGroup implements IRecipeBookGroup {
     SEARCH(new ItemStack(Items.COMPASS)),
     EFFECT(new ItemStack(Items.POTION)),
     MISC(new ItemStack(ObjectRegistry.DOUGH.get())),
-    BIG(new ItemStack(ObjectRegistry.MOZZARELLA.get()));
+    BIG(new ItemStack(ObjectRegistry.BARLEY.get()));
 
     public static final List<IRecipeBookGroup> POT_GROUPS = ImmutableList.of(SEARCH, MISC, EFFECT, BIG);
 
