@@ -29,7 +29,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -50,7 +49,7 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class MincerBlock extends BaseEntityBlock {
-    public static final int STIRS_NEEDED = 50;
+    public static final int CRANKS_NEEDED = 20;
     public static final IntegerProperty CRANK = IntegerProperty.create("crank", 0, 32);
     public static final IntegerProperty CRANKED = IntegerProperty.create("cranked", 0, 100);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -105,7 +104,7 @@ public class MincerBlock extends BaseEntityBlock {
                     return InteractionResult.SUCCESS;
                 }
             } else if (itemStack.isEmpty()) {
-                if (cranked >= STIRS_NEEDED && crank == 0) {
+                if (cranked >= CRANKS_NEEDED && crank == 0) {
                     player.getInventory().add(mincerEntity.getItem(4));
                     mincerEntity.setItem(4, ItemStack.EMPTY);
                     world.setBlock(pos, blockState.setValue(CRANKED, 0), 3);
@@ -116,7 +115,7 @@ public class MincerBlock extends BaseEntityBlock {
                     for (ItemStack stack : mincerEntity.getItems()) {
                         if (!stack.isEmpty() && mincerEntity.getItem(4) != stack) {
                             ItemParticleOption particleOption = new ItemParticleOption(ParticleTypes.ITEM, stack);
-                            serverWorld.sendParticles(particleOption, pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5, 1, randomSource.nextGaussian() * 0.15D, 0.05D, randomSource.nextGaussian() * 0.15D, 0.05D);
+                            serverWorld.sendParticles(particleOption, pos.getX() + 0.65, pos.getY() + 0.95, pos.getZ() + 0.5, 1, randomSource.nextGaussian() * 0.15D, 0.05D, randomSource.nextGaussian() * 0.15D, 0.05D);
                         }
                     }
                 }

@@ -25,18 +25,23 @@ public class MincerModel<T extends Entity> extends EntityModel<T> {
     public static LayerDefinition getTexturedModelData() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
-        PartDefinition mincer = partdefinition.addOrReplaceChild("mincer", CubeListBuilder.create().texOffs(0, 8).addBox(-7.0F, -24.0F, 11.0F, 12.0F, 1.0F, 10.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 4).addBox(-1.0F, -23.0F, 13.0F, 5.0F, 5.0F, 6.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 4).addBox(-1.0F, -11.0F, 13.0F, 5.0F, 3.0F, 6.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 4).addBox(-7.0F, -17.0F, 13.0F, 5.0F, 5.0F, 6.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 6).addBox(-2.0F, -18.0F, 12.0F, 7.0F, 7.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(8.0F, 24.0F, -8.0F));
+        PartDefinition mincer = partdefinition.addOrReplaceChild("mincer", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -24.0F, 11.0F, 12.0F, 1.0F, 10.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 26).addBox(-1.0F, -23.0F, 13.0F, 5.0F, 5.0F, 6.0F, new CubeDeformation(0.0F))
+                .texOffs(30, 11).addBox(-1.0F, -11.0F, 13.0F, 5.0F, 3.0F, 6.0F, new CubeDeformation(0.0F))
+                .texOffs(24, 20).addBox(-6.0F, -17.0F, 13.0F, 4.0F, 5.0F, 6.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 11).addBox(-2.0F, -18.0F, 12.0F, 7.0F, 7.0F, 8.0F, new CubeDeformation(0.0F))
+                .texOffs(38, 31).addBox(-7.0F, -13.0F, 13.0F, 1.0F, 1.0F, 6.0F, new CubeDeformation(0.0F))
+                .texOffs(38, 38).addBox(-7.0F, -17.0F, 13.0F, 1.0F, 1.0F, 6.0F, new CubeDeformation(0.0F))
+                .texOffs(54, 22).addBox(-7.0F, -16.0F, 13.0F, 1.0F, 3.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(58, 22).addBox(-7.0F, -16.0F, 18.0F, 1.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(8.0F, 24.0F, -8.0F));
 
-        PartDefinition crank = partdefinition.addOrReplaceChild("crank", CubeListBuilder.create().texOffs(0, 0).addBox(13.0F, -7.0F, 7.0F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 5).addBox(14.0F, -7.0F, 7.0F, 1.0F, 2.0F, 7.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 0).addBox(14.0F, -7.0F, 14.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 16.0F, 0.0F));
+        PartDefinition crank = partdefinition.addOrReplaceChild("crank", CubeListBuilder.create().texOffs(0, 4).addBox(-1.3333F, -1.0F, -1.1667F, 1.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(22, 31).addBox(-0.3333F, -1.0F, -1.1667F, 1.0F, 2.0F, 7.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 0).addBox(-0.3333F, -1.0F, 5.8333F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(14.3333F, 10.0F, 8.1667F));
 
-        return LayerDefinition.create(meshdefinition, 48, 48);
+        return LayerDefinition.create(meshdefinition, 64, 64);
     }
+
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {

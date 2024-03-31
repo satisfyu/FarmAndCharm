@@ -2,7 +2,6 @@ package satisfy.farm_and_charm.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -11,6 +10,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 import satisfy.farm_and_charm.Farm_And_Charm;
 import satisfy.farm_and_charm.block.MincerBlock;
 import satisfy.farm_and_charm.client.model.MincerModel;
@@ -30,7 +31,7 @@ public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
     }
 
     @Override
-    public void render(MincerBlockEntity blockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
+    public void render(MincerBlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
 
         Level level = blockEntity.getLevel();
         assert level != null;
@@ -38,21 +39,19 @@ public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
         if (!(blockState.getBlock() instanceof MincerBlock)) return;
 
         poseStack.pushPose();
-        poseStack.mulPose(Axis.XP.rotationDegrees(180));
-        poseStack.translate(0.5f, -1.5f, -0.5f);
-
-
-
 
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
 
-        mincer.render(poseStack, vertexConsumer, i, j);
-        if (level.getBlockState(blockEntity.getBlockPos()).getValue(MincerBlock.CRANK) > 0) poseStack.mulPose (Axis.XP.rotation(((float) (System.currentTimeMillis() % 100000) / 100f)% 360));
-        crank.render(poseStack, vertexConsumer, i, j);
-
+        mincer.render(poseStack, vertexConsumer, light, overlay);
+        if (blockState.getValue(MincerBlock.CRANK) > 0) {
+            long time = System.currentTimeMillis();
+            float angle = (time % 3600) / 5f;
+            Quaternionf rotation = new Quaternionf().rotateX((float) Math.toRadians(-angle));
+            Matrix4f matrix = new Matrix4f().translate(0.5f, 0.625f, 0.5f).mul(rotation.get(new Matrix4f())).translate(-0.5f, -0.625f, -0.5f);
+            poseStack.last().pose().mul(matrix);
+        }
+        crank.render(poseStack, vertexConsumer, light, overlay);
 
         poseStack.popPose();
-
-
     }
 }

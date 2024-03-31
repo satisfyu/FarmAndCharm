@@ -162,10 +162,10 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
             int cranked = blockState.getValue(MincerBlock.CRANKED);
 
             if (crank > 0) {
-                if (cranked < MincerBlock.STIRS_NEEDED) {
+                if (cranked < MincerBlock.CRANKS_NEEDED) {
                     cranked++;
                     MincerRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypesRegistry.MINCER_RECIPE_TYPE.get(), blockEntity, level).orElse(null);
-                    if (cranked == MincerBlock.STIRS_NEEDED && recipe != null) {
+                    if (cranked == MincerBlock.CRANKS_NEEDED && recipe != null) {
                         recipe.getIngredients().forEach(ingredient -> {
                             int size = blockEntity.getItems().size();
                             for (int slot = 0; slot < size; slot++) {
@@ -190,7 +190,7 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
 
                 crank -= 1;
                 level.setBlock(blockPos, blockState.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked), 3);
-            } else if (cranked > 0 && cranked < MincerBlock.STIRS_NEEDED) {
+            } else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
                 level.setBlock(blockPos, blockState.setValue(MincerBlock.CRANKED, 0), 3);
             }
         }
