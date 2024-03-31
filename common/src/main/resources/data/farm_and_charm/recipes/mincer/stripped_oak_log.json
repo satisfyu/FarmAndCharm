@@ -3,6 +3,7 @@
   "ingredient": {
     "item": "minecraft:oak_log"
   },
+  "recipe_type": "WOOD",
   "result": {
     "item": "minecraft:stripped_oak_log",
     "count": 2

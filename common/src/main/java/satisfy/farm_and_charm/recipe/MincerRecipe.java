@@ -1,7 +1,6 @@
 package satisfy.farm_and_charm.recipe;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -12,18 +11,27 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
-import satisfy.farm_and_charm.util.GeneralUtil;
 
 public class MincerRecipe implements Recipe<Container> {
 
     final ResourceLocation id;
+    private final String recipe_type;
     private final Ingredient input;
     private final ItemStack output;
 
-    public MincerRecipe(ResourceLocation id, Ingredient input, ItemStack output) {
+    public MincerRecipe(ResourceLocation id, String type, Ingredient input, ItemStack output) {
         this.id = id;
+        this.recipe_type = type;
         this.input = input;
         this.output = output;
+    }
+    
+    // public String getRecipeType(MincerRecipe recipe) {
+    //     return recipe.mincer_type;C
+    // }
+    
+    public String getRecipeType() {
+        return this.recipe_type;
     }
 
     @Override
@@ -70,22 +78,25 @@ public class MincerRecipe implements Recipe<Container> {
 
         @Override
         public @NotNull MincerRecipe fromJson(ResourceLocation id, JsonObject json) {
+            String recipe_type = GsonHelper.getAsString(json, "recipe_type");
             Ingredient input = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-            return new MincerRecipe(id, input, output);
+            return new MincerRecipe(id, recipe_type, input, output);
         }
 
         @Override
         public @NotNull MincerRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             Ingredient input = Ingredient.fromNetwork(buf);
             ItemStack output = buf.readItem();
-            return new MincerRecipe(id, input, output);
+            String recipe_type = buf.readUtf();
+            return new MincerRecipe(id, recipe_type, input, output);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, MincerRecipe recipe) {
             recipe.input.toNetwork(buf);
             buf.writeItem(recipe.output);
+            buf.writeUtf(recipe.recipe_type);
         }
     }
 }
