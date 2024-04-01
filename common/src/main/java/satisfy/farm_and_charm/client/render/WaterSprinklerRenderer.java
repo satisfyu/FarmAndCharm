@@ -9,9 +9,9 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import org.joml.Quaternionf;
 import satisfy.farm_and_charm.Farm_And_Charm;
-import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
 import satisfy.farm_and_charm.client.model.WaterSprinklerModel;
 import satisfy.farm_and_charm.entity.WaterSprinklerBlockEntity;
 
@@ -36,9 +36,7 @@ public class WaterSprinklerRenderer implements BlockEntityRenderer<WaterSprinkle
 
         matrixStack.pushPose();
 
-        long gameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
-        float speedMultiplier = 5.0F;
-        float angle = (gameTime + partialTicks) * speedMultiplier % 360;
+        final var angle = getAngle(blockEntity, partialTicks);
 
         matrixStack.translate(0.5, 0, 0.5);
         matrixStack.mulPose(new Quaternionf().rotationY((float) Math.toRadians(-angle)));
@@ -49,5 +47,20 @@ public class WaterSprinklerRenderer implements BlockEntityRenderer<WaterSprinkle
         matrixStack.popPose();
 
         basin.render(matrixStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY);
+    }
+
+    private static float getAngle(WaterSprinklerBlockEntity blockEntity, float partialTicks) {
+        Level level = Objects.requireNonNull(blockEntity.getLevel());
+        long gameTime = level.getGameTime();
+        boolean isRaining = level.isRaining();
+        boolean isThundering = level.isThundering();
+        float angle;
+        if (isRaining || isThundering) {
+            angle = (float) Math.sin(gameTime * 0.03) * 7.0F;
+        } else {
+            float speedMultiplier = 5.0F;
+            angle = (gameTime + partialTicks) * speedMultiplier % 360;
+        }
+        return angle;
     }
 }

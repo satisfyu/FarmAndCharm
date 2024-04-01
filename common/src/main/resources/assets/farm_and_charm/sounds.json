@@ -1,0 +1,20 @@
+{
+  "crafting_bowl": {
+    "subtitle": "sound.farm_and_charm.crafting_bowl",
+    "sounds": [
+      "farm_and_charm:crafting_bowl"
+    ]
+  },
+  "mincer": {
+    "subtitle": "sound.farm_and_charm.mincer",
+    "sounds": [
+      "farm_and_charm:mincer"
+    ]
+  },
+  "water_sprinkler": {
+    "subtitle": "sound.farm_and_charm.water_sprinkler",
+    "sounds": [
+      "farm_and_charm:water_sprinkler"
+    ]
+  }
+}

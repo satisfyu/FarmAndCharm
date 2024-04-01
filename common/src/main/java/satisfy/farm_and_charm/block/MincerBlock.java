@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -37,6 +38,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.MincerBlockEntity;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
+import satisfy.farm_and_charm.registry.SoundEventRegistry;
 import satisfy.farm_and_charm.util.GeneralUtil;
 
 import java.util.Collections;
@@ -121,6 +123,7 @@ public class MincerBlock extends BaseEntityBlock {
                 }
                 if (crank <= 6) {
                     world.setBlock(pos, blockState.setValue(CRANK, 10), 3);
+                    world.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
                     return InteractionResult.SUCCESS;
                 }
             }

@@ -158,14 +158,14 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
     @Override
     public void tick(Level level, BlockPos blockPos, BlockState blockState, CraftingBowlBlockEntity blockEntity) {
         if (!level.isClientSide && level.getBlockState(blockPos).getBlock() instanceof CraftingBowlBlock) {
-            int crank = blockState.getValue(CraftingBowlBlock.CRANK);
-            int cranked = blockState.getValue(CraftingBowlBlock.CRANKED);
+            int stirring = blockState.getValue(CraftingBowlBlock.STIRRING);
+            int stirred = blockState.getValue(CraftingBowlBlock.STIRRED);
 
-            if (crank > 0) {
-                if (cranked < CraftingBowlBlock.STIRS_NEEDED) {
-                    cranked++;
+            if (stirring > 0) {
+                if (stirred < CraftingBowlBlock.STIRS_NEEDED) {
+                    stirred++;
                     CraftingBowlRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypesRegistry.CRAFTING_BOWL_RECIPE_TYPE.get(), blockEntity, level).orElse(null);
-                    if (cranked == CraftingBowlBlock.STIRS_NEEDED && recipe != null) {
+                    if (stirred == CraftingBowlBlock.STIRS_NEEDED && recipe != null) {
                         recipe.getIngredients().forEach(ingredient -> {
                             int size = blockEntity.getItems().size();
                             for (int slot = 0; slot < size; slot++) {
@@ -188,10 +188,10 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
                     }
                 }
 
-                crank -= 1;
-                level.setBlock(blockPos, blockState.setValue(CraftingBowlBlock.CRANK, crank).setValue(CraftingBowlBlock.CRANKED, cranked), 3);
-            } else if (cranked > 0 && cranked < CraftingBowlBlock.STIRS_NEEDED) {
-                level.setBlock(blockPos, blockState.setValue(CraftingBowlBlock.CRANKED, 0), 3);
+                stirring -= 1;
+                level.setBlock(blockPos, blockState.setValue(CraftingBowlBlock.STIRRING, stirring).setValue(CraftingBowlBlock.STIRRED, stirred), 3);
+            } else if (stirred > 0 && stirred < CraftingBowlBlock.STIRS_NEEDED) {
+                level.setBlock(blockPos, blockState.setValue(CraftingBowlBlock.STIRRED, 0), 3);
             }
         }
     }

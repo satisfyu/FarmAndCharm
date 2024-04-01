@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -19,6 +20,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.entity.WaterSprinklerBlockEntity;
+import satisfy.farm_and_charm.registry.SoundEventRegistry;
 
 @SuppressWarnings("deprecation")
 public class WaterSprinklerBlock extends BaseEntityBlock {
@@ -47,22 +49,10 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        BlockPos.betweenClosed(pos.offset(-4, -1, -4), pos.offset(4, 1, 4))
-                .forEach(blockPos -> {
-                    BlockState blockState = world.getBlockState(blockPos);
-                    if (blockState.is(Blocks.FIRE)) {
-                        world.removeBlock(blockPos, false);
-                        world.playSound(null, blockPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
-                    }
-                });
-        world.scheduleTick(pos, this, 20);
-    }
-
-    @Override
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        super.animateTick(state, world, pos, random);
-        if (world.isClientSide) {
+        if (!world.isRaining() && !world.isThundering()) {
+            super.animateTick(state, world, pos, random);
+            if (world.isClientSide) {
             double x = pos.getX() + 0.5;
             double y = pos.getY() + 1.0;
             double z = pos.getZ() + 0.5;
@@ -88,6 +78,38 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
                     world.addParticle(ParticleTypes.SPLASH, currentX, y, currentZ, dx, 0.0D, dz);
                 }
             }
+        }
+        }
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        BlockPos.betweenClosed(pos.offset(-4, -1, -4), pos.offset(4, 1, 4))
+                .forEach(blockPos -> {
+                    BlockState blockState = world.getBlockState(blockPos);
+                    if (blockState.is(Blocks.FIRE)) {
+                        world.removeBlock(blockPos, false);
+                        world.playSound(null, blockPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (random.nextFloat() - random.nextFloat()) * 0.8F);
+                    }
+                });
+        world.scheduleTick(pos, this, 20); // Schedule next tick
+
+        if (!world.isRainingAt(pos.above())) {
+            playContinuousSound(world, pos);
+        } else {
+            playWeatherSound(world, pos, random);
+        }
+    }
+
+    private void playContinuousSound(ServerLevel world, BlockPos pos) {
+        world.playSound(null, pos, SoundEventRegistry.WATER_SPRINKLER.get(), SoundSource.BLOCKS, 0.5F, 0.8F);
+         world.scheduleTick(pos, this, 80);
+    }
+
+    private void playWeatherSound(ServerLevel world, BlockPos pos, RandomSource random) {
+        if (random.nextInt(100) < 5) {
+            SoundEvent soundEvent = SoundEvents.WEATHER_RAIN_ABOVE;
+            world.playSound(null, pos, soundEvent, SoundSource.BLOCKS, 0.5F, 1.0F + random.nextFloat() * 0.2F);
         }
     }
 

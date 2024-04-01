@@ -30,7 +30,7 @@ public class Farm_And_CharmClient {
 
     public static void onInitializeClient() {
         RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.CRAFTING_BOWL.get(), ObjectRegistry.WATER_SPRINKLER.get(),
-                ObjectRegistry.SCARECROW.get(), ObjectRegistry.REINFORCED_SMOKER.get()
+                ObjectRegistry.SCARECROW.get(), ObjectRegistry.REINFORCED_SMOKER.get(), ObjectRegistry.MINCER.get()
         );
 
 

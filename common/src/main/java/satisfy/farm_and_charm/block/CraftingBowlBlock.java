@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -32,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.CraftingBowlBlockEntity;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
+import satisfy.farm_and_charm.registry.SoundEventRegistry;
 
 import java.util.Collections;
 import java.util.List;
@@ -39,13 +41,13 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 public class CraftingBowlBlock extends BaseEntityBlock {
     public static final int STIRS_NEEDED = 50;
-    public static final IntegerProperty CRANK = IntegerProperty.create("crank", 0, 32);
-    public static final IntegerProperty CRANKED = IntegerProperty.create("cranked", 0, 100);
+    public static final IntegerProperty STIRRING = IntegerProperty.create("stirring", 0, 32);
+    public static final IntegerProperty STIRRED = IntegerProperty.create("stirred", 0, 100);
 
     public CraftingBowlBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(this.stateDefinition.any().setValue(CRANK, 0));
-        this.registerDefaultState(this.stateDefinition.any().setValue(CRANKED, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(STIRRING, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(STIRRED, 0));
     }
 
     @Override
@@ -66,8 +68,8 @@ public class CraftingBowlBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(CRANK);
-        builder.add(CRANKED);
+        builder.add(STIRRING);
+        builder.add(STIRRED);
     }
 
     @Override
@@ -83,10 +85,10 @@ public class CraftingBowlBlock extends BaseEntityBlock {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         ItemStack itemStack = player.getItemInHand(hand);
         if (blockEntity instanceof CraftingBowlBlockEntity bowlEntity) {
-            int crank = blockState.getValue(CRANK);
-            int cranked = blockState.getValue(CRANKED);
+            int stirring = blockState.getValue(STIRRING);
+            int stirred = blockState.getValue(STIRRED);
 
-            if (!itemStack.isEmpty() && crank == 0) {
+            if (!itemStack.isEmpty() && stirring == 0) {
                 if (bowlEntity.canAddItem(itemStack)) {
                     bowlEntity.addItemStack(itemStack.copy());
                     if (!player.isCreative()) {
@@ -95,10 +97,10 @@ public class CraftingBowlBlock extends BaseEntityBlock {
                     return InteractionResult.SUCCESS;
                 }
             } else if (itemStack.isEmpty()) {
-                if (cranked >= STIRS_NEEDED && crank == 0) {
+                if (stirred >= STIRS_NEEDED && stirring == 0) {
                     player.getInventory().add(bowlEntity.getItem(4));
                     bowlEntity.setItem(4, ItemStack.EMPTY);
-                    world.setBlock(pos, blockState.setValue(CRANKED, 0), 3);
+                    world.setBlock(pos, blockState.setValue(STIRRED, 0), 3);
                     return InteractionResult.SUCCESS;
                 }
                 if (world instanceof ServerLevel serverWorld) {
@@ -110,8 +112,9 @@ public class CraftingBowlBlock extends BaseEntityBlock {
                         }
                     }
                 }
-                if (crank <= 6) {
-                    world.setBlock(pos, blockState.setValue(CRANK, 10), 3);
+                if (stirring <= 6) {
+                    world.setBlock(pos, blockState.setValue(STIRRING, 10), 3);
+                    world.playSound(null, pos, SoundEventRegistry.CRAFTING_BOWL.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
                     return InteractionResult.SUCCESS;
                 }
             }

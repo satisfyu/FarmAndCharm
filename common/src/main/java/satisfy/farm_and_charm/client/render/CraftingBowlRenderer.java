@@ -55,7 +55,7 @@ public class CraftingBowlRenderer implements BlockEntityRenderer<CraftingBowlBlo
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityTranslucent(location));
 
         bowl.render(poseStack, vertexConsumer, i, j);
-        if (level.getBlockState(blockEntity.getBlockPos()).getValue(CraftingBowlBlock.CRANK) > 0) poseStack.mulPose (Axis.YP.rotation(((float) (System.currentTimeMillis() % 100000) / 100f)% 360));
+        if (level.getBlockState(blockEntity.getBlockPos()).getValue(CraftingBowlBlock.STIRRING) > 0) poseStack.mulPose (Axis.YP.rotation(((float) (System.currentTimeMillis() % 100000) / 100f)% 360));
         swing.render(poseStack, vertexConsumer, i, j);
 
         this.renderItems(poseStack, multiBufferSource, blockEntity.getItems(), i, j);
