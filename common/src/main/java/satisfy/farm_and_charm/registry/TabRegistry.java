@@ -5,8 +5,10 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.item.food.EffectFoodItem;
 
 public class TabRegistry {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.CREATIVE_MODE_TAB);
@@ -57,6 +59,7 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.SILO_COPPER.get());
                 output.accept(ObjectRegistry.WINDOW_SILL.get());
                 output.accept(ObjectRegistry.TOOL_RACK.get());
+                output.accept(ObjectRegistry.FORK.get());
                 output.accept(ObjectRegistry.CRAFTING_BOWL.get());
                 output.accept(ObjectRegistry.MINCER.get());
                 output.accept(ObjectRegistry.COOKING_POT.get());
@@ -66,7 +69,18 @@ public class TabRegistry {
 
                 output.accept(ObjectRegistry.BUTTER.get());
                 output.accept(ObjectRegistry.YEAST.get());
+                output.accept(ObjectRegistry.FLOUR.get());
                 output.accept(ObjectRegistry.DOUGH.get());
+
+                output.accept(ObjectRegistry.MINTED_BEEF.get());
+                output.accept(ObjectRegistry.HAM.get());
+                output.accept(ObjectRegistry.BACON.get());
+                output.accept(ObjectRegistry.ROASTED_CORN.get());
+                output.accept(ObjectRegistry.POTATO_WITH_ROAST_MEAT.get());
+                output.accept(ObjectRegistry.STUFFED_CHICKEN.get());
+                output.accept(ObjectRegistry.FARMERS_BREAD.get());
+                output.accept(ObjectRegistry.VEGETABLE_SANDWICH.get());
+                output.accept(ObjectRegistry.SANDWICH.get());
 
                 output.accept(ObjectRegistry.CAT_FOOD.get());
                 output.accept(ObjectRegistry.DOG_FOOD.get());
@@ -74,6 +88,7 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.FERTILIZER.get());
 
                 output.accept(ObjectRegistry.SCARECROW.get());
+
 
 
             })

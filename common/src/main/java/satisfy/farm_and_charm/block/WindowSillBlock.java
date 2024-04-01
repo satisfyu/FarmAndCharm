@@ -85,6 +85,6 @@ public class WindowSillBlock extends StorageBlock {
 
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("tooltip.farm_and_charm.canbeplaced").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.farm_and_charm.canbeplacedwall").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

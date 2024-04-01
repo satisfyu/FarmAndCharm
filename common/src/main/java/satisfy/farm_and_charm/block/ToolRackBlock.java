@@ -91,6 +91,6 @@ public class ToolRackBlock extends StorageBlock {
 
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("tooltip.farm_and_charm.decoration").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.farm_and_charm.canbeplacedwall").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }
