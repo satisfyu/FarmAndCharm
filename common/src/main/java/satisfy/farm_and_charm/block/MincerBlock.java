@@ -200,10 +200,13 @@ public class MincerBlock extends BaseEntityBlock {
                     for (ItemStack stack : mincer.getItems()) {
                         if (!stack.isEmpty() && mincer.getItem(mincer.OUTPUT_SLOT) != stack) {
                             ItemParticleOption particleOption = new ItemParticleOption(ParticleTypes.ITEM, stack);
-                            serverWorld.sendParticles(particleOption, pos.getX() + 0.65, pos.getY() + 0.95, pos.getZ() + 0.5, 1, randomSource.nextGaussian() * 0.15D, 0.05D, randomSource.nextGaussian() * 0.15D, 0.05D);
+                            serverWorld.sendParticles(particleOption, pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.4, 3, 0.2, 0.1, 0, 0.1);
                         }
                     }
                 }
+
+
+
                 if (crank <= 6) {
 
                     level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
