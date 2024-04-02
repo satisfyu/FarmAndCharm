@@ -4,7 +4,7 @@
 		"0": "farm_and_charm:block/feeding_trough_bottom",
 		"1": "farm_and_charm:block/feeding_trough_front",
 		"2": "farm_and_charm:block/feeding_trough_side",
-		"3": "farm_and_charm:block/barley_block_top",
+		"3": "block/composter_ready",
 		"particle": "farm_and_charm:block/feeding_trough_bottom"
 	},
 	"elements": [
@@ -72,7 +72,7 @@
 			"from": [2, 4, 3],
 			"to": [14, 6, 13],
 			"faces": {
-				"up": {"uv": [0, 0, 12, 10], "texture": "#3"}
+				"up": {"uv": [2, 3, 14, 13], "texture": "#3"}
 			}
 		}
 	]

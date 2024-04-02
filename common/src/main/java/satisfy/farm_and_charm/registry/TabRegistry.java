@@ -17,7 +17,7 @@ public class TabRegistry {
             .icon(() -> new ItemStack(ObjectRegistry.WATER_SPRINKLER.get()))
             .title(Component.translatable("creativetab.farm_and_charm.tab"))
             .displayItems((parameters, output) -> {
-                output.accept(ObjectRegistry.CORN_SEEDS.get());
+                output.accept(ObjectRegistry.KERNELS.get());
                 output.accept(ObjectRegistry.CORN.get());
                 output.accept(ObjectRegistry.OAT_SEEDS.get());
                 output.accept(ObjectRegistry.OAT.get());
@@ -45,7 +45,7 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.BEETROOT_BAG.get());
                 output.accept(ObjectRegistry.CORN_BAG.get());
                 output.accept(ObjectRegistry.STRAWBERRY_BAG.get());
-                output.accept(ObjectRegistry.SWEETBERRY_BAG.get());
+                output.accept(ObjectRegistry.FLOUR_BAG.get());
 
                 output.accept(ObjectRegistry.OAT_BALL.get());
                 output.accept(ObjectRegistry.BARLEY_BALL.get());
@@ -57,9 +57,11 @@ public class TabRegistry {
 
                 output.accept(ObjectRegistry.SILO_WOOD.get());
                 output.accept(ObjectRegistry.SILO_COPPER.get());
+
+                output.accept(ObjectRegistry.PLACEHOLDER_ITEM.get());
                 output.accept(ObjectRegistry.WINDOW_SILL.get());
                 output.accept(ObjectRegistry.TOOL_RACK.get());
-                output.accept(ObjectRegistry.FORK.get());
+                output.accept(ObjectRegistry.PITCHFORK.get());
                 output.accept(ObjectRegistry.CRAFTING_BOWL.get());
                 output.accept(ObjectRegistry.MINCER.get());
                 output.accept(ObjectRegistry.COOKING_POT.get());
@@ -71,13 +73,31 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.YEAST.get());
                 output.accept(ObjectRegistry.FLOUR.get());
                 output.accept(ObjectRegistry.DOUGH.get());
+                output.accept(ObjectRegistry.RAW_PASTA.get());
 
                 output.accept(ObjectRegistry.MINTED_BEEF.get());
-                output.accept(ObjectRegistry.HAM.get());
+                output.accept(ObjectRegistry.LAMB_HAM.get());
+                output.accept(ObjectRegistry.CHICKEN_PARTS.get());
                 output.accept(ObjectRegistry.BACON.get());
+
+                output.accept(ObjectRegistry.FARMER_SALAD.get());
+                output.accept(ObjectRegistry.PORRIDGE_WITH_APPLES.get());
+                output.accept(ObjectRegistry.SIMPLE_TOMATO_SOUP.get());
+                output.accept(ObjectRegistry.BARLEY_SOUP.get());
+                output.accept(ObjectRegistry.ONION_SOUP.get());
+                output.accept(ObjectRegistry.POTATO_SOUP.get());
+
+                output.accept(ObjectRegistry.BARLEY_PATTIES_WITH_POTATOES.get());
+                output.accept(ObjectRegistry.BEEF_PATTY_WITH_VEGETABLES.get());
+                output.accept(ObjectRegistry.ROASTED_CHICKEN.get());
                 output.accept(ObjectRegistry.ROASTED_CORN.get());
+                output.accept(ObjectRegistry.COOKED_SALMON.get());
+                output.accept(ObjectRegistry.LAMB_WITH_CORN.get());
+                output.accept(ObjectRegistry.BACON_WITH_EGGS.get());
+                output.accept(ObjectRegistry.BAKED_LAMB_HAM.get());
                 output.accept(ObjectRegistry.POTATO_WITH_ROAST_MEAT.get());
                 output.accept(ObjectRegistry.STUFFED_CHICKEN.get());
+
                 output.accept(ObjectRegistry.FARMERS_BREAD.get());
                 output.accept(ObjectRegistry.VEGETABLE_SANDWICH.get());
                 output.accept(ObjectRegistry.SANDWICH.get());

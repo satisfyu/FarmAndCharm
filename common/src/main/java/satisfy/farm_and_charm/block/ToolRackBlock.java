@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
@@ -62,7 +63,8 @@ public class ToolRackBlock extends StorageBlock {
 
     @Override
     public boolean canInsertStack(ItemStack stack) {
-        return stack.getItem() instanceof TieredItem || stack.getItem() == ObjectRegistry.COOKING_PAN.get().asItem() || stack.getItem() == ObjectRegistry.COOKING_SAUCEPAN.get().asItem();
+        return stack.getItem() instanceof TieredItem || stack.getItem() == ObjectRegistry.COOKING_PAN.get().asItem() || stack.getItem() == ObjectRegistry.COOKING_SAUCEPAN.get().asItem() || stack.getItem() == Items.SHEARS
+                || stack.getItem() == Items.FISHING_ROD || stack.getItem() == Items.SPYGLASS || stack.getItem() == Items.CHAIN;
     }
 
 

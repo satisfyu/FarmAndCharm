@@ -1,8 +1,8 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "farm_and_charm:block/fertilized_soil_block",
-		"particle": "farm_and_charm:block/fertilized_soil_block"
+		"0": "farm_and_charm:block/fertilized_soil",
+		"particle": "farm_and_charm:block/fertilized_soil"
 	},
 	"elements": [
 		{

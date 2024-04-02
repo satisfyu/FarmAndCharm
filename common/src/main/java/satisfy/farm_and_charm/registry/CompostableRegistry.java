@@ -10,7 +10,7 @@ public class CompostableRegistry {
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.WILD_TOMATOES.get().asItem(), 0.5F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TOMATO_SEEDS.get().asItem(), 0.2F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TOMATO.get(), 0.3F);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CORN_SEEDS.get().asItem(), 0.2F);
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.KERNELS.get().asItem(), 0.2F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CORN.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.OAT_SEEDS.get().asItem(), 0.2F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.OAT.get(), 0.3F);
@@ -28,7 +28,7 @@ public class CompostableRegistry {
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.YEAST.get(), 0.2F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.MINTED_BEEF.get(), 0.4F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.BACON.get(), 0.4F);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.HAM.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.LAMB_HAM.get(), 0.4F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ROASTED_CORN.get(), 1.0F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.POTATO_WITH_ROAST_MEAT.get(), 1.0F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.STUFFED_CHICKEN.get(), 1.0F);

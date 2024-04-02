@@ -11,7 +11,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -52,7 +51,7 @@ public class FertilizedSoilBlock extends Block {
     @Override
     public @NotNull InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getItemInHand(hand);
-        if (itemStack.getItem() instanceof ShovelItem) {
+        if (itemStack.getItem() == ObjectRegistry.PITCHFORK.get()) {
             int newSize = state.getValue(SIZE) - 1;
             if (newSize < 0) {
                 level.removeBlock(pos, false);
@@ -67,15 +66,21 @@ public class FertilizedSoilBlock extends Block {
             itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
             return InteractionResult.SUCCESS;
         } else if (itemStack.getItem() instanceof HoeItem) {
-            level.setBlock(pos, ObjectRegistry.FERTILIZED_FARM_BLOCK.get().defaultBlockState(), 3);
-            if (!player.isCreative()) {
-                itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
+            int currentSize = state.getValue(SIZE);
+            if (currentSize == 3) {
+                level.setBlock(pos, ObjectRegistry.FERTILIZED_FARM_BLOCK.get().defaultBlockState(), 3);
+                if (!player.isCreative()) {
+                    itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
+                }
+                level.playSound(null, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                return InteractionResult.SUCCESS;
             }
-            level.playSound(null, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
-            return InteractionResult.SUCCESS;
+            return InteractionResult.PASS;
         }
         return InteractionResult.PASS;
     }
+
+
 
 
     private void spawnBreakParticles(Level level, BlockPos pos, BlockState state) {

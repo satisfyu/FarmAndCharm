@@ -39,10 +39,4 @@ public class ClientUtil {
         Minecraft.getInstance().getItemRenderer().renderStatic(stack, ItemDisplayContext.GUI, ClientUtil.getLightLevel(level, entity.getBlockPos()),
                 OverlayTexture.NO_OVERLAY, matrices, vertexConsumers, level, 1);
     }
-
-    public static <T extends Button> void setButtonPosition(T button, int x, int y){
-        button.setX(x);
-        button.setY(y);
-    }
-
 }

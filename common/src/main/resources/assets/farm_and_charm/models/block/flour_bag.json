@@ -4,8 +4,8 @@
 		"3": "farm_and_charm:block/bag_side_knot",
 		"4": "farm_and_charm:block/bag_bottom",
 		"7": "farm_and_charm:block/bag_side",
-		"8": "farm_and_charm:block/bag_top_sweetberry",
-		"particle": "farm_and_charm:block/bag_top_sweetberry"
+		"8": "farm_and_charm:block/bag_top_flour",
+		"particle": "farm_and_charm:block/bag_top_flour"
 	},
 	"elements": [
 		{

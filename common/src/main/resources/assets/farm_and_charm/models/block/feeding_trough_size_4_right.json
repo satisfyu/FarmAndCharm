@@ -4,8 +4,8 @@
 		"0": "farm_and_charm:block/feeding_trough_bottom",
 		"1": "farm_and_charm:block/feeding_trough_front",
 		"2": "farm_and_charm:block/feeding_trough_side",
-		"3": "farm_and_charm:block/barley_block_top",
-		"4": "farm_and_charm:block/oat_block_top",
+		"3": "block/composter_ready",
+		"4": "block/composter_compost",
 		"particle": "farm_and_charm:block/feeding_trough_bottom"
 	},
 	"elements": [
@@ -56,8 +56,8 @@
 				"north": {"uv": [0, 0, 6, 8], "texture": "#3"},
 				"east": {"uv": [0, 0, 10, 8], "texture": "#3"},
 				"south": {"uv": [0, 0, 6, 8], "texture": "#3"},
-				"west": {"uv": [0, 0, 10, 8], "texture": "#3"},
-				"up": {"uv": [0, 0, 6, 10], "texture": "#3"},
+				"west": {"uv": [3, 3, 13, 11], "texture": "#3"},
+				"up": {"uv": [3, 3, 9, 13], "texture": "#3"},
 				"down": {"uv": [0, 0, 6, 10], "texture": "#3"}
 			}
 		},
@@ -68,8 +68,8 @@
 				"north": {"uv": [0, 0, 6, 6], "texture": "#4"},
 				"east": {"uv": [0, 0, 10, 6], "texture": "#4"},
 				"south": {"uv": [0, 0, 6, 6], "texture": "#4"},
-				"west": {"uv": [0, 0, 10, 6], "texture": "#4"},
-				"up": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"west": {"uv": [3, 5, 13, 11], "texture": "#4"},
+				"up": {"uv": [4, 3, 10, 13], "texture": "#4"},
 				"down": {"uv": [0, 0, 6, 10], "texture": "#4"}
 			}
 		},
@@ -80,8 +80,8 @@
 				"north": {"uv": [0, 0, 2, 5], "texture": "#3"},
 				"east": {"uv": [0, 0, 10, 5], "texture": "#3"},
 				"south": {"uv": [0, 0, 2, 5], "texture": "#3"},
-				"west": {"uv": [0, 0, 10, 5], "texture": "#3"},
-				"up": {"uv": [0, 0, 2, 10], "texture": "#3"},
+				"west": {"uv": [3, 8, 13, 13], "texture": "#3"},
+				"up": {"uv": [4, 3, 6, 13], "texture": "#3"},
 				"down": {"uv": [0, 0, 2, 10], "texture": "#3"}
 			}
 		}

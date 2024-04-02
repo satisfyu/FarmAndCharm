@@ -48,7 +48,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> BARLEY_SEEDS = registerItem("barley_seeds", () -> new ItemNameBlockItem(BARLEY_CROP.get(), getSettings()));
     public static final RegistrySupplier<Item> BARLEY = registerItem("barley", () -> new Item(getSettings().food(Foods.APPLE)));
     public static final RegistrySupplier<Block> CORN_CROP = registerWithoutItem("corn_crop", () -> new CornCropBlock(getBushSettings()));
-    public static final RegistrySupplier<Item> CORN_SEEDS = registerItem("corn_seeds", () -> new ItemNameBlockItem(CORN_CROP.get(), getSettings()));
+    public static final RegistrySupplier<Item> KERNELS = registerItem("kernels", () -> new ItemNameBlockItem(CORN_CROP.get(), getSettings()));
     public static final RegistrySupplier<Item> CORN = registerItem("corn", () -> new Item(getSettings().food(Foods.APPLE)));
     public static final RegistrySupplier<Block> ONION_CROP = registerWithoutItem("onion_crop", () -> new OnionCropBlock(getBushSettings()));
     public static final RegistrySupplier<Item> ONION = registerItem("onion", () -> new ItemNameBlockItem(ONION_CROP.get(), getSettings()));
@@ -66,7 +66,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> TOMATO_BAG = registerWithItem("tomato_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
     public static final RegistrySupplier<Block> CORN_BAG = registerWithItem("corn_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
     public static final RegistrySupplier<Block> ONION_BAG = registerWithItem("onion_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
-    public static final RegistrySupplier<Block> SWEETBERRY_BAG = registerWithItem("sweetberry_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> FLOUR_BAG = registerWithItem("flour_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
 
     public static final RegistrySupplier<Block> OAT_BALL = registerWithItem("oat_ball", () -> new HayBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
     public static final RegistrySupplier<Block> BARLEY_BALL = registerWithItem("barley_ball", () -> new HayBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
@@ -84,27 +84,44 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> COOKING_PAN_ITEM = registerItem("cooking_pan", () -> new CookingPanItem(COOKING_PAN.get(), getSettings()));
     public static final RegistrySupplier<Block> COOKING_SAUCEPAN = registerWithoutItem("cooking_saucepan", () -> new CookingSaucePanBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
     public static final RegistrySupplier<Item> COOKING_SAUCEPAN_ITEM = registerItem("cooking_saucepan", () -> new CookingSaucePanItem(COOKING_SAUCEPAN.get(), getSettings()));
-    public static final RegistrySupplier<Item> FORK = registerItem("fork", () -> new HoeItem(Tiers.IRON, -1, -1.0F, new Item.Properties()));
+    public static final RegistrySupplier<Item> PITCHFORK = registerItem("pitchfork", () -> new HoeItem(Tiers.IRON, -1, -1.0F, new Item.Properties()));
 
 
     public static final RegistrySupplier<Block> SILO_WOOD = registerWithItem("silo_wood", () -> new SiloBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion().pushReaction(PushReaction.IGNORE)));
     public static final RegistrySupplier<Block> SILO_COPPER = registerWithItem("silo_copper", () -> new SiloBlock(BlockBehaviour.Properties.copy(Blocks.COPPER_BLOCK).noOcclusion().pushReaction(PushReaction.IGNORE)));
 
+    public static final RegistrySupplier<Item> PLACEHOLDER_ITEM = registerItem("placeholder_item", () -> new Item(getSettings()));
 
-    public static final RegistrySupplier<Block> TOOL_RACK = registerWithItem("tool_rack", () -> new ToolRackBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT).noCollission()));
     public static final RegistrySupplier<Block> WINDOW_SILL = registerWithItem("window_sill", () -> new WindowSillBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT).noCollission()));
+    public static final RegistrySupplier<Block> TOOL_RACK = registerWithItem("tool_rack", () -> new ToolRackBlock(BlockBehaviour.Properties.copy(Blocks.FLOWER_POT).noCollission()));
 
     public static final RegistrySupplier<Item> FLOUR = registerItem("flour", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> YEAST = registerItem("yeast", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> BUTTER = registerItem("butter", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> DOUGH = registerItem("dough", () -> new Item(getSettings()));
+    public static final RegistrySupplier<Item> RAW_PASTA = registerItem("raw_pasta", () -> new Item(getSettings()));
 
     //TODO: Food values
     public static final RegistrySupplier<Item> MINTED_BEEF = registerItem("minted_beef", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> HAM = registerItem("ham", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> LAMB_HAM = registerItem("lamb_ham", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> BACON = registerItem("bacon", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> CHICKEN_PARTS = registerItem("chicken_parts", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+
+    public static final RegistrySupplier<Item> FARMER_SALAD = registerItem("farmer_salad", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> SIMPLE_TOMATO_SOUP = registerItem("simple_tomato_soup", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BARLEY_SOUP = registerItem("barley_soup", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> ONION_SOUP = registerItem("onion_soup", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> POTATO_SOUP = registerItem("potato_soup", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> PORRIDGE_WITH_APPLES = registerItem("porridge_with_apples", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> ROASTED_CHICKEN = registerItem("roasted_chicken", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> LAMB_WITH_CORN = registerItem("lamb_with_corn", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BEEF_PATTY_WITH_VEGETABLES = registerItem("beef_patty_with_vegetables", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> ROASTED_CORN = registerItem("roasted_corn", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BARLEY_PATTIES_WITH_POTATOES = registerItem("barley_patties_with_potatoes", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> POTATO_WITH_ROAST_MEAT = registerItem("potato_with_roast_meat", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BACON_WITH_EGGS = registerItem("bacon_with_eggs", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BAKED_LAMB_HAM = registerItem("baked_lamb_ham", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> COOKED_SALMON = registerItem("cooked_salmon", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> FARMERS_BREAKFAST = registerItem("farmers_breakfast", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> STUFFED_CHICKEN = registerItem("stuffed_chicken", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> FARMERS_BREAD = registerItem("farmers_bread", () -> new EffectFoodItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));

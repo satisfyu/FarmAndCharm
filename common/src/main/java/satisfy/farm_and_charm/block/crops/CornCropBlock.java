@@ -20,7 +20,7 @@ public class CornCropBlock extends CropBlock {
 
     @Override
     protected @NotNull ItemLike getBaseSeedId() {
-        return ObjectRegistry.CORN_SEEDS.get();
+        return ObjectRegistry.KERNELS.get();
     }
 
     @Override
