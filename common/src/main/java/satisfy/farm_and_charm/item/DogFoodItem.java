@@ -11,7 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.registry.EffectRegistry;
+import satisfy.farm_and_charm.registry.MobEffectRegistry;
 
 public class DogFoodItem extends Item {
     public DogFoodItem(Properties properties) {
@@ -26,7 +26,7 @@ public class DogFoodItem extends Item {
                 wolf.setOwnerUUID(player.getUUID());
                 wolf.setInSittingPose(false);
                 wolf.heal(10.0F);
-                wolf.addEffect(new MobEffectInstance(EffectRegistry.DOG_FOOD.get(), 4000, 0));
+                wolf.addEffect(new MobEffectInstance(MobEffectRegistry.DOG_FOOD.get(), 4000, 0));
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);
                 }

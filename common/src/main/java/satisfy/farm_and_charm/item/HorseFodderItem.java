@@ -10,7 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.registry.EffectRegistry;
+import satisfy.farm_and_charm.registry.MobEffectRegistry;
 
 public class HorseFodderItem extends Item {
     public HorseFodderItem(Properties properties) {
@@ -29,7 +29,7 @@ public class HorseFodderItem extends Item {
                     }
                     return InteractionResult.sidedSuccess(entity.getCommandSenderWorld().isClientSide);
                 }
-                horse.addEffect(new MobEffectInstance(EffectRegistry.HORSE_FODDER.get(), 6000, 0));
+                horse.addEffect(new MobEffectInstance(MobEffectRegistry.HORSE_FODDER.get(), 6000, 0));
                 horse.heal(10.0F);
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);

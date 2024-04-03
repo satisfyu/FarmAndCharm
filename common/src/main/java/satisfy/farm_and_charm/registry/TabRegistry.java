@@ -121,6 +121,7 @@ public class TabRegistry {
 
                 output.accept(ObjectRegistry.CAT_FOOD.get());
                 output.accept(ObjectRegistry.DOG_FOOD.get());
+                output.accept(ObjectRegistry.CHICKEN_FEED.get());
                 output.accept(ObjectRegistry.HORSE_FODDER.get());
                 output.accept(ObjectRegistry.FERTILIZER.get());
 

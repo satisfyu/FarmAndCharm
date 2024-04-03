@@ -8,14 +8,11 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import satisfy.farm_and_charm.Farm_And_Charm;
 import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
-import satisfy.farm_and_charm.effect.DogFoodEffect;
-import satisfy.farm_and_charm.effect.HorseFodderEffect;
-import satisfy.farm_and_charm.effect.StuffedEffect;
-import satisfy.farm_and_charm.effect.SweetsEffect;
+import satisfy.farm_and_charm.effect.*;
 
 import java.util.function.Supplier;
 
-public class EffectRegistry {
+public class MobEffectRegistry {
 
     private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.MOB_EFFECT);
     private static final Registrar<MobEffect> MOB_EFFECTS_REGISTRAR = MOB_EFFECTS.getRegistrar();
@@ -24,6 +21,7 @@ public class EffectRegistry {
     public static final RegistrySupplier<MobEffect> SWEETS;
     public static final RegistrySupplier<MobEffect> HORSE_FODDER;
     public static final RegistrySupplier<MobEffect> DOG_FOOD;
+    public static final RegistrySupplier<MobEffect> CHICKEN;
 
 
     private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect) {
@@ -43,6 +41,7 @@ public class EffectRegistry {
         SWEETS = registerEffect("sweets", SweetsEffect::new);
         HORSE_FODDER = registerEffect("horse_fodder", HorseFodderEffect::new);
         DOG_FOOD = registerEffect("dog_food", DogFoodEffect::new);
+        CHICKEN = registerEffect("chicken", ChickenEffect::new);
 
     }
 }

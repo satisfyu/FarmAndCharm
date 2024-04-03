@@ -1,7 +1,5 @@
 package satisfy.farm_and_charm.registry;
 
-import com.google.common.collect.Lists;
-import com.mojang.datafixers.util.Pair;
 import de.cristelknight.doapi.Util;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
@@ -23,7 +21,6 @@ import satisfy.farm_and_charm.block.crops.*;
 import satisfy.farm_and_charm.item.*;
 import satisfy.farm_and_charm.item.food.EffectItem;
 
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -119,36 +116,36 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> FLOUR = registerItem("flour", () -> new Item(getSettings()));
 
     //TODO: Food values, Effects
-    public static final RegistrySupplier<Item> MINTED_BEEF = registerItem("minted_beef", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> LAMB_HAM = registerItem("lamb_ham", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> BACON = registerItem("bacon", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> CHICKEN_PARTS = registerItem("chicken_parts", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> MINTED_BEEF = registerItem("minted_beef", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> LAMB_HAM = registerItem("lamb_ham", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BACON = registerItem("bacon", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> CHICKEN_PARTS = registerItem("chicken_parts", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
 
     //SOUPS / BOWLS
-    public static final RegistrySupplier<Item> FARMER_SALAD = registerItem("farmer_salad", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> GOULASH = registerItem("goulash", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> SIMPLE_TOMATO_SOUP = registerItem("simple_tomato_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> BARLEY_SOUP = registerItem("barley_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> ONION_SOUP = registerItem("onion_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> POTATO_SOUP = registerItem("potato_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> PORRIDGE_WITH_APPLES = registerItem("porridge_with_apples", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> PASTA_WITH_ONION_SAUCE = registerItem("pasta_with_onion_sauce", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> CORN_GRITS = registerItem("corn_grits", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> FARMER_SALAD = registerItem("farmer_salad", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> GOULASH = registerItem("goulash", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> SIMPLE_TOMATO_SOUP = registerItem("simple_tomato_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BARLEY_SOUP = registerItem("barley_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> ONION_SOUP = registerItem("onion_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> POTATO_SOUP = registerItem("potato_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> PORRIDGE_WITH_APPLES = registerItem("porridge_with_apples", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> PASTA_WITH_ONION_SAUCE = registerItem("pasta_with_onion_sauce", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> CORN_GRITS = registerItem("corn_grits", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
 
     //FOOD
-    public static final RegistrySupplier<Item> SAUSAGE_WITH_OAT_PATTY = registerItem("sausage_with_oat_patty", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> ROASTED_CHICKEN = registerItem("roasted_chicken", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> LAMB_WITH_CORN = registerItem("lamb_with_corn", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> BEEF_PATTY_WITH_VEGETABLES = registerItem("beef_patty_with_vegetables", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> ROASTED_CORN = registerItem("roasted_corn", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> BARLEY_PATTIES_WITH_POTATOES = registerItem("barley_patties_with_potatoes", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> POTATO_WITH_ROAST_MEAT = registerItem("potato_with_roast_meat", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> BACON_WITH_EGGS = registerItem("bacon_with_eggs", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> BAKED_LAMB_HAM = registerItem("baked_lamb_ham", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> CHICKEN_WRAPPED_IN_BACON = registerItem("chicken_wrapped_in_bacon", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> COOKED_SALMON = registerItem("cooked_salmon", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> FARMERS_BREAKFAST = registerItem("farmers_breakfast", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> STUFFED_CHICKEN = registerItem("stuffed_chicken", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> SAUSAGE_WITH_OAT_PATTY = registerItem("sausage_with_oat_patty", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> ROASTED_CHICKEN = registerItem("roasted_chicken", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> LAMB_WITH_CORN = registerItem("lamb_with_corn", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BEEF_PATTY_WITH_VEGETABLES = registerItem("beef_patty_with_vegetables", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> ROASTED_CORN = registerItem("roasted_corn", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BARLEY_PATTIES_WITH_POTATOES = registerItem("barley_patties_with_potatoes", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> POTATO_WITH_ROAST_MEAT = registerItem("potato_with_roast_meat", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BACON_WITH_EGGS = registerItem("bacon_with_eggs", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> BAKED_LAMB_HAM = registerItem("baked_lamb_ham", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> CHICKEN_WRAPPED_IN_BACON = registerItem("chicken_wrapped_in_bacon", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> COOKED_SALMON = registerItem("cooked_salmon", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> FARMERS_BREAKFAST = registerItem("farmers_breakfast", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> STUFFED_CHICKEN = registerItem("stuffed_chicken", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
 
     //TEA
     public static final RegistrySupplier<Item> STRAWBERRY_TEA = registerItem("strawberry_tea", () -> new TeaItem(getFoodItemSettings(2, 0.1f, MobEffects.HEAL, 20)));
@@ -156,13 +153,14 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> RIBWORT_TEA = registerItem("ribwort_tea", () -> new TeaItem(getFoodItemSettings(1, 0.1f, MobEffects.REGENERATION, 140)));
 
     //BAKED
-    public static final RegistrySupplier<Item> GRANDMOTHERS_STRAWBERRY_CAKE = registerItem("grandmothers_strawberry_cake", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> FARMERS_BREAD = registerItem("farmers_bread", () -> new EffectItem(getFoodItemSettings(5, 0.7f, EffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> GRANDMOTHERS_STRAWBERRY_CAKE = registerItem("grandmothers_strawberry_cake", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> FARMERS_BREAD = registerItem("farmers_bread", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
 
     //ANIMAL FOOD
     public static final RegistrySupplier<Item> CAT_FOOD = registerItem("cat_food", () -> new Item(getSettings()));
     public static final RegistrySupplier<Item> HORSE_FODDER = registerItem("horse_fodder", () -> new HorseFodderItem(getSettings()));
     public static final RegistrySupplier<Item> DOG_FOOD = registerItem("dog_food", () -> new DogFoodItem(getSettings()));
+    public static final RegistrySupplier<Item> CHICKEN_FEED = registerItem("chicken_feed", () -> new ChickenFeedItem(getSettings()));
 
 
 
