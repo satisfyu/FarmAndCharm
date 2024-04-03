@@ -34,8 +34,6 @@ public class CompostableRegistry {
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.STUFFED_CHICKEN.get(), 1.0F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.FARMERS_BREAKFAST.get(), 1.0F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.FARMERS_BREAD.get(), 0.5F);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SANDWICH.get(), 0.5F);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.VEGETABLE_SANDWICH.get(), 0.5F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CAT_FOOD.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.DOG_FOOD.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.HORSE_FODDER.get(), 0.3F);

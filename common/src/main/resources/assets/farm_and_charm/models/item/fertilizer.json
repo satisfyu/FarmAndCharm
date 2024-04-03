@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "farm_and_charm:item/vegetable_sandwich"
+    "layer0": "farm_and_charm:item/fertilizer"
   }
 }

@@ -32,6 +32,15 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.STRAWBERRY_SEEDS.get());
                 output.accept(ObjectRegistry.STRAWBERRY.get());
 
+                output.accept(ObjectRegistry.WILD_NETTLE.get());
+                output.accept(ObjectRegistry.WILD_RIBWORT.get());
+                output.accept(ObjectRegistry.WILD_EMMER.get());
+                output.accept(ObjectRegistry.WILD_BEETROOTS.get());
+                output.accept(ObjectRegistry.WILD_POTATOES.get());
+                output.accept(ObjectRegistry.WILD_CARROTS.get());
+                output.accept(ObjectRegistry.WILD_BARLEY.get());
+                output.accept(ObjectRegistry.WILD_CORN.get());
+                output.accept(ObjectRegistry.WILD_OAT.get());
                 output.accept(ObjectRegistry.WILD_LETTUCE.get());
                 output.accept(ObjectRegistry.WILD_ONIONS.get());
                 output.accept(ObjectRegistry.WILD_TOMATOES.get());
@@ -58,10 +67,10 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.SILO_WOOD.get());
                 output.accept(ObjectRegistry.SILO_COPPER.get());
 
-                output.accept(ObjectRegistry.PLACEHOLDER_ITEM.get());
+                output.accept(ObjectRegistry.SUPPLY_CART.get());
+                output.accept(ObjectRegistry.PITCHFORK.get());
                 output.accept(ObjectRegistry.WINDOW_SILL.get());
                 output.accept(ObjectRegistry.TOOL_RACK.get());
-                output.accept(ObjectRegistry.PITCHFORK.get());
                 output.accept(ObjectRegistry.CRAFTING_BOWL.get());
                 output.accept(ObjectRegistry.MINCER.get());
                 output.accept(ObjectRegistry.COOKING_POT.get());
@@ -86,21 +95,29 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.BARLEY_SOUP.get());
                 output.accept(ObjectRegistry.ONION_SOUP.get());
                 output.accept(ObjectRegistry.POTATO_SOUP.get());
+                output.accept(ObjectRegistry.GOULASH.get());
+                output.accept(ObjectRegistry.PASTA_WITH_ONION_SAUCE.get());
+                output.accept(ObjectRegistry.CORN_GRITS.get());
 
                 output.accept(ObjectRegistry.BARLEY_PATTIES_WITH_POTATOES.get());
                 output.accept(ObjectRegistry.BEEF_PATTY_WITH_VEGETABLES.get());
+                output.accept(ObjectRegistry.SAUSAGE_WITH_OAT_PATTY.get());
                 output.accept(ObjectRegistry.ROASTED_CHICKEN.get());
                 output.accept(ObjectRegistry.ROASTED_CORN.get());
                 output.accept(ObjectRegistry.COOKED_SALMON.get());
+                output.accept(ObjectRegistry.CHICKEN_WRAPPED_IN_BACON.get());
                 output.accept(ObjectRegistry.LAMB_WITH_CORN.get());
                 output.accept(ObjectRegistry.BACON_WITH_EGGS.get());
+                output.accept(ObjectRegistry.FARMERS_BREAKFAST.get());
                 output.accept(ObjectRegistry.BAKED_LAMB_HAM.get());
                 output.accept(ObjectRegistry.POTATO_WITH_ROAST_MEAT.get());
                 output.accept(ObjectRegistry.STUFFED_CHICKEN.get());
-
+                output.accept(ObjectRegistry.GRANDMOTHERS_STRAWBERRY_CAKE.get());
                 output.accept(ObjectRegistry.FARMERS_BREAD.get());
-                output.accept(ObjectRegistry.VEGETABLE_SANDWICH.get());
-                output.accept(ObjectRegistry.SANDWICH.get());
+
+                output.accept(ObjectRegistry.STRAWBERRY_TEA.get());
+                output.accept(ObjectRegistry.NETTLE_TEA.get());
+                output.accept(ObjectRegistry.RIBWORT_TEA.get());
 
                 output.accept(ObjectRegistry.CAT_FOOD.get());
                 output.accept(ObjectRegistry.DOG_FOOD.get());
