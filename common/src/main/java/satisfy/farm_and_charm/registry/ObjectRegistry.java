@@ -121,13 +121,13 @@ public class ObjectRegistry {
 
     //TODO: Food values, Effects
     //SOUPS / BOWLS
-    public static final RegistrySupplier<Item> FARMER_SALAD = registerItem("farmer_salad", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> FARMER_SALAD = registerItem("farmer_salad", () -> new EffectItem(getFoodItemSettings(7, 0.6f, MobEffectRegistry.STUFFED.get(), 4000), 4000));
     public static final RegistrySupplier<Item> GOULASH = registerItem("goulash", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> SIMPLE_TOMATO_SOUP = registerItem("simple_tomato_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> BARLEY_SOUP = registerItem("barley_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> ONION_SOUP = registerItem("onion_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> POTATO_SOUP = registerItem("potato_soup", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
-    public static final RegistrySupplier<Item> PORRIDGE_WITH_STRAWBERRIES = registerItem("porridge_with_strawberries", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
+    public static final RegistrySupplier<Item> OATMEAL_WITH_STRAWBERRIES = registerItem("oatmeal_with_strawberries", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> PASTA_WITH_ONION_SAUCE = registerItem("pasta_with_onion_sauce", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
     public static final RegistrySupplier<Item> CORN_GRITS = registerItem("corn_grits", () -> new EffectItem(getFoodItemSettings(5, 0.7f, MobEffectRegistry.STUFFED.get(), 60 * 15), 6000));
 

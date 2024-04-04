@@ -90,7 +90,7 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.BACON.get());
 
                 output.accept(ObjectRegistry.FARMER_SALAD.get());
-                output.accept(ObjectRegistry.PORRIDGE_WITH_STRAWBERRIES.get());
+                output.accept(ObjectRegistry.OATMEAL_WITH_STRAWBERRIES.get());
                 output.accept(ObjectRegistry.SIMPLE_TOMATO_SOUP.get());
                 output.accept(ObjectRegistry.BARLEY_SOUP.get());
                 output.accept(ObjectRegistry.ONION_SOUP.get());
