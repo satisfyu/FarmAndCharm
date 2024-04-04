@@ -16,6 +16,8 @@ dependencies {
             { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
+    implementation("blue.endless:jankson:${rootProject.jankson_version}")
+
 }
 
 publishing {
