@@ -1,0 +1,17 @@
+{
+  "type": "farm_and_charm:stove",
+  "ingredients": [
+    {
+      "tag": "farm_and_charm:dough"
+    },
+    {
+      "item": "farm_and_charm:yeast"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "item": "farm_and_charm:farmers_bread",
+  "count": 3,
+  "experience": 0.3
+}
