@@ -1,11 +1,11 @@
 {
   "type": "farm_and_charm:mincer",
   "ingredient": {
-    "item": "minecraft:cooked_porkchop"
+    "item": "minecraft:bone"
   },
   "recipe_type": "MEAT",
   "result": {
-    "item": "minecraft:porkchop",
-    "count": 2
+    "item": "minecraft:bonemeal",
+    "count": 5
   }
 }

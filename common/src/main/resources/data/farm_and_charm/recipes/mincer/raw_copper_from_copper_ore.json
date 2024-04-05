@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:copper_ore"
+  },
+  "recipe_type": "METAL",
+  "result": {
+    "item": "minecraft:raw_copper",
+    "count": 5
+  }
+}
