@@ -1,10 +1,10 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"1": "farm_and_charm:block/plate_top",
+		"1": "farm_and_charm:block/plate_top_vegetables",
 		"3": "farm_and_charm:block/plate_bottom",
 		"5": "farm_and_charm:block/stuffed_rabbit_inner",
-		"particle": "farm_and_charm:block/plate_top"
+		"particle": "farm_and_charm:block/plate_top_vegetables"
 	},
 	"elements": [
 		{
