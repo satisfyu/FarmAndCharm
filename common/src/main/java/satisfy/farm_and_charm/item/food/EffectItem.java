@@ -12,8 +12,10 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -21,7 +23,6 @@ import java.util.Map;
 
 @SuppressWarnings("unused")
 public class EffectItem extends Item {
-
     public EffectItem(Properties properties, int duration) {
         super(properties);
     }
@@ -90,5 +91,11 @@ public class EffectItem extends Item {
                 }
             }
         }
+    }
+
+    @Override
+    public @NotNull ItemStack finishUsingItem(ItemStack stack, Level world, net.minecraft.world.entity.LivingEntity entity) {
+        super.finishUsingItem(stack, world, entity);
+        return stack.isEmpty() ? new ItemStack(Items.BOWL) : stack;
     }
 }

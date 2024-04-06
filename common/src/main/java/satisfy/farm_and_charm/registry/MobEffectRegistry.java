@@ -17,11 +17,16 @@ public class MobEffectRegistry {
     private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.MOB_EFFECT);
     private static final Registrar<MobEffect> MOB_EFFECTS_REGISTRAR = MOB_EFFECTS.getRegistrar();
 
-    public static final RegistrySupplier<MobEffect> STUFFED;
     public static final RegistrySupplier<MobEffect> SWEETS;
     public static final RegistrySupplier<MobEffect> HORSE_FODDER;
     public static final RegistrySupplier<MobEffect> DOG_FOOD;
     public static final RegistrySupplier<MobEffect> CHICKEN;
+    public static final RegistrySupplier<MobEffect> GRANDMAS_BLESSING;
+    public static final RegistrySupplier<MobEffect> RESTED;
+    public static final RegistrySupplier<MobEffect> FARMERS_BLESSING;
+    public static final RegistrySupplier<MobEffect> SUSTENANCE;
+    public static final RegistrySupplier<MobEffect> SATIATION;
+    public static final RegistrySupplier<MobEffect> FEAST;
 
 
     private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect) {
@@ -37,11 +42,16 @@ public class MobEffectRegistry {
     }
 
     static {
-        STUFFED = registerEffect("stuffed", StuffedEffect::new);
         SWEETS = registerEffect("sweets", SweetsEffect::new);
         HORSE_FODDER = registerEffect("horse_fodder", HorseFodderEffect::new);
         DOG_FOOD = registerEffect("dog_food", DogFoodEffect::new);
         CHICKEN = registerEffect("chicken", ChickenEffect::new);
+        GRANDMAS_BLESSING = registerEffect("grandmas_blessing", GrandmasBlessingEffect::new);
+        RESTED = registerEffect("rested", RestedEffect::new);
+        FARMERS_BLESSING = registerEffect("farmers_blessing", FarmersBlessingEffect::new);
+        SUSTENANCE = registerEffect("sustenance", SustenanceEffect::new);
+        SATIATION = registerEffect("satiation", SatiationEffect::new);
+        FEAST = registerEffect("feast", FeastEffect::new);
 
     }
 }
