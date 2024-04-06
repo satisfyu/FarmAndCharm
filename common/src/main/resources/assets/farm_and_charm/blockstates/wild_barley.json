@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "farm_and_charm:block/wild_barley_1",
+        "weight": 1
+      },
+      {
+        "model": "farm_and_charm:block/wild_barley_2",
+        "weight": 1
+      }
+    ]
+  }
+}

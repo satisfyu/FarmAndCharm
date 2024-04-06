@@ -84,7 +84,7 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.DOUGH.get());
                 output.accept(ObjectRegistry.RAW_PASTA.get());
 
-                output.accept(ObjectRegistry.MINTED_BEEF.get());
+                output.accept(ObjectRegistry.MINCED_BEEF.get());
                 output.accept(ObjectRegistry.LAMB_HAM.get());
                 output.accept(ObjectRegistry.CHICKEN_PARTS.get());
                 output.accept(ObjectRegistry.BACON.get());

@@ -26,7 +26,7 @@ public class CompostableRegistry {
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.FLOUR.get(), 0.4F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.DOUGH.get(), 0.4F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.YEAST.get(), 0.2F);
-        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.MINTED_BEEF.get(), 0.4F);
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.MINCED_BEEF.get(), 0.4F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.BACON.get(), 0.4F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.LAMB_HAM.get(), 0.4F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ROASTED_CORN.get(), 1.0F);

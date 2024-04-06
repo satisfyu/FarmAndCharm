@@ -47,19 +47,19 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> ONION_CROP = registerWithoutItem("onion_crop", () -> new OnionCropBlock(getBushSettings()));
 
     //WILD PLANTS
-    public static final RegistrySupplier<Block> WILD_RIBWORT = registerWithItem("wild_ribwort", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
-    public static final RegistrySupplier<Block> WILD_NETTLE = registerWithItem("wild_nettle", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
-    public static final RegistrySupplier<Block> WILD_EMMER = registerWithItem("wild_emmer", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
-    public static final RegistrySupplier<Block> WILD_CORN = registerWithItem("wild_corn", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
-    public static final RegistrySupplier<Block> WILD_BARLEY = registerWithItem("wild_barley", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
-    public static final RegistrySupplier<Block> WILD_OAT = registerWithItem("wild_oat", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
-    public static final RegistrySupplier<Block> WILD_CARROTS = registerWithItem("wild_carrots", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
-    public static final RegistrySupplier<Block> WILD_BEETROOTS = registerWithItem("wild_beetroots", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
-    public static final RegistrySupplier<Block> WILD_POTATOES = registerWithItem("wild_potatoes", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
+    public static final RegistrySupplier<Block> WILD_RIBWORT = registerWithItem("wild_ribwort", () -> new FlowerBlock(MobEffects.REGENERATION, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
+    public static final RegistrySupplier<Block> WILD_NETTLE = registerWithItem("wild_nettle", () -> new FlowerBlock(MobEffects.DIG_SPEED, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
+    public static final RegistrySupplier<Block> WILD_EMMER = registerWithItem("wild_emmer", () -> new FlowerBlock(MobEffects.JUMP, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
+    public static final RegistrySupplier<Block> WILD_CORN = registerWithItem("wild_corn", () -> new TallFlowerBlock(BlockBehaviour.Properties.copy(Blocks.ROSE_BUSH)));
+    public static final RegistrySupplier<Block> WILD_BARLEY = registerWithItem("wild_barley", () -> new FlowerBlock(MobEffects.FIRE_RESISTANCE, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
+    public static final RegistrySupplier<Block> WILD_OAT = registerWithItem("wild_oat", () -> new FlowerBlock(MobEffects.NIGHT_VISION, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
+    public static final RegistrySupplier<Block> WILD_CARROTS = registerWithItem("wild_carrots", () -> new FlowerBlock(MobEffects.WATER_BREATHING, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
+    public static final RegistrySupplier<Block> WILD_BEETROOTS = registerWithItem("wild_beetroots", () -> new FlowerBlock(MobEffects.INVISIBILITY, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
+    public static final RegistrySupplier<Block> WILD_POTATOES = registerWithItem("wild_potatoes", () -> new FlowerBlock(MobEffects.POISON, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
     public static final RegistrySupplier<Block> WILD_TOMATOES = registerWithItem("wild_tomatoes", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.DANDELION)));
-    public static final RegistrySupplier<Block> WILD_LETTUCE = registerWithItem("wild_lettuce", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.POPPY)));
-    public static final RegistrySupplier<Block> WILD_ONIONS = registerWithItem("wild_onions", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.LILY_OF_THE_VALLEY)));
-    public static final RegistrySupplier<Block> WILD_STRAWBERRIES = registerWithItem("wild_strawberries", () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.AZURE_BLUET)));
+    public static final RegistrySupplier<Block> WILD_LETTUCE = registerWithItem("wild_lettuce", () -> new FlowerBlock(MobEffects.LEVITATION, 1, BlockBehaviour.Properties.copy(Blocks.POPPY)));
+    public static final RegistrySupplier<Block> WILD_ONIONS = registerWithItem("wild_onions", () -> new FlowerBlock(MobEffects.DAMAGE_BOOST, 1, BlockBehaviour.Properties.copy(Blocks.LILY_OF_THE_VALLEY)));
+    public static final RegistrySupplier<Block> WILD_STRAWBERRIES = registerWithItem("wild_strawberries", () -> new FlowerBlock(MobEffects.LUCK, 1, BlockBehaviour.Properties.copy(Blocks.AZURE_BLUET)));
 
     //BAGS
     public static final RegistrySupplier<Block> STRAWBERRY_BAG = registerWithItem("strawberry_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
@@ -106,7 +106,7 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> DOUGH = registerItem("dough", () -> new Item(getSettings().food(Foods.SWEET_BERRIES)));
     public static final RegistrySupplier<Item> RAW_PASTA = registerItem("raw_pasta", () -> new Item(getSettings().food(Foods.SWEET_BERRIES)));
     public static final RegistrySupplier<Item> FLOUR = registerItem("flour", () -> new Item(getSettings()));
-    public static final RegistrySupplier<Item> MINTED_BEEF = registerItem("minted_beef", () -> new Item(getSettings().food(Foods.BEEF)));
+    public static final RegistrySupplier<Item> MINCED_BEEF = registerItem("minced_beef", () -> new Item(getSettings().food(Foods.BEEF)));
     public static final RegistrySupplier<Item> LAMB_HAM = registerItem("lamb_ham", () -> new Item(getSettings().food(Foods.MUTTON)));
     public static final RegistrySupplier<Item> BACON = registerItem("bacon", () -> new Item(getSettings().food(Foods.PORKCHOP)));
     public static final RegistrySupplier<Item> CHICKEN_PARTS = registerItem("chicken_parts", () -> new Item(getSettings().food(Foods.CHICKEN)));

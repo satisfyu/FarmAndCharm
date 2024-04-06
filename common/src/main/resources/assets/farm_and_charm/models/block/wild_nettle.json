@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "farm_and_charm:block/tomatoes_wild_stage2"
+    "cross": "farm_and_charm:block/wild_nettle"
   }
 }
