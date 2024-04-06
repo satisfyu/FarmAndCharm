@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "farm_and_charm:block/wild_onion_3"
+    "layer0": "farm_and_charm:block/wild_onions_3"
   }
 }

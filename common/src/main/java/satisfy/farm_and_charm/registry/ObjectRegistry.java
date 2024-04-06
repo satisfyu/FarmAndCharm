@@ -130,7 +130,6 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> CORN_GRITS = registerItem("corn_grits", () -> new EffectItem(getFoodItemSettings(6, 0.5f, MobEffectRegistry.SATIATION.get(), 2400), 2400));
     public static final RegistrySupplier<Item> OATMEAL_WITH_STRAWBERRIES = registerItem("oatmeal_with_strawberries", () -> new EffectItem(getFoodItemSettings(4, 0.8f, MobEffectRegistry.FARMERS_BLESSING.get(), 900), 6000));
 
-    //TODO: Food values, Effects
     //FOOD
     public static final RegistrySupplier<Item> SAUSAGE_WITH_OAT_PATTY = registerItem("sausage_with_oat_patty", () -> new EffectItem(getFoodItemSettings(8, 0.9f, MobEffectRegistry.SUSTENANCE.get(), 2400), 2400));
     public static final RegistrySupplier<Item> LAMB_WITH_CORN = registerItem("lamb_with_corn", () -> new EffectItem(getFoodItemSettings(8, 0.8f, MobEffectRegistry.SATIATION.get(), 3600), 3600));
@@ -150,7 +149,10 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> STUFFED_CHICKEN = registerItem("stuffed_chicken", () -> new EffectItem(getFoodItemSettings(8, 0.8f, MobEffectRegistry.FEAST.get(), 9600), 6000));
     public static final RegistrySupplier<Item> BAKED_LAMB_HAM = registerItem("baked_lamb_ham", () -> new EffectItem(getFoodItemSettings(9, 0.9f, MobEffectRegistry.FEAST.get(), 4800), 4800));
     public static final RegistrySupplier<Item> ROASTED_CORN = registerItem("roasted_corn", () -> new EffectItem(getFoodItemSettings(5, 0.5f, MobEffectRegistry.FEAST.get(), 3600), 3600));
-    public static final RegistrySupplier<Item> STUFFED_RABBIT = registerItem("stuffed_rabbit", () -> new EffectItem(getFoodItemSettings(9, 0.9f, MobEffectRegistry.FEAST.get(), 9600), 9600));
+
+
+
+    public static final RegistrySupplier<Block> STUFFED_RABBIT = registerWithItem("stuffed_rabbit", () -> new FoodBlock(Block.Properties.of(), new MobEffectInstance(MobEffectRegistry.FEAST.get(), 9600, 2), 9, 0.9f));
 
     //TEA
     public static final RegistrySupplier<Block> STRAWBERRY_TEA = registerTea("strawberry_tea", () -> new TeaJugBlock(getTeaSettings()), MobEffects.DIG_SPEED, 240);
