@@ -54,11 +54,12 @@ public class MincerBlock extends BaseEntityBlock {
     public static final int CRANKS_NEEDED = 20;
     public static final IntegerProperty CRANK = IntegerProperty.create("crank", 0, 32);
     public static final IntegerProperty CRANKED = IntegerProperty.create("cranked", 0, 100);
+    public static final IntegerProperty FULL_ROTATIONS = IntegerProperty.create("full_rotations", 0, 5);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public MincerBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(this.stateDefinition.any().setValue(CRANK, 0).setValue(CRANKED, 0).setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(CRANK, 0).setValue(CRANKED, 0).setValue(FULL_ROTATIONS, 0).setValue(FACING, Direction.NORTH));
     }
 
     @Override
@@ -73,7 +74,7 @@ public class MincerBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, CRANK, CRANKED);
+        builder.add(FACING, CRANK, CRANKED, FULL_ROTATIONS);
     }
 
     @Override
@@ -91,14 +92,8 @@ public class MincerBlock extends BaseEntityBlock {
 
     @Override
     public @NotNull InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-
-        // Ensure crating takes 1-3 second, or less depending on the item held -
-        // maybe we can also set an additional condition for the recipe so that stuff like meat will take 1 second, stone 2 seconds and metal 3 seconds?
-        // Ensure that you can produce fast output when holding items in offhand
-
         BlockEntity entity = level.getBlockEntity(pos);
         ItemStack playerStack = player.getItemInHand(hand);
-        ItemStack playerOffhand = player.getOffhandItem();
 
         if (entity instanceof MincerBlockEntity mincer) {
 
@@ -106,6 +101,7 @@ public class MincerBlock extends BaseEntityBlock {
 
             int crank = state.getValue(CRANK);
             int cranked = state.getValue(CRANKED);
+            int full_rotations = state.getValue(FULL_ROTATIONS);
 
             if (!playerStack.isEmpty() && crank == 0) {
 
@@ -178,20 +174,7 @@ public class MincerBlock extends BaseEntityBlock {
             }
             else if (playerStack.isEmpty()) {
 
-                if (!playerOffhand.isEmpty() && mincer.getItem(mincer.INPUT_SLOT).is(playerOffhand.getItem())) {
-                    if (crank <= 6) {
-                        level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
-                        return InteractionResult.SUCCESS;
-                    }
-                    // only returning SUCCESS makes block unusable
-                    // only returning CONSUME makes block unusable
-                    // only returning PASS places blocks on the side used
-                    return InteractionResult.SUCCESS;
-                }
-
                 if (cranked >= CRANKS_NEEDED && crank == 0) {
-                    //player.getInventory().add(mincer.getItem(mincer.OUTPUT_SLOT));
-                    //mincer.setItem(mincer.OUTPUT_SLOT, ItemStack.EMPTY);
                     level.setBlock(pos, state.setValue(CRANKED, 0), Block.UPDATE_ALL);
                     return InteractionResult.SUCCESS;
                 }
@@ -205,12 +188,15 @@ public class MincerBlock extends BaseEntityBlock {
                     }
                 }
 
-
-
                 if (crank <= 6) {
 
                     level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
                     level.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                    return InteractionResult.SUCCESS;
+                }
+                
+                if (full_rotations >= 4) {
+                    level.setBlockAndUpdate(pos, state.setValue(MincerBlock.FULL_ROTATIONS, 0));
                     return InteractionResult.SUCCESS;
                 }
             }

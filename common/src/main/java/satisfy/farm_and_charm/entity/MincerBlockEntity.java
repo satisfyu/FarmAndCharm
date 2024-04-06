@@ -6,8 +6,8 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.MincerBlock;
@@ -28,6 +29,7 @@ import satisfy.farm_and_charm.recipe.MincerRecipe;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
@@ -131,7 +133,7 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     // end unused
     
     private void dropItemsInOutputSlot(Level level, BlockPos blockPos, MincerBlockEntity blockEntity) {
-        if (!this.stacks.get(OUTPUT_SLOT).isEmpty()) {
+        if (!level.isClientSide() && !this.stacks.get(OUTPUT_SLOT).isEmpty()) {
             ItemStack droppedStack = new ItemStack(blockEntity.stacks.get(OUTPUT_SLOT).getItem());
             droppedStack.setCount(blockEntity.stacks.get(OUTPUT_SLOT).getCount());
             this.stacks.set(OUTPUT_SLOT, ItemStack.EMPTY);
@@ -185,63 +187,111 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
         return (direction == Direction.UP) && canPlaceItem(index, stack);
     }
 
+    /** Handles crafting via recipe and retrieved block-state values.
+     *  Lowers recipe difficulty based on loaded recipe type.
+     *  Locates nearest player and additionally lowers the difficulty by one point if the player holds matching ingredient in their offhand.
+     *  */
     @Override
-    public void tick(Level level, BlockPos blockPos, BlockState blockState, MincerBlockEntity blockEntity) {
+    public void tick(Level level, BlockPos pos, BlockState state, MincerBlockEntity mincer) {
         
-        // Ensure crating takes 1-3 second, or less depending on the item held -
-        // maybe we can also set an additional condition for the recipe so that stuff like meat will take 1 second, stone 2 seconds and metal 3 seconds?
-        // Ensure that you can produce fast output when holding items in offhand
-        
-        if (!level.isClientSide && level.getBlockState(blockPos).getBlock() instanceof MincerBlock) {
+        if (!level.isClientSide() && level.getBlockState(pos).getBlock() instanceof MincerBlock) {
             
-            int crank = blockState.getValue(MincerBlock.CRANK);
-            int cranked = blockState.getValue(MincerBlock.CRANKED);
+            // gather our current values for use in later logic
+            int crank = state.getValue(MincerBlock.CRANK);
+            int cranked = state.getValue(MincerBlock.CRANKED);
+            int full_rotations = state.getValue(MincerBlock.FULL_ROTATIONS);
             
-            dropItemsInOutputSlot(level, blockPos, blockEntity);
+            // if something was crafted during the last tick, let's get rid of it.
+            dropItemsInOutputSlot(level, pos, mincer);
             
+            // built from the reconstruction of base logic.
             if (crank > 0) {
                 if (cranked < MincerBlock.CRANKS_NEEDED) {
                     cranked++;
-                    MincerRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypesRegistry.MINCER_RECIPE_TYPE.get(), blockEntity, level).orElse(null);
-                    if (cranked == MincerBlock.CRANKS_NEEDED && recipe != null) {
-                        
-                        // recipe.getIngredients().forEach(ingredient -> {});
-                        
-                        // Player player = level.getNearestPlayer(blockPos.getX(), blockPos.getX(), blockPos.getX(), 8.0D, false);
-                        // if (player != null && player.getOffhandItem().is(recipe.getIngredients().get(0).getItems()[0].getItem())) {
-                        //     String recipe_type = recipe.getRecipeType();
-                        //     int modifier = 0;
-                        //     switch (recipe_type) {
-                        //         case "MEAT" -> modifier = 20;
-                        //         case "WOOD" -> modifier = 12;
-                        //         case "STONE" -> modifier = 8;
-                        //         case "METAL" -> modifier = 4;
-                        //     }
-                        //     cranked += modifier;
-                        //     cranked = Math.min(cranked, MincerBlock.CRANKS_NEEDED);
-                        // }
-                        
-                        ItemStack inputStack = this.stacks.get(INPUT_SLOT);
-                        
-                        inputStack.shrink(1);
-                        
-                        inputStack = inputStack.isEmpty() ? ItemStack.EMPTY : inputStack;
-                        
-                        blockEntity.setItem(INPUT_SLOT, inputStack);
-                        blockEntity.setItem(OUTPUT_SLOT, recipe.getResultItem(level.registryAccess()));
-                    }
                 }
-
                 crank -= 1;
-
                 if (cranked >= MincerBlock.CRANKS_NEEDED) {
                     cranked = 0;
+                    full_rotations += 1;
+                    
+                    // check if we have a valid recipe or return null
+                    MincerRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypesRegistry.MINCER_RECIPE_TYPE.get(), mincer, level).orElse(null);
+                    
+                    if (recipe != null) {
+                        
+                        // used for check against player and completed craft
+                        ItemStack inputStack = this.stacks.get(INPUT_SLOT);
+                        
+                        String recipe_type = recipe.getRecipeType();
+                        int recipe_difficulty = 5;
+                        
+                        // lower the "difficulty" of the recipe relative to it's type
+                        switch (recipe_type) {
+                            case "MEAT" -> recipe_difficulty = 1;
+                            case "WOOD" -> recipe_difficulty = 2;
+                            case "STONE" -> recipe_difficulty = 3;
+                            case "METAL" -> recipe_difficulty = 4;
+                        }
+                        
+                        // create 3D box at block location to search for entities within
+                        AABB searched_area = new AABB(pos);
+                        // can probably be expanded, requires player standing up against the block entity basically
+                        searched_area.inflate(4.0D);
+                        // checking for Player instead of ServerPlayer returns an empty list as we're operating on the server with !level.isClientside()
+                        List<ServerPlayer> playersNearby = level.getEntitiesOfClass(ServerPlayer.class, searched_area, Player::isAlive); // checking for nearby living player around the block
+                        
+                        if (!playersNearby.isEmpty()) {
+                            for (Player player : playersNearby) {
+                                if (player != null && player.getOffhandItem().is(inputStack.getItem())) {
+                                    recipe_difficulty -= 1;
+                                    System.out.println("lowered recipe difficulty by one");
+                                }
+                            }
+                        }
+                        
+                        if (full_rotations >= recipe_difficulty) {
+                            
+                            inputStack.shrink(1);
+                            inputStack = inputStack.isEmpty() ? ItemStack.EMPTY : inputStack;
+                            mincer.setItem(INPUT_SLOT, inputStack);
+                            mincer.setItem(OUTPUT_SLOT, recipe.getResultItem(level.registryAccess()));
+                            
+                            System.out.println("crafted with recipe_difficulty of: " + recipe_difficulty);
+                            // reset back to 0
+                            level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, 0), Block.UPDATE_ALL);
+                            return;
+                        }
+                        
+                    }
+                    
+                    // hitting 4 is the only time it will reset the value back to 0 (similar logic placed in use() of MincerBlock.java)
+                    if (full_rotations >= 4) {
+                        level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, 0), Block.UPDATE_ALL);
+                        return;
+                    }
                 }
-
-                level.setBlock(blockPos, blockState.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked), Block.UPDATE_ALL);
-            } else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
-                level.setBlock(blockPos, blockState.setValue(MincerBlock.CRANKED, 0), Block.UPDATE_ALL);
+                level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, full_rotations), Block.UPDATE_ALL);
             }
+            else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
+                level.setBlock(pos, state.setValue(MincerBlock.CRANKED, 0), Block.UPDATE_ALL);
+            }
+            
+            // KEEP COMMENTED: reconstruction of base logic. turns the crank, does nothing else.
+//            if (crank > 0) {
+//                if (cranked < MincerBlock.CRANKS_NEEDED) {
+//                    cranked++;
+//                }
+//                crank -= 1;
+//                if (cranked >= MincerBlock.CRANKS_NEEDED) {
+//                    cranked = 0;
+//                }
+//                level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked), Block.UPDATE_ALL);
+//            }
+//            else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
+//                level.setBlock(pos, state.setValue(MincerBlock.CRANKED, 0), Block.UPDATE_ALL);
+//            }
+            
         }
+        
     }
 }
