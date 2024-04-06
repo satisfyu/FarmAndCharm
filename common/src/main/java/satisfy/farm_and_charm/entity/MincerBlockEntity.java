@@ -244,7 +244,6 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                             for (Player player : playersNearby) {
                                 if (player != null && player.getOffhandItem().is(inputStack.getItem())) {
                                     recipe_difficulty -= 1;
-                                    System.out.println("lowered recipe difficulty by one");
                                 }
                             }
                         }
@@ -256,7 +255,6 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                             mincer.setItem(INPUT_SLOT, inputStack);
                             mincer.setItem(OUTPUT_SLOT, recipe.getResultItem(level.registryAccess()));
                             
-                            System.out.println("crafted with recipe_difficulty of: " + recipe_difficulty);
                             // reset back to 0
                             level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, 0), Block.UPDATE_ALL);
                             return;
