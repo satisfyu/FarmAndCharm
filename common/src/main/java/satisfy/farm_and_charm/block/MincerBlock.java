@@ -13,6 +13,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -170,9 +171,17 @@ public class MincerBlock extends BaseEntityBlock {
 
                     return InteractionResult.SUCCESS;
                 }
+                
+                if (level.isClientSide() && playerStack.getItem() instanceof BlockItem) {
+                    level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
+                    level.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                    return InteractionResult.sidedSuccess(level.isClientSide());
+                }
 
             }
             else if (playerStack.isEmpty()) {
+                
+                System.out.println("hitting empty stack logic?");
 
                 if (cranked >= CRANKS_NEEDED && crank == 0) {
                     level.setBlock(pos, state.setValue(CRANKED, 0), Block.UPDATE_ALL);
@@ -201,7 +210,7 @@ public class MincerBlock extends BaseEntityBlock {
                 }
             }
         }
-        return InteractionResult.PASS;
+        return InteractionResult.sidedSuccess(level.isClientSide());
     }
 
 

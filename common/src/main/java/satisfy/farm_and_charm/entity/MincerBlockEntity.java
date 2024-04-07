@@ -3,9 +3,12 @@ package satisfy.farm_and_charm.entity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.Position;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -22,6 +25,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.MincerBlock;
@@ -132,12 +136,38 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     
     // end unused
     
-    private void dropItemsInOutputSlot(Level level, BlockPos blockPos, MincerBlockEntity blockEntity) {
+    public static void spawnItem(Level world, ItemStack stack, int speed, Direction side, Position pos) {
+        double d = pos.x();
+        double e = pos.y();
+        double f = pos.z();
+        if (side.getAxis() == Direction.Axis.Y) {
+            e -= 0.125;
+        } else {
+            e -= 0.15625;
+        }
+        
+        ItemEntity itemEntity = new ItemEntity(world, d, e, f, stack);
+        double g = world.random.nextDouble() * 0.1 + 0.2;
+        itemEntity.setDeltaMovement(world.random.triangle((double)side.getStepX() * g, 0.0172275 * (double)speed), world.random.triangle(0.2, 0.0172275 * (double)speed), world.random.triangle((double)side.getStepZ() * g, 0.0172275 * (double)speed));
+        world.addFreshEntity(itemEntity);
+    }
+    
+    private void dropItemsInOutputSlot(Level level, BlockPos pos, BlockState state, MincerBlockEntity mincer) {
+        
+        Direction direction = state.getValue(MincerBlock.FACING).getClockWise();
+        
         if (!level.isClientSide() && !this.stacks.get(OUTPUT_SLOT).isEmpty()) {
-            ItemStack droppedStack = new ItemStack(blockEntity.stacks.get(OUTPUT_SLOT).getItem());
-            droppedStack.setCount(blockEntity.stacks.get(OUTPUT_SLOT).getCount());
+            ItemStack droppedStack = new ItemStack(mincer.stacks.get(OUTPUT_SLOT).getItem());
+            droppedStack.setCount(mincer.stacks.get(OUTPUT_SLOT).getCount());
             this.stacks.set(OUTPUT_SLOT, ItemStack.EMPTY);
-            level.addFreshEntity(new ItemEntity(level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), droppedStack));
+            
+            Vec3 vec3d = Vec3.atCenterOf(pos);
+            Vec3 vec3d2 = vec3d.relative(direction, 0.7);
+            ((ServerLevel) level).sendParticles(ParticleTypes.SPIT, vec3d2.x(), vec3d2.y(), vec3d2.z(), 3, 0.2, 0.1, 0, 0.1);
+            spawnItem(level, droppedStack, 6, direction, vec3d2);
+            
+            // spawning item inside the block
+            // level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), droppedStack));
         }
     }
     
@@ -194,6 +224,9 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     @Override
     public void tick(Level level, BlockPos pos, BlockState state, MincerBlockEntity mincer) {
         
+        // if something was crafted during the last tick, let's get rid of it.
+        dropItemsInOutputSlot(level, pos, state, mincer);
+        
         if (!level.isClientSide() && level.getBlockState(pos).getBlock() instanceof MincerBlock) {
             
             // gather our current values for use in later logic
@@ -202,7 +235,7 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
             int full_rotations = state.getValue(MincerBlock.FULL_ROTATIONS);
             
             // if something was crafted during the last tick, let's get rid of it.
-            dropItemsInOutputSlot(level, pos, mincer);
+            // dropItemsInOutputSlot(level, pos, mincer);
             
             // built from the reconstruction of base logic.
             if (crank > 0) {
