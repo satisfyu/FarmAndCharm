@@ -173,15 +173,46 @@ public class MincerBlock extends BaseEntityBlock {
                 }
                 
                 if (level.isClientSide() && playerStack.getItem() instanceof BlockItem) {
-                    level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
-                    level.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                    // level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
+                    // level.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                    
+                    // if (crank <= 20) {
+                    //
+                    //     crank += 10;
+                    //
+                    //     level.setBlock(pos, state.setValue(CRANK, crank), Block.UPDATE_ALL);
+                    //     level.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                    //     return InteractionResult.sidedSuccess(!level.isClientSide());
+                    // }
+                    
                     return InteractionResult.sidedSuccess(level.isClientSide());
                 }
+                
+                // if (cranked >= CRANKS_NEEDED && crank == 0) {
+                //     level.setBlock(pos, state.setValue(CRANKED, 0), Block.UPDATE_ALL);
+                //     return InteractionResult.SUCCESS;
+                // }
+                //
+                // if (level instanceof ServerLevel serverWorld) {
+                //     RandomSource randomSource = serverWorld.random;
+                //     for (ItemStack stack : mincer.getItems()) {
+                //         if (!stack.isEmpty() && mincer.getItem(mincer.OUTPUT_SLOT) != stack) {
+                //             ItemParticleOption particleOption = new ItemParticleOption(ParticleTypes.ITEM, stack);
+                //             serverWorld.sendParticles(particleOption, pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.4, 3, 0.2, 0.1, 0, 0.1);
+                //         }
+                //     }
+                // }
+                
+                // hits 1/2 the time it's supposed to if placed here
+                // if (crank <= 6) {
+                //
+                //     level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
+                //     level.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                //     return InteractionResult.SUCCESS;
+                // }
 
             }
             else if (playerStack.isEmpty()) {
-                
-                System.out.println("hitting empty stack logic?");
 
                 if (cranked >= CRANKS_NEEDED && crank == 0) {
                     level.setBlock(pos, state.setValue(CRANKED, 0), Block.UPDATE_ALL);
@@ -209,8 +240,35 @@ public class MincerBlock extends BaseEntityBlock {
                     return InteractionResult.SUCCESS;
                 }
             }
+            
+            if (cranked >= CRANKS_NEEDED && crank == 0) {
+                level.setBlock(pos, state.setValue(CRANKED, 0), Block.UPDATE_ALL);
+                return InteractionResult.SUCCESS;
+            }
+            if (level instanceof ServerLevel serverWorld) {
+                RandomSource randomSource = serverWorld.random;
+                for (ItemStack stack : mincer.getItems()) {
+                    if (!stack.isEmpty() && mincer.getItem(mincer.OUTPUT_SLOT) != stack) {
+                        ItemParticleOption particleOption = new ItemParticleOption(ParticleTypes.ITEM, stack);
+                        serverWorld.sendParticles(particleOption, pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.4, 3, 0.2, 0.1, 0, 0.1);
+                    }
+                }
+            }
+            
+            if (crank <= 6) {
+            
+                level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
+                level.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                return InteractionResult.SUCCESS;
+            }
+            
+            if (full_rotations >= 4) {
+                level.setBlockAndUpdate(pos, state.setValue(MincerBlock.FULL_ROTATIONS, 0));
+                return InteractionResult.SUCCESS;
+            }
+            
         }
-        return InteractionResult.sidedSuccess(level.isClientSide());
+        return InteractionResult.SUCCESS;
     }
 
 
