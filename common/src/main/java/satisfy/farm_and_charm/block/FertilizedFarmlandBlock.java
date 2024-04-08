@@ -22,7 +22,13 @@ public class FertilizedFarmlandBlock extends FarmBlock {
     @Override
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
         super.randomTick(blockState, serverLevel, blockPos, randomSource);
-        if (randomSource.nextFloat() < 0.005) {
+        int lightLevel = serverLevel.getMaxLocalRawBrightness(blockPos.above());
+        float growthChance = 0.05f;
+        if (lightLevel >= 10) {
+            growthChance += 0.005f;
+        }
+
+        if (randomSource.nextFloat() < growthChance) {
             BlockPos.betweenClosedStream(blockPos.offset(-1, -1, -1), blockPos.offset(1, 1, 1))
                     .forEach(pos -> {
                         BlockState state = serverLevel.getBlockState(pos);
@@ -33,10 +39,9 @@ public class FertilizedFarmlandBlock extends FarmBlock {
                             }
                         }
                     });
-        }
-
-        if (serverLevel.getBlockState(blockPos).getBlock().equals(Blocks.DIRT)) {
-            turnToSoil(null, blockState, serverLevel, blockPos);
+            if (serverLevel.getBlockState(blockPos).getBlock().equals(Blocks.DIRT)) {
+                turnToSoil(null, blockState, serverLevel, blockPos);
+            }
         }
     }
 

@@ -1,9 +1,9 @@
 {
 	"credit": "Made by Satisfy",
 	"textures": {
-		"0": "farm_and_charm:block/cake_bottom",
-		"1": "farm_and_charm:block/cake_top",
-		"particle": "farm_and_charm:block/cake_bottom"
+		"0": "farm_and_charm:block/grandmothers_strawberry_cake_bottom",
+		"1": "farm_and_charm:block/grandmothers_strawberry_cake_top",
+		"particle": "farm_and_charm:block/grandmothers_strawberry_cake_bottom"
 	},
 	"elements": [
 		{

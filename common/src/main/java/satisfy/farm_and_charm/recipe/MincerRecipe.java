@@ -25,11 +25,7 @@ public class MincerRecipe implements Recipe<Container> {
         this.input = input;
         this.output = output;
     }
-    
-    // public String getRecipeType(MincerRecipe recipe) {
-    //     return recipe.mincer_type;C
-    // }
-    
+
     public String getRecipeType() {
         return this.recipe_type;
     }

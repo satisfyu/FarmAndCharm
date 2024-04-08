@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
@@ -55,9 +56,9 @@ public class TeaJugBlock extends FacingBlock {
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (itemStack.getItem() == Items.GLASS_BOTTLE && state.getValue(FILL) > 0) {
-            ItemStack potionStack = PotionUtils.setPotion(new ItemStack(Items.POTION), this.getPotionType());
-            if (!player.getInventory().add(potionStack)) {
-                player.drop(potionStack, false);
+            ItemStack newItemStack = new ItemStack(this.getReplacementItem());
+            if (!player.getInventory().add(newItemStack)) {
+                player.drop(newItemStack, false);
             }
             itemStack.shrink(1);
             int newFillLevel = state.getValue(FILL) - 1;
@@ -72,16 +73,17 @@ public class TeaJugBlock extends FacingBlock {
         return super.use(state, world, pos, player, hand, hit);
     }
 
-    private Potion getPotionType() {
+    private Item getReplacementItem() {
         if (this.equals(ObjectRegistry.STRAWBERRY_TEA.get())) {
-            return Potions.SWIFTNESS;
+            return ObjectRegistry.STRAWBERRY_TEA_CUP.get();
         } else if (this.equals(ObjectRegistry.NETTLE_TEA.get())) {
-            return Potions.STRONG_HEALING;
+            return ObjectRegistry.NETTLE_TEA_CUP.get();
         } else if (this.equals(ObjectRegistry.RIBWORT_TEA.get())) {
-            return Potions.REGENERATION;
+            return ObjectRegistry.RIBWORT_TEA_CUP.get();
         }
-        return Potions.WATER;
+        return Items.AIR;
     }
+
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
