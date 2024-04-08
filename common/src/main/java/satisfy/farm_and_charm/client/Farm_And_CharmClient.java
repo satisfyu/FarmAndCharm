@@ -17,16 +17,20 @@ import satisfy.farm_and_charm.client.model.CraftingBowlModel;
 import satisfy.farm_and_charm.client.model.MincerModel;
 import satisfy.farm_and_charm.client.model.ScarecrowModel;
 import satisfy.farm_and_charm.client.model.WaterSprinklerModel;
+import satisfy.farm_and_charm.client.model.cart.CartModel;
 import satisfy.farm_and_charm.client.render.CraftingBowlRenderer;
 import satisfy.farm_and_charm.client.render.MincerRenderer;
 import satisfy.farm_and_charm.client.render.ScarecrowRenderer;
 import satisfy.farm_and_charm.client.render.WaterSprinklerRenderer;
+import satisfy.farm_and_charm.client.render.cart.CartRenderer;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
+import satisfy.farm_and_charm.registry.ModelRegistry;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
 
 @Environment(EnvType.CLIENT)
-public class Farm_And_CharmClient {
+public enum Farm_And_CharmClient {
+    ;
 
     public static void onInitializeClient() {
         RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.CRAFTING_BOWL.get(), ObjectRegistry.WATER_SPRINKLER.get(),
@@ -48,6 +52,9 @@ public class Farm_And_CharmClient {
 
     public static void registerEntityRenderers(){
         EntityRendererRegistry.register(EntityTypeRegistry.RottenTomato, ThrownItemRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.FREIGHT_CART, CartRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.CHEST_CART, CartRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.PLOW, CartRenderer::new);
     }
 
 
@@ -61,5 +68,6 @@ public class Farm_And_CharmClient {
         EntityModelLayerRegistry.register(CraftingBowlModel.LAYER_LOCATION, CraftingBowlModel::getTexturedModelData);
         EntityModelLayerRegistry.register(MincerModel.LAYER_LOCATION, MincerModel::getTexturedModelData);
         EntityModelLayerRegistry.register(ScarecrowModel.LAYER_LOCATION, ScarecrowModel::getTexturedModelData);
+        EntityModelLayerRegistry.register(ModelRegistry.CART, CartModel::createBodyLayer);
     }
 }
