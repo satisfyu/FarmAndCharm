@@ -3,7 +3,7 @@
 	"textures": {
 		"0": "farm_and_charm:block/plate_top_crumbs",
 		"1": "farm_and_charm:block/plate_bottom",
-		"particle": "farm_and_charm:block/corn_with_bread_and_egg"
+		"particle": "farm_and_charm:block/farmers_breakfast"
 	},
 	"elements": [
 		{

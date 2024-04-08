@@ -2,9 +2,10 @@
 	"credit": "Made by Satisfy",
 	"textures": {
 		"0": "farm_and_charm:block/plate_bottom",
-		"1": "farm_and_charm:block/roast_meat",
-		"2": "farm_and_charm:block/plate_top_crumbs",
-		"particle": "farm_and_charm:block/roast_meat"
+		"1": "farm_and_charm:block/pancake_side",
+		"2": "farm_and_charm:block/plate_top",
+		"3": "farm_and_charm:block/pancake_top",
+		"particle": "farm_and_charm:block/pancake_side"
 	},
 	"elements": [
 		{
@@ -20,15 +21,14 @@
 			}
 		},
 		{
-			"from": [4, 1.95, 11],
-			"to": [14, 6.95, 14],
+			"from": [2, 2, 2],
+			"to": [14, 7, 14],
 			"faces": {
-				"north": {"uv": [1, 11, 11, 16], "texture": "#1"},
-				"east": {"uv": [11, 1, 8, 6], "texture": "#1"},
-				"south": {"uv": [1, 6, 11, 11], "texture": "#1"},
-				"west": {"uv": [8, 1, 11, 6], "texture": "#1"},
-				"up": {"uv": [1, 4, 11, 1], "texture": "#1"},
-				"down": {"uv": [0, 0, 10, 3], "texture": "#missing"}
+				"north": {"uv": [2, 11, 14, 16], "texture": "#1"},
+				"east": {"uv": [2, 11, 14, 16], "texture": "#1"},
+				"south": {"uv": [2, 11, 14, 16], "texture": "#1"},
+				"west": {"uv": [2, 11, 14, 16], "texture": "#1"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#3"}
 			}
 		}
 	]

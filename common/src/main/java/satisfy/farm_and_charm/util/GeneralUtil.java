@@ -24,6 +24,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -281,8 +282,14 @@ public class GeneralUtil {
 
 	static {
 		LINE_CONNECTING_TYPE = EnumProperty.create("type", LineConnectingType.class);
-
 	}
+
+	public static void spawnSlice(Level level, ItemStack stack, double x, double y, double z, double xMotion, double yMotion, double zMotion) {
+		ItemEntity entity = new ItemEntity(level, x, y, z, stack);
+		entity.setDeltaMovement(xMotion, yMotion, zMotion);
+		level.addFreshEntity(entity);
+	}
+
 
 
 }

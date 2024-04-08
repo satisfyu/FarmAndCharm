@@ -25,7 +25,6 @@ import satisfy.farm_and_charm.client.render.WaterSprinklerRenderer;
 import satisfy.farm_and_charm.client.render.cart.CartRenderer;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.ModelRegistry;
-import satisfy.farm_and_charm.registry.ObjectRegistry;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
 
 import static satisfy.farm_and_charm.registry.ObjectRegistry.*;
@@ -38,7 +37,8 @@ public class Farm_And_CharmClient {
                 SCARECROW.get(), STOVE.get(), MINCER.get(), WILD_RIBWORT.get(), WILD_BARLEY.get(), WILD_CARROTS.get(),
                 RIBWORT_TEA.get(), NETTLE_TEA.get(), STRAWBERRY_TEA.get(), WILD_BEETROOTS.get(), WILD_CORN.get(),
                 WILD_EMMER.get(), WILD_LETTUCE.get(), WILD_NETTLE.get(), WILD_OAT.get(), WILD_ONIONS.get(), WILD_POTATOES.get(),
-                WILD_TOMATOES.get(), WILD_STRAWBERRIES.get(), STUFFED_RABBIT.get(), STUFFED_CHICKEN.get(), FARMERS_BREAKFAST.get()
+                WILD_TOMATOES.get(), WILD_STRAWBERRIES.get(), STUFFED_RABBIT.get(), STUFFED_CHICKEN.get(), FARMERS_BREAKFAST.get(),
+                ROASTED_CORN_BLOCK.get(), OAT_PANCAKE_BLOCK.get()
 
         );
 

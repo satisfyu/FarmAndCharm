@@ -16,10 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -41,7 +38,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "unused"})
 public class SiloBlock extends FacingBlock implements EntityBlock {
     public static final HashMap<Item, Item> DRYERS = new HashMap<>();
     private static boolean isDryersInitialized = false;
@@ -235,12 +232,23 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
         return Collections.unmodifiableMap(DRYERS);
     }
 
-    //TODO
     public static synchronized void initializeDryersIfNeeded() {
         if (!isDryersInitialized) {
-        //    addDry(ObjectRegistry.CORN.get(), ObjectRegistry.DRIED_CORN.get());
-        //    addDry(ObjectRegistry.BARLEY.get(), ObjectRegistry.DRIED_BARLEY.get());
-        //    addDry(Items.WHEAT, ObjectRegistry.DRIED_WHEAT.get());
+            addDry(Items.BONE_MEAL, ObjectRegistry.FERTILIZER.get());
+            addDry(Items.ROTTEN_FLESH, ObjectRegistry.FERTILIZER.get());
+            addDry(Blocks.PODZOL, ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
+            addDry(ObjectRegistry.WILD_BARLEY.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_POTATOES.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_OAT.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_TOMATOES.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_STRAWBERRIES.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_BEETROOTS.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_ONIONS.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_CORN.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_LETTUCE.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_EMMER.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_RIBWORT.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_CARROTS.get(), Items.BONE_MEAL);
             isDryersInitialized = true;
         }
     }

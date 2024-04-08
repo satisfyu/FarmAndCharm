@@ -115,8 +115,8 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.POTATO_WITH_ROAST_MEAT.get());
                 output.accept(ObjectRegistry.STUFFED_CHICKEN.get());
                 output.accept(ObjectRegistry.STUFFED_RABBIT.get());
-                output.accept(ObjectRegistry.GRANDMOTHERS_STRAWBERRY_CAKE.get());
                 output.accept(ObjectRegistry.FARMERS_BREAD.get());
+                output.accept(ObjectRegistry.GRANDMOTHERS_STRAWBERRY_CAKE.get());
                 output.accept(ObjectRegistry.STRAWBERRY_TEA.get());
                 output.accept(ObjectRegistry.NETTLE_TEA.get());
                 output.accept(ObjectRegistry.RIBWORT_TEA.get());
