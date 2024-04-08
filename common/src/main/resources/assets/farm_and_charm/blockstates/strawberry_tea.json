@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "facing=north,fill=0": {
+      "model": "farm_and_charm:block/strawberry_tea_0",
+      "y": 0
+    },
+    "facing=east,fill=0": {
+      "model": "farm_and_charm:block/strawberry_tea_0",
+      "y": 90
+    },
+    "facing=south,fill=0": {
+      "model": "farm_and_charm:block/strawberry_tea_0",
+      "y": 180
+    },
+    "facing=west,fill=0": {
+      "model": "farm_and_charm:block/strawberry_tea_0",
+      "y": 270
+    },
+    "facing=north,fill=1": {
+      "model": "farm_and_charm:block/strawberry_tea_0",
+      "y": 0
+    },
+    "facing=east,fill=1": {
+      "model": "farm_and_charm:block/strawberry_tea_0",
+      "y": 90
+    },
+    "facing=south,fill=1": {
+      "model": "farm_and_charm:block/strawberry_tea_0",
+      "y": 180
+    },
+    "facing=west,fill=1": {
+      "model": "farm_and_charm:block/strawberry_tea_0",
+      "y": 270
+    },
+    "facing=north,fill=2": {
+      "model": "farm_and_charm:block/strawberry_tea_1",
+      "y": 0
+    },
+    "facing=east,fill=2": {
+      "model": "farm_and_charm:block/strawberry_tea_1",
+      "y": 90
+    },
+    "facing=south,fill=2": {
+      "model": "farm_and_charm:block/strawberry_tea_1",
+      "y": 180
+    },
+    "facing=west,fill=2": {
+      "model": "farm_and_charm:block/strawberry_tea_1",
+      "y": 270
+    }
+  }
+}

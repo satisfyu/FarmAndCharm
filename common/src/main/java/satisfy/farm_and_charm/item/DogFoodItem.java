@@ -1,6 +1,8 @@
 package satisfy.farm_and_charm.item;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -9,9 +11,13 @@ import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.registry.EffectRegistry;
+import org.jetbrains.annotations.Nullable;
+import satisfy.farm_and_charm.registry.MobEffectRegistry;
+
+import java.util.List;
 
 public class DogFoodItem extends Item {
     public DogFoodItem(Properties properties) {
@@ -26,7 +32,7 @@ public class DogFoodItem extends Item {
                 wolf.setOwnerUUID(player.getUUID());
                 wolf.setInSittingPose(false);
                 wolf.heal(10.0F);
-                wolf.addEffect(new MobEffectInstance(EffectRegistry.DOG_FOOD.get(), 4000, 0));
+                wolf.addEffect(new MobEffectInstance(MobEffectRegistry.DOG_FOOD.get(), 3600, 0));
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);
                 }
@@ -39,5 +45,14 @@ public class DogFoodItem extends Item {
         }
         return InteractionResult.PASS;
     }
+
+    @Override
+    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> tooltip, TooltipFlag tooltipFlag) {
+        tooltip.add(Component.translatable("tooltip.farm_and_charm.animal_fed_to_dog").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.farm_and_charm.dog_effect_1").withStyle(ChatFormatting.BLUE));
+        tooltip.add(Component.translatable("tooltip.farm_and_charm.dog_effect_2").withStyle(ChatFormatting.BLUE));
+        tooltip.add(Component.translatable("tooltip.farm_and_charm.dog_effect_3").withStyle(ChatFormatting.BLUE));
+    }
+
 }
 

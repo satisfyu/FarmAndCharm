@@ -1,0 +1,17 @@
+{
+  "type": "farm_and_charm:crafting_bowl",
+  "ingredients": [
+    {
+      "tag": "farm_and_charm:milk"
+    },
+    {
+      "item": "farm_and_charm:oat"
+    },
+    {
+      "tag": "farm_and_charm:strawberries"
+    }
+  ],
+  "result": {
+    "item": "farm_and_charm:oatmeal_with_strawberries"
+  }
+}

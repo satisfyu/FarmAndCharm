@@ -1,0 +1,21 @@
+{
+  "type": "farm_and_charm:pot_cooking",
+  "ingredients": [
+    {
+      "tag": "farm_and_charm:onion"
+    },
+    {
+      "tag": "farm_and_charm:cooked_beef"
+    },
+    {
+      "item": "farm_and_charm:simple_tomato_soup"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farm_and_charm:goulash",
+    "count": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "farm_and_charm:block/wild_oat_1",
+        "weight": 1
+      },
+      {
+        "model": "farm_and_charm:block/wild_oat_2",
+        "weight": 1
+      }
+    ]
+  }
+}

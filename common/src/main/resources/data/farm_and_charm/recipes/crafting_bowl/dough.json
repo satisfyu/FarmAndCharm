@@ -1,0 +1,17 @@
+{
+  "type": "farm_and_charm:crafting_bowl",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:flour"
+    },
+    {
+      "item": "farm_and_charm:yeast"
+    },
+    {
+      "tag": "farm_and_charm:water_bucket"
+    }
+  ],
+  "result": {
+    "item": "farm_and_charm:dough"
+  }
+}

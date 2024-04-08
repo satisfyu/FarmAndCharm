@@ -28,18 +28,23 @@ import satisfy.farm_and_charm.registry.ModelRegistry;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
 
+import static satisfy.farm_and_charm.registry.ObjectRegistry.*;
+
 @Environment(EnvType.CLIENT)
-public enum Farm_And_CharmClient {
-    ;
+public class Farm_And_CharmClient {
 
     public static void onInitializeClient() {
-        RenderTypeRegistry.register(RenderType.cutout(), ObjectRegistry.CRAFTING_BOWL.get(), ObjectRegistry.WATER_SPRINKLER.get(),
-                ObjectRegistry.SCARECROW.get(), ObjectRegistry.REINFORCED_SMOKER.get(), ObjectRegistry.MINCER.get()
+        RenderTypeRegistry.register(RenderType.cutout(), CRAFTING_BOWL.get(), WATER_SPRINKLER.get(),
+                SCARECROW.get(), STOVE.get(), MINCER.get(), WILD_RIBWORT.get(), WILD_BARLEY.get(), WILD_CARROTS.get(),
+                RIBWORT_TEA.get(), NETTLE_TEA.get(), STRAWBERRY_TEA.get(), WILD_BEETROOTS.get(), WILD_CORN.get(),
+                WILD_EMMER.get(), WILD_LETTUCE.get(), WILD_NETTLE.get(), WILD_OAT.get(), WILD_ONIONS.get(), WILD_POTATOES.get(),
+                WILD_TOMATOES.get(), WILD_STRAWBERRIES.get()
+
         );
 
 
         ClientStorageTypes.init();
-        RenderTypeRegistry.register(RenderType.translucent(), ObjectRegistry.SCARECROW.get());
+        RenderTypeRegistry.register(RenderType.translucent(), SCARECROW.get());
         BlockEntityRendererRegistry.register(EntityTypeRegistry.SCARECROW_BLOCK_ENTITY.get(), ScarecrowRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.MINCER_BLOCK_ENTITY.get(), MincerRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.CRAFTING_BOWL_BLOCK_ENTITY.get(), CraftingBowlRenderer::new);

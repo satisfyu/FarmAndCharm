@@ -60,7 +60,7 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.BARLEY_BALL.get());
                 output.accept(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
                 output.accept(ObjectRegistry.FERTILIZED_FARM_BLOCK.get());
-                output.accept(ObjectRegistry.REINFORCED_SMOKER.get());
+                output.accept(ObjectRegistry.STOVE.get());
                 output.accept(ObjectRegistry.FEEDING_TROUGH.get());
                 output.accept(ObjectRegistry.WATER_SPRINKLER.get());
 
@@ -84,13 +84,13 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.DOUGH.get());
                 output.accept(ObjectRegistry.RAW_PASTA.get());
 
-                output.accept(ObjectRegistry.MINTED_BEEF.get());
+                output.accept(ObjectRegistry.MINCED_BEEF.get());
                 output.accept(ObjectRegistry.LAMB_HAM.get());
                 output.accept(ObjectRegistry.CHICKEN_PARTS.get());
                 output.accept(ObjectRegistry.BACON.get());
 
                 output.accept(ObjectRegistry.FARMER_SALAD.get());
-                output.accept(ObjectRegistry.PORRIDGE_WITH_APPLES.get());
+                output.accept(ObjectRegistry.OATMEAL_WITH_STRAWBERRIES.get());
                 output.accept(ObjectRegistry.SIMPLE_TOMATO_SOUP.get());
                 output.accept(ObjectRegistry.BARLEY_SOUP.get());
                 output.accept(ObjectRegistry.ONION_SOUP.get());
@@ -105,13 +105,16 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.ROASTED_CHICKEN.get());
                 output.accept(ObjectRegistry.ROASTED_CORN.get());
                 output.accept(ObjectRegistry.COOKED_SALMON.get());
+                output.accept(ObjectRegistry.COOKED_COD.get());
                 output.accept(ObjectRegistry.CHICKEN_WRAPPED_IN_BACON.get());
                 output.accept(ObjectRegistry.LAMB_WITH_CORN.get());
                 output.accept(ObjectRegistry.BACON_WITH_EGGS.get());
+                output.accept(ObjectRegistry.OAT_PANCAKE.get());
                 output.accept(ObjectRegistry.FARMERS_BREAKFAST.get());
                 output.accept(ObjectRegistry.BAKED_LAMB_HAM.get());
                 output.accept(ObjectRegistry.POTATO_WITH_ROAST_MEAT.get());
                 output.accept(ObjectRegistry.STUFFED_CHICKEN.get());
+                output.accept(ObjectRegistry.STUFFED_RABBIT.get());
                 output.accept(ObjectRegistry.GRANDMOTHERS_STRAWBERRY_CAKE.get());
                 output.accept(ObjectRegistry.FARMERS_BREAD.get());
 
@@ -121,6 +124,7 @@ public class TabRegistry {
 
                 output.accept(ObjectRegistry.CAT_FOOD.get());
                 output.accept(ObjectRegistry.DOG_FOOD.get());
+                output.accept(ObjectRegistry.CHICKEN_FEED.get());
                 output.accept(ObjectRegistry.HORSE_FODDER.get());
                 output.accept(ObjectRegistry.FERTILIZER.get());
 

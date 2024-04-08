@@ -109,9 +109,9 @@ public class StoveBlock extends Block implements EntityBlock {
         double e = pos.getY() + 0.24;
         double f = (double) pos.getZ() + 0.5;
         if (random.nextDouble() < 0.4)
-            world.playLocalSound(d, e, f, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 1.0f, 1.0f, false);
-        world.playLocalSound(d, e, f, SoundEvents.SMOKER_SMOKE, SoundSource.BLOCKS, 1.0f, 1.0f, false);
-        world.playLocalSound(d, e, f, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0f, 1.0f, false);
+            world.playLocalSound(d, e, f, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.4f, 1.0f, false);
+        world.playLocalSound(d, e, f, SoundEvents.SMOKER_SMOKE, SoundSource.BLOCKS, 0.4f, 1.0f, false);
+        world.playLocalSound(d, e, f, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 0.4f, 1.0f, false);
 
         Direction direction = state.getValue(FACING);
         Direction.Axis axis = direction.getAxis();

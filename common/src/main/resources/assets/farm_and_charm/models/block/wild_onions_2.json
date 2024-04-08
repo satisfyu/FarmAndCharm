@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "farm_and_charm:block/wild_onions_2"
+  }
+}

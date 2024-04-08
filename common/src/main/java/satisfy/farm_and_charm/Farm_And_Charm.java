@@ -10,7 +10,7 @@ public class Farm_And_Charm {
     
     public static void init() {
         TabRegistry.init();
-        EffectRegistry.init();
+        MobEffectRegistry.init();
         ObjectRegistry.init();
         EntityTypeRegistry.init();
         ScreenhandlerTypeRegistry.init();

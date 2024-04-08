@@ -2,7 +2,15 @@
   "variants": {
     "": [
       {
-        "model": "farm_and_charm:block/wild_onions",
+        "model": "farm_and_charm:block/wild_onions_1",
+        "weight": 1
+      },
+      {
+        "model": "farm_and_charm:block/wild_onions_2",
+        "weight": 1
+      },
+      {
+        "model": "farm_and_charm:block/wild_onions_3",
         "weight": 1
       }
     ]

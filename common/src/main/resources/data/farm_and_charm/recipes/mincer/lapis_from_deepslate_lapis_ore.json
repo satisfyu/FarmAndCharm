@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:deepslate_lapis_ore"
+  },
+  "recipe_type": "METAL",
+  "result": {
+    "item": "minecraft:lapis_lazuli",
+    "count": 6
+  }
+}
