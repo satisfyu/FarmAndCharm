@@ -6,7 +6,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,7 +38,7 @@ public class FertilizedFarmlandBlock extends FarmBlock {
                             }
                         }
                     });
-            if (serverLevel.getBlockState(blockPos).getBlock().equals(Blocks.DIRT)) {
+            if (serverLevel.getBlockState(blockPos).getBlock().equals(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get())) {
                 turnToSoil(null, blockState, serverLevel, blockPos);
             }
         }

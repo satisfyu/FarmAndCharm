@@ -21,7 +21,7 @@ import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 @SuppressWarnings("deprecation")
 public class StrawberryCropBlock extends CropBlock {
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 5);
 
     public StrawberryCropBlock(Properties settings) {
         super(settings);

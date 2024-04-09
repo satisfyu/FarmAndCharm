@@ -61,63 +61,63 @@
       "y": 270
     },
     "stack=5,facing=north": {
-      "model": "farm_and_charm:block/roasted_corn_5"
+      "model": "farm_and_charm:block/roasted_corn_4"
     },
     "stack=5,facing=east": {
-      "model": "farm_and_charm:block/roasted_corn_5",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 90
     },
     "stack=5,facing=south": {
-      "model": "farm_and_charm:block/roasted_corn_5",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 180
     },
     "stack=5,facing=west": {
-      "model": "farm_and_charm:block/roasted_corn_5",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 270
     },
     "stack=6,facing=north": {
-      "model": "farm_and_charm:block/roasted_corn_6"
+      "model": "farm_and_charm:block/roasted_corn_4"
     },
     "stack=6,facing=east": {
-      "model": "farm_and_charm:block/roasted_corn_6",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 90
     },
     "stack=6,facing=south": {
-      "model": "farm_and_charm:block/roasted_corn_6",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 180
     },
     "stack=6,facing=west": {
-      "model": "farm_and_charm:block/roasted_corn_6",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 270
     },
     "stack=7,facing=north": {
-      "model": "farm_and_charm:block/roasted_corn_7"
+      "model": "farm_and_charm:block/roasted_corn_4"
     },
     "stack=7,facing=east": {
-      "model": "farm_and_charm:block/roasted_corn_7",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 90
     },
     "stack=7,facing=south": {
-      "model": "farm_and_charm:block/roasted_corn_7",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 180
     },
     "stack=7,facing=west": {
-      "model": "farm_and_charm:block/roasted_corn_7",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 270
     },
     "stack=8,facing=north": {
-      "model": "farm_and_charm:block/roasted_corn_8"
+      "model": "farm_and_charm:block/roasted_corn_4"
     },
     "stack=8,facing=east": {
-      "model": "farm_and_charm:block/roasted_corn_8",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 90
     },
     "stack=8,facing=south": {
-      "model": "farm_and_charm:block/roasted_corn_8",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 180
     },
     "stack=8,facing=west": {
-      "model": "farm_and_charm:block/roasted_corn_8",
+      "model": "farm_and_charm:block/roasted_corn_4",
       "y": 270
     }
   }

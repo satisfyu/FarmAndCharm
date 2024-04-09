@@ -1,0 +1,11 @@
+{
+  "values": [
+    "farm_and_charm:tomato_crop",
+    "farm_and_charm:lettuce_crop",
+    "farm_and_charm:strawberry_crop",
+    "farm_and_charm:oat_crop",
+    "farm_and_charm:barley_crop",
+    "farm_and_charm:corn_crop",
+    "farm_and_charm:onion_crop"
+  ]
+}

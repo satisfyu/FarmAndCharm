@@ -1,0 +1,42 @@
+{
+  "variants": {
+    "age=0": [
+      {
+        "model": "farm_and_charm:block/onion_stage0",
+        "weight": 1
+      }
+    ],
+    "age=1": [
+      {
+        "model": "farm_and_charm:block/onion_stage1",
+        "weight": 1
+      }
+    ],
+    "age=2": [
+      {
+        "model": "farm_and_charm:block/onion_stage2",
+        "weight": 1
+      }
+    ],
+    "age=3": [
+      {
+        "model": "farm_and_charm:block/onion_stage3",
+        "weight": 1
+      }
+    ],
+    "age=4": [
+      {
+        "model": "farm_and_charm:block/onion_stage4_1",
+        "weight": 1
+      },
+      {
+        "model": "farm_and_charm:block/onion_stage4_2",
+        "weight": 1
+      },
+      {
+        "model": "farm_and_charm:block/onion_stage4_3",
+        "weight": 1
+      }
+    ]
+  }
+}

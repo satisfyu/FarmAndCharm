@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class OatCropBlock extends CropBlock {
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 5);
 
     public OatCropBlock(Properties properties) {
         super(properties);

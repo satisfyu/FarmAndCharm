@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class BarleyCropBlock extends CropBlock {
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 5);
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 
     public BarleyCropBlock(Properties properties) {
         super(properties);
