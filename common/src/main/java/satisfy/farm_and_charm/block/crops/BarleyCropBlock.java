@@ -23,7 +23,7 @@ public class BarleyCropBlock extends CropBlock {
 
     @Override
     public int getMaxAge() {
-        return 5;
+        return 4;
     }
 
     @Override

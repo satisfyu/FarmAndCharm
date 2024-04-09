@@ -21,26 +21,29 @@ public class FertilizedFarmlandBlock extends FarmBlock {
     @Override
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
         super.randomTick(blockState, serverLevel, blockPos, randomSource);
-        int lightLevel = serverLevel.getMaxLocalRawBrightness(blockPos.above());
-        float growthChance = 0.05f;
-        if (lightLevel >= 10) {
-            growthChance += 0.005f;
+        if (randomSource.nextFloat() < getGrowthChance(serverLevel, blockPos)) {
+            applyBonemealEffect(serverLevel, blockPos, randomSource);
         }
+    }
 
-        if (randomSource.nextFloat() < growthChance) {
-            BlockPos.betweenClosedStream(blockPos.offset(-1, -1, -1), blockPos.offset(1, 1, 1))
-                    .forEach(pos -> {
-                        BlockState state = serverLevel.getBlockState(pos);
-                        if (state.getBlock() instanceof BonemealableBlock bonemealableBlock) {
-                            if (bonemealableBlock.isValidBonemealTarget(serverLevel, pos, state, serverLevel.isClientSide)) {
-                                bonemealableBlock.performBonemeal(serverLevel, randomSource, pos, state);
-                                serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, 5, 0.5, 0.5, 0.5, 0.5);
-                            }
-                        }
-                    });
-            if (serverLevel.getBlockState(blockPos).getBlock().equals(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get())) {
-                turnToSoil(null, blockState, serverLevel, blockPos);
-            }
+    private float getGrowthChance(ServerLevel serverLevel, BlockPos blockPos) {
+        int lightLevel = serverLevel.getMaxLocalRawBrightness(blockPos.above());
+        return lightLevel >= 10 ? 0.055f : 0.05f;
+    }
+
+    private void applyBonemealEffect(ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+        BlockPos posAbove = blockPos.above();
+        BlockState stateAbove = serverLevel.getBlockState(posAbove);
+        if (stateAbove.getBlock() instanceof BonemealableBlock bonemealableBlock && bonemealableBlock.isValidBonemealTarget(serverLevel, posAbove, stateAbove, false)) {
+            bonemealableBlock.performBonemeal(serverLevel, randomSource, posAbove, stateAbove);
+            serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, posAbove.getX() + 0.5, posAbove.getY() + 1.0, posAbove.getZ() + 0.5, 5, 0.5, 0.5, 0.5, 0.5);
+        }
+        checkAndTurnToSoil(serverLevel, blockPos, serverLevel.getBlockState(blockPos));
+    }
+
+    private void checkAndTurnToSoil(ServerLevel serverLevel, BlockPos blockPos, BlockState currentBlockState) {
+        if (currentBlockState.is(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get())) {
+            turnToSoil(null, currentBlockState, serverLevel, blockPos);
         }
     }
 
@@ -48,16 +51,5 @@ public class FertilizedFarmlandBlock extends FarmBlock {
         BlockState blockState2 = pushEntitiesUp(blockState, ObjectRegistry.FERTILIZED_SOIL_BLOCK.get().defaultBlockState(), level, blockPos);
         level.setBlockAndUpdate(blockPos, blockState2);
         level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(entity, blockState2));
-    }
-
-    @Override
-    public void fallOn(Level level, BlockState blockState, BlockPos blockPos, Entity entity, float f) {
-    }
-
-    @Override
-    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        if (!blockState.canSurvive(serverLevel, blockPos)) {
-            turnToSoil(null, blockState, serverLevel, blockPos);
-        }
     }
 }

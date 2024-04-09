@@ -34,7 +34,7 @@ public class StrawberryCropBlock extends CropBlock {
 
     @Override
     public int getMaxAge() {
-        return 4;
+        return 5;
     }
 
     @Override

@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class CornCropBlock extends CropBlock {
+    public static final int MAX_AGE = 4;
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 4);
 
     public CornCropBlock(Properties properties) {
@@ -25,7 +26,7 @@ public class CornCropBlock extends CropBlock {
 
     @Override
     public int getMaxAge() {
-        return 4;
+        return MAX_AGE;
     }
 
     @Override
