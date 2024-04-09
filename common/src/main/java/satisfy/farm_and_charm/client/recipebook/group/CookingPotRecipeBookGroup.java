@@ -1,4 +1,4 @@
-package satisfy.farm_and_charm.client.recipebook.custom;
+package satisfy.farm_and_charm.client.recipebook.group;
 
 import com.google.common.collect.ImmutableList;
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
@@ -16,17 +16,17 @@ import java.util.Arrays;
 import java.util.List;
 //TODO
 @Environment(EnvType.CLIENT)
-public enum CookingPanRecipeBookGroup implements IRecipeBookGroup {
+public enum CookingPotRecipeBookGroup implements IRecipeBookGroup {
     SEARCH(new ItemStack(Items.COMPASS)),
     EFFECT(new ItemStack(Items.POTION)),
     MISC(new ItemStack(ObjectRegistry.DOUGH.get())),
     BIG(new ItemStack(ObjectRegistry.BARLEY.get()));
 
-    public static final List<IRecipeBookGroup> PAN_GROUPS = ImmutableList.of(SEARCH, MISC, EFFECT, BIG);
+    public static final List<IRecipeBookGroup> POT_GROUPS = ImmutableList.of(SEARCH, MISC, EFFECT, BIG);
 
     private final List<ItemStack> icons;
 
-    CookingPanRecipeBookGroup(ItemStack... entries) {
+    CookingPotRecipeBookGroup(ItemStack... entries) {
         this.icons = ImmutableList.copyOf(entries);
     }
 

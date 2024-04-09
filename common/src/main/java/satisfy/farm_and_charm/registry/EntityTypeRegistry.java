@@ -22,9 +22,7 @@ public enum EntityTypeRegistry {
     private static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.BLOCK_ENTITY_TYPE).getRegistrar();
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.ENTITY_TYPE);
 
-    public static final RegistrySupplier<BlockEntityType<CookingPanBlockEntity>> COOKING_PAN_BLOCK_ENTITY = registerBlockEntity("cooking_pan", () -> BlockEntityType.Builder.of(CookingPanBlockEntity::new, ObjectRegistry.COOKING_PAN.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<CookingPotBlockEntity>> COOKING_POT_BLOCK_ENTITY = registerBlockEntity("cooking_pot", () -> BlockEntityType.Builder.of(CookingPotBlockEntity::new, ObjectRegistry.COOKING_POT.get()).build(null));
-    public static final RegistrySupplier<BlockEntityType<CookingSaucePanBlockEntity>> COOKING_SAUCEPAN_BLOCK_ENTITY = registerBlockEntity("cooking_saucepan", () -> BlockEntityType.Builder.of(CookingSaucePanBlockEntity::new, ObjectRegistry.COOKING_POT.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<StoveBlockEntity>> STOVE_BLOCK_ENTITY = registerBlockEntity("stove_block", () -> BlockEntityType.Builder.of(StoveBlockEntity::new, ObjectRegistry.STOVE.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<WaterSprinklerBlockEntity>> SPRINKLER_BLOCK_ENTITY = registerBlockEntity("water_sprinkler", () -> BlockEntityType.Builder.of(WaterSprinklerBlockEntity::new, ObjectRegistry.WATER_SPRINKLER.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<CraftingBowlBlockEntity>> CRAFTING_BOWL_BLOCK_ENTITY = registerBlockEntity("crafting_bowl", () -> BlockEntityType.Builder.of(CraftingBowlBlockEntity::new, ObjectRegistry.CRAFTING_BOWL.get()).build(null));

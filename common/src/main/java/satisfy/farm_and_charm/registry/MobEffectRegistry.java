@@ -45,7 +45,7 @@ public class MobEffectRegistry {
         SWEETS = registerEffect("sweets", SweetsEffect::new);
         HORSE_FODDER = registerEffect("horse_fodder", HorseFodderEffect::new);
         DOG_FOOD = registerEffect("dog_food", DogFoodEffect::new);
-        CHICKEN = registerEffect("chicken", ChickenEffect::new);
+        CHICKEN = registerEffect("cluck", ChickenEffect::new);
         GRANDMAS_BLESSING = registerEffect("grandmas_blessing", GrandmasBlessingEffect::new);
         RESTED = registerEffect("rested", RestedEffect::new);
         FARMERS_BLESSING = registerEffect("farmers_blessing", FarmersBlessingEffect::new);

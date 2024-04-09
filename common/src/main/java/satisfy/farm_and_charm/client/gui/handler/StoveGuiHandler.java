@@ -15,7 +15,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import satisfy.farm_and_charm.client.gui.handler.slot.ExtendedSlot;
 import satisfy.farm_and_charm.client.gui.handler.slot.StoveOutputSlot;
-import satisfy.farm_and_charm.client.recipebook.custom.StoveRecipeBookGroup;
+import satisfy.farm_and_charm.client.recipebook.group.StoveRecipeBookGroup;
 import satisfy.farm_and_charm.recipe.StoveRecipe;
 import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;

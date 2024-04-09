@@ -1,7 +1,7 @@
 {
   "type": "farm_and_charm:mincer",
   "ingredient": {
-    "item": "minecraft:wheat"
+    "tag": "farm_and_charm:wheat"
   },
   "recipe_type": "STONE",
   "result": {

@@ -68,14 +68,14 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.SILO_COPPER.get());
 
                 output.accept(ObjectRegistry.SUPPLY_CART.get());
+                output.accept(ObjectRegistry.PLOW.get());
                 output.accept(ObjectRegistry.PITCHFORK.get());
                 output.accept(ObjectRegistry.WINDOW_SILL.get());
                 output.accept(ObjectRegistry.TOOL_RACK.get());
                 output.accept(ObjectRegistry.CRAFTING_BOWL.get());
                 output.accept(ObjectRegistry.MINCER.get());
                 output.accept(ObjectRegistry.COOKING_POT.get());
-                output.accept(ObjectRegistry.COOKING_PAN.get());
-                output.accept(ObjectRegistry.COOKING_SAUCEPAN.get());
+                output.accept(ObjectRegistry.ROASTER.get());
 
 
                 output.accept(ObjectRegistry.BUTTER.get());

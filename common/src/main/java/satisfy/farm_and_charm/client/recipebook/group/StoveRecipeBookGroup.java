@@ -1,4 +1,4 @@
-package satisfy.farm_and_charm.client.recipebook.custom;
+package satisfy.farm_and_charm.client.recipebook.group;
 
 import com.google.common.collect.ImmutableList;
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;

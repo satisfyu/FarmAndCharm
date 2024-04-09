@@ -18,15 +18,10 @@ public class RecipeTypesRegistry {
     private static final Registrar<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.RECIPE_TYPE).getRegistrar();
     private static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.RECIPE_SERIALIZER).getRegistrar();
 
-
-    public static final RegistrySupplier<RecipeType<CookingPanRecipe>> COOKING_PAN_RECIPE_TYPE = create("pan_cooking");
-    public static final RegistrySupplier<RecipeSerializer<CookingPanRecipe>> COOKING_PAN_RECIPE_SERIALIZER = create("pan_cooking", CookingPanRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<CookingPotRecipe>> COOKING_POT_RECIPE_TYPE = create("pot_cooking");
     public static final RegistrySupplier<RecipeSerializer<CookingPotRecipe>> COOKING_POT_RECIPE_SERIALIZER = create("pot_cooking", CookingPotRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<CraftingBowlRecipe>> CRAFTING_BOWL_RECIPE_TYPE = create("crafting_bowl");
     public static final RegistrySupplier<RecipeSerializer<CraftingBowlRecipe>> CRAFTING_BOWL_RECIPE_SERIALIZER = create("crafting_bowl", CraftingBowlRecipe.Serializer::new);
-    public static final RegistrySupplier<RecipeType<CookingSaucePanRecipe>> COOKING_SAUCEPAN_RECIPE_TYPE = create("saucepan_cooking");
-    public static final RegistrySupplier<RecipeSerializer<CookingSaucePanRecipe>> COOKING_SAUCEPAN_RECIPE_SERIALIZER = create("saucepan_cooking", CookingSaucePanRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<StoveRecipe>> STOVE_RECIPE_TYPE = create("stove");
     public static final RegistrySupplier<RecipeSerializer<StoveRecipe>> STOVE_RECIPE_SERIALIZER = create("stove", StoveRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<MincerRecipe>> MINCER_RECIPE_TYPE = create("mincer");
