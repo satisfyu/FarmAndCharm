@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "farm_and_charm:milk"
+      "item": "farm_and_charm:corn"
     }
   ],
   "result": {
-    "item": "farm_and_charm:butter",
-        "count": 10
+    "item": "farm_and_charm:kernels",
+        "count": 3
   }
 }

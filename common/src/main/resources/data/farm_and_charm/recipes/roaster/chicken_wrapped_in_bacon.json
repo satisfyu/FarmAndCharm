@@ -1,0 +1,24 @@
+{
+  "type": "farm_and_charm:roaster",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:bacon"
+    },
+    {
+      "item": "farm_and_charm:chicken_parts"
+    },
+    {
+      "tag": "farm_and_charm:pasta"
+    },
+    {
+      "item": "farm_and_charm:butter"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farm_and_charm:chicken_wrapped_in_bacon",
+    "count": 1
+  }
+}

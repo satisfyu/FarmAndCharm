@@ -132,8 +132,11 @@
   "tooltip.farm_and_charm.thankyou_4": "Increases the growth rate of surrounding seeds",
   "gui.farm_and_charm.recipebook.toggleRecipes.cookable": "Show Cookable",
   "rei.farm_and_charm.stove_category": "Stove",
-  "rei.farm_and_charm.roaster_category": "Roaster",
+  "rei.farm_and_charm.silo_category": "Drying",
+  "rei.farm_and_charm.roaster_category": "Roasting",
   "rei.farm_and_charm.baking_category": "Baking",
-  "rei.farm_and_charm.cooking_pot_category": "Cooking Pot",
-  "rei.farm_anc_charm.bowl_category": "Crafting Bowl"
+  "rei.farm_and_charm.cooking_pot_category": "Cooking",
+  "rei.farm_and_charm.bowl_category": "Doughing",
+  "rei.farm_and_charm.mincer_category": "Mincing"
+
 }

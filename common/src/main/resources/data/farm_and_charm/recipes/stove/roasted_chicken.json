@@ -2,7 +2,7 @@
   "type": "farm_and_charm:stove",
   "ingredients": [
     {
-      "tag": "minecraft:potato"
+      "tag": "farm_and_charm:pasta"
     },
     {
       "item": "farm_and_charm:chicken_parts"

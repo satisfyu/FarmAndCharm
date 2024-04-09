@@ -31,7 +31,6 @@ public class CraftingBowlRecipe implements Recipe<Container> {
 
     @Override
     public boolean matches(Container inventory, Level world) {
-        // Allow for variable number of ingredients: 1 to 4
         int nonEmptySlots = 0;
         for (int i = 0; i < inventory.getContainerSize(); i++) {
             if (!inventory.getItem(i).isEmpty()) {

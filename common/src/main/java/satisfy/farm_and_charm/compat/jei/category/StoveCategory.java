@@ -52,11 +52,20 @@ public class StoveCategory implements IRecipeCategory<StoveRecipe> {
         NonNullList<Ingredient> ingredients = recipe.getIngredients();
 
         Farm_And_Charm_JEIPlugin.addSlot(builder,29 - WIDTH_OF, 18 - HEIGHT_OF, ingredients.get(0));
-        Farm_And_Charm_JEIPlugin.addSlot(builder,47 - WIDTH_OF, 18 - HEIGHT_OF, ingredients.get(1));
-        Farm_And_Charm_JEIPlugin.addSlot(builder,65 - WIDTH_OF, 18 - HEIGHT_OF, ingredients.get(2));
+
+        if (ingredients.size() > 1) {
+            Farm_And_Charm_JEIPlugin.addSlot(builder,47 - WIDTH_OF, 18 - HEIGHT_OF, ingredients.get(1));
+        }
+
+        if (ingredients.size() > 2) {
+            Farm_And_Charm_JEIPlugin.addSlot(builder,65 - WIDTH_OF, 18 - HEIGHT_OF, ingredients.get(2));
+        }
+
         assert Minecraft.getInstance().level != null;
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 126 - WIDTH_OF,  42 - HEIGHT_OF).addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 126 - WIDTH_OF,  42 - HEIGHT_OF)
+                .addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
     }
+
 
     @Override
     public void draw(StoveRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {

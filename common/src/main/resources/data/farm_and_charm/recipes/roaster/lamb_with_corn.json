@@ -1,0 +1,24 @@
+{
+  "type": "farm_and_charm:roaster",
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "tag": "farm_and_charm:corn"
+    },
+    {
+      "item": "farm_and_charm:lamb_ham"
+    },
+    {
+      "item": "farm_and_charm:butter"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "farm_and_charm:lamb_with_corn",
+    "count": 1
+  }
+}

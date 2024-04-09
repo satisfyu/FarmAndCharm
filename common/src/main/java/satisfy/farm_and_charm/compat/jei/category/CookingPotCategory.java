@@ -24,7 +24,7 @@ import satisfy.farm_and_charm.recipe.CookingPotRecipe;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
-    public static final RecipeType<CookingPotRecipe> COOKING_POT = RecipeType.create(Farm_And_Charm.MOD_ID, "pot_cooking", CookingPotRecipe.class);
+    public static final RecipeType<CookingPotRecipe> COOKING_POT = RecipeType.create(Farm_And_Charm.MOD_ID, "cooking_pot", CookingPotRecipe.class);
     public static final int WIDTH = 124;
     public static final int HEIGHT = 60;
     public static final int WIDTH_OF = 26;

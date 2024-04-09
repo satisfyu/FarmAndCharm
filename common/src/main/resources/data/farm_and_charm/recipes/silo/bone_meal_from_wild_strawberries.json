@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:drying",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:wild_strawberries"
+    }
+  ],
+  "output": {
+    "item": "minecraft:bone_meal"
+  }
+}

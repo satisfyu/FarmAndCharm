@@ -1,6 +1,7 @@
 package satisfy.farm_and_charm.recipe;
 
 import com.google.gson.JsonObject;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -24,6 +25,21 @@ public class MincerRecipe implements Recipe<Container> {
         this.recipe_type = type;
         this.input = input;
         this.output = output;
+    }
+
+    public Ingredient getInput() {
+        return this.input;
+    }
+
+    public ItemStack getOutput() {
+        return this.output.copy();
+    }
+
+    @Override
+    public @NotNull NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> nonNullList = NonNullList.create();
+        nonNullList.add(this.input);
+        return nonNullList;
     }
 
     public String getRecipeType() {

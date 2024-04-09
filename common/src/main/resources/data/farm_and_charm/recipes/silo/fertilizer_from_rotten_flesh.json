@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:drying",
+  "ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    }
+  ],
+  "output": {
+    "item": "farm_and_charm:fertilizer"
+  }
+}

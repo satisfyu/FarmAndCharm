@@ -28,6 +28,8 @@ public class RecipeTypeRegistry {
     public static final RegistrySupplier<RecipeSerializer<MincerRecipe>> MINCER_RECIPE_SERIALIZER = create("mincer", MincerRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<RoasterRecipe>> ROASTER_RECIPE_TYPE = create("roaster");
     public static final RegistrySupplier<RecipeSerializer<RoasterRecipe>> ROASTER_RECIPE_SERIALIZER = create("roaster", RoasterRecipe.Serializer::new);
+    public static final RegistrySupplier<RecipeType<SiloRecipe>> SILO_RECIPE_TYPE = create("drying");
+    public static final RegistrySupplier<RecipeSerializer<SiloRecipe>> SILO_RECIPE_SERIALIZER = create("drying", SiloRecipe.Serializer::new);
 
 
     private static <T extends Recipe<?>> RegistrySupplier<RecipeSerializer<T>> create(String name, Supplier<RecipeSerializer<T>> serializer) {

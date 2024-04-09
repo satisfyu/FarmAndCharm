@@ -25,7 +25,7 @@ public class CraftingBowlCategory implements DisplayCategory<CraftingBowlDisplay
 
     @Override
     public Component getTitle() {
-        return Component.translatable("rei.farm_and_charm.baking_category");
+        return Component.translatable("rei.farm_and_charm.bowl_category");
     }
 
     @Override

@@ -35,7 +35,7 @@ public class CraftingBowlCategory implements IRecipeCategory<CraftingBowlRecipe>
 
     @Override
     public @NotNull Component getTitle() {
-        return Component.translatable("rei.farm_anc_charm.bowl_category");
+        return Component.translatable("rei.farm_and_charm.bowl_category");
     }
 
     @Override
@@ -50,11 +50,20 @@ public class CraftingBowlCategory implements IRecipeCategory<CraftingBowlRecipe>
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, CraftingBowlRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 50, 25).addIngredients(recipe.getIngredients().get(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 50, 43).addIngredients(recipe.getIngredients().get(1));
-        builder.addSlot(RecipeIngredientRole.INPUT, 32, 25).addIngredients(recipe.getIngredients().get(2));
-        builder.addSlot(RecipeIngredientRole.INPUT, 32, 43).addIngredients(recipe.getIngredients().get(3));
+        if (!recipe.getIngredients().isEmpty()) {
+            builder.addSlot(RecipeIngredientRole.INPUT, 50, 25).addIngredients(recipe.getIngredients().get(0));
+        }
+        if (recipe.getIngredients().size() > 1) {
+            builder.addSlot(RecipeIngredientRole.INPUT, 50, 43).addIngredients(recipe.getIngredients().get(1));
+        }
+        if (recipe.getIngredients().size() > 2) {
+            builder.addSlot(RecipeIngredientRole.INPUT, 32, 25).addIngredients(recipe.getIngredients().get(2));
+        }
+        if (recipe.getIngredients().size() > 3) {
+            builder.addSlot(RecipeIngredientRole.INPUT, 32, 43).addIngredients(recipe.getIngredients().get(3));
+        }
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 110, 35).addItemStack(recipe.getResultItem(null));
     }
+
 }

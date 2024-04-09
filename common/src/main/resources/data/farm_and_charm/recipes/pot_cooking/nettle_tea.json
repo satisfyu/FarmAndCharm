@@ -1,0 +1,21 @@
+{
+  "type": "farm_and_charm:pot_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "farm_and_charm:wild_nettle"
+    },
+    {
+      "item": "farm_and_charm:wild_nettle"
+    }
+  ],
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "item": "farm_and_charm:nettle_tea",
+    "count": 1
+  }
+}

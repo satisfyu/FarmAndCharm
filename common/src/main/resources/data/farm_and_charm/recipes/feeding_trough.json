@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "MIM",
+    "#M#"
+  ],
+  "key": {
+    "M": {
+      "tag": "minecraft:planks"
+    },
+    "#": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "farm_and_charm:feeding_trough",
+    "count": 2
+  }
+}
