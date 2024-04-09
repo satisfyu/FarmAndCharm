@@ -23,6 +23,12 @@
     ],
     "doapi": [
       "satisfy.farm_and_charm.util.api.Farm_And_CharmDoAPI"
+    ],
+    "rei_client": [
+      "satisfy.farm_and_charm.fabric.rei.Farm_And_CharmReiClientPluginFabric"
+    ],
+    "jei_mod_plugin": [
+      "satisfy.farm_and_charm.compat.jei.Farm_And_Charm_JEIPlugin"
     ]
   },
   "mixins": [

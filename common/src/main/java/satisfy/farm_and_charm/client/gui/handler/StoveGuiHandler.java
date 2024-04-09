@@ -17,7 +17,7 @@ import satisfy.farm_and_charm.client.gui.handler.slot.ExtendedSlot;
 import satisfy.farm_and_charm.client.gui.handler.slot.StoveOutputSlot;
 import satisfy.farm_and_charm.client.recipebook.group.StoveRecipeBookGroup;
 import satisfy.farm_and_charm.recipe.StoveRecipe;
-import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
+import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
 
 import java.util.List;
@@ -61,7 +61,7 @@ public class StoveGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     }
 
     private boolean isIngredient(ItemStack stack) {
-        return this.world.getRecipeManager().getAllRecipesFor(RecipeTypesRegistry.STOVE_RECIPE_TYPE.get()).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
+        return this.world.getRecipeManager().getAllRecipesFor(RecipeTypeRegistry.STOVE_RECIPE_TYPE.get()).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
     }
 
     private static boolean isFuel(ItemStack stack) {

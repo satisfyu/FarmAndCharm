@@ -12,7 +12,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -31,7 +30,7 @@ import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.MincerBlock;
 import satisfy.farm_and_charm.recipe.MincerRecipe;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
-import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
+import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
 import java.util.List;
 import java.util.Objects;
@@ -248,7 +247,7 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                     full_rotations += 1;
                     
                     // check if we have a valid recipe or return null
-                    MincerRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypesRegistry.MINCER_RECIPE_TYPE.get(), mincer, level).orElse(null);
+                    MincerRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.MINCER_RECIPE_TYPE.get(), mincer, level).orElse(null);
                     
                     if (recipe != null) {
                         

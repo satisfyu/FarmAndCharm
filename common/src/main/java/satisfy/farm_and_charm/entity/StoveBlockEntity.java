@@ -34,7 +34,7 @@ import satisfy.farm_and_charm.block.StoveBlock;
 import satisfy.farm_and_charm.client.gui.handler.StoveGuiHandler;
 import satisfy.farm_and_charm.recipe.StoveRecipe;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
-import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
+import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -147,7 +147,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
             --this.burnTime;
         }
 
-        final StoveRecipe recipe = world.getRecipeManager().getRecipeFor(RecipeTypesRegistry.STOVE_RECIPE_TYPE.get(), blockEntity, world).orElse(null);
+        final StoveRecipe recipe = world.getRecipeManager().getRecipeFor(RecipeTypeRegistry.STOVE_RECIPE_TYPE.get(), blockEntity, world).orElse(null);
         assert level != null;
         RegistryAccess access = level.registryAccess();
         if (!initialBurningState && canCraft(recipe, access)) {

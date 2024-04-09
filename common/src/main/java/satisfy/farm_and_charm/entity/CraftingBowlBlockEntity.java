@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.CraftingBowlBlock;
 import satisfy.farm_and_charm.recipe.CraftingBowlRecipe;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
-import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
+import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -164,7 +164,7 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
             if (stirring > 0) {
                 if (stirred < CraftingBowlBlock.STIRS_NEEDED) {
                     stirred++;
-                    CraftingBowlRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypesRegistry.CRAFTING_BOWL_RECIPE_TYPE.get(), blockEntity, level).orElse(null);
+                    CraftingBowlRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.CRAFTING_BOWL_RECIPE_TYPE.get(), blockEntity, level).orElse(null);
                     if (stirred == CraftingBowlBlock.STIRS_NEEDED && recipe != null) {
                         recipe.getIngredients().forEach(ingredient -> {
                             int size = blockEntity.getItems().size();

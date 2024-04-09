@@ -10,6 +10,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import satisfy.farm_and_charm.client.gui.CookingPotGui;
+import satisfy.farm_and_charm.client.gui.RoasterGui;
 import satisfy.farm_and_charm.client.gui.StoveGui;
 import satisfy.farm_and_charm.client.model.CraftingBowlModel;
 import satisfy.farm_and_charm.client.model.MincerModel;
@@ -50,10 +51,13 @@ public class Farm_And_CharmClient {
         BlockEntityRendererRegistry.register(EntityTypeRegistry.SPRINKLER_BLOCK_ENTITY.get(), WaterSprinklerRenderer::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_POT_SCREEN_HANDLER.get(), CookingPotGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.STOVE_SCREEN_HANDLER.get(), StoveGui::new);
+        MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.ROASTER_SCREEN_HANDLER.get(), RoasterGui::new);
+
     }
 
+
     public static void registerEntityRenderers(){
-        EntityRendererRegistry.register(EntityTypeRegistry.RottenTomato, ThrownItemRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.ROTTEN_TOMATO, ThrownItemRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.FREIGHT_CART, CartRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.CHEST_CART, CartRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.PLOW, CartRenderer::new);

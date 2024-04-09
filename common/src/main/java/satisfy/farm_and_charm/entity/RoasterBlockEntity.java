@@ -24,11 +24,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.block.CookingPotBlock;
-import satisfy.farm_and_charm.client.gui.handler.CookingPotGuiHandler;
+import satisfy.farm_and_charm.block.RoasterBlock;
+import satisfy.farm_and_charm.client.gui.handler.RoasterGuiHandler;
 import satisfy.farm_and_charm.item.food.EffectFood;
 import satisfy.farm_and_charm.item.food.EffectFoodHelper;
-import satisfy.farm_and_charm.recipe.CookingPotRecipe;
+import satisfy.farm_and_charm.recipe.RoasterRecipe;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import satisfy.farm_and_charm.registry.TagRegistry;
@@ -37,7 +37,7 @@ import java.util.Objects;
 
 import static net.minecraft.world.item.ItemStack.isSameItemSameTags;
 
-public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTicker<CookingPotBlockEntity>, ImplementedInventory, MenuProvider {
+public class RoasterBlockEntity extends BlockEntity implements BlockEntityTicker<RoasterBlockEntity>, ImplementedInventory, MenuProvider {
 	
 	private final NonNullList<ItemStack> inventory = NonNullList.withSize(MAX_CAPACITY, ItemStack.EMPTY);
 	private static final int MAX_CAPACITY = 8;
@@ -52,14 +52,14 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 
 	private final ContainerData delegate;
 
-	public CookingPotBlockEntity(BlockPos pos, BlockState state) {
-		super(EntityTypeRegistry.COOKING_POT_BLOCK_ENTITY.get(), pos, state);
+	public RoasterBlockEntity(BlockPos pos, BlockState state) {
+		super(EntityTypeRegistry.ROASTER_BLOCK_ENTITY.get(), pos, state);
 		this.delegate = new ContainerData() {
 			@Override
 			public int get(int index) {
 				return switch (index) {
-					case 0 -> CookingPotBlockEntity.this.cookingTime;
-					case 1 -> CookingPotBlockEntity.this.isBeingBurned ? 1 : 0;
+					case 0 -> RoasterBlockEntity.this.cookingTime;
+					case 1 -> RoasterBlockEntity.this.isBeingBurned ? 1 : 0;
 					default -> 0;
 				};
 			}
@@ -67,8 +67,8 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 			@Override
 			public void set(int index, int value) {
 				switch (index) {
-					case 0 -> CookingPotBlockEntity.this.cookingTime = value;
-					case 1 -> CookingPotBlockEntity.this.isBeingBurned = value != 0;
+					case 0 -> RoasterBlockEntity.this.cookingTime = value;
+					case 1 -> RoasterBlockEntity.this.isBeingBurned = value != 0;
 				}
 			}
 
@@ -121,8 +121,8 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 		if (recipe == null || recipe.getResultItem(access).isEmpty()) {
 			return false;
 		}
-		if(recipe instanceof CookingPotRecipe cookingRecipe){
-			if (!this.getItem(BOTTLE_INPUT_SLOT).is(cookingRecipe.getContainer().getItem())) {
+		if(recipe instanceof RoasterRecipe roasterRecipe){
+			if (!this.getItem(BOTTLE_INPUT_SLOT).is(roasterRecipe.getContainer().getItem())) {
 				return false;
 			} else if (this.getItem(OUTPUT_SLOT).isEmpty()) {
 				return true;
@@ -216,18 +216,18 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 
 
 	@Override
-	public void tick(Level world, BlockPos pos, BlockState state, CookingPotBlockEntity blockEntity) {
+	public void tick(Level world, BlockPos pos, BlockState state, RoasterBlockEntity blockEntity) {
 		if (world.isClientSide()) {
 			return;
 		}
 		this.isBeingBurned = this.isBeingBurned();
 		if (!this.isBeingBurned){
-			if(state.getValue(CookingPotBlock.LIT)) {
-				world.setBlock(pos, state.setValue(CookingPotBlock.LIT, false), Block.UPDATE_ALL);
+			if(state.getValue(RoasterBlock.LIT)) {
+				world.setBlock(pos, state.setValue(RoasterBlock.LIT, false), Block.UPDATE_ALL);
 			}
 			return;
 		}
-		Recipe<?> recipe = world.getRecipeManager().getRecipeFor(RecipeTypeRegistry.COOKING_POT_RECIPE_TYPE.get(), this, world).orElse(null);
+		Recipe<?> recipe = world.getRecipeManager().getRecipeFor(RecipeTypeRegistry.ROASTER_RECIPE_TYPE.get(), this, world).orElse(null);
         assert level != null;
         RegistryAccess access = level.registryAccess();
 		boolean canCraft = this.canCraft(recipe, access);
@@ -241,12 +241,12 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 			this.cookingTime = 0;
 		}
 		if (canCraft) {
-			world.setBlock(pos, this.getBlockState().getBlock().defaultBlockState().setValue(CookingPotBlock.COOKING, true).setValue(CookingPotBlock.LIT, true), Block.UPDATE_ALL);
-		} else if (state.getValue(CookingPotBlock.COOKING)) {
-			world.setBlock(pos, this.getBlockState().getBlock().defaultBlockState().setValue(CookingPotBlock.COOKING, false).setValue(CookingPotBlock.LIT, true), Block.UPDATE_ALL);
+			world.setBlock(pos, this.getBlockState().getBlock().defaultBlockState().setValue(RoasterBlock.COOKING, true).setValue(RoasterBlock.LIT, true), Block.UPDATE_ALL);
+		} else if (state.getValue(RoasterBlock.COOKING)) {
+			world.setBlock(pos, this.getBlockState().getBlock().defaultBlockState().setValue(RoasterBlock.COOKING, false).setValue(RoasterBlock.LIT, true), Block.UPDATE_ALL);
 		}
-		else if(state.getValue(CookingPotBlock.LIT) != this.isBeingBurned){
-			world.setBlock(pos, state.setValue(CookingPotBlock.LIT, this.isBeingBurned), Block.UPDATE_ALL);
+		else if(state.getValue(RoasterBlock.LIT) != this.isBeingBurned){
+			world.setBlock(pos, state.setValue(RoasterBlock.LIT, this.isBeingBurned), Block.UPDATE_ALL);
 		}
 	}
 
@@ -275,7 +275,7 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 	@Nullable
 	@Override
 	public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
-		return new CookingPotGuiHandler(syncId, inv, this, this.delegate);
+		return new RoasterGuiHandler(syncId, inv, this, this.delegate);
 	}
 }
 

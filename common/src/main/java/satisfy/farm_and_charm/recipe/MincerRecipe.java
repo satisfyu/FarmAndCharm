@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
+import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
 public class MincerRecipe implements Recipe<Container> {
 
@@ -57,12 +57,12 @@ public class MincerRecipe implements Recipe<Container> {
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
-        return RecipeTypesRegistry.MINCER_RECIPE_SERIALIZER.get();
+        return RecipeTypeRegistry.MINCER_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public @NotNull RecipeType<?> getType() {
-        return RecipeTypesRegistry.MINCER_RECIPE_TYPE.get();
+        return RecipeTypeRegistry.MINCER_RECIPE_TYPE.get();
     }
 
     @Override

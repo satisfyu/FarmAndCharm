@@ -22,7 +22,7 @@ import satisfy.farm_and_charm.registry.ObjectRegistry;
 public class RottenTomatoEntity extends ThrowableItemProjectile {
 
     public RottenTomatoEntity(Level world, LivingEntity owner) {
-        super(EntityTypeRegistry.RottenTomato.get(), owner, world);
+        super(EntityTypeRegistry.ROTTEN_TOMATO.get(), owner, world);
     }
 
     public RottenTomatoEntity(EntityType<? extends RottenTomatoEntity> entityType, Level world) {

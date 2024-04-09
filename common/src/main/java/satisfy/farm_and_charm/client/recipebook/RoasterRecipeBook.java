@@ -15,23 +15,23 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.recipe.CookingPotRecipe;
+import satisfy.farm_and_charm.recipe.RoasterRecipe;
 import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
 import java.util.List;
 
 @Environment(EnvType.CLIENT)
-public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
+public class RoasterRecipeBook extends PrivateRecipeBookWidget {
     private static final Component TOGGLE_COOKABLE_TEXT;
 
-    public CookingPotRecipeBook() {
+    public RoasterRecipeBook() {
     }
 
     @Override
     public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots, RegistryAccess registryAccess) {
         this.ghostSlots.addSlot(recipe.getResultItem(registryAccess), slots.get(7).x, slots.get(7).y);
-        if (recipe instanceof CookingPotRecipe cookingPotRecipe) {
-            this.ghostSlots.addSlot(cookingPotRecipe.getContainer(), slots.get(0).x, slots.get(0).y);
+        if (recipe instanceof RoasterRecipe roasterRecipe) {
+            this.ghostSlots.addSlot(roasterRecipe.getContainer(), slots.get(0).x, slots.get(0).y);
         }
         int j = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
@@ -47,10 +47,10 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     public void insertRecipe(Recipe<?> recipe) {
-        if (recipe instanceof CookingPotRecipe cookingPotRecipe) {
+        if (recipe instanceof RoasterRecipe roasterRecipe) {
             int slotIndex = 0;
             for (Slot slot : this.screenHandler.slots) {
-                if (cookingPotRecipe.getContainer().getItem() == slot.getItem().getItem()) {
+                if (roasterRecipe.getContainer().getItem() == slot.getItem().getItem()) {
                     assert Minecraft.getInstance().gameMode != null;
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, slotIndex, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, 0, 0, ClickType.PICKUP, Minecraft.getInstance().player);
@@ -93,7 +93,7 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     protected RecipeType<? extends Recipe<Container>> getRecipeType() {
-        return RecipeTypeRegistry.COOKING_POT_RECIPE_TYPE.get();
+        return RecipeTypeRegistry.ROASTER_RECIPE_TYPE.get();
     }
 
     @Override

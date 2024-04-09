@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
+import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import satisfy.farm_and_charm.util.GeneralUtil;
 
 
@@ -68,12 +68,12 @@ public class StoveRecipe implements Recipe<Container> {
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
-        return RecipeTypesRegistry.STOVE_RECIPE_SERIALIZER.get();
+        return RecipeTypeRegistry.STOVE_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public @NotNull RecipeType<?> getType() {
-        return RecipeTypesRegistry.STOVE_RECIPE_TYPE.get();
+        return RecipeTypeRegistry.STOVE_RECIPE_TYPE.get();
     }
 
     @Override

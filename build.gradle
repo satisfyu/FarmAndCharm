@@ -46,6 +46,10 @@ allprojects {
                 includeGroup "maven.modrinth"
             }
         }
+        maven {
+            name = "Jared's maven"
+            url = "https://maven.blamejared.com/"
+        }
     }
 
     tasks.withType(JavaCompile) {

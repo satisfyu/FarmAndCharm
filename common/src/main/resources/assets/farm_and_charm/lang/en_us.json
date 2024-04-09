@@ -129,5 +129,11 @@
   "tooltip.farm_and_charm.thankyou_1": "A reward for crafting all Food Variants",
   "tooltip.farm_and_charm.thankyou_2": "When placed:",
   "tooltip.farm_and_charm.thankyou_3": "Thank you for playing Farm&Charm!",
-  "tooltip.farm_and_charm.thankyou_4": "Increases the growth rate of surrounding seeds"
+  "tooltip.farm_and_charm.thankyou_4": "Increases the growth rate of surrounding seeds",
+  "gui.farm_and_charm.recipebook.toggleRecipes.cookable": "Show Cookable",
+  "rei.farm_and_charm.stove_category": "Stove",
+  "rei.farm_and_charm.roaster_category": "Roaster",
+  "rei.farm_and_charm.baking_category": "Baking",
+  "rei.farm_and_charm.cooking_pot_category": "Cooking Pot",
+  "rei.farm_anc_charm.bowl_category": "Crafting Bowl"
 }

@@ -15,7 +15,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.registry.RecipeTypesRegistry;
+import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
 import java.util.List;
 
@@ -47,6 +47,7 @@ public class StoveRecipeBook extends PrivateRecipeBookWidget {
                 ItemStack itemStack = slot.getItem();
 
                 if (ingredient.test(itemStack) && usedInputSlots < 7) {
+                    assert Minecraft.getInstance().gameMode != null;
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, slotIndex, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     Minecraft.getInstance().gameMode.handleInventoryMouseClick(screenHandler.containerId, usedInputSlots, 0, ClickType.PICKUP, Minecraft.getInstance().player);
                     ++usedInputSlots;
@@ -73,7 +74,7 @@ public class StoveRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     protected RecipeType<? extends Recipe<Container>> getRecipeType() {
-        return RecipeTypesRegistry.STOVE_RECIPE_TYPE.get();
+        return RecipeTypeRegistry.STOVE_RECIPE_TYPE.get();
     }
 
     @Override

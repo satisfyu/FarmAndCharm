@@ -13,7 +13,7 @@ import satisfy.farm_and_charm.recipe.*;
 
 import java.util.function.Supplier;
 
-public class RecipeTypesRegistry {
+public class RecipeTypeRegistry {
 
     private static final Registrar<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.RECIPE_TYPE).getRegistrar();
     private static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.RECIPE_SERIALIZER).getRegistrar();
@@ -26,6 +26,8 @@ public class RecipeTypesRegistry {
     public static final RegistrySupplier<RecipeSerializer<StoveRecipe>> STOVE_RECIPE_SERIALIZER = create("stove", StoveRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<MincerRecipe>> MINCER_RECIPE_TYPE = create("mincer");
     public static final RegistrySupplier<RecipeSerializer<MincerRecipe>> MINCER_RECIPE_SERIALIZER = create("mincer", MincerRecipe.Serializer::new);
+    public static final RegistrySupplier<RecipeType<RoasterRecipe>> ROASTER_RECIPE_TYPE = create("roaster");
+    public static final RegistrySupplier<RecipeSerializer<RoasterRecipe>> ROASTER_RECIPE_SERIALIZER = create("roaster", RoasterRecipe.Serializer::new);
 
 
     private static <T extends Recipe<?>> RegistrySupplier<RecipeSerializer<T>> create(String name, Supplier<RecipeSerializer<T>> serializer) {
