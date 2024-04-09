@@ -27,7 +27,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "farm_and_charm:corn_seeds"
+              "name": "farm_and_charm:kernels"
             }
           ]
         }
@@ -59,7 +59,7 @@
               }
             }
           ],
-          "name": "farm_and_charm:corn_seeds"
+          "name": "farm_and_charm:kernels"
         }
       ],
       "rolls": 1.0

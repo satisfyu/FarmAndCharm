@@ -1,13 +1,10 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " # "
-  ],
-  "key": {
-    "#": {
-      "item": "farm_and_charm:oat_block"
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:oat_ball"
     }
-  },
+  ],
   "result": {
     "item": "farm_and_charm:oat",
     "count": 9

@@ -1,7 +1,7 @@
 {
   "type": "farm_and_charm:mincer",
   "ingredient": {
-    "item": "minecraft:dough"
+    "tag": "farm_and_charm:dough"
   },
   "recipe_type": "STONE",
   "result": {
