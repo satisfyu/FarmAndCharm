@@ -14,7 +14,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -95,7 +94,7 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 	public boolean isBeingBurned() {
 		if (level == null) throw new IllegalStateException("Null world not allowed");
 		BlockState belowState = level.getBlockState(worldPosition.below());
-		return belowState.is(TagRegistry.ALLOWS_COOKING) && belowState.getProperties().contains(BlockStateProperties.LIT) && belowState.getValue(BlockStateProperties.LIT);
+		return belowState.is(TagRegistry.ALLOWS_COOKING);
 	}
 
 	private boolean canCraft(Recipe<?> recipe, RegistryAccess access) {
@@ -117,7 +116,7 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 			for (int slot = 0; slot < INGREDIENTS_AREA; slot++) {
 				ItemStack stack = getItem(slot);
 				if (ingredient.test(stack)) {
-					ItemStack remainderStack = stack.getItem().hasCraftingRemainingItem() ? new ItemStack(stack.getItem().getCraftingRemainingItem()) : ItemStack.EMPTY;
+					ItemStack remainderStack = stack.getItem().hasCraftingRemainingItem() ? new ItemStack(Objects.requireNonNull(stack.getItem().getCraftingRemainingItem())) : ItemStack.EMPTY;
 					stack.shrink(1);
 					if (!remainderStack.isEmpty()) setItem(slot, remainderStack);
 					break;
@@ -144,11 +143,16 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 
 	public void tick(Level world, BlockPos pos, BlockState state, CookingPotBlockEntity blockEntity) {
 		if (world.isClientSide()) return;
+		boolean wasBeingBurned = isBeingBurned;
 		isBeingBurned = isBeingBurned();
+		if (wasBeingBurned != isBeingBurned || state.getValue(CookingPotBlock.LIT) != isBeingBurned) {
+			world.setBlock(pos, state.setValue(CookingPotBlock.LIT, isBeingBurned), Block.UPDATE_ALL);
+		}
+
 		if (!isBeingBurned) {
-			if (state.getValue(CookingPotBlock.LIT)) world.setBlock(pos, state.setValue(CookingPotBlock.LIT, false), Block.UPDATE_ALL);
 			return;
 		}
+
 		Recipe<?> recipe = world.getRecipeManager().getRecipeFor(RecipeTypeRegistry.COOKING_POT_RECIPE_TYPE.get(), this, world).orElse(null);
 		if (level == null) throw new IllegalStateException("Null world not allowed");
 		RegistryAccess access = level.registryAccess();
@@ -157,12 +161,17 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
 				cookingTime = 0;
 				craft(recipe, access);
 			}
-			if (!state.getValue(CookingPotBlock.COOKING)) world.setBlock(pos, state.setValue(CookingPotBlock.COOKING, true).setValue(CookingPotBlock.LIT, true), Block.UPDATE_ALL);
+			if (!state.getValue(CookingPotBlock.COOKING)) {
+				world.setBlock(pos, state.setValue(CookingPotBlock.COOKING, true), Block.UPDATE_ALL);
+			}
 		} else {
 			cookingTime = 0;
-			if (state.getValue(CookingPotBlock.COOKING)) world.setBlock(pos, state.setValue(CookingPotBlock.COOKING, false).setValue(CookingPotBlock.LIT, true), Block.UPDATE_ALL);
+			if (state.getValue(CookingPotBlock.COOKING)) {
+				world.setBlock(pos, state.setValue(CookingPotBlock.COOKING, false), Block.UPDATE_ALL);
+			}
 		}
 	}
+
 
 	public NonNullList<ItemStack> getItems() {
 		return inventory;
