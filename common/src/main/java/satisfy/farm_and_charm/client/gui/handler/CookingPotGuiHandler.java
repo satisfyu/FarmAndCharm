@@ -38,7 +38,7 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     }
 
     private void buildBlockEntityContainer(Container inventory) {
-        this.addSlot(new ExtendedSlot(inventory, 6,95, 55, stack -> stack.is(Items.BOWL)));
+        this.addSlot(new ExtendedSlot(inventory, 6, 95, 55, stack -> stack.is(Items.BOWL) || stack.is(Items.GLASS_BOTTLE)));
 
         for (int row = 0; row < 2; row++) {
             for (int slot = 0; slot < 3; slot++) {
@@ -72,7 +72,7 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
     public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = CookingPotBlockEntity.MAX_COOKING_TIME;
+        final int totalProgress = CookingPotBlockEntity.getMaxCookingTime();
         if (progress == 0) {
             return 0;
         }

@@ -37,7 +37,7 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
     public CookingPotCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(CookingPotGui.BACKGROUND, WIDTH_OF, HEIGHT_OF, WIDTH, HEIGHT);
         this.arrow = helper.drawableBuilder(CookingPotGui.BACKGROUND, 178, 15, 18, 30)
-                .buildAnimated(CookingPotBlockEntity.MAX_COOKING_TIME, IDrawableAnimated.StartDirection.LEFT, false);
+                .buildAnimated(CookingPotBlockEntity.getMaxCookingTime(), IDrawableAnimated.StartDirection.LEFT, false);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, ObjectRegistry.COOKING_POT.get().asItem().getDefaultInstance());
         this.localizedName = Component.translatable("rei.farm_and_charm.cooking_pot_category");
     }
