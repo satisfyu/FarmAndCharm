@@ -72,7 +72,7 @@ public class RoasterGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
     public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(0);
-        final int totalProgress = RoasterBlockEntity.MAX_COOKING_TIME;
+        final int totalProgress = RoasterBlockEntity.getMaxRoastingTime();
         if (progress == 0) {
             return 0;
         }

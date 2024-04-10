@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "minecraft:cooked_mutton",
     "farm_and_charm:baked_lamb_ham",

@@ -16,12 +16,9 @@ import satisfy.farm_and_charm.client.model.CraftingBowlModel;
 import satisfy.farm_and_charm.client.model.MincerModel;
 import satisfy.farm_and_charm.client.model.ScarecrowModel;
 import satisfy.farm_and_charm.client.model.WaterSprinklerModel;
-import satisfy.farm_and_charm.client.model.cart.CartModel;
-import satisfy.farm_and_charm.client.render.CraftingBowlRenderer;
-import satisfy.farm_and_charm.client.render.MincerRenderer;
-import satisfy.farm_and_charm.client.render.ScarecrowRenderer;
-import satisfy.farm_and_charm.client.render.WaterSprinklerRenderer;
-import satisfy.farm_and_charm.client.render.cart.CartRenderer;
+import satisfy.farm_and_charm.client.model.CartModel;
+import satisfy.farm_and_charm.client.model.PlowModel;
+import satisfy.farm_and_charm.client.render.*;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.ModelRegistry;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
@@ -38,7 +35,7 @@ public class Farm_And_CharmClient {
                 WILD_EMMER.get(), WILD_LETTUCE.get(), WILD_NETTLE.get(), WILD_OAT.get(), WILD_ONIONS.get(), WILD_POTATOES.get(),
                 WILD_TOMATOES.get(), WILD_STRAWBERRIES.get(), STUFFED_RABBIT.get(), STUFFED_CHICKEN.get(), FARMERS_BREAKFAST.get(),
                 ROASTED_CORN_BLOCK.get(), OAT_PANCAKE_BLOCK.get(), CORN_CROP.get(), OAT_CROP.get(), BARLEY_CROP.get(), LETTUCE_CROP.get(),
-                ONION_CROP.get(),TOMATO_CROP.get(), STRAWBERRY_CROP.get(), COOKING_POT.get()
+                ONION_CROP.get(),TOMATO_CROP.get(), STRAWBERRY_CROP.get(), COOKING_POT.get(), ROASTER.get()
 
         );
 
@@ -60,7 +57,7 @@ public class Farm_And_CharmClient {
         EntityRendererRegistry.register(EntityTypeRegistry.ROTTEN_TOMATO, ThrownItemRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.FREIGHT_CART, CartRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.CHEST_CART, CartRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.PLOW, CartRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.PLOW, PlowRenderer::new);
     }
 
 
@@ -75,5 +72,6 @@ public class Farm_And_CharmClient {
         EntityModelLayerRegistry.register(MincerModel.LAYER_LOCATION, MincerModel::getTexturedModelData);
         EntityModelLayerRegistry.register(ScarecrowModel.LAYER_LOCATION, ScarecrowModel::getTexturedModelData);
         EntityModelLayerRegistry.register(ModelRegistry.CART, CartModel::createBodyLayer);
+        EntityModelLayerRegistry.register(ModelRegistry.PLOW, PlowModel::createBodyLayer);
     }
 }

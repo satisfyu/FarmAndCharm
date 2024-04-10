@@ -4,6 +4,7 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
@@ -11,6 +12,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,7 +40,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.CookingPotBlockEntity;
 import satisfy.farm_and_charm.registry.SoundEventRegistry;
-import satisfy.farm_and_charm.registry.TagRegistry;
 import satisfy.farm_and_charm.util.GeneralUtil;
 
 import java.util.HashMap;
@@ -74,6 +76,16 @@ public class CookingPotBlock extends BaseEntityBlock {
     });
 
     @Override
+    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+        if (!world.isClientSide) {
+            if (state.getValue(NEEDS_SUPPORT) && !world.getBlockState(pos.below()).isSolidRender(world, pos.below())) {
+                world.destroyBlock(pos, true);
+            }
+        }
+    }
+
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         Level world = ctx.getLevel();
         BlockPos pos = ctx.getClickedPos();
@@ -82,6 +94,29 @@ public class CookingPotBlock extends BaseEntityBlock {
         return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite()).setValue(NEEDS_SUPPORT, needsSupport);
     }
 
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        BlockPos belowPos = pos.below();
+        BlockState belowState = world.getBlockState(belowPos);
+        boolean isCampfireBelow = belowState.is(BlockTags.CAMPFIRES);
+        boolean isSolidBelow = belowState.isFaceSturdy(world, belowPos, Direction.UP);
+        return isCampfireBelow || isSolidBelow;
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (!state.canSurvive(world, pos)) {
+            world.destroyBlock(pos, true);
+        }
+    }
+
+    @Override
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!state.canSurvive(world, pos)) {
+            world.scheduleTick(pos, this, 1);
+        }
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+    }
 
     @Override
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {

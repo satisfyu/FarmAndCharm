@@ -1,6 +1,7 @@
 package satisfy.farm_and_charm.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -14,6 +15,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -34,6 +37,7 @@ import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.CraftingBowlBlockEntity;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.SoundEventRegistry;
+import satisfy.farm_and_charm.util.GeneralUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -114,7 +118,7 @@ public class CraftingBowlBlock extends BaseEntityBlock {
                 }
                 if (stirring <= 6) {
                     world.setBlock(pos, blockState.setValue(STIRRING, 10), 3);
-                    world.playSound(null, pos, SoundEventRegistry.CRAFTING_BOWL.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
+                    world.playSound(null, pos, SoundEventRegistry.CRAFTING_BOWL_STIRRING.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
                     return InteractionResult.SUCCESS;
                 }
             }
@@ -122,11 +126,28 @@ public class CraftingBowlBlock extends BaseEntityBlock {
         return InteractionResult.PASS;
     }
 
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        VoxelShape shape = world.getBlockState(pos.below()).getShape(world, pos.below());
+        Direction direction = Direction.UP;
+        return Block.isFaceFull(shape, direction);
+    }
 
     @Override
-    public void tick(BlockState blockState, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.tick(blockState, level, pos, random);
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (!state.canSurvive(world, pos)) {
+            world.destroyBlock(pos, true);
+        }
     }
+
+    @Override
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!state.canSurvive(world, pos)) {
+            world.scheduleTick(pos, this, 1);
+        }
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+    }
+
 
     @Override
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {

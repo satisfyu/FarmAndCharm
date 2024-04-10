@@ -13,8 +13,8 @@ public class HorseFodderEffect extends MobEffect {
 
     public HorseFodderEffect() {
         super(MobEffectCategory.BENEFICIAL, 0x8B4513);
-        this.addAttributeModifier(Attributes.JUMP_STRENGTH, JUMP_STRENGTH_MODIFIER_UUID, 0.2F, AttributeModifier.Operation.ADDITION);
-        this.addAttributeModifier(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED_MODIFIER_UUID, 0.5F, AttributeModifier.Operation.ADDITION);
+        this.addAttributeModifier(Attributes.JUMP_STRENGTH, JUMP_STRENGTH_MODIFIER_UUID, 0.1F, AttributeModifier.Operation.ADDITION);
+        this.addAttributeModifier(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED_MODIFIER_UUID, 0.1F, AttributeModifier.Operation.ADDITION);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class HorseFodderEffect extends MobEffect {
         if (modifier.getId().equals(UUID.fromString(JUMP_STRENGTH_MODIFIER_UUID)))
             return (amplifier + 1) * 0.5F;
         if (modifier.getId().equals(UUID.fromString(MOVEMENT_SPEED_MODIFIER_UUID)))
-            return (amplifier + 1) * 1.0F;
+            return (amplifier + 1) * 0.5F;
         return amplifier + 1;
     }
 

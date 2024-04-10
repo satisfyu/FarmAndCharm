@@ -31,7 +31,6 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.ROTTEN_TOMATO.get());
                 output.accept(ObjectRegistry.STRAWBERRY_SEEDS.get());
                 output.accept(ObjectRegistry.STRAWBERRY.get());
-
                 output.accept(ObjectRegistry.WILD_NETTLE.get());
                 output.accept(ObjectRegistry.WILD_RIBWORT.get());
                 output.accept(ObjectRegistry.WILD_EMMER.get());
@@ -45,7 +44,6 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.WILD_ONIONS.get());
                 output.accept(ObjectRegistry.WILD_TOMATOES.get());
                 output.accept(ObjectRegistry.WILD_STRAWBERRIES.get());
-
                 output.accept(ObjectRegistry.LETTUCE_BAG.get());
                 output.accept(ObjectRegistry.TOMATO_BAG.get());
                 output.accept(ObjectRegistry.CARROT_BAG.get());
@@ -55,7 +53,6 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.CORN_BAG.get());
                 output.accept(ObjectRegistry.STRAWBERRY_BAG.get());
                 output.accept(ObjectRegistry.FLOUR_BAG.get());
-
                 output.accept(ObjectRegistry.OAT_BALL.get());
                 output.accept(ObjectRegistry.BARLEY_BALL.get());
                 output.accept(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
@@ -63,13 +60,11 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.STOVE.get());
                 output.accept(ObjectRegistry.FEEDING_TROUGH.get());
                 output.accept(ObjectRegistry.WATER_SPRINKLER.get());
-
                 output.accept(ObjectRegistry.SILO_WOOD.get());
                 output.accept(ObjectRegistry.SILO_COPPER.get());
-
+                output.accept(ObjectRegistry.PITCHFORK.get());
                 output.accept(ObjectRegistry.SUPPLY_CART.get());
                 output.accept(ObjectRegistry.PLOW.get());
-                output.accept(ObjectRegistry.PITCHFORK.get());
                 output.accept(ObjectRegistry.WINDOW_SILL.get());
                 output.accept(ObjectRegistry.TOOL_RACK.get());
                 output.accept(ObjectRegistry.CRAFTING_BOWL.get());

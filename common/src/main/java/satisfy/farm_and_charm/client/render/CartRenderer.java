@@ -1,4 +1,4 @@
-package satisfy.farm_and_charm.client.render.cart;
+package satisfy.farm_and_charm.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -8,8 +8,9 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
-import satisfy.farm_and_charm.client.model.cart.CartModel;
+import satisfy.farm_and_charm.client.model.CartModel;
 import satisfy.farm_and_charm.entity.cart.CartEntity;
 
 public class CartRenderer extends EntityRenderer<CartEntity> {
@@ -22,7 +23,7 @@ public class CartRenderer extends EntityRenderer<CartEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(CartEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(CartEntity entity) {
         return CART_TEXTURE;
     }
 

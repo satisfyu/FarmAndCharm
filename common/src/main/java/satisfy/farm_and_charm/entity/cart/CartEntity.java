@@ -59,6 +59,7 @@ public abstract class CartEntity extends DrivableEntity {
         super.tick();
 
         if (this.hasDriver()) {
+            assert this.getDriver() != null;
             if (10.0F < this.position().distanceTo(this.getDriver().position())) {
                 this.removeDriver();
             }
@@ -77,6 +78,7 @@ public abstract class CartEntity extends DrivableEntity {
         this.setupRotation();
 
         if (this.hasDriver()) {
+            assert this.getDriver() != null;
             this.lastDriverX = this.getDriver().getX();
             this.lastDriverY = this.getDriver().getY();
             this.lastDriverZ = this.getDriver().getZ();
@@ -86,6 +88,7 @@ public abstract class CartEntity extends DrivableEntity {
     private void setupMovement() {
         if (this.hasDriver()) {
             Vec3 lastMoveVec = this.position().subtract(this.lastDriverX, this.lastDriverY, this.lastDriverZ).scale(0.5D); // oldDriverPos --> this
+            assert this.getDriver() != null;
             Vec3 driverMoveVec = this.getDriver().position().subtract(this.lastDriverX, this.lastDriverY, this.lastDriverZ).reverse().scale(0.5D); // driver --> oldDriverPos
             Vec3 newPosVec = driverMoveVec.add(lastMoveVec).normalize().scale(this.holdOffset());
             Vec3 desiredPos = this.getDriver().position().add(newPosVec);
@@ -104,6 +107,7 @@ public abstract class CartEntity extends DrivableEntity {
 
     private void setupRotation() {
         if (this.hasDriver()) {
+            assert this.getDriver() != null;
             Vec3 lookAtVec = this.getDriver().position().subtract(this.position()).normalize();
             double yRot = Math.atan2(-lookAtVec.x, lookAtVec.z);
             double xRot = Math.atan2(-lookAtVec.y, Math.sqrt(lookAtVec.x * lookAtVec.x + lookAtVec.z * lookAtVec.z));
@@ -171,7 +175,7 @@ public abstract class CartEntity extends DrivableEntity {
     }
 
     protected void destroy(DamageSource damageSource) {
-        this.spawnAtLocation(ObjectRegistry.SCARECROW.get()); // TODO
+        this.spawnAtLocation(ObjectRegistry.SUPPLY_CART.get());
     }
 
     @Override

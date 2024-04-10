@@ -9,6 +9,12 @@
     },
     {
       "item": "farm_and_charm:simple_tomato_soup"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:potato"
     }
   ],
   "container": {

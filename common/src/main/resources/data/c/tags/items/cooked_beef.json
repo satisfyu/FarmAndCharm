@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "minecraft:cooked_beef",
     "farm_and_charm:beef_patty_with_vegetables",

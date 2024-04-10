@@ -6,6 +6,9 @@
     },
     {
       "tag": "farm_and_charm:corn"
+    },
+    {
+      "item": "farm_and_charm:butter"
     }
   ],
   "item": "farm_and_charm:roasted_corn",

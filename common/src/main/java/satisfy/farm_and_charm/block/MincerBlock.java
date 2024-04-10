@@ -18,6 +18,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -159,7 +161,7 @@ public class MincerBlock extends BaseEntityBlock {
                 if (crank <= 6) {
 
                     level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
-                    level.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                    level.playSound(null, pos, SoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
                     return InteractionResult.SUCCESS;
                 }
 
@@ -185,7 +187,7 @@ public class MincerBlock extends BaseEntityBlock {
             if (crank <= 6) {
 
                 level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
-                level.playSound(null, pos, SoundEventRegistry.MINCER.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                level.playSound(null, pos, SoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
                 return InteractionResult.SUCCESS;
             }
 
@@ -198,10 +200,26 @@ public class MincerBlock extends BaseEntityBlock {
         return InteractionResult.SUCCESS;
     }
 
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        VoxelShape shape = world.getBlockState(pos.below()).getShape(world, pos.below());
+        Direction direction = Direction.UP;
+        return Block.isFaceFull(shape, direction);
+    }
 
     @Override
-    public void tick(BlockState blockState, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.tick(blockState, level, pos, random);
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (!state.canSurvive(world, pos)) {
+            world.destroyBlock(pos, true);
+        }
+    }
+
+    @Override
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!state.canSurvive(world, pos)) {
+            world.scheduleTick(pos, this, 1);
+        }
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override

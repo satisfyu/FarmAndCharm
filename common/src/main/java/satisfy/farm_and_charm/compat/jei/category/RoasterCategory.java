@@ -37,7 +37,7 @@ public class RoasterCategory implements IRecipeCategory<RoasterRecipe> {
     public RoasterCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(RoasterGui.BACKGROUND, WIDTH_OF, HEIGHT_OF, WIDTH, HEIGHT);
         this.arrow = helper.drawableBuilder(RoasterGui.BACKGROUND, 178, 15, 18, 30)
-                .buildAnimated(RoasterBlockEntity.MAX_COOKING_TIME, IDrawableAnimated.StartDirection.LEFT, false);
+                .buildAnimated(RoasterBlockEntity.getMaxRoastingTime(), IDrawableAnimated.StartDirection.LEFT, false);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, ObjectRegistry.ROASTER.get().asItem().getDefaultInstance());
         this.localizedName = Component.translatable("rei.farm_and_charm.roaster_category");
     }

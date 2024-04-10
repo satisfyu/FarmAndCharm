@@ -10,6 +10,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 import java.util.List;
 import java.util.Map;
@@ -96,6 +98,14 @@ public class EffectItem extends Item {
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level world, net.minecraft.world.entity.LivingEntity entity) {
         super.finishUsingItem(stack, world, entity);
-        return stack.isEmpty() ? new ItemStack(Items.BOWL) : stack;
+        if (stack.getItem() == ObjectRegistry.STRAWBERRY_TEA_CUP.get() || stack.getItem() == ObjectRegistry.NETTLE_TEA_CUP.get() || stack.getItem() == ObjectRegistry.RIBWORT_TEA_CUP.get()) {
+            if (entity instanceof Player player) {
+                if (!player.getInventory().add(new ItemStack(Items.GLASS_BOTTLE))) {player.drop(new ItemStack(Items.GLASS_BOTTLE), false);
+                }
+            }
+            return stack.isEmpty() ? new ItemStack(Items.GLASS_BOTTLE) : stack;
+        } else {
+            return stack.isEmpty() ? new ItemStack(Items.BOWL) : stack;
+        }
     }
 }

@@ -5,9 +5,10 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
-import net.minecraft.world.level.GameRules;
 
 public class SustenanceEffect extends MobEffect {
+    private static final int INTERVAL = 120;
+
     public SustenanceEffect() {
         super(MobEffectCategory.BENEFICIAL, 0);
     }
@@ -16,18 +17,12 @@ public class SustenanceEffect extends MobEffect {
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.getCommandSenderWorld().isClientSide && entity instanceof Player player) {
             FoodData foodData = player.getFoodData();
-            boolean shouldHeal = player.isHurt() && player.getCommandSenderWorld().getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)
-                    && foodData.getSaturationLevel() > 0f && foodData.getFoodLevel() >= 18;
-
-            if (!shouldHeal) {
-                if (foodData.getFoodLevel() > 3 || foodData.getSaturationLevel() <= 0f) {
-                    foodData.setFoodLevel(Math.max(foodData.getFoodLevel() - 1, 3));
+            if (entity.tickCount % INTERVAL == 0) {
+                if (foodData.getFoodLevel() == 20) {
+                    player.heal(1.0F);
+                } else {
+                    foodData.setFoodLevel(foodData.getFoodLevel() + 1);
                 }
-                foodData.addExhaustion(-4.0f);
-            }
-            long worldTime = player.getCommandSenderWorld().getDayTime() % 24000;
-            if (worldTime >= 1000 && worldTime <= 6000) {
-                foodData.eat(5, 0.5f);
             }
         }
     }

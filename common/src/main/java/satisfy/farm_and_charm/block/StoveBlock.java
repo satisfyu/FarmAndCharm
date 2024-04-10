@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
@@ -32,8 +31,9 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.StoveBlockEntity;
+import satisfy.farm_and_charm.registry.SoundEventRegistry;
 
-@SuppressWarnings({"unchecked", "deprecation"})
+@SuppressWarnings("deprecation")
 public class StoveBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -84,15 +84,18 @@ public class StoveBlock extends Block implements EntityBlock {
         builder.add(FACING, LIT);
     }
 
-    @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level world, BlockState state, BlockEntityType<T> type) {
-        return (theWorld, pos, theState, blockEntity) -> {
-            if (blockEntity instanceof BlockEntityTicker<?>) {
-                ((BlockEntityTicker) blockEntity).tick(theWorld, pos, theState, blockEntity);
-            }
-        };
+        if (!world.isClientSide) {
+            return (lvl, pos, blkState, t) -> {
+                if (t instanceof StoveBlockEntity stoveBlock) {
+                    stoveBlock.tick(lvl, pos, blkState, stoveBlock);
+                }
+            };
+        }
+        return null;
     }
+
 
     @Nullable
     @Override
@@ -102,34 +105,32 @@ public class StoveBlock extends Block implements EntityBlock {
 
     @Override
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
-        if (!state.getValue(LIT))
+        if (!state.getValue(LIT) || !world.isEmptyBlock(pos.above()))
             return;
 
         double d = (double) pos.getX() + 0.5;
         double e = pos.getY() + 0.24;
         double f = (double) pos.getZ() + 0.5;
-        if (random.nextDouble() < 0.4)
-            world.playLocalSound(d, e, f, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.4f, 1.0f, false);
-        world.playLocalSound(d, e, f, SoundEvents.SMOKER_SMOKE, SoundSource.BLOCKS, 0.4f, 1.0f, false);
-        world.playLocalSound(d, e, f, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 0.4f, 1.0f, false);
 
         Direction direction = state.getValue(FACING);
-        Direction.Axis axis = direction.getAxis();
         double h = random.nextDouble() * 0.6 - 0.3;
-        double i = axis == Direction.Axis.X ? (double) direction.getStepX() * 0.52 : h;
+        double i = direction.getAxis() == Direction.Axis.X ? (double) direction.getStepX() * 0.52 : h;
         double j = random.nextDouble() * 6.0 / 16.0;
-        double k = axis == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52 : h;
-        world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
-        world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
-        double particleHeight = pos.getY() + 0.5 + 1.0;
-        world.addParticle(ParticleTypes.SMOKE, d, particleHeight, f, 0.0, 0.0, 0.0);
+        double k = direction.getAxis() == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52 : h;
+
+        if (random.nextDouble() < 0.1) {
+            world.playLocalSound(d, e, f, SoundEventRegistry.STOVE_CRACKLING.get(), SoundSource.BLOCKS, 0.5f, 1.0f, false);
+        }
+        for (int l = 0; l < 2; ++l) {
+            world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);
+        }
     }
 
     @Override
     public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
-        boolean isLit = state.getValue(LIT);
-        if (isLit && entity instanceof Player player && !EnchantmentHelper.hasFrostWalker(player)) {
-            entity.hurt(world.damageSources().hotFloor(), 1.f);
+        if (state.getValue(LIT) && entity instanceof Player && !EnchantmentHelper.hasFrostWalker((Player) entity)) {
+            entity.hurt(world.damageSources().hotFloor(), 1.0F);
         }
     }
 }

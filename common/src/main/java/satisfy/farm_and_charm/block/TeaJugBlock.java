@@ -2,19 +2,20 @@ package satisfy.farm_and_charm.block;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -45,35 +46,48 @@ public class TeaJugBlock extends FacingBlock {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        if (ctx.getPlayer() != null && ctx.getPlayer().isShiftKeyDown()) {
-            return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
-        }
-        return null;
-    }
-
-    @Override
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (itemStack.getItem() == Items.GLASS_BOTTLE && state.getValue(FILL) > 0) {
-            ItemStack newItemStack = new ItemStack(this.getReplacementItem());
-            if (!player.getInventory().add(newItemStack)) {
-                player.drop(newItemStack, false);
-            }
-            itemStack.shrink(1);
-            int newFillLevel = state.getValue(FILL) - 1;
-            if (newFillLevel > 0) {
-                world.setBlock(pos, state.setValue(FILL, newFillLevel), 3);
-            } else {
-                world.removeBlock(pos, false);
-                world.levelEvent(2001, pos, Block.getId(state));
+            ItemStack teaItemStack = new ItemStack(getTeaItem(state));
+            player.addItem(teaItemStack);
+            world.setBlock(pos, state.setValue(FILL, state.getValue(FILL) - 1), 3);
+            if (!player.getAbilities().instabuild) {
+                itemStack.shrink(1);
+                ItemStack glassBottleStack = new ItemStack(Items.GLASS_BOTTLE);
+                if (!player.getInventory().add(glassBottleStack)) {
+                    player.drop(glassBottleStack, false);
+                }
             }
             return InteractionResult.sidedSuccess(world.isClientSide);
         }
         return super.use(state, world, pos, player, hand, hit);
     }
 
-    private Item getReplacementItem() {
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        VoxelShape shape = world.getBlockState(pos.below()).getShape(world, pos.below());
+        Direction direction = Direction.UP;
+        return Block.isFaceFull(shape, direction);
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (!state.canSurvive(world, pos)) {
+            world.destroyBlock(pos, true);
+        }
+    }
+
+    @Override
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!state.canSurvive(world, pos)) {
+            world.scheduleTick(pos, this, 1);
+        }
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    @SuppressWarnings("unused")
+    private Item getTeaItem(BlockState state) {
         if (this.equals(ObjectRegistry.STRAWBERRY_TEA.get())) {
             return ObjectRegistry.STRAWBERRY_TEA_CUP.get();
         } else if (this.equals(ObjectRegistry.NETTLE_TEA.get())) {
@@ -83,7 +97,6 @@ public class TeaJugBlock extends FacingBlock {
         }
         return Items.AIR;
     }
-
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {

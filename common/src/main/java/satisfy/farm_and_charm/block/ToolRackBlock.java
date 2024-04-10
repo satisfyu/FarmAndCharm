@@ -7,12 +7,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -20,7 +23,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.registry.ObjectRegistry;
 import satisfy.farm_and_charm.registry.StorageTypesRegistry;
 import satisfy.farm_and_charm.util.GeneralUtil;
 
@@ -46,14 +48,6 @@ public class ToolRackBlock extends StorageBlock {
             map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
         }
     });
-
-    @Override
-    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
-        if (!state.canSurvive(world, pos)) {
-            world.scheduleTick(pos, this, 1);
-        }
-        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
-    }
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
@@ -90,6 +84,37 @@ public class ToolRackBlock extends StorageBlock {
     public int size() {
         return 3;
     }
+
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        Direction facing = state.getValue(FACING);
+        if (facing == Direction.DOWN) {
+            BlockPos blockAbove = pos.above();
+            return world.getBlockState(blockAbove).isFaceSturdy(world, blockAbove, Direction.DOWN);
+        } else if (facing == Direction.UP) {
+            return false;
+        } else {
+            BlockPos neighborPos = pos.relative(facing.getOpposite());
+            BlockState neighborState = world.getBlockState(neighborPos);
+            return neighborState.isFaceSturdy(world, neighborPos, facing);
+        }
+    }
+
+
+    @Override
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (!state.canSurvive(world, pos)) {
+            world.destroyBlock(pos, true);
+        }
+    }
+
+    @Override
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!state.canSurvive(world, pos)) {
+            world.scheduleTick(pos, this, 1);
+        }
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+    }
+
 
     @Override
     public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {

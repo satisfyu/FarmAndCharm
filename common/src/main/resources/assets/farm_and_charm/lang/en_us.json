@@ -137,6 +137,11 @@
   "rei.farm_and_charm.baking_category": "Baking",
   "rei.farm_and_charm.cooking_pot_category": "Cooking",
   "rei.farm_and_charm.bowl_category": "Doughing",
-  "rei.farm_and_charm.mincer_category": "Mincing"
-
+  "rei.farm_and_charm.mincer_category": "Mincing",
+  "sound.farm_and_charm.crafting_bowl_stirring": "Stirring Noises",
+  "sound.farm_and_charm.mincer_cranking": "Crank Noises",
+  "sound.farm_and_charm.water_sprinkler": "Pfft, pfft, pfft",
+  "sound.farm_and_charm.roaster_cooking": "Sizzling",
+  "sound.farm_and_charm.cooking_pot_boiling": "Bubbling",
+  "sound.farm_and_charm.stove_crackling": "Crackling"
 }

@@ -71,10 +71,10 @@ public class StoveGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     public int getScaledProgress(int arrowWidth) {
         final int progress = this.propertyDelegate.get(2);
         final int totalProgress = this.propertyDelegate.get(3);
-        if (progress == 0) {
-            return 0;
+        if (progress > 0 && totalProgress > 0) {
+            return progress * arrowWidth / totalProgress;
         }
-        return progress * arrowWidth / totalProgress + 1;
+        return 0;
     }
 
     public boolean isBeingBurned() {

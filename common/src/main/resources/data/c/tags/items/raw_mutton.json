@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "minecraft:mutton",
     "farm_and_charm:lamb_ham"

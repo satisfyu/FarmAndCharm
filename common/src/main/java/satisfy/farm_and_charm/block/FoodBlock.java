@@ -7,8 +7,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -39,6 +41,7 @@ public class FoodBlock extends FacingBlock {
     private final MobEffectInstance effect;
     private final int nutrition;
     private final float saturationMod;
+
     public FoodBlock(Properties settings, MobEffectInstance effect, int nutrition, float saturationMod) {
         super(settings);
         this.effect = effect;
@@ -109,7 +112,24 @@ public class FoodBlock extends FacingBlock {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        return world.getBlockState(pos.below()).isSolid();
+        VoxelShape shape = world.getBlockState(pos.below()).getShape(world, pos.below());
+        Direction direction = Direction.UP;
+        return Block.isFaceFull(shape, direction);
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (!state.canSurvive(world, pos)) {
+            world.destroyBlock(pos, true);
+        }
+    }
+
+    @Override
+    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        if (!state.canSurvive(world, pos)) {
+            world.scheduleTick(pos, this, 1);
+        }
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
     }
 
     @Override

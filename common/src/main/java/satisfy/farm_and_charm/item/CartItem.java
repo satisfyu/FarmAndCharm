@@ -30,7 +30,7 @@ public class CartItem extends Item {
             if (entity != null) {
                 entity.setPos(context.getClickedPos().getX() + 0.5, context.getClickedPos().getY() + 1, context.getClickedPos().getZ() + 0.5);
                 world.addFreshEntity(entity);
-                world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.MINECART_INSIDE, entity.getSoundSource(), 1.0F, 1.0F);
+                world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.WOOD_PLACE, entity.getSoundSource(), 1.0F, 1.0F);
                 context.getItemInHand().shrink(1);
             }
         }

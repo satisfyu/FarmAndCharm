@@ -30,7 +30,6 @@ public class PlowCart extends CartEntity {
         }
     }
 
-    // CART
     @Override
     protected float firstPoint() {
         return 3.0F;

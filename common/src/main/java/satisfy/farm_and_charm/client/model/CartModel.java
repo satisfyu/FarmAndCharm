@@ -1,4 +1,4 @@
-package satisfy.farm_and_charm.client.model.cart;
+package satisfy.farm_and_charm.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

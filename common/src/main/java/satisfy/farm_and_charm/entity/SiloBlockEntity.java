@@ -71,11 +71,20 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     }
 
     @Override
-    public SiloBlockEntity getControllerBE() {
-        if (this.isController())
-            return this;
+    public <T extends BlockEntity & IMultiBlockEntityContainer> T getControllerBE() {
+        if (this.isController()) {
+            @SuppressWarnings("unchecked")
+            T result = (T) this;
+            return result;
+        }
         assert level != null;
-        return level.getBlockEntity(controller) instanceof SiloBlockEntity siloBE ? siloBE : null;
+        BlockEntity be = level.getBlockEntity(controller);
+        if (be instanceof IMultiBlockEntityContainer) {
+            @SuppressWarnings("unchecked")
+            T result = (T) be;
+            return result;
+        }
+        return null;
     }
 
     @Override
