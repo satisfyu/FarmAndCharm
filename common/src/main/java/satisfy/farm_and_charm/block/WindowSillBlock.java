@@ -15,6 +15,8 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -62,19 +64,24 @@ public class WindowSillBlock extends StorageBlock {
         return x < 0.5F ? 0 : 1;
     }
 
+    @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         Direction facing = state.getValue(FACING);
+        BlockPos neighborPos = facing == Direction.DOWN ? pos.above() : pos.relative(facing.getOpposite());
+        BlockState neighborState = world.getBlockState(neighborPos);
+        if (neighborState.is(Blocks.GLASS_PANE) || neighborState.getBlock() instanceof IronBarsBlock) {
+            return true;
+        }
         if (facing == Direction.DOWN) {
-            BlockPos blockAbove = pos.above();
-            return world.getBlockState(blockAbove).isFaceSturdy(world, blockAbove, Direction.DOWN);
+            return neighborState.isFaceSturdy(world, neighborPos, Direction.DOWN);
         } else if (facing == Direction.UP) {
             return false;
         } else {
-            BlockPos neighborPos = pos.relative(facing.getOpposite());
-            BlockState neighborState = world.getBlockState(neighborPos);
             return neighborState.isFaceSturdy(world, neighborPos, facing);
         }
     }
+
+
 
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {

@@ -118,9 +118,8 @@ public class StoveBlock extends Block implements EntityBlock {
         double j = random.nextDouble() * 6.0 / 16.0;
         double k = direction.getAxis() == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52 : h;
 
-        if (random.nextDouble() < 0.1) {
-            world.playLocalSound(d, e, f, SoundEventRegistry.STOVE_CRACKLING.get(), SoundSource.BLOCKS, 0.5f, 1.0f, false);
-        }
+        world.playLocalSound(d, e, f, SoundEventRegistry.STOVE_CRACKLING.get(), SoundSource.BLOCKS, 0.25f, 1.0f, false);
+
         for (int l = 0; l < 2; ++l) {
             world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0, 0.0, 0.0);
             world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0, 0.0, 0.0);

@@ -149,9 +149,8 @@ public class RoasterBlock extends BaseEntityBlock {
         double e = pos.getY() + 0.7;
         double f = pos.getZ() + 0.5;
 
-        if (random.nextDouble() < 0.1) {
-            world.playLocalSound(d, e, f, SoundEventRegistry.ROASTER_COOKING.get(), SoundSource.BLOCKS, 0.05F, 0.05F, false);
-        }
+        world.playLocalSound(d, e, f, SoundEventRegistry.ROASTER_COOKING.get(), SoundSource.BLOCKS, 0.1f, 1.0f, false);
+
 
         double h = random.nextDouble() * 0.6 - 0.3;
         double i = h * (random.nextBoolean() ? 1 : -1);

@@ -92,27 +92,16 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
                         world.playSound(null, blockPos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + (random.nextFloat() - random.nextFloat()) * 0.8F);
                     }
                 });
-        world.scheduleTick(pos, this, 20); // Schedule next tick
+        world.scheduleTick(pos, this, 20);
 
-        if (!world.isRainingAt(pos.above())) {
-            playContinuousSound(world, pos);
-        } else {
-            playWeatherSound(world, pos, random);
-        }
+        playContinuousSound(world, pos);
+
     }
 
     private void playContinuousSound(ServerLevel world, BlockPos pos) {
-        world.playSound(null, pos, SoundEventRegistry.WATER_SPRINKLER.get(), SoundSource.BLOCKS, 0.5F, 0.8F);
+        world.playSound(null, pos, SoundEventRegistry.WATER_SPRINKLER.get(), SoundSource.BLOCKS, 0.25F, 0.75F);
          world.scheduleTick(pos, this, 80);
     }
-
-    private void playWeatherSound(ServerLevel world, BlockPos pos, RandomSource random) {
-        if (random.nextInt(100) < 5) {
-            SoundEvent soundEvent = SoundEvents.WEATHER_RAIN_ABOVE;
-            world.playSound(null, pos, soundEvent, SoundSource.BLOCKS, 0.5F, 1.0F + random.nextFloat() * 0.2F);
-        }
-    }
-
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {

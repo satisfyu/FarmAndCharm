@@ -51,7 +51,12 @@ public class TeaJugBlock extends FacingBlock {
         if (itemStack.getItem() == Items.GLASS_BOTTLE && state.getValue(FILL) > 0) {
             ItemStack teaItemStack = new ItemStack(getTeaItem(state));
             player.addItem(teaItemStack);
-            world.setBlock(pos, state.setValue(FILL, state.getValue(FILL) - 1), 3);
+            int newFillLevel = state.getValue(FILL) - 1;
+            if(newFillLevel > 0) {
+                world.setBlock(pos, state.setValue(FILL, newFillLevel), 3);
+            } else {
+                world.destroyBlock(pos, true);
+            }
             if (!player.getAbilities().instabuild) {
                 itemStack.shrink(1);
                 ItemStack glassBottleStack = new ItemStack(Items.GLASS_BOTTLE);
