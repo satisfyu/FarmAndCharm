@@ -2,6 +2,7 @@ package satisfy.farm_and_charm.fabric;
 
 import net.fabricmc.api.ModInitializer;
 import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.fabric.world.Farm_And_CharmBiomeModification;
 import satisfy.farm_and_charm.registry.CompostableRegistry;
 
 public class Farm_And_CharmFabric implements ModInitializer {
@@ -10,5 +11,6 @@ public class Farm_And_CharmFabric implements ModInitializer {
         Farm_And_Charm.init();
         CompostableRegistry.registerCompostable();
         Farm_And_Charm.commonSetup();
+        Farm_And_CharmBiomeModification.init();
     }
 }
