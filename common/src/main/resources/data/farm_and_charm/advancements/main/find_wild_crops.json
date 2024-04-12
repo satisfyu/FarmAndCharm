@@ -1,0 +1,266 @@
+{
+  "parent": "farm_and_charm:main/root",
+  "display": {
+    "icon": {
+      "item": "farm_and_charm:wild_tomatoes"
+    },
+    "title": {
+      "translate": "advancement.farm_and_charm.find_wild_crops"
+    },
+    "description": {
+      "translate": "advancement.farm_and_charm.find_wild_crops.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "tomato": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:tomato"
+          }
+        ]
+      }
+    },
+    "lettuce": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:lettuce"
+          }
+        ]
+      }
+    },
+    "tomato_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:tomato_seeds"
+          }
+        ]
+      }
+    },
+    "lettuce_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:lettuce_seeds"
+          }
+        ]
+      }
+    },
+    "wild_lettuce": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:wild_lettuce"
+          }
+        ]
+      }
+    },
+    "wild_tomatoes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:wild_tomatoes"
+          }
+        ]
+      }
+    },
+    "corn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:corn"
+          }
+        ]
+      }
+    },
+    "kernels": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:kernels"
+          }
+        ]
+      }
+    },
+    "wild_corn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:wild_corn"
+          }
+        ]
+      }
+    },
+    "oat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:oat"
+          }
+        ]
+      }
+    },
+    "oat_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:oat_seeds"
+          }
+        ]
+      }
+    },
+    "wild_oat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:wild_oat"
+          }
+        ]
+      }
+    },
+    "barley": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:barley"
+          }
+        ]
+      }
+    },
+    "barley_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:barley_seeds"
+          }
+        ]
+      }
+    },
+    "wild_barley": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:wild_barley"
+          }
+        ]
+      }
+    },
+    "onion": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:onion"
+          }
+        ]
+      }
+    },
+    "wild_onion": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:wild_onions"
+          }
+        ]
+      }
+    },
+    "strawberry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:strawberry"
+          }
+        ]
+      }
+    },
+    "strawberry_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:strawberry_seeds"
+          }
+        ]
+      }
+    },
+    "wild_strawberry": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:wild_strawberries"
+          }
+        ]
+      }
+    },
+    "wild_nettle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:wild_nettle"
+          }
+        ]
+      }
+    },
+    "wild_ribwort": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "farm_and_charm:wild_ribwort"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tomato",
+      "lettuce",
+      "corn",
+      "oat",
+      "barley",
+      "onion",
+      "strawberry",
+      "tomato_seeds",
+      "lettuce_seeds",
+      "kernels",
+      "barley_seeds",
+      "oat_seeds",
+      "strawberry_seeds",
+      "wild_lettuce",
+      "wild_tomatoes",
+      "wild_corn",
+      "wild_oat",
+      "wild_onion",
+      "wild_barley",
+      "wild_strawberry",
+      "wild_ribwort",
+      "wild_nettle"
+    ]
+  ]
+}

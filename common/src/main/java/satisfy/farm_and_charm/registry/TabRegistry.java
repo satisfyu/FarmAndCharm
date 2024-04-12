@@ -5,16 +5,15 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import satisfy.farm_and_charm.Farm_And_Charm;
-import satisfy.farm_and_charm.item.food.EffectFoodItem;
 
 public class TabRegistry {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
-    public static final RegistrySupplier<CreativeModeTab> farm_and_charm_TAB = CREATIVE_MODE_TABS.register("farm_and_charm", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
-            .icon(() -> new ItemStack(ObjectRegistry.WATER_SPRINKLER.get()))
+    @SuppressWarnings("unused")
+    public static final RegistrySupplier<CreativeModeTab> FARM_AND_CHARM_TAB = CREATIVE_MODE_TABS.register("farm_and_charm", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
+            .icon(() -> new ItemStack(ObjectRegistry.SUPPLY_CART.get()))
             .title(Component.translatable("creativetab.farm_and_charm.tab"))
             .displayItems((parameters, output) -> {
                 output.accept(ObjectRegistry.KERNELS.get());

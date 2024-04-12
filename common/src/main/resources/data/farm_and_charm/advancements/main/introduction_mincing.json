@@ -1,0 +1,51 @@
+{
+  "parent": "farm_and_charm:main/root",
+  "criteria": {
+    "use_mincer": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "farm_and_charm:mincer"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "minecraft:beef"
+              ]
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.farm_and_charm.introduction_mincing.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "farm_and_charm:mincer"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.farm_and_charm.introduction_mincing"
+    }
+  },
+  "requirements": [
+    [
+      "use_mincer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
