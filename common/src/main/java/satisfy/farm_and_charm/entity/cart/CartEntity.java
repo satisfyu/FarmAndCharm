@@ -1,5 +1,8 @@
 package satisfy.farm_and_charm.entity.cart;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -9,16 +12,14 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.animal.horse.Horse;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
-
-import java.util.List;
 
 public abstract class CartEntity extends DrivableEntity {
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE;
@@ -50,39 +51,32 @@ public abstract class CartEntity extends DrivableEntity {
         if (this.hasDriver()) {
             this.removeDriver();
             return InteractionResult.SUCCESS;
+        } else {
+            boolean added = this.addDriver(player);
+            return added ? InteractionResult.SUCCESS : InteractionResult.PASS;
         }
-        return this.addDriver(player) ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
+
 
     @Override
     public void tick() {
         super.tick();
 
-        if (this.hasDriver()) {
-            assert this.getDriver() != null;
-            if (10.0F < this.position().distanceTo(this.getDriver().position())) {
-                this.removeDriver();
-            }
-        } else if (!this.hasDriver() && this.level() instanceof ServerLevel) { //TODO not every single tick
-            List<Horse> list = this.level().getEntitiesOfClass(Horse.class, this.getBoundingBox().inflate(0.20000000298023224, -0.009999999776482582, 0.20000000298023224));
-            for (Horse horse : list) {
-                if (horse.isTamed()) {
-                    this.addDriver(horse);
-                    break;
-                }
-            }
+        Vec3 currentPos = this.position();
+        double distanceMoved = Math.sqrt(Math.pow(currentPos.x - this.lastDriverX, 2) + Math.pow(currentPos.y - this.lastDriverY, 2) + Math.pow(currentPos.z - this.lastDriverZ, 2));
+        final double MIN_MOVEMENT_THRESHOLD = 0.1;
+
+        if (distanceMoved > MIN_MOVEMENT_THRESHOLD) {
+            spawnWheelParticles();
         }
+
+        this.lastDriverX = currentPos.x;
+        this.lastDriverY = currentPos.y;
+        this.lastDriverZ = currentPos.z;
 
         this.setupMovement();
         this.setupWheels();
         this.setupRotation();
-
-        if (this.hasDriver()) {
-            assert this.getDriver() != null;
-            this.lastDriverX = this.getDriver().getX();
-            this.lastDriverY = this.getDriver().getY();
-            this.lastDriverZ = this.getDriver().getZ();
-        }
     }
 
     private void setupMovement() {
@@ -136,6 +130,22 @@ public abstract class CartEntity extends DrivableEntity {
 
     public float wheelRot() {
         return this.wheelRot;
+    }
+
+    private void spawnWheelParticles() {
+        if (this.level() instanceof ServerLevel serverLevel) {
+            BlockPos blockPosUnder = new BlockPos((int) this.getX(), (int) (this.getY() - 0.5), (int) this.getZ());
+            BlockState blockState = serverLevel.getBlockState(blockPosUnder);
+
+            if (!blockState.isAir()) {
+                for (int i = 0; i < 4; ++i) {
+                    double wheelParticleX = this.getX() + (this.random.nextDouble() - 0.5D) * this.getBbWidth() * 0.5;
+                    double wheelParticleY = this.getY() + 0.1;
+                    double wheelParticleZ = this.getZ() + (this.random.nextDouble() - 0.5D) * this.getBbWidth() * 0.5;
+                    serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, blockState), wheelParticleX, wheelParticleY, wheelParticleZ, 1, 0.0D, 0.05D, 0.0D, 0.1D);
+                }
+            }
+        }
     }
 
     public float balance() {

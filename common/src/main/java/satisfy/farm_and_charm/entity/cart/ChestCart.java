@@ -22,7 +22,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class ChestCart extends CartEntity implements HasCustomInventoryScreen, ContainerEntity {
     private static final int CONTAINER_SIZE = 27;
@@ -36,7 +35,6 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
         this.inventory = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
     }
 
-    // CART
     @Override
     protected float firstPoint() {
         return 3.0F;
@@ -90,7 +88,6 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
         }
     }
 
-    // CHEST
     public void clearContent() {
         this.clearChestVehicleContent();
     }
@@ -99,15 +96,15 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
         return CONTAINER_SIZE;
     }
 
-    public ItemStack getItem(int i) {
+    public @NotNull ItemStack getItem(int i) {
         return this.getChestVehicleItem(i);
     }
 
-    public ItemStack removeItem(int i, int j) {
+    public @NotNull ItemStack removeItem(int i, int j) {
         return this.removeChestVehicleItem(i, j);
     }
 
-    public ItemStack removeItemNoUpdate(int i) {
+    public @NotNull ItemStack removeItemNoUpdate(int i) {
         return this.removeChestVehicleItemNoUpdate(i);
     }
 
@@ -115,7 +112,7 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
         this.setChestVehicleItem(i, itemStack);
     }
 
-    public SlotAccess getSlot(int i) {
+    public @NotNull SlotAccess getSlot(int i) {
         return this.getChestVehicleSlot(i);
     }
 
@@ -158,7 +155,7 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
         this.lootTableSeed = l;
     }
 
-    public NonNullList<ItemStack> getItemStacks() {
+    public @NotNull NonNullList<ItemStack> getItemStacks() {
         return this.inventory;
     }
 
