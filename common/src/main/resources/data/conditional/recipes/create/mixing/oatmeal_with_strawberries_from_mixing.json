@@ -1,0 +1,30 @@
+{
+  "type": "doapi:conditional",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "recipe": {
+    "type": "create:mixing",
+    "ingredients": [
+      {
+        "fluidTag": "forge:milk",
+        "amount": 250
+      },
+      {
+        "item": "farm_and_charm:oat"
+      },
+      {
+        "tag": "farm_and_charm:strawberries"
+      }
+    ],
+    "results": [
+      {
+        "item": "farm_and_charm:oatmeal_with_strawberries",
+        "count": 2
+      }
+    ]
+  }
+}

@@ -25,7 +25,6 @@ public class PlowModel<T extends CartEntity> extends EntityModel<T> {
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
-
         PartDefinition cart = partdefinition.addOrReplaceChild("cart", CubeListBuilder.create().texOffs(116, 8).addBox(-11.0F, 1.5F, 5.9167F, 22.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
                 .texOffs(159, 8).addBox(-3.0F, 1.5F, -26.0833F, 4.0F, 4.0F, 32.0F, new CubeDeformation(0.0F))
                 .texOffs(88, 0).addBox(5.0F, 2.5F, 9.9167F, 3.0F, 3.0F, 18.0F, new CubeDeformation(0.0F))
@@ -45,6 +44,7 @@ public class PlowModel<T extends CartEntity> extends EntityModel<T> {
 
         return LayerDefinition.create(meshdefinition, 256, 256);
     }
+
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.cart.xRot = entity.balance();

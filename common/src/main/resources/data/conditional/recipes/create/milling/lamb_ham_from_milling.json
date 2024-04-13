@@ -1,0 +1,22 @@
+{
+  "type": "doapi:conditional",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "recipe": {
+    "type": "create:milling",
+    "ingredients": [
+      {
+        "item": "minecraft:mutton"
+      }
+    ],
+    "results": [
+      {
+        "item": "farm_and_charm:lamb_ham"
+      }
+    ]
+  }
+}

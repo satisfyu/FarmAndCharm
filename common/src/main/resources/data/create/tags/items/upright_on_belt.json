@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    "farm_and_charm:strawberry_tea",
+    "farm_and_charm:nettle_tea",
+    "farm_and_charm:ribwort_tea",
+    "farm_and_charm:strawberry_tea_cup",
+    "farm_and_charm:nettle_tea_cup",
+    "farm_and_charm:ribwort_tea_cup",
+    "farm_and_charm:flour",
+    "farm_and_charm:farmer_salad",
+    "farm_and_charm:oat_pancake",
+    "farm_and_charm:grandmothers_strawberry_cake",
+    "farm_and_charm:oatmeal_with_strawberries",
+    "farm_and_charm:simple_tomato_soup",
+    "farm_and_charm:barley_soup",
+    "farm_and_charm:onion_soup",
+    "farm_and_charm:potato_soup",
+    "farm_and_charm:goulash",
+    "farm_and_charm:corn_grits",
+    "farm_and_charm:pasta_with_onion_sauce",
+    "farm_and_charm:dog_food",
+    "farm_and_charm:cat_food",
+    "farm_and_charm:horse_fodder",
+    "farm_and_charm:chicken_feed",
+    "farm_and_charm:farmers_bread",
+    "farm_and_charm:scarecrow"
+  ]
+}

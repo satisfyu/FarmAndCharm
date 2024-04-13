@@ -1,0 +1,31 @@
+{
+  "type": "doapi:conditional",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "recipe": {
+    "type": "create:mixing",
+    "ingredients": [
+      {
+        "item": "farm_and_charm:flour"
+      },
+      {
+        "item": "farm_and_charm:yeast"
+      },
+      {
+        "fluid": "minecraft:water",
+        "nbt": {},
+        "amount": 1000
+      }
+    ],
+    "results": [
+      {
+        "item": "farm_and_charm:dough",
+        "count": 4
+      }
+    ]
+  }
+}
