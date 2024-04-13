@@ -7,6 +7,8 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -20,11 +22,13 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
+import satisfy.farm_and_charm.registry.SoundEventRegistry;
 
 public abstract class CartEntity extends DrivableEntity {
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE;
     private float wheelRot;
     private int rollOut;
+    private int soundCooldown = 0;
     private double lastDriverX, lastDriverY, lastDriverZ;
 
     protected CartEntity(EntityType<?> entityType, Level level) {
@@ -57,10 +61,13 @@ public abstract class CartEntity extends DrivableEntity {
         }
     }
 
-
     @Override
     public void tick() {
         super.tick();
+
+        if (soundCooldown > 0) {
+            soundCooldown--;
+        }
 
         Vec3 currentPos = this.position();
         double distanceMoved = Math.sqrt(Math.pow(currentPos.x - this.lastDriverX, 2) + Math.pow(currentPos.y - this.lastDriverY, 2) + Math.pow(currentPos.z - this.lastDriverZ, 2));
@@ -68,6 +75,7 @@ public abstract class CartEntity extends DrivableEntity {
 
         if (distanceMoved > MIN_MOVEMENT_THRESHOLD) {
             spawnWheelParticles();
+            playMovementSound();
         }
 
         this.lastDriverX = currentPos.x;
@@ -130,6 +138,15 @@ public abstract class CartEntity extends DrivableEntity {
 
     public float wheelRot() {
         return this.wheelRot;
+    }
+
+
+    private void playMovementSound() {
+        if (soundCooldown <= 0) {
+            SoundEvent sound = SoundEventRegistry.CART_MOVING.get();
+            this.level().playSound(null, this.getX(), this.getY(), this.getZ(), sound, SoundSource.NEUTRAL, 0.1F, 1.0F);
+            soundCooldown = 55;
+        }
     }
 
     private void spawnWheelParticles() {
