@@ -26,7 +26,13 @@ import satisfy.farm_and_charm.registry.SoundEventRegistry;
 
 public abstract class CartEntity extends DrivableEntity {
     private static final EntityDataAccessor<Float> DATA_ID_DAMAGE;
-    private float wheelRot;
+
+    static {
+        DATA_ID_DAMAGE = SynchedEntityData.defineId(CartEntity.class, EntityDataSerializers.FLOAT);
+    }
+
+    private float originalYRot = 0.0F;
+    private boolean shouldResetRot = false;    private float wheelRot;
     private int rollOut;
     private int soundCooldown = 0;
     private double lastDriverX, lastDriverY, lastDriverZ;
@@ -85,7 +91,13 @@ public abstract class CartEntity extends DrivableEntity {
         this.setupMovement();
         this.setupWheels();
         this.setupRotation();
+
+        if (shouldResetRot) {
+            this.setYRot(originalYRot);
+            shouldResetRot = false;
+        }
     }
+
 
     private void setupMovement() {
         if (this.hasDriver()) {
@@ -179,19 +191,28 @@ public abstract class CartEntity extends DrivableEntity {
     }
 
     @Override
-    public boolean hurt(DamageSource damageSource, float f) {
+    public boolean hurt(DamageSource damageSource, float damageAmount) {
         if (this.isInvulnerableTo(damageSource)) {
             return false;
         } else if (!this.level().isClientSide && !this.isRemoved()) {
-            this.setDamage(this.getDamage() + f * 10.0F);
+            this.setDamage(this.getDamage() + damageAmount);
             this.markHurt();
             this.gameEvent(GameEvent.ENTITY_DAMAGE, damageSource.getEntity());
-            boolean bl = damageSource.getEntity() instanceof Player && ((Player) damageSource.getEntity()).getAbilities().instabuild;
-            if (bl || 40.0F < this.getDamage()) {
-                if (!bl && this.level().getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
+
+            if (this.level() instanceof ServerLevel serverLevel) {
+                BlockState blockState = serverLevel.getBlockState(this.blockPosition().below());
+                serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, blockState),
+                        this.getX(), this.getY() + 0.1, this.getZ(), 10, 0.1D, 0.1D, 0.1D, 0.0D);
+
+                originalYRot = this.getYRot();
+                this.setYRot(originalYRot + this.random.nextFloat() * 10.0F - 5.0F);
+                shouldResetRot = true;
+            }
+
+            if (this.getDamage() > 5.0F) {
+                if (this.level().getGameRules().getBoolean(GameRules.RULE_DOENTITYDROPS)) {
                     this.destroy(damageSource);
                 }
-
                 this.discard();
             }
 
@@ -201,9 +222,19 @@ public abstract class CartEntity extends DrivableEntity {
         }
     }
 
+
     protected void destroy(DamageSource damageSource) {
         this.spawnAtLocation(ObjectRegistry.SUPPLY_CART.get());
     }
+
+    public void setDamage(float damage) {
+        this.entityData.set(DATA_ID_DAMAGE, Math.min(damage, 40.0F));
+    }
+
+    public float getDamage() {
+        return this.entityData.get(DATA_ID_DAMAGE);
+    }
+
 
     @Override
     public boolean canBeCollidedWith() {
@@ -215,21 +246,8 @@ public abstract class CartEntity extends DrivableEntity {
         return !this.isRemoved();
     }
 
-
-    public void setDamage(float f) {
-        this.entityData.set(DATA_ID_DAMAGE, f);
-    }
-
-    public float getDamage() {
-        return this.entityData.get(DATA_ID_DAMAGE);
-    }
-
     @Override
     protected void defineSynchedData() {
         this.entityData.define(DATA_ID_DAMAGE, 0.0F);
-    }
-
-    static {
-        DATA_ID_DAMAGE = SynchedEntityData.defineId(CartEntity.class, EntityDataSerializers.FLOAT);
     }
 }
