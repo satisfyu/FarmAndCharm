@@ -11,7 +11,6 @@ import satisfy.farm_and_charm.Farm_And_Charm;
 import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
 import satisfy.farm_and_charm.entity.*;
 import satisfy.farm_and_charm.entity.cart.ChestCart;
-import satisfy.farm_and_charm.entity.cart.FreightCart;
 import satisfy.farm_and_charm.entity.cart.PlowCart;
 
 import java.util.function.Supplier;
@@ -35,24 +34,17 @@ public enum EntityTypeRegistry {
 
     public static final RegistrySupplier<EntityType<RottenTomatoEntity>> ROTTEN_TOMATO = registerEntityType("rotten_tomato", () -> EntityType.Builder.<RottenTomatoEntity>of(RottenTomatoEntity::new, MobCategory.MISC).sized(0.25f, 0.25f).build(new Farm_And_CharmIdentifier("rotten_tomato").toString()));
 
-
-    public static final RegistrySupplier<EntityType<FreightCart>> FREIGHT_CART = registerEntityType("freight_cart", () ->
-            EntityType.Builder.of(FreightCart::new, MobCategory.MISC)
-                    .sized(12 / 16f, 12 / 16f)
-                    .clientTrackingRange(10)
-                    .build(new Farm_And_CharmIdentifier("freight_cart").toString())
-    );
-
     public static final RegistrySupplier<EntityType<ChestCart>> CHEST_CART = registerEntityType("chest_cart", () ->
             EntityType.Builder.of(ChestCart::new, MobCategory.MISC)
-                    .sized(12 / 16f, 12 / 16f)
+                    .sized(1.875f, 0.875f)
                     .clientTrackingRange(10)
                     .build(new Farm_And_CharmIdentifier("chest_cart").toString())
     );
 
+
     public static final RegistrySupplier<EntityType<PlowCart>> PLOW = registerEntityType("plow", () ->
             EntityType.Builder.of(PlowCart::new, MobCategory.MISC)
-                    .sized(12 / 16f, 12 / 16f)
+                    .sized(1.875f, 0.875f)
                     .clientTrackingRange(10)
                     .build(new Farm_And_CharmIdentifier("plow").toString())
     );

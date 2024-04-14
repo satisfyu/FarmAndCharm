@@ -55,7 +55,6 @@ public class Farm_And_CharmClient {
 
     public static void registerEntityRenderers(){
         EntityRendererRegistry.register(EntityTypeRegistry.ROTTEN_TOMATO, ThrownItemRenderer::new);
-        EntityRendererRegistry.register(EntityTypeRegistry.FREIGHT_CART, CartRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.CHEST_CART, CartRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.PLOW, PlowRenderer::new);
     }
