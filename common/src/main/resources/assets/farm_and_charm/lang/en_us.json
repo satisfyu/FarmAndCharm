@@ -182,5 +182,6 @@
   "sound.farm_and_charm.roaster_cooking": "Roaster Sizzling",
   "sound.farm_and_charm.cooking_pot_boiling": "Cooking Pot Boiling",
   "sound.farm_and_charm.stove_crackling": "Stove Crackling",
+  "sound.farm_and_charm.cart_moving": "Cart Moving",
   "entity.farm_and_charm.chest_cart": "Chest Cart"
 }

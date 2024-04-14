@@ -29,7 +29,6 @@ public class PlowCart extends CartEntity {
             if (this.level() instanceof ServerLevel serverLevel) {
                 BlockPos blockPos = this.getOnPos();
                 Direction direction = Direction.fromYRot(this.getYRot());
-                // Berechnet die Positionen der Blöcke direkt hinter und neben dem Karren
                 BlockPos behindPos = blockPos.relative(direction.getOpposite());
                 BlockPos leftPos = behindPos.relative(direction.getClockWise());
                 BlockPos rightPos = behindPos.relative(direction.getCounterClockWise());
@@ -41,13 +40,23 @@ public class PlowCart extends CartEntity {
     }
 
     private void transformGroundAndDestroyAbove(ServerLevel serverLevel, BlockPos pos) {
-        serverLevel.setBlockAndUpdate(pos, Blocks.FARMLAND.defaultBlockState());
-        BlockPos abovePos = pos.above();
-        BlockState aboveBlockState = serverLevel.getBlockState(abovePos);
-        if (aboveBlockState.is(BlockTags.SMALL_FLOWERS) || aboveBlockState.is(TagRegistry.WILD_CROPS) ||aboveBlockState.is(BlockTags.TALL_FLOWERS) || aboveBlockState.is(Blocks.GRASS) || aboveBlockState.is(Blocks.TALL_GRASS)) {
-            destroyBlockWithParticles(serverLevel, abovePos, aboveBlockState);
+        BlockState groundBlockState = serverLevel.getBlockState(pos);
+        if (canTransformToFarmland(groundBlockState)) {
+            serverLevel.setBlockAndUpdate(pos, Blocks.FARMLAND.defaultBlockState());
+        }
+        if (groundBlockState.is(Blocks.FARMLAND)) {
+            BlockPos abovePos = pos.above();
+            BlockState aboveBlockState = serverLevel.getBlockState(abovePos);
+            if (aboveBlockState.is(BlockTags.SMALL_FLOWERS) || aboveBlockState.is(TagRegistry.WILD_CROPS) || aboveBlockState.is(BlockTags.TALL_FLOWERS) || aboveBlockState.is(Blocks.GRASS) || aboveBlockState.is(Blocks.TALL_GRASS)) {
+                destroyBlockWithParticles(serverLevel, abovePos, aboveBlockState);
+            }
         }
     }
+
+    private boolean canTransformToFarmland(BlockState blockState) {
+        return blockState.is(Blocks.DIRT) || blockState.is(Blocks.GRASS_BLOCK) || blockState.is(Blocks.PODZOL);
+    }
+
 
     private void destroyBlockWithParticles(ServerLevel serverLevel, BlockPos pos, BlockState blockState) {
         serverLevel.destroyBlock(pos, true);

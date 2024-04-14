@@ -39,7 +39,7 @@ public abstract class CartEntity extends DrivableEntity {
 
     protected CartEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
-        this.setMaxUpStep(0.5F);
+        this.setMaxUpStep(1.0F);
     }
 
     protected float wheelYOffset() {
@@ -76,8 +76,8 @@ public abstract class CartEntity extends DrivableEntity {
         }
 
         Vec3 currentPos = this.position();
-        double distanceMoved = Math.sqrt(Math.pow(currentPos.x - this.lastDriverX, 2) + Math.pow(currentPos.y - this.lastDriverY, 2) + Math.pow(currentPos.z - this.lastDriverZ, 2));
-        final double MIN_MOVEMENT_THRESHOLD = 0.1;
+        double distanceMoved = Math.sqrt(Math.pow(currentPos.x - this.lastDriverX, 1.5) + Math.pow(currentPos.y - this.lastDriverY, 1.5) + Math.pow(currentPos.z - this.lastDriverZ, 1.5));
+        final double MIN_MOVEMENT_THRESHOLD = 0.05;
 
         if (distanceMoved > MIN_MOVEMENT_THRESHOLD) {
             spawnWheelParticles();
@@ -101,9 +101,9 @@ public abstract class CartEntity extends DrivableEntity {
 
     private void setupMovement() {
         if (this.hasDriver()) {
-            Vec3 lastMoveVec = this.position().subtract(this.lastDriverX, this.lastDriverY, this.lastDriverZ).scale(0.5D); // oldDriverPos --> this
+            Vec3 lastMoveVec = this.position().subtract(this.lastDriverX, this.lastDriverY, this.lastDriverZ).scale(0.5D);
             assert this.getDriver() != null;
-            Vec3 driverMoveVec = this.getDriver().position().subtract(this.lastDriverX, this.lastDriverY, this.lastDriverZ).reverse().scale(0.5D); // driver --> oldDriverPos
+            Vec3 driverMoveVec = this.getDriver().position().subtract(this.lastDriverX, this.lastDriverY, this.lastDriverZ).reverse().scale(0.5D);
             Vec3 newPosVec = driverMoveVec.add(lastMoveVec).normalize().scale(this.holdOffset());
             Vec3 desiredPos = this.getDriver().position().add(newPosVec);
             Vec3 movVec = desiredPos.subtract(this.position());
