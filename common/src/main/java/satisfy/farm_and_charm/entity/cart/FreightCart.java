@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+@Deprecated
 public class FreightCart extends CartEntity {
     public FreightCart(EntityType<?> entityType, Level level) {
         super(entityType, level);

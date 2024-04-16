@@ -178,4 +178,19 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
         super.readAdditionalSaveData(compoundTag);
         this.readChestVehicleSaveData(compoundTag);
     }
+
+    // PASSENGER
+    @Override
+    public double getPassengersRidingOffset() {
+        return super.getPassengersRidingOffset() * 0.5D;
+    }
+
+    @Override
+    protected boolean canAddPassenger(Entity entity) {
+        return this.getPassengers().size() < this.getMaxPassengers() && super.canAddPassenger(entity);
+    }
+
+    protected int getMaxPassengers() {
+        return 2;
+    }
 }

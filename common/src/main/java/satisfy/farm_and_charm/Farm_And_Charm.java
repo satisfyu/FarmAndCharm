@@ -16,6 +16,7 @@ public class Farm_And_Charm {
         ScreenhandlerTypeRegistry.init();
         RecipeTypeRegistry.init();
         SoundEventRegistry.init();
+        KeybindsRegistry.init();
     }
 
     public static void commonSetup(){
