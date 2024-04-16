@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.HasCustomInventoryScreen;
 import net.minecraft.world.entity.SlotAccess;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -20,6 +21,7 @@ import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -54,6 +56,13 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
         if (player.isSecondaryUseActive()) {
             return super.interact(player, interactionHand);
         } else {
+            if (this.canAddPassenger(player)) {
+                if (!this.level().isClientSide()) {
+                    return player.startRiding(this) ? InteractionResult.CONSUME : InteractionResult.PASS;
+                } else {
+                    return InteractionResult.SUCCESS;
+                }
+            }
             InteractionResult interactionResult = this.interactWithContainerVehicle(player);
             if (interactionResult.consumesAction()) {
                 this.gameEvent(GameEvent.CONTAINER_OPEN, player);
@@ -182,7 +191,14 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
     // PASSENGER
     @Override
     public double getPassengersRidingOffset() {
-        return super.getPassengersRidingOffset() * 0.5D;
+        return super.getPassengersRidingOffset() + this.getXRot();
+    }
+
+    protected double getPassengerXOffset(Entity entity) {
+        if (this.getPassengers().size() > 1 && this.getPassengers().indexOf(entity) > 0) {
+            return -1.0F;
+        }
+        return 1.0F;
     }
 
     @Override
@@ -192,5 +208,17 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
 
     protected int getMaxPassengers() {
         return 2;
+    }
+
+    @Override
+    protected void positionRider(Entity entity, MoveFunction moveFunction) {
+        if (this.hasPassenger(entity)) {
+            double x = this.getPassengerXOffset(entity);
+            double y = this.getPassengersRidingOffset() + entity.getMyRidingOffset();
+
+            Vec3 xVec = new Vec3(x, 0.0, 0.0).yRot(-this.getYRot() * 0.017453292F - 1.5707964F);
+            Vec3 yVec = new Vec3(0.0, y, 0.0).xRot(-this.getXRot() * 0.017453292F - 1.5707964F);
+            moveFunction.accept(entity, this.getX() + xVec.x, this.getY() + yVec.y, this.getZ() + xVec.z);
+        }
     }
 }
