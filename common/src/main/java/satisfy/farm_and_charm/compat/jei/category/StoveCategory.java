@@ -17,7 +17,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.client.gui.StoveGui;
 import satisfy.farm_and_charm.compat.jei.Farm_And_Charm_JEIPlugin;
 import satisfy.farm_and_charm.entity.StoveBlockEntity;
@@ -25,7 +25,7 @@ import satisfy.farm_and_charm.recipe.StoveRecipe;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class StoveCategory implements IRecipeCategory<StoveRecipe> {
-    public static final RecipeType<StoveRecipe> STOVE = RecipeType.create(Farm_And_Charm.MOD_ID, "stove", StoveRecipe.class);
+    public static final RecipeType<StoveRecipe> STOVE = RecipeType.create(FarmAndCharm.MOD_ID, "stove", StoveRecipe.class);
     public static final int WIDTH = 124;
     public static final int HEIGHT = 60;
     public static final int WIDTH_OF = 26;

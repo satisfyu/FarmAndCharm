@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.compat.rei.Farm_And_CharmREIClientPlugin;
 import satisfy.farm_and_charm.recipe.RoasterRecipe;
 
@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class RoasterDisplay extends BasicDisplay {
 
-    public static final CategoryIdentifier<RoasterDisplay> ROASTER_DISPLAY = CategoryIdentifier.of(Farm_And_Charm.MOD_ID, "roaster_display");
+    public static final CategoryIdentifier<RoasterDisplay> ROASTER_DISPLAY = CategoryIdentifier.of(FarmAndCharm.MOD_ID, "roaster_display");
 
 
     public RoasterDisplay(Recipe<Container> recipe) {

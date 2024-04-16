@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
 @SuppressWarnings("unused")
@@ -80,7 +80,7 @@ public class SiloRecipe implements Recipe<SimpleContainer> {
 
     public static class Serializer implements RecipeSerializer<SiloRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(Farm_And_Charm.MOD_ID, "drying");
+        public static final ResourceLocation ID = new ResourceLocation(FarmAndCharm.MOD_ID, "drying");
 
         @Override
         public @NotNull SiloRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {

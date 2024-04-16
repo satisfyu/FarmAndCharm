@@ -14,8 +14,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.PushReaction;
-import satisfy.farm_and_charm.Farm_And_Charm;
-import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
+import satisfy.farm_and_charm.FarmAndCharm;
+import satisfy.farm_and_charm.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.block.*;
 import satisfy.farm_and_charm.block.crops.*;
 import satisfy.farm_and_charm.item.*;
@@ -27,9 +27,9 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public class ObjectRegistry {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.ITEM);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.ITEM);
     public static final Registrar<Item> ITEM_REGISTRAR = ITEMS.getRegistrar();
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.BLOCK);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.BLOCK);
     public static final Registrar<Block> BLOCK_REGISTRAR = BLOCKS.getRegistrar();
     public static final RegistrySupplier<Block> TOMATO_CROP = registerWithoutItem("tomato_crop", () -> new TomatoCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
     public static final RegistrySupplier<Item> TOMATO_SEEDS = registerItem("tomato_seeds", () -> new ItemNameBlockItem(TOMATO_CROP.get(), getSettings()));
@@ -152,7 +152,7 @@ public class ObjectRegistry {
 
 
     public static void init() {
-        Farm_And_Charm.LOGGER.debug("Registering Mod Block and Items for " + Farm_And_Charm.MOD_ID);
+        FarmAndCharm.LOGGER.debug("Registering Mod Block and Items for " + FarmAndCharm.MOD_ID);
         ITEMS.register();
         BLOCKS.register();
     }
@@ -223,14 +223,14 @@ public class ObjectRegistry {
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithItem(String name, Supplier<T> block) {
-        return Util.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, new Farm_And_CharmIdentifier(name), block);
+        return Util.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, new FarmAndCharmIdentifier(name), block);
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithoutItem(String path, Supplier<T> block) {
-        return Util.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, new Farm_And_CharmIdentifier(path), block);
+        return Util.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, new FarmAndCharmIdentifier(path), block);
     }
 
     public static <T extends Item> RegistrySupplier<T> registerItem(String path, Supplier<T> itemSupplier) {
-        return Util.registerItem(ITEMS, ITEM_REGISTRAR, new Farm_And_CharmIdentifier(path), itemSupplier);
+        return Util.registerItem(ITEMS, ITEM_REGISTRAR, new FarmAndCharmIdentifier(path), itemSupplier);
     }
 }

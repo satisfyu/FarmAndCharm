@@ -2,7 +2,6 @@ package satisfy.farm_and_charm.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -15,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.block.MincerBlock;
 import satisfy.farm_and_charm.client.model.MincerModel;
 import satisfy.farm_and_charm.entity.MincerBlockEntity;
@@ -24,7 +23,7 @@ public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
     private final ModelPart mincer;
     private final ModelPart crank;
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Farm_And_Charm.MOD_ID, "textures/entity/mincer.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/mincer.png");
 
     public MincerRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart root = context.bakeLayer(MincerModel.LAYER_LOCATION);

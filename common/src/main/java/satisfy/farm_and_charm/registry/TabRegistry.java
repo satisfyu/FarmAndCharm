@@ -6,10 +6,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 
 public class TabRegistry {
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.CREATIVE_MODE_TAB);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
     @SuppressWarnings("unused")
     public static final RegistrySupplier<CreativeModeTab> FARM_AND_CHARM_TAB = CREATIVE_MODE_TABS.register("farm_and_charm", () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)

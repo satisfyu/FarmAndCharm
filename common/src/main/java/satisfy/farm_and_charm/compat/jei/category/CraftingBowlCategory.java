@@ -11,14 +11,14 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.recipe.CraftingBowlRecipe;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class CraftingBowlCategory implements IRecipeCategory<CraftingBowlRecipe> {
-    public static final RecipeType<CraftingBowlRecipe> DOUGHING = RecipeType.create(Farm_And_Charm.MOD_ID, "doughing", CraftingBowlRecipe.class);
+    public static final RecipeType<CraftingBowlRecipe> DOUGHING = RecipeType.create(FarmAndCharm.MOD_ID, "doughing", CraftingBowlRecipe.class);
     public final static ResourceLocation TEXTURE =
-            new ResourceLocation(Farm_And_Charm.MOD_ID, "textures/gui/crafting_bowl.png");
+            new ResourceLocation(FarmAndCharm.MOD_ID, "textures/gui/crafting_bowl.png");
 
     private final IDrawable background;
     private final IDrawable icon;

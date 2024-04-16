@@ -12,7 +12,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import org.joml.Quaternionf;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.block.ScarecrowBlock;
 import satisfy.farm_and_charm.client.model.ScarecrowModel;
 import satisfy.farm_and_charm.entity.ScarecrowBlockEntity;
@@ -24,7 +24,7 @@ public class ScarecrowRenderer implements BlockEntityRenderer<ScarecrowBlockEnti
     private final ModelPart scarecrow;
     private final ModelPart post;
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(Farm_And_Charm.MOD_ID, "textures/entity/scarecrow.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/scarecrow.png");
 
     public ScarecrowRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart root = context.bakeLayer(ScarecrowModel.LAYER_LOCATION);

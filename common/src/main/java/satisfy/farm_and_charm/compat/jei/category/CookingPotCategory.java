@@ -16,7 +16,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.client.gui.CookingPotGui;
 import satisfy.farm_and_charm.compat.jei.Farm_And_Charm_JEIPlugin;
 import satisfy.farm_and_charm.entity.CookingPotBlockEntity;
@@ -24,7 +24,7 @@ import satisfy.farm_and_charm.recipe.CookingPotRecipe;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
-    public static final RecipeType<CookingPotRecipe> COOKING_POT = RecipeType.create(Farm_And_Charm.MOD_ID, "cooking_pot", CookingPotRecipe.class);
+    public static final RecipeType<CookingPotRecipe> COOKING_POT = RecipeType.create(FarmAndCharm.MOD_ID, "cooking_pot", CookingPotRecipe.class);
     public static final int WIDTH = 124;
     public static final int HEIGHT = 60;
     public static final int WIDTH_OF = 26;

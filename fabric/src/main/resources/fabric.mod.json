@@ -3,37 +3,37 @@
   "id": "farm_and_charm",
   "version": "${version}",
   "name": "[Let's Do] Farm & Charm",
-  "description": "Your Description",
+  "description": "The farm calls: Experience the art of advanced agriculture and farmhouse cuisine! Use mincers, cooking pots, as well as new grains and fruit varieties to enhance your culinary and agricultural skills.",
   "authors": [
-    "satisfy"
+    "satisfy, baumeisterJO, cristelknight666"
   ],
   "contact": {
-    "homepage": "link",
-    "sources": "link"
+    "homepage": "https://legacy.curseforge.com/minecraft/mc-mods/FarmAndCharm",
+    "sources": "https://github.com/satisfyu/FarmAndCharm"
   },
   "license": "custom",
   "icon": "pack.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "satisfy.farm_and_charm.fabric.Farm_And_CharmFabric"
+      "satisfy.farm_and_charm.fabric.FarmAndCharmFabric"
     ],
     "client": [
-      "satisfy.farm_and_charm.fabric.client.Farm_And_CharmClientFabric"
+      "satisfy.farm_and_charm.fabric.client.FarmAndCharmClientFabric"
     ],
     "doapi": [
-      "satisfy.farm_and_charm.util.api.Farm_And_CharmDoAPI"
+      "satisfy.farm_and_charm.util.api.FarmAndCharmDoAPI"
     ],
     "rei_client": [
-      "satisfy.farm_and_charm.fabric.rei.Farm_And_CharmReiClientPluginFabric"
+      "satisfy.farm_and_charm.fabric.rei.FarmAndCharmReiClientPluginFabric"
     ],
     "jei_mod_plugin": [
       "satisfy.farm_and_charm.compat.jei.Farm_And_Charm_JEIPlugin"
     ]
   },
   "mixins": [
-    "farm_and_charm.mixins.json",
-    "farm_and_charm-common.mixins.json"
+    "FarmAndCharm.mixins.json",
+    "FarmAndCharm-common.mixins.json"
   ],
   "depends": {
     "fabric-api": "*",

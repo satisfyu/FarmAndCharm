@@ -11,7 +11,7 @@ import satisfy.farm_and_charm.registry.StorageTypesRegistry;
 import java.util.Set;
 
 @DoApiPlugin
-public class Farm_And_CharmDoAPI implements DoApiAPI {
+public class FarmAndCharmDoAPI implements DoApiAPI {
 
     @Override
     public void registerBlocks(Set<Block> blocks) {

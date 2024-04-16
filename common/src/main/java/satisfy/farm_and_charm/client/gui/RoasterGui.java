@@ -8,7 +8,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
+import satisfy.farm_and_charm.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.client.gui.handler.RoasterGuiHandler;
 import satisfy.farm_and_charm.client.recipebook.RoasterRecipeBook;
 
@@ -43,6 +43,6 @@ public class RoasterGui extends AbstractRecipeBookGUIScreen<RoasterGuiHandler> {
     }
 
     static {
-        BACKGROUND = new Farm_And_CharmIdentifier("textures/gui/roaster_gui.png");
+        BACKGROUND = new FarmAndCharmIdentifier("textures/gui/roaster_gui.png");
     }
 }

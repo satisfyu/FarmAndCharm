@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.block.CraftingBowlBlock;
 import satisfy.farm_and_charm.client.model.CraftingBowlModel;
 import satisfy.farm_and_charm.entity.CraftingBowlBlockEntity;
@@ -48,8 +48,8 @@ public class CraftingBowlRenderer implements BlockEntityRenderer<CraftingBowlBlo
 
 
         ResourceLocation location = blockEntity.getItem(4) == ItemStack.EMPTY ?
-                new ResourceLocation(Farm_And_Charm.MOD_ID, "textures/entity/crafting_bowl.png") :
-                new ResourceLocation(Farm_And_Charm.MOD_ID, "textures/entity/crafting_bowl_full.png");
+                new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl.png") :
+                new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl_full.png");
 
 
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityTranslucent(location));

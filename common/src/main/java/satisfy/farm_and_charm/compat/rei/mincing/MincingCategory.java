@@ -10,14 +10,13 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.network.chat.Component;
-import satisfy.farm_and_charm.Farm_And_Charm;
-import satisfy.farm_and_charm.compat.rei.mincing.MincingDisplay;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 import java.util.List;
 
 public class MincingCategory implements DisplayCategory<MincingDisplay> {
-    public static final CategoryIdentifier<MincingDisplay> MINCING_DISPLAY = CategoryIdentifier.of(Farm_And_Charm.MOD_ID, "mincing_display");
+    public static final CategoryIdentifier<MincingDisplay> MINCING_DISPLAY = CategoryIdentifier.of(FarmAndCharm.MOD_ID, "mincing_display");
 
     @Override
     public CategoryIdentifier<MincingDisplay> getCategoryIdentifier() {

@@ -7,14 +7,13 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import satisfy.farm_and_charm.Farm_And_Charm;
-import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
+import satisfy.farm_and_charm.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.client.gui.handler.StoveGuiHandler;
 import satisfy.farm_and_charm.client.recipebook.StoveRecipeBook;
 
 @Environment(EnvType.CLIENT)
 public class StoveGui extends AbstractRecipeBookGUIScreen<StoveGuiHandler> {
-    public static final ResourceLocation BG = new Farm_And_CharmIdentifier("textures/gui/stove_gui.png");
+    public static final ResourceLocation BG = new FarmAndCharmIdentifier("textures/gui/stove_gui.png");
 
     public static final int ARROW_X = 93;
     public static final int ARROW_Y = 32;
