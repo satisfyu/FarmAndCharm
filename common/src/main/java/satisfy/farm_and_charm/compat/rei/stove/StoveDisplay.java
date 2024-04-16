@@ -9,7 +9,7 @@ import me.shedaniel.rei.api.common.registry.RecipeManagerContext;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.crafting.Recipe;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.recipe.StoveRecipe;
 
 import java.util.Collections;
@@ -19,7 +19,7 @@ import java.util.Optional;
 @SuppressWarnings("all")
 public class StoveDisplay extends BasicDisplay implements SimpleGridMenuDisplay {
 
-    public static final CategoryIdentifier<StoveDisplay> STOVE_DISPLAY = CategoryIdentifier.of(Farm_And_Charm.MOD_ID, "stove_display");
+    public static final CategoryIdentifier<StoveDisplay> STOVE_DISPLAY = CategoryIdentifier.of(FarmAndCharm.MOD_ID, "stove_display");
 
 
     private final float xp;

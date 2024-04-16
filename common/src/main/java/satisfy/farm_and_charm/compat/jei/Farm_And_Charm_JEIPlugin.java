@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeManager;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
+import satisfy.farm_and_charm.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.client.gui.handler.RoasterGuiHandler;
 import satisfy.farm_and_charm.client.gui.handler.StoveGuiHandler;
 import satisfy.farm_and_charm.compat.jei.category.*;
@@ -63,7 +63,7 @@ public class Farm_And_Charm_JEIPlugin implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new Farm_And_CharmIdentifier("jei_plugin");
+        return new FarmAndCharmIdentifier("jei_plugin");
     }
 
     @Override

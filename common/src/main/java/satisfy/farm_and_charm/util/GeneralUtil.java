@@ -47,7 +47,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 
 import java.util.*;
 
@@ -57,7 +57,7 @@ public class GeneralUtil {
 	private static final String BLOCK_POSES_KEY = "block_poses";
 
 	public static ResourceKey<ConfiguredFeature<?, ?>> configuredFeatureKey(String name) {
-		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(Farm_And_Charm.MOD_ID, name));
+		return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(FarmAndCharm.MOD_ID, name));
 	}
 
 	public static Collection<ServerPlayer> tracking(ServerLevel world, BlockPos pos) {

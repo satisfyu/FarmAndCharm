@@ -9,12 +9,12 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
+import satisfy.farm_and_charm.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.client.model.CartModel;
 import satisfy.farm_and_charm.entity.cart.CartEntity;
 
 public class CartRenderer extends EntityRenderer<CartEntity> {
-    private static final ResourceLocation CART_TEXTURE = new Farm_And_CharmIdentifier("textures/entity/supply_cart.png");
+    private static final ResourceLocation CART_TEXTURE = new FarmAndCharmIdentifier("textures/entity/supply_cart.png");
     private final CartModel<CartEntity> model;
 
     public CartRenderer(EntityRendererProvider.Context context) {

@@ -7,16 +7,16 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import satisfy.farm_and_charm.Farm_And_Charm;
-import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
+import satisfy.farm_and_charm.FarmAndCharm;
+import satisfy.farm_and_charm.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.recipe.*;
 
 import java.util.function.Supplier;
 
 public class RecipeTypeRegistry {
 
-    private static final Registrar<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.RECIPE_TYPE).getRegistrar();
-    private static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.RECIPE_SERIALIZER).getRegistrar();
+    private static final Registrar<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.RECIPE_TYPE).getRegistrar();
+    private static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.RECIPE_SERIALIZER).getRegistrar();
 
     public static final RegistrySupplier<RecipeType<CookingPotRecipe>> COOKING_POT_RECIPE_TYPE = create("pot_cooking");
     public static final RegistrySupplier<RecipeSerializer<CookingPotRecipe>> COOKING_POT_RECIPE_SERIALIZER = create("pot_cooking", CookingPotRecipe.Serializer::new);
@@ -33,7 +33,7 @@ public class RecipeTypeRegistry {
 
 
     private static <T extends Recipe<?>> RegistrySupplier<RecipeSerializer<T>> create(String name, Supplier<RecipeSerializer<T>> serializer) {
-        return RECIPE_SERIALIZERS.register(new Farm_And_CharmIdentifier(name), serializer);
+        return RECIPE_SERIALIZERS.register(new FarmAndCharmIdentifier(name), serializer);
     }
 
     private static <T extends Recipe<?>> RegistrySupplier<RecipeType<T>> create(String name) {
@@ -43,7 +43,7 @@ public class RecipeTypeRegistry {
                 return name;
             }
         };
-        return RECIPE_TYPES.register(new Farm_And_CharmIdentifier(name), type);
+        return RECIPE_TYPES.register(new FarmAndCharmIdentifier(name), type);
     }
 
     public static void init() {

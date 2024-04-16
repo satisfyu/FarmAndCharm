@@ -5,23 +5,23 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.registry.CompostableRegistry;
 
 
-@Mod(Farm_And_Charm.MOD_ID)
-public class Farm_And_CharmForge {
+@Mod(FarmAndCharm.MOD_ID)
+public class FarmAndCharmForge {
 
-    public Farm_And_CharmForge() {
+    public FarmAndCharmForge() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        EventBuses.registerModEventBus(Farm_And_Charm.MOD_ID, modEventBus);
-        Farm_And_Charm.init();
+        EventBuses.registerModEventBus(FarmAndCharm.MOD_ID, modEventBus);
+        FarmAndCharm.init();
 
         modEventBus.addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(CompostableRegistry::registerCompostable);
-        Farm_And_Charm.commonSetup();
+        FarmAndCharm.commonSetup();
     }
 }

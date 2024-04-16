@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import satisfy.farm_and_charm.registry.*;
 
-public class Farm_And_Charm {
+public class FarmAndCharm {
     public static final String MOD_ID = "farm_and_charm";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     

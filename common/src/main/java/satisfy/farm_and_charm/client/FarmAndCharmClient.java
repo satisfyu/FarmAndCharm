@@ -26,7 +26,7 @@ import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
 import static satisfy.farm_and_charm.registry.ObjectRegistry.*;
 
 @Environment(EnvType.CLIENT)
-public class Farm_And_CharmClient {
+public class FarmAndCharmClient {
 
     public static void onInitializeClient() {
         RenderTypeRegistry.register(RenderType.cutout(), CRAFTING_BOWL.get(), WATER_SPRINKLER.get(),

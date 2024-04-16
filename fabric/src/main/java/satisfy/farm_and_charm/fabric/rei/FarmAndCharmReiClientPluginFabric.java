@@ -6,7 +6,7 @@ import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import satisfy.farm_and_charm.compat.rei.Farm_And_CharmREIClientPlugin;
 
 
-public class Farm_And_CharmReiClientPluginFabric implements REIClientPlugin {
+public class FarmAndCharmReiClientPluginFabric implements REIClientPlugin {
     @Override
     public void registerCategories(CategoryRegistry registry) {
         Farm_And_CharmREIClientPlugin.registerCategories(registry);

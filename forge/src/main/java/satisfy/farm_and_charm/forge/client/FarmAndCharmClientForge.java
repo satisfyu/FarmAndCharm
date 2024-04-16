@@ -5,23 +5,23 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.RegisterEvent;
-import satisfy.farm_and_charm.Farm_And_Charm;
-import satisfy.farm_and_charm.client.Farm_And_CharmClient;
+import satisfy.farm_and_charm.FarmAndCharm;
+import satisfy.farm_and_charm.client.FarmAndCharmClient;
 
-@Mod.EventBusSubscriber(modid = Farm_And_Charm.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class Farm_And_CharmClientForge {
+@Mod.EventBusSubscriber(modid = FarmAndCharm.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class FarmAndCharmClientForge {
 
     private static boolean initialized = false;
 
     @SubscribeEvent
     public static void onClientSetup(RegisterEvent event) {
-        Farm_And_CharmClient.preInitClient();
+        FarmAndCharmClient.preInitClient();
     }
 
     @SubscribeEvent
     public static void preClientSetup(FMLClientSetupEvent event) {
         if(!initialized){
-            Farm_And_CharmClient.preInitClient();
+            FarmAndCharmClient.preInitClient();
             initialized = true;
         }
     }

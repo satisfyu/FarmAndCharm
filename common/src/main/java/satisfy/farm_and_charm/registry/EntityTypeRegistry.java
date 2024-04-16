@@ -7,8 +7,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import satisfy.farm_and_charm.Farm_And_Charm;
-import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
+import satisfy.farm_and_charm.FarmAndCharm;
+import satisfy.farm_and_charm.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.entity.*;
 import satisfy.farm_and_charm.entity.cart.ChestCart;
 import satisfy.farm_and_charm.entity.cart.PlowCart;
@@ -18,8 +18,8 @@ import java.util.function.Supplier;
 public enum EntityTypeRegistry {
     ;
 
-    private static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.BLOCK_ENTITY_TYPE).getRegistrar();
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Farm_And_Charm.MOD_ID, Registries.ENTITY_TYPE);
+    private static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.BLOCK_ENTITY_TYPE).getRegistrar();
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.ENTITY_TYPE);
 
     public static final RegistrySupplier<BlockEntityType<RoasterBlockEntity>> ROASTER_BLOCK_ENTITY = registerBlockEntity("roaster", () -> BlockEntityType.Builder.of(RoasterBlockEntity::new, ObjectRegistry.ROASTER.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<CookingPotBlockEntity>> COOKING_POT_BLOCK_ENTITY = registerBlockEntity("cooking_pot", () -> BlockEntityType.Builder.of(CookingPotBlockEntity::new, ObjectRegistry.COOKING_POT.get()).build(null));
@@ -32,13 +32,13 @@ public enum EntityTypeRegistry {
     public static final RegistrySupplier<BlockEntityType<MincerBlockEntity>> MINCER_BLOCK_ENTITY = registerBlockEntity("mincer", () -> BlockEntityType.Builder.of(MincerBlockEntity::new, ObjectRegistry.MINCER.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<EffectFoodBlockEntity>> EFFECT_FOOD_BLOCK_ENTITY = registerBlockEntity("effect_food_block", () -> BlockEntityType.Builder.of(EffectFoodBlockEntity::new).build(null));
 
-    public static final RegistrySupplier<EntityType<RottenTomatoEntity>> ROTTEN_TOMATO = registerEntityType("rotten_tomato", () -> EntityType.Builder.<RottenTomatoEntity>of(RottenTomatoEntity::new, MobCategory.MISC).sized(0.25f, 0.25f).build(new Farm_And_CharmIdentifier("rotten_tomato").toString()));
+    public static final RegistrySupplier<EntityType<RottenTomatoEntity>> ROTTEN_TOMATO = registerEntityType("rotten_tomato", () -> EntityType.Builder.<RottenTomatoEntity>of(RottenTomatoEntity::new, MobCategory.MISC).sized(0.25f, 0.25f).build(new FarmAndCharmIdentifier("rotten_tomato").toString()));
 
     public static final RegistrySupplier<EntityType<ChestCart>> CHEST_CART = registerEntityType("chest_cart", () ->
             EntityType.Builder.of(ChestCart::new, MobCategory.MISC)
                     .sized(1.875f, 0.875f)
                     .clientTrackingRange(10)
-                    .build(new Farm_And_CharmIdentifier("chest_cart").toString())
+                    .build(new FarmAndCharmIdentifier("chest_cart").toString())
     );
 
 
@@ -46,20 +46,20 @@ public enum EntityTypeRegistry {
             EntityType.Builder.of(PlowCart::new, MobCategory.MISC)
                     .sized(1.875f, 0.875f)
                     .clientTrackingRange(10)
-                    .build(new Farm_And_CharmIdentifier("plow").toString())
+                    .build(new FarmAndCharmIdentifier("plow").toString())
     );
 
 
     private static <T extends BlockEntityType<?>> RegistrySupplier<T> registerBlockEntity(final String path, final Supplier<T> type) {
-        return BLOCK_ENTITY_TYPES.register(new Farm_And_CharmIdentifier(path), type);
+        return BLOCK_ENTITY_TYPES.register(new FarmAndCharmIdentifier(path), type);
     }
 
     private static <T extends EntityType<?>> RegistrySupplier<T> registerEntityType(final String path, final Supplier<T> type) {
-        return ENTITY_TYPES.register(new Farm_And_CharmIdentifier(path), type);
+        return ENTITY_TYPES.register(new FarmAndCharmIdentifier(path), type);
     }
 
     public static void init() {
         ENTITY_TYPES.register();
-        Farm_And_Charm.LOGGER.debug("Registering Mod Entities and Block Entities for " + Farm_And_Charm.MOD_ID);
+        FarmAndCharm.LOGGER.debug("Registering Mod Entities and Block Entities for " + FarmAndCharm.MOD_ID);
     }
 }

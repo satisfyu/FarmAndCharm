@@ -8,8 +8,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import satisfy.farm_and_charm.Farm_And_Charm;
-import satisfy.farm_and_charm.Farm_And_CharmIdentifier;
+import satisfy.farm_and_charm.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.client.gui.handler.CookingPotGuiHandler;
 import satisfy.farm_and_charm.client.recipebook.CookingPotRecipeBook;
 
@@ -44,6 +43,6 @@ public class CookingPotGui extends AbstractRecipeBookGUIScreen<CookingPotGuiHand
     }
 
     static {
-        BACKGROUND = new Farm_And_CharmIdentifier("textures/gui/pot_gui.png");
+        BACKGROUND = new FarmAndCharmIdentifier("textures/gui/pot_gui.png");
     }
 }

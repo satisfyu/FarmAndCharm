@@ -5,10 +5,11 @@ license = "Custom"
 [[mods]]
 modId = "farm_and_charm"
 version = "${version}"
-displayName = "Farm Charm"
-authors = "Your Name"
+displayName = "[Let's Do] Farm & Charm"
+authors = "satisfy, baumeisterJO, cristelknight123"
 description = '''
-Your Description'''
+The farm calls: Experience the art of advanced agriculture and farmhouse cuisine! Use mincers, cooking pots, as well as new grains and fruit varieties to enhance your culinary and agricultural skills.
+'''
 logoFile = "pack.png"
 
 [[dependencies.farm_and_charm]]

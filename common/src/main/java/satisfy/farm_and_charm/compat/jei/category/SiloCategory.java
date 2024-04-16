@@ -12,13 +12,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.Farm_And_Charm;
+import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.recipe.SiloRecipe;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 public class SiloCategory implements IRecipeCategory<SiloRecipe> {
-    public static final RecipeType<SiloRecipe> DRYING_TYPE = RecipeType.create(Farm_And_Charm.MOD_ID, "drying", SiloRecipe.class);
-    public final static ResourceLocation TEXTURE = new ResourceLocation(Farm_And_Charm.MOD_ID, "textures/gui/silo.png");
+    public static final RecipeType<SiloRecipe> DRYING_TYPE = RecipeType.create(FarmAndCharm.MOD_ID, "drying", SiloRecipe.class);
+    public final static ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/gui/silo.png");
 
     private final IDrawable background;
     private final IDrawable icon;
