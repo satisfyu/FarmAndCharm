@@ -37,7 +37,6 @@ import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.CraftingBowlBlockEntity;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.SoundEventRegistry;
-import satisfy.farm_and_charm.util.GeneralUtil;
 
 import java.util.Collections;
 import java.util.List;

@@ -6,6 +6,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.entity.StoveBlockEntity;
 
 public class StoveOutputSlot extends Slot {
@@ -24,7 +25,7 @@ public class StoveOutputSlot extends Slot {
     }
 
     @Override
-    public ItemStack remove(int amount) {
+    public @NotNull ItemStack remove(int amount) {
         if (this.hasItem()) {
             this.amount += Math.min(amount, this.getItem().getCount());
         }

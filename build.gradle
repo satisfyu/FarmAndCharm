@@ -1,16 +1,10 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.2-SNAPSHOT" apply false
-    id 'io.github.juuxel.loom-vineflower' version '1.11.0' apply false
-}
-
-architectury {
-    minecraft = rootProject.minecraft_version
+    id "dev.architectury.loom" version "1.5-SNAPSHOT" apply false
 }
 
 subprojects {
     apply plugin: "dev.architectury.loom"
-    apply plugin: "io.github.juuxel.loom-vineflower"
 
     loom {
         silentMojangMappingsLicense()
@@ -19,11 +13,8 @@ subprojects {
     dependencies {
         minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
         mappings loom.officialMojangMappings()
-
     }
 }
-
-
 
 allprojects {
     apply plugin: "java"

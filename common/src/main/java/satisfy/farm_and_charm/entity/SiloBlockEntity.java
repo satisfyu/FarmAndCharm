@@ -1,5 +1,6 @@
 package satisfy.farm_and_charm.entity;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,7 +25,6 @@ import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.SiloBlock;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.util.ConnectivityHandler;
-import satisfy.farm_and_charm.util.GeneralUtil;
 import satisfy.farm_and_charm.util.IMultiBlockEntityContainer;
 
 public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityContainer.Inventory, ImplementedInventory, MenuProvider, BlockEntityTicker<SiloBlockEntity> {

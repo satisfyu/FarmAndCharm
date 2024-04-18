@@ -1,5 +1,7 @@
 package satisfy.farm_and_charm.block;
 
+import de.cristelknight.doapi.common.block.LineConnectingBlock;
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,7 +26,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.entity.FeedingTroughBlockEntity;
-import satisfy.farm_and_charm.util.GeneralUtil;
 
 import java.util.HashMap;
 import java.util.Map;

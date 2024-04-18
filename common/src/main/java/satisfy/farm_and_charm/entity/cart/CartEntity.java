@@ -8,6 +8,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -60,12 +61,19 @@ public abstract class CartEntity extends DrivableEntity {
     public @NotNull InteractionResult interact(Player player, InteractionHand interactionHand) {
         if (this.hasDriver()) {
             this.removeDriver();
+            this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.WOOD_PLACE, SoundSource.PLAYERS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
         } else {
             boolean added = this.addDriver(player);
-            return added ? InteractionResult.SUCCESS : InteractionResult.PASS;
+            if (added) {
+                this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.WOOD_FALL, SoundSource.PLAYERS, 1.0F, 1.0F);
+                return InteractionResult.SUCCESS;
+            } else {
+                return InteractionResult.PASS;
+            }
         }
     }
+
 
     @Override
     public void tick() {

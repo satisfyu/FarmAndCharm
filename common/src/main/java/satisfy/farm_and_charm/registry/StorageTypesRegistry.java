@@ -13,6 +13,5 @@ public class StorageTypesRegistry {
     public static void registerBlocks(Set<Block> blocks) {
         blocks.add(ObjectRegistry.TOOL_RACK.get());
         blocks.add(ObjectRegistry.WINDOW_SILL.get());
-
     }
 }

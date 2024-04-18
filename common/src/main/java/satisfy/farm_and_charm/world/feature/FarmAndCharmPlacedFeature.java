@@ -22,8 +22,6 @@ public class FarmAndCharmPlacedFeature {
     public static final ResourceKey<PlacedFeature> WILD_EMMER_PATCH_CHANCE_KEY = registerKey("wild_emmer_chance");
     public static final ResourceKey<PlacedFeature> WILD_CORN_PATCH_CHANCE_KEY = registerKey("wild_corn_chance");
 
-
-
     public static ResourceKey<PlacedFeature> registerKey(String name) {
         return ResourceKey.create(Registries.PLACED_FEATURE, new FarmAndCharmIdentifier(name));
     }

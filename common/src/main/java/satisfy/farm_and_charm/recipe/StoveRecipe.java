@@ -2,6 +2,7 @@ package satisfy.farm_and_charm.recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -13,7 +14,6 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
-import satisfy.farm_and_charm.util.GeneralUtil;
 
 
 public class StoveRecipe implements Recipe<Container> {

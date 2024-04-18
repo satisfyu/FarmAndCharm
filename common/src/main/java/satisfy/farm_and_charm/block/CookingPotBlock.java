@@ -1,5 +1,6 @@
 package satisfy.farm_and_charm.block;
 
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -40,7 +41,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.CookingPotBlockEntity;
 import satisfy.farm_and_charm.registry.SoundEventRegistry;
-import satisfy.farm_and_charm.util.GeneralUtil;
 
 import java.util.HashMap;
 import java.util.List;
