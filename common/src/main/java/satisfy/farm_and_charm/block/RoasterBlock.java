@@ -1,5 +1,6 @@
 package satisfy.farm_and_charm.block;
 
+import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -39,7 +40,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.RoasterBlockEntity;
-import satisfy.farm_and_charm.registry.SoundEventRegistry;
 
 import java.util.HashMap;
 import java.util.List;
@@ -107,7 +107,7 @@ public class RoasterBlock extends BaseEntityBlock {
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         if (state.getValue(HANGING)) {
-            return world.getBlockState(pos.above()).isFaceSturdy(world, pos.above(), Direction.DOWN);
+            return !world.isEmptyBlock(pos.above());
         } else {
             VoxelShape shape = world.getBlockState(pos.below()).getShape(world, pos.below());
             return Block.isFaceFull(shape, Direction.UP);
@@ -149,7 +149,7 @@ public class RoasterBlock extends BaseEntityBlock {
         double e = pos.getY() + 0.7;
         double f = pos.getZ() + 0.5;
 
-        world.playLocalSound(d, e, f, SoundEventRegistry.ROASTER_COOKING.get(), SoundSource.BLOCKS, 0.1f, 1.0f, false);
+        world.playLocalSound(d, e, f, DoApiSoundEventRegistry.ROASTER_COOKING.get(), SoundSource.BLOCKS, 0.1f, 1.0f, false);
 
 
         double h = random.nextDouble() * 0.6 - 0.3;

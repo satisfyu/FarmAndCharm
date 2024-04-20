@@ -1,10 +1,10 @@
 package satisfy.farm_and_charm.block;
 
+import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -20,7 +20,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.entity.WaterSprinklerBlockEntity;
-import satisfy.farm_and_charm.registry.SoundEventRegistry;
 
 @SuppressWarnings("deprecation")
 public class WaterSprinklerBlock extends BaseEntityBlock {
@@ -99,7 +98,7 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
     }
 
     private void playContinuousSound(ServerLevel world, BlockPos pos) {
-        world.playSound(null, pos, SoundEventRegistry.WATER_SPRINKLER.get(), SoundSource.BLOCKS, 0.25F, 0.75F);
+        world.playSound(null, pos, DoApiSoundEventRegistry.WATER_SPRINKLER.get(), SoundSource.BLOCKS, 0.25F, 0.75F);
          world.scheduleTick(pos, this, 80);
     }
 

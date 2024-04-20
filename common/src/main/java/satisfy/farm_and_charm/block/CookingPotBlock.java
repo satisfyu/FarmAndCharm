@@ -1,5 +1,6 @@
 package satisfy.farm_and_charm.block;
 
+import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -40,7 +41,6 @@ import net.minecraft.ChatFormatting;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.CookingPotBlockEntity;
-import satisfy.farm_and_charm.registry.SoundEventRegistry;
 
 import java.util.HashMap;
 import java.util.List;
@@ -138,7 +138,7 @@ public class CookingPotBlock extends BaseEntityBlock {
         double e = pos.getY() + 0.7;
         double f = pos.getZ() + 0.5;
 
-        world.playLocalSound(d, e, f, SoundEventRegistry.COOKING_POT_BOILING.get(), SoundSource.BLOCKS, 0.1f, 1.0f, false);
+        world.playLocalSound(d, e, f, DoApiSoundEventRegistry.COOKING_POT_BOILING.get(), SoundSource.BLOCKS, 0.1f, 1.0f, false);
 
 
         double h = random.nextDouble() * 0.6 - 0.3;

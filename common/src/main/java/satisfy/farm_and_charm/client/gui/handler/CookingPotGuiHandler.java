@@ -9,7 +9,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import satisfy.farm_and_charm.client.gui.handler.slot.ExtendedSlot;
@@ -17,6 +16,7 @@ import satisfy.farm_and_charm.client.recipebook.group.CookingPotRecipeBookGroup;
 import satisfy.farm_and_charm.entity.CookingPotBlockEntity;
 import satisfy.farm_and_charm.recipe.CookingPotRecipe;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
+import satisfy.farm_and_charm.registry.TagRegistry;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     }
 
     private void buildBlockEntityContainer(Container inventory) {
-        this.addSlot(new ExtendedSlot(inventory, 6, 95, 55, stack -> stack.is(Items.BOWL) || stack.is(Items.GLASS_BOTTLE)));
+    this.addSlot(new ExtendedSlot(inventory, 6, 95, 55, stack -> stack.is(TagRegistry.CONTAINER)));
 
         for (int row = 0; row < 2; row++) {
             for (int slot = 0; slot < 3; slot++) {

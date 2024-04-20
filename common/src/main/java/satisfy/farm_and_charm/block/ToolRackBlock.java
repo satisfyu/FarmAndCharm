@@ -25,6 +25,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.registry.StorageTypesRegistry;
+import satisfy.farm_and_charm.registry.TagRegistry;
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,10 +58,8 @@ public class ToolRackBlock extends StorageBlock {
 
     @Override
     public boolean canInsertStack(ItemStack stack) {
-        return stack.getItem() instanceof TieredItem || stack.getItem() == Items.SHEARS
-                || stack.getItem() == Items.FISHING_ROD || stack.getItem() == Items.SPYGLASS || stack.getItem() == Items.CHAIN;
+        return stack.getItem() instanceof TieredItem || stack.getItem() == Items.SHEARS || stack.getItem() == Items.FISHING_ROD || stack.getItem() == Items.SPYGLASS || stack.is(TagRegistry.HANGABLE);
     }
-
 
     @Override
     public ResourceLocation type() {

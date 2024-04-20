@@ -1,5 +1,6 @@
 package satisfy.farm_and_charm.block;
 
+import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -42,7 +43,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.entity.MincerBlockEntity;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
-import satisfy.farm_and_charm.registry.SoundEventRegistry;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -161,7 +161,7 @@ public class MincerBlock extends BaseEntityBlock {
                 if (crank <= 6) {
 
                     level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
-                    level.playSound(null, pos, SoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                    level.playSound(null, pos, DoApiSoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
                     return InteractionResult.SUCCESS;
                 }
 
@@ -187,7 +187,7 @@ public class MincerBlock extends BaseEntityBlock {
             if (crank <= 6) {
 
                 level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
-                level.playSound(null, pos, SoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                level.playSound(null, pos, DoApiSoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
                 return InteractionResult.SUCCESS;
             }
 

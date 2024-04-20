@@ -15,7 +15,6 @@ public class FarmAndCharm {
         EntityTypeRegistry.init();
         ScreenhandlerTypeRegistry.init();
         RecipeTypeRegistry.init();
-        SoundEventRegistry.init();
         KeybindsRegistry.init();
     }
 
