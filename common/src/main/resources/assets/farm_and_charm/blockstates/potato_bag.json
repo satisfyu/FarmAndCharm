@@ -1,6 +1,19 @@
 {
   "variants": {
-    "": { "model": "farm_and_charm:block/potato_bag" }
+    "facing=east": {
+      "model": "farm_and_charm:block/potato_bag",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "farm_and_charm:block/potato_bag"
+    },
+    "facing=south": {
+      "model": "farm_and_charm:block/potato_bag",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "farm_and_charm:block/potato_bag",
+      "y": 270
+    }
   }
 }
-

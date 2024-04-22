@@ -37,7 +37,7 @@
         }
       ]
     },
-    "tries": 36,
+    "tries": 13,
     "xz_spread": 3,
     "y_spread": 1,
     "whitelist": ["minecraft:grass_block"]

@@ -1,7 +1,7 @@
 package satisfy.farm_and_charm.registry;
 
 import de.cristelknight.doapi.Util;
-import de.cristelknight.doapi.common.block.StackableBlock;
+import de.cristelknight.doapi.common.block.FacingBlock;
 import de.cristelknight.doapi.common.block.StackableEatableBlock;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
@@ -59,15 +59,15 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> WILD_LETTUCE = registerWithItem("wild_lettuce", () -> new FlowerBlock(MobEffects.LEVITATION, 1, BlockBehaviour.Properties.copy(Blocks.POPPY)));
     public static final RegistrySupplier<Block> WILD_ONIONS = registerWithItem("wild_onions", () -> new FlowerBlock(MobEffects.DAMAGE_BOOST, 1, BlockBehaviour.Properties.copy(Blocks.LILY_OF_THE_VALLEY)));
     public static final RegistrySupplier<Block> WILD_STRAWBERRIES = registerWithItem("wild_strawberries", () -> new FlowerBlock(MobEffects.LUCK, 1, BlockBehaviour.Properties.copy(Blocks.AZURE_BLUET)));
-    public static final RegistrySupplier<Block> STRAWBERRY_BAG = registerWithItem("strawberry_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
-    public static final RegistrySupplier<Block> CARROT_BAG = registerWithItem("carrot_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
-    public static final RegistrySupplier<Block> POTATO_BAG = registerWithItem("potato_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
-    public static final RegistrySupplier<Block> BEETROOT_BAG = registerWithItem("beetroot_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
-    public static final RegistrySupplier<Block> LETTUCE_BAG = registerWithItem("lettuce_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
-    public static final RegistrySupplier<Block> TOMATO_BAG = registerWithItem("tomato_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
-    public static final RegistrySupplier<Block> CORN_BAG = registerWithItem("corn_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
-    public static final RegistrySupplier<Block> ONION_BAG = registerWithItem("onion_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
-    public static final RegistrySupplier<Block> FLOUR_BAG = registerWithItem("flour_bag", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> STRAWBERRY_BAG = registerWithItem("strawberry_bag", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> CARROT_BAG = registerWithItem("carrot_bag", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> POTATO_BAG = registerWithItem("potato_bag", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> BEETROOT_BAG = registerWithItem("beetroot_bag", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> LETTUCE_BAG = registerWithItem("lettuce_bag", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> TOMATO_BAG = registerWithItem("tomato_bag", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> CORN_BAG = registerWithItem("corn_bag", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> ONION_BAG = registerWithItem("onion_bag", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
+    public static final RegistrySupplier<Block> FLOUR_BAG = registerWithItem("flour_bag", () -> new FacingBlock(BlockBehaviour.Properties.copy(Blocks.RED_WOOL)));
     public static final RegistrySupplier<Block> OAT_BALL = registerWithItem("oat_ball", () -> new HayBlock(BlockBehaviour.Properties.copy(Blocks.HAY_BLOCK)));
     public static final RegistrySupplier<Block> BARLEY_BALL = registerWithItem("barley_ball", () -> new HayBlock(BlockBehaviour.Properties.copy(Blocks.HAY_BLOCK)));
     public static final RegistrySupplier<Block> FERTILIZED_SOIL_BLOCK = registerWithItem("fertilized_soil", () -> new FertilizedSoilBlock(BlockBehaviour.Properties.copy(Blocks.ROOTED_DIRT).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
@@ -195,6 +195,7 @@ public class ObjectRegistry {
         return getFoodItemSettings(nutrition, saturationMod, effect, duration, true, false);
     }
 
+    @SuppressWarnings("all")
     private static Item.Properties getFoodItemSettings(int nutrition, float saturationMod, MobEffect effect, int duration, boolean alwaysEat, boolean fast) {
         return getSettings().food(createFood(nutrition, saturationMod, effect, duration, alwaysEat, fast));
     }

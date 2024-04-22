@@ -27,9 +27,9 @@ public class ToolRackRenderer implements StorageTypeRenderer {
                 double translate = (i + 1) * (1D / 3);
 
                 if (stack.is(TagRegistry.HANGABLE)) {
-                    matrices.translate(translate - (2D / 3), 0.6f, 0.38f);
+                    matrices.translate(translate - (2D / 3.2), 0.675f, 0.38f);
                     matrices.scale(0.5f, 0.5f, 0.5f);
-                    matrices.mulPose(Axis.ZN.rotationDegrees(135f));
+                    matrices.mulPose(Axis.ZN.rotationDegrees(45f));
                     matrices.mulPose(Axis.YN.rotationDegrees(-180f));
                     ClientUtil.renderItem(stack, matrices, vertexConsumers, entity);
                 } else {

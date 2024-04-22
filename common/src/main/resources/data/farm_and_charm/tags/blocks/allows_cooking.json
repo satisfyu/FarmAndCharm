@@ -4,6 +4,10 @@
     "farm_and_charm:stove",
     "minecraft:redstone_block",
     "minecraft:magma_block",
-    "#minecraft:campfires"
+    "#minecraft:campfires",
+    {
+      "id": "farmersdelight:stove",
+      "required": false
+    }
   ]
 }

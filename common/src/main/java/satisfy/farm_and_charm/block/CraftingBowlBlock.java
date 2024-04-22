@@ -117,7 +117,7 @@ public class CraftingBowlBlock extends BaseEntityBlock {
                 }
                 if (stirring <= 6) {
                     world.setBlock(pos, blockState.setValue(STIRRING, 10), 3);
-                    world.playSound(null, pos, DoApiSoundEventRegistry.CRAFTING_BOWL_STIRRING.get(), SoundSource.BLOCKS, 0.5F, 1.0F);
+                    world.playSound(null, pos, DoApiSoundEventRegistry.CRAFTING_BOWL_STIRRING.get(), SoundSource.BLOCKS, 0.05f, 1.0F);
                     return InteractionResult.SUCCESS;
                 }
             }

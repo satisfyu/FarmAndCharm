@@ -187,7 +187,7 @@ public class MincerBlock extends BaseEntityBlock {
             if (crank <= 6) {
 
                 level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
-                level.playSound(null, pos, DoApiSoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
+                level.playSound(null, pos, DoApiSoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 0.05f, 2.5F);
                 return InteractionResult.SUCCESS;
             }
 
