@@ -31,11 +31,9 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
 
     private NonNullList<ItemStack> stacks = NonNullList.withSize(5, ItemStack.EMPTY);
 
-
     public CraftingBowlBlockEntity(BlockPos position, BlockState state) {
         super(EntityTypeRegistry.CRAFTING_BOWL_BLOCK_ENTITY.get(), position, state);
     }
-
 
     @Override
     public void load(CompoundTag compound) {
@@ -85,10 +83,9 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
         return ChestMenu.threeRows(id, inventory);
     }
 
-
     @Override
     public int getMaxStackSize() {
-        return 1;
+        return 64;
     }
 
     @Override
@@ -96,23 +93,22 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
         return true;
     }
 
-
     @Override
     public @NotNull NonNullList<ItemStack> getItems() {
         return this.stacks;
     }
 
     public int filledSlots() {
-        int i = 4;
-
-        for(int j = 0; j < this.getContainerSize(); ++j) {
-            if (this.getItem(j) == ItemStack.EMPTY) {
-                i--;
+        int count = 0;
+        for (ItemStack stack : this.stacks) {
+            if (!stack.isEmpty()) {
+                count++;
             }
         }
-
-        return i;
+        return count;
     }
+
+
 
     @Override
     protected void setItems(NonNullList<ItemStack> stacks) {
@@ -120,7 +116,7 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
     }
 
     public boolean canAddItem(ItemStack stack) {
-        return this.canPlaceItem(0, stack) && filledSlots() < this.getContainerSize() - 1;
+        return this.canPlaceItem(0, stack) && filledSlots() < this.getContainerSize();
     }
 
     public void addItemStack(ItemStack stack) {
@@ -153,6 +149,10 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
             return new ItemStack(Objects.requireNonNull(stack.getItem().getCraftingRemainingItem()));
         }
         return ItemStack.EMPTY;
+    }
+
+    public int getStirringProgress() {
+        return this.getBlockState().getValue(CraftingBowlBlock.STIRRED);
     }
 
     @Override

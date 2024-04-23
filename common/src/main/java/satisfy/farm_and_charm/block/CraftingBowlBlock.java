@@ -94,11 +94,23 @@ public class CraftingBowlBlock extends BaseEntityBlock {
             int stirring = blockState.getValue(STIRRING);
             int stirred = blockState.getValue(STIRRED);
 
+            if (player.isShiftKeyDown() && itemStack.isEmpty() && hand == InteractionHand.MAIN_HAND) {
+                for (int i = 0; i < bowlEntity.getContainerSize(); i++) {
+                    ItemStack stack = bowlEntity.getItem(i);
+                    if (!stack.isEmpty()) {
+                        popResource(world, pos, stack);
+                        bowlEntity.setItem(i, ItemStack.EMPTY);
+                    }
+                }
+                bowlEntity.setChanged();
+                return InteractionResult.sidedSuccess(world.isClientSide);
+            }
+
             if (!itemStack.isEmpty() && stirring == 0) {
                 if (bowlEntity.canAddItem(itemStack)) {
                     bowlEntity.addItemStack(itemStack.copy());
                     if (!player.isCreative()) {
-                        itemStack.shrink(1);
+                        itemStack.setCount(0); 
                     }
                     return InteractionResult.SUCCESS;
                 }
@@ -127,6 +139,7 @@ public class CraftingBowlBlock extends BaseEntityBlock {
         }
         return InteractionResult.PASS;
     }
+
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {

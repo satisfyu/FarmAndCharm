@@ -47,9 +47,12 @@ public class CraftingBowlRenderer implements BlockEntityRenderer<CraftingBowlBlo
         poseStack.translate(0.5f, -1.5f, -0.5f);
 
 
-        ResourceLocation location = blockEntity.getItem(4) == ItemStack.EMPTY ?
-                new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl.png") :
-                new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl_full.png");
+        ResourceLocation location;
+        if (blockEntity.getStirringProgress() >= CraftingBowlBlock.STIRS_NEEDED) {
+            location = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl_full.png");
+        } else {
+            location = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl.png");
+        }
 
 
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityTranslucent(location));
