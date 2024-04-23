@@ -184,7 +184,9 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
                                 }
                             }
                         });
-                        blockEntity.setItem(4, recipe.getResultItem(level.registryAccess()));
+                        ItemStack resultItem = recipe.getResultItem(level.registryAccess()).copy();
+                        resultItem.setCount(recipe.getOutputCount());
+                        blockEntity.setItem(4, resultItem);
                     }
                 }
 
@@ -195,5 +197,4 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
             }
         }
     }
-
 }

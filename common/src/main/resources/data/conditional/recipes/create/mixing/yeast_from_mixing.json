@@ -15,7 +15,7 @@
       {
         "fluid": "minecraft:water",
         "nbt": {},
-        "amount": 1000
+        "amount": 400
       },
       {
         "tag": "farm_and_charm:wheat"

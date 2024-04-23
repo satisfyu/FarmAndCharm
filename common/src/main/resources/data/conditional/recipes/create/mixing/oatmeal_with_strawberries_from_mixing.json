@@ -11,7 +11,7 @@
     "ingredients": [
       {
         "fluidTag": "forge:milk",
-        "amount": 250
+        "amount": 400
       },
       {
         "item": "farm_and_charm:oat"

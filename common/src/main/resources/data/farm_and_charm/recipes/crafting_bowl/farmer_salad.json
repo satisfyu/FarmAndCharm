@@ -15,6 +15,7 @@
     }
   ],
   "result": {
-    "item": "farm_and_charm:farmer_salad"
+    "item": "farm_and_charm:farmer_salad",
+    "count": 2
   }
 }

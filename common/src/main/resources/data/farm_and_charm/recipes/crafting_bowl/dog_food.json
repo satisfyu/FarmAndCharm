@@ -12,6 +12,7 @@
     }
   ],
   "result": {
-    "item": "farm_and_charm:dog_food"
+    "item": "farm_and_charm:dog_food",
+    "count": 4
   }
 }

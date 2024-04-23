@@ -6,6 +6,7 @@
     }
   ],
   "result": {
-    "item": "farm_and_charm:butter"
+    "item": "farm_and_charm:butter",
+    "count": 4
   }
 }

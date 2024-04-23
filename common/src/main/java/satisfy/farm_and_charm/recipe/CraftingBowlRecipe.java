@@ -1,7 +1,6 @@
 package satisfy.farm_and_charm.recipe;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -15,19 +14,24 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
-
 public class CraftingBowlRecipe implements Recipe<Container> {
-
     final ResourceLocation id;
     private final NonNullList<Ingredient> inputs;
     private final ItemStack output;
+    private final int outputCount;
 
-    public CraftingBowlRecipe(ResourceLocation id, NonNullList<Ingredient> inputs, ItemStack output, int count) {
+    public CraftingBowlRecipe(ResourceLocation id, NonNullList<Ingredient> inputs, ItemStack output, int outputCount) {
         this.id = id;
         this.inputs = inputs;
         this.output = output;
-        this.output.setCount(count);
+        this.outputCount = outputCount;
     }
+
+    public int getOutputCount() {
+        return outputCount;
+    }
+
+
 
     @Override
     public boolean matches(Container inventory, Level world) {
@@ -50,9 +54,13 @@ public class CraftingBowlRecipe implements Recipe<Container> {
         return true;
     }
 
+    @Override
     public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
-        return this.output.copy();
+        ItemStack result = this.output.copy();
+        result.setCount(this.outputCount);
+        return result;
     }
+
 
     @Override
     public @NotNull ResourceLocation getId() {
@@ -80,38 +88,33 @@ public class CraftingBowlRecipe implements Recipe<Container> {
     }
 
     public static class Serializer implements RecipeSerializer<CraftingBowlRecipe> {
-
         @Override
         public @NotNull CraftingBowlRecipe fromJson(ResourceLocation id, JsonObject json) {
-            final var ingredients = GeneralUtil.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
-            if (ingredients.isEmpty()) {
-                throw new JsonParseException("No ingredients for Crafting Bowl Recipe");
-            } else if (ingredients.size() > 4) {
-                throw new JsonParseException("Too many ingredients for Crafting Bowl Recipe");
-            } else {
-                final var result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-                final var count = GsonHelper.getAsInt(json, "count", 1);
-                result.setCount(count);
-                return new CraftingBowlRecipe(id, ingredients, result, count);
-            }
+            NonNullList<Ingredient> ingredients = GeneralUtil.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
+            JsonObject resultJson = GsonHelper.getAsJsonObject(json, "result");
+            ItemStack result = ShapedRecipe.itemStackFromJson(resultJson);
+            int count = GsonHelper.getAsInt(resultJson, "count", 1);
+            return new CraftingBowlRecipe(id, ingredients, result, count);
         }
 
         @Override
         public @NotNull CraftingBowlRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            final var ingredients = NonNullList.withSize(buf.readVarInt(), Ingredient.EMPTY);
-            ingredients.replaceAll(ignored -> Ingredient.fromNetwork(buf));
-            final var output = buf.readItem();
-            final var count = buf.readVarInt();
-            output.setCount(count);
-            return new CraftingBowlRecipe(id, ingredients, output, count);
+            int ingredientCount = buf.readVarInt();
+            NonNullList<Ingredient> ingredients = NonNullList.withSize(ingredientCount, Ingredient.EMPTY);
+            for (int i = 0; i < ingredientCount; i++) {
+                ingredients.set(i, Ingredient.fromNetwork(buf));
+            }
+            ItemStack result = buf.readItem();
+            int count = buf.readVarInt();
+            return new CraftingBowlRecipe(id, ingredients, result, count);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, CraftingBowlRecipe recipe) {
             buf.writeVarInt(recipe.inputs.size());
-            recipe.inputs.forEach(entry -> entry.toNetwork(buf));
+            recipe.inputs.forEach(ingredient -> ingredient.toNetwork(buf));
             buf.writeItem(recipe.output);
-            buf.writeVarInt(recipe.output.getCount());
+            buf.writeVarInt(recipe.outputCount);
         }
     }
 }

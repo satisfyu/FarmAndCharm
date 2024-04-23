@@ -17,6 +17,7 @@ import satisfy.farm_and_charm.client.recipebook.group.RoasterRecipeBookGroup;
 import satisfy.farm_and_charm.entity.RoasterBlockEntity;
 import satisfy.farm_and_charm.recipe.RoasterRecipe;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
+import satisfy.farm_and_charm.registry.TagRegistry;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class RoasterGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     }
 
     private void buildBlockEntityContainer(Container inventory) {
-        this.addSlot(new ExtendedSlot(inventory, 6,95, 55, stack -> stack.is(Items.BOWL)));
+        this.addSlot(new ExtendedSlot(inventory, 6, 95, 55, stack -> stack.is(TagRegistry.CONTAINER)));
 
         for (int row = 0; row < 2; row++) {
             for (int slot = 0; slot < 3; slot++) {
