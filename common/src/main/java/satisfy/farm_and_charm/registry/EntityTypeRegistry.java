@@ -8,7 +8,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import satisfy.farm_and_charm.FarmAndCharm;
-import satisfy.farm_and_charm.FarmAndCharmIdentifier;
+import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.entity.*;
 import satisfy.farm_and_charm.entity.cart.ChestCart;
 import satisfy.farm_and_charm.entity.cart.PlowCart;

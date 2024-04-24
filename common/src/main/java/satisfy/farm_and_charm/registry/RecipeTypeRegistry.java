@@ -8,7 +8,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import satisfy.farm_and_charm.FarmAndCharm;
-import satisfy.farm_and_charm.FarmAndCharmIdentifier;
+import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.recipe.*;
 
 import java.util.function.Supplier;

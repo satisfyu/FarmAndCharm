@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "farm_and_charm:roaster",
+    "farm_and_charm:cooking_pot",
+    {
+      "id": "bakery:small_cooking_pot",
+      "required": false
+    },
+    {
+      "id": "candlelight:cooking_pot",
+      "required": false
+    },
+    {
+      "id": "candlelight:cooking_pan",
+      "required": false
+    }
+  ]
+}

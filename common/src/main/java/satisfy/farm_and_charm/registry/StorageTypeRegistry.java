@@ -2,11 +2,11 @@ package satisfy.farm_and_charm.registry;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import satisfy.farm_and_charm.FarmAndCharmIdentifier;
+import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 import java.util.Set;
 
-public class StorageTypesRegistry {
+public class StorageTypeRegistry {
     public static final ResourceLocation TOOL_RACK = new FarmAndCharmIdentifier("tool_rack");
     public static final ResourceLocation WINDOW_SILL = new FarmAndCharmIdentifier("window_sill");
 

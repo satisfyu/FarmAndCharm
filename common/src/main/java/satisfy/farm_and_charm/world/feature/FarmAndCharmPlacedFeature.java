@@ -3,7 +3,7 @@ package satisfy.farm_and_charm.world.feature;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import satisfy.farm_and_charm.FarmAndCharmIdentifier;
+import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 
 public class FarmAndCharmPlacedFeature {

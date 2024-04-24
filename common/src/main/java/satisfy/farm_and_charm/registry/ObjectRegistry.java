@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.PushReaction;
 import satisfy.farm_and_charm.FarmAndCharm;
-import satisfy.farm_and_charm.FarmAndCharmIdentifier;
+import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.block.*;
 import satisfy.farm_and_charm.block.crops.*;
 import satisfy.farm_and_charm.item.*;

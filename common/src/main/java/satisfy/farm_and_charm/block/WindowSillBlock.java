@@ -25,7 +25,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.registry.StorageTypesRegistry;
+import satisfy.farm_and_charm.registry.StorageTypeRegistry;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +51,7 @@ public class WindowSillBlock extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return StorageTypesRegistry.WINDOW_SILL;
+        return StorageTypeRegistry.WINDOW_SILL;
     }
 
     @Override

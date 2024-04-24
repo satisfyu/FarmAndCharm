@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.client.render.ToolRackRenderer;
 import satisfy.farm_and_charm.client.render.WindowSillRenderer;
-import satisfy.farm_and_charm.registry.StorageTypesRegistry;
+import satisfy.farm_and_charm.registry.StorageTypeRegistry;
 
 public class ClientStorageTypes {
     public static void registerStorageType(ResourceLocation location, StorageTypeRenderer renderer){
@@ -15,8 +15,8 @@ public class ClientStorageTypes {
 
     public static void init(){
         FarmAndCharm.LOGGER.debug("Registering Storage Block Renderers!");
-        registerStorageType(StorageTypesRegistry.TOOL_RACK, new ToolRackRenderer());
-        registerStorageType(StorageTypesRegistry.WINDOW_SILL, new WindowSillRenderer());
+        registerStorageType(StorageTypeRegistry.TOOL_RACK, new ToolRackRenderer());
+        registerStorageType(StorageTypeRegistry.WINDOW_SILL, new WindowSillRenderer());
 
     }
 }

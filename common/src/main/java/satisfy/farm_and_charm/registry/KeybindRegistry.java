@@ -5,7 +5,7 @@ import dev.architectury.registry.client.keymappings.KeyMappingRegistry;
 import net.minecraft.client.KeyMapping;
 import org.lwjgl.glfw.GLFW;
 
-public class KeybindsRegistry {
+public class KeybindRegistry {
     public static KeyMapping coupleOrPickUpCart;
     public static KeyMapping openChest;
 

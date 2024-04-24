@@ -24,7 +24,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.registry.StorageTypesRegistry;
+import satisfy.farm_and_charm.registry.StorageTypeRegistry;
 import satisfy.farm_and_charm.registry.TagRegistry;
 
 import java.util.HashMap;
@@ -63,7 +63,7 @@ public class ToolRackBlock extends StorageBlock {
 
     @Override
     public ResourceLocation type() {
-        return StorageTypesRegistry.TOOL_RACK;
+        return StorageTypeRegistry.TOOL_RACK;
     }
 
     @Override

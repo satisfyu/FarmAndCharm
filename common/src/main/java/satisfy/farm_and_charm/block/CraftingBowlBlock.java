@@ -110,7 +110,7 @@ public class CraftingBowlBlock extends BaseEntityBlock {
                 if (bowlEntity.canAddItem(itemStack)) {
                     bowlEntity.addItemStack(itemStack.copy());
                     if (!player.isCreative()) {
-                        itemStack.setCount(0); 
+                        itemStack.setCount(0);
                     }
                     return InteractionResult.SUCCESS;
                 }

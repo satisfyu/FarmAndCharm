@@ -1,6 +1,7 @@
-package satisfy.farm_and_charm;
+package satisfy.farm_and_charm.util;
 
 import net.minecraft.resources.ResourceLocation;
+import satisfy.farm_and_charm.FarmAndCharm;
 
 public class FarmAndCharmIdentifier extends ResourceLocation {
 
