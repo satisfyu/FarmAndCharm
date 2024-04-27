@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.Block;
 import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 public class TagRegistry {
+    public static final TagKey<Block> SUPPRESS_CAMPFIRE_SMOKE_PARTICLES = TagKey.create(Registries.BLOCK, new FarmAndCharmIdentifier("suppress_campfire_smoke_particles"));
     public static final TagKey<Block> COOKING_POTS = TagKey.create(Registries.BLOCK, new FarmAndCharmIdentifier("cooking_pots"));
     public static final TagKey<Block> ALLOWS_COOKING = TagKey.create(Registries.BLOCK, new FarmAndCharmIdentifier("allows_cooking"));
     public static final TagKey<Block> WILD_CROPS = TagKey.create(Registries.BLOCK, new FarmAndCharmIdentifier("wild_crops"));

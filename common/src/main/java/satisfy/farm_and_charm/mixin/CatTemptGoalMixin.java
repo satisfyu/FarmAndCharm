@@ -12,7 +12,6 @@ import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 @Mixin(Cat.CatTemptGoal.class)
 public class CatTemptGoalMixin {
-
     @Shadow @Nullable private Player selectedPlayer;
 
     @Inject(method = "canScare", at = @At("HEAD"), cancellable = true)

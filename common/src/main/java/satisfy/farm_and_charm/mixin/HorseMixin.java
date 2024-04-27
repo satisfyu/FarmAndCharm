@@ -13,7 +13,6 @@ import satisfy.farm_and_charm.item.HorseFodderItem;
 
 @Mixin(Horse.class)
 public abstract class HorseMixin {
-
     @Inject(method = "mobInteract", at = @At("HEAD"), cancellable = true)
     private void injectCustomItemInteraction(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         Horse self = (Horse)(Object)this;

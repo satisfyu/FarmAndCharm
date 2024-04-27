@@ -107,7 +107,7 @@ public class EffectFoodHelper {
                 MutableComponent mutableText = Component.translatable(statusEffect.getDescriptionId());
 
                 if (statusEffect.getAmplifier() > 0) {
-                    mutableText = Component.translatable("potion.witlamb_hamplifier", mutableText, Component.translatable("potion.potency." + statusEffect.getAmplifier()));
+                    mutableText = Component.translatable("potion.withAmplifier", mutableText, Component.translatable("potion.potency." + statusEffect.getAmplifier()));
                 }
                 if (effectPair.getFirst().getDuration() > 20) {
                     mutableText = Component.translatable("potion.withDuration", mutableText, MobEffectUtil.formatDuration(statusEffect, 1.0f));

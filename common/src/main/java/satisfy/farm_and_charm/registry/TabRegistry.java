@@ -70,19 +70,15 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.MINCER.get());
                 output.accept(ObjectRegistry.COOKING_POT.get());
                 output.accept(ObjectRegistry.ROASTER.get());
-
-
                 output.accept(ObjectRegistry.BUTTER.get());
                 output.accept(ObjectRegistry.YEAST.get());
                 output.accept(ObjectRegistry.FLOUR.get());
                 output.accept(ObjectRegistry.DOUGH.get());
                 output.accept(ObjectRegistry.RAW_PASTA.get());
-
                 output.accept(ObjectRegistry.MINCED_BEEF.get());
                 output.accept(ObjectRegistry.LAMB_HAM.get());
                 output.accept(ObjectRegistry.CHICKEN_PARTS.get());
                 output.accept(ObjectRegistry.BACON.get());
-
                 output.accept(ObjectRegistry.FARMER_SALAD.get());
                 output.accept(ObjectRegistry.OATMEAL_WITH_STRAWBERRIES.get());
                 output.accept(ObjectRegistry.SIMPLE_TOMATO_SOUP.get());
@@ -92,7 +88,6 @@ public class TabRegistry {
                 output.accept(ObjectRegistry.GOULASH.get());
                 output.accept(ObjectRegistry.PASTA_WITH_ONION_SAUCE.get());
                 output.accept(ObjectRegistry.CORN_GRITS.get());
-
                 output.accept(ObjectRegistry.BARLEY_PATTIES_WITH_POTATOES.get());
                 output.accept(ObjectRegistry.BEEF_PATTY_WITH_VEGETABLES.get());
                 output.accept(ObjectRegistry.SAUSAGE_WITH_OAT_PATTY.get());

@@ -9,10 +9,8 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
-import satisfy.farm_and_charm.item.food.EffectFoodItem;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Environment(EnvType.CLIENT)

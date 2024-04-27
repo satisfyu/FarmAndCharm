@@ -12,7 +12,6 @@ import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 @Mixin(CropBlock.class)
 public class CropBlockMixin {
-
     @Inject(method = "mayPlaceOn", at = @At("HEAD"), cancellable = true)
     private void mayPlaceOn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
         if(blockState.is(ObjectRegistry.FERTILIZED_FARM_BLOCK.get())) cir.setReturnValue(true);
