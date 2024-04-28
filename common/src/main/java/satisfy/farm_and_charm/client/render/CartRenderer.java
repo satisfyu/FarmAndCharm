@@ -9,9 +9,9 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.client.model.CartModel;
 import satisfy.farm_and_charm.entity.cart.CartEntity;
+import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 public class CartRenderer extends EntityRenderer<CartEntity> {
     private static final ResourceLocation CART_TEXTURE = new FarmAndCharmIdentifier("textures/entity/supply_cart.png");

@@ -8,9 +8,9 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.client.gui.handler.CookingPotGuiHandler;
 import satisfy.farm_and_charm.client.recipebook.CookingPotRecipeBook;
+import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 @Environment(EnvType.CLIENT)
 public class CookingPotGui extends AbstractRecipeBookGUIScreen<CookingPotGuiHandler> {

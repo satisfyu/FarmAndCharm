@@ -7,8 +7,8 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.entity.cart.CartEntity;
+import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 public class PlowModel<T extends CartEntity> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new FarmAndCharmIdentifier("plow"), "main");

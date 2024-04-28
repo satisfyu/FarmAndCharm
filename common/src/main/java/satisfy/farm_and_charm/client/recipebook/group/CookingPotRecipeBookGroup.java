@@ -1,14 +1,15 @@
 package satisfy.farm_and_charm.client.recipebook.group;
 
+import com.google.common.collect.ImmutableList;
 import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
-import java.util.List;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.Container;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
-import com.google.common.collect.ImmutableList;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
+
+import java.util.List;
 
 public enum CookingPotRecipeBookGroup implements IRecipeBookGroup {
     SEARCH(new ItemStack(Items.COMPASS)),

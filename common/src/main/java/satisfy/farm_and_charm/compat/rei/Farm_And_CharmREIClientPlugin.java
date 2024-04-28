@@ -2,14 +2,11 @@ package satisfy.farm_and_charm.compat.rei;
 
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.world.Container;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
-import satisfy.farm_and_charm.block.SiloBlock;
 import satisfy.farm_and_charm.compat.rei.cooking.CookingPotCategory;
 import satisfy.farm_and_charm.compat.rei.cooking.CookingPotDisplay;
 import satisfy.farm_and_charm.compat.rei.doughing.CraftingBowlCategory;
@@ -26,9 +23,7 @@ import satisfy.farm_and_charm.recipe.*;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 
 public class Farm_And_CharmREIClientPlugin {

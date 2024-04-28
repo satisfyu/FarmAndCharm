@@ -7,8 +7,8 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import satisfy.farm_and_charm.FarmAndCharm;
-import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 import satisfy.farm_and_charm.effect.*;
+import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 import java.util.function.Supplier;
 

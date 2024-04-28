@@ -2,7 +2,6 @@ package satisfy.farm_and_charm.item.food;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
-import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -16,6 +15,8 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.alchemy.PotionUtils;
+
+import java.util.List;
 
 public class EffectFoodHelper {
     public static final String STORED_EFFECTS_KEY = "StoredEffects";
