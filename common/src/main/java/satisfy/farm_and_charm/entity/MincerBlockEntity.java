@@ -89,50 +89,7 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     public @NotNull AbstractContainerMenu createMenu(int id, Inventory inventory) {
         return ChestMenu.threeRows(id, inventory);
     }
-    
-    // unused
-    
-    public int filledSlots() {
-        int i = SLOT_COUNT;
 
-        for(int j = 0; j < this.getContainerSize(); ++j) {
-            if (this.getItem(j) == ItemStack.EMPTY) {
-                i--;
-            }
-        }
-
-        return i;
-    }
-
-    public boolean canAddItem(ItemStack stack) {
-        return this.canPlaceItem(INPUT_SLOT, stack);
-    }
-
-    public void addItemStack(ItemStack stack) {
-        for(int j = 0; j < this.getContainerSize(); ++j) {
-            if (this.getItem(j) == ItemStack.EMPTY) {
-                this.setItem(j, stack);
-                setChanged();
-                return;
-            }
-        }
-    }
-
-    private ItemStack getRemainderItem(ItemStack stack) {
-        if (stack.getItem().hasCraftingRemainingItem()) {
-            return new ItemStack(Objects.requireNonNull(stack.getItem().getCraftingRemainingItem()));
-        }
-        return ItemStack.EMPTY;
-    }
-    
-    private void shrinkStackInInputSlot(int count) {
-        ItemStack inputSlotStack = this.stacks.get(INPUT_SLOT);
-        inputSlotStack.shrink(count);
-        this.setItem(INPUT_SLOT, inputSlotStack);
-    }
-    
-    // end unused
-    
     public static void spawnItem(Level world, ItemStack stack, int speed, Direction side, Position pos) {
         double d = pos.x();
         double e = pos.y();
@@ -162,10 +119,7 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
             Vec3 vec3d2 = vec3d.relative(direction, 0.7);
             ((ServerLevel) level).sendParticles(ParticleTypes.SPIT, vec3d2.x(), vec3d2.y(), vec3d2.z(), 3, 0.2, 0.1, 0, 0.1);
             spawnItem(level, droppedStack, 6, direction, vec3d2);
-            
-            // spawning item inside the block
-            // level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), droppedStack));
-        }
+          }
     }
     
     @Override
@@ -185,7 +139,7 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     }
     
     @Override
-    public ItemStack getItem(int index) {
+    public @NotNull ItemStack getItem(int index) {
         return this.getItems().get(index);
     }
     
@@ -214,27 +168,17 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
         return (direction == Direction.UP) && canPlaceItem(index, stack);
     }
 
-    /** Handles crafting via recipe and retrieved block-state values.
-     *  Lowers recipe difficulty based on loaded recipe type.
-     *  Locates nearest player and additionally lowers the difficulty by one point if the player holds matching ingredient in their offhand.
-     *  */
     @Override
     public void tick(Level level, BlockPos pos, BlockState state, MincerBlockEntity mincer) {
         
-        // if something was crafted during the last tick, let's get rid of it.
         dropItemsInOutputSlot(level, pos, state, mincer);
         
         if (!level.isClientSide() && level.getBlockState(pos).getBlock() instanceof MincerBlock) {
             
-            // gather our current values for use in later logic
             int crank = state.getValue(MincerBlock.CRANK);
             int cranked = state.getValue(MincerBlock.CRANKED);
             int full_rotations = state.getValue(MincerBlock.FULL_ROTATIONS);
-            
-            // if something was crafted during the last tick, let's get rid of it.
-            // dropItemsInOutputSlot(level, pos, mincer);
-            
-            // built from the reconstruction of base logic.
+
             if (crank > 0) {
                 if (cranked < MincerBlock.CRANKS_NEEDED) {
                     cranked++;
@@ -244,18 +188,15 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                     cranked = 0;
                     full_rotations += 1;
                     
-                    // check if we have a valid recipe or return null
                     MincerRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.MINCER_RECIPE_TYPE.get(), mincer, level).orElse(null);
                     
                     if (recipe != null) {
                         
-                        // used for check against player and completed craft
                         ItemStack inputStack = this.stacks.get(INPUT_SLOT);
                         
                         String recipe_type = recipe.getRecipeType();
                         int recipe_difficulty = 5;
                         
-                        // lower the "difficulty" of the recipe relative to it's type
                         switch (recipe_type) {
                             case "MEAT" -> recipe_difficulty = 1;
                             case "WOOD" -> recipe_difficulty = 2;
@@ -263,11 +204,8 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                             case "METAL" -> recipe_difficulty = 4;
                         }
                         
-                        // create 3D box at block location to search for entities within
                         AABB searched_area = new AABB(pos);
-                        // can probably be expanded, requires player standing up against the block entity basically
                         searched_area.inflate(4.0D);
-                        // checking for Player instead of ServerPlayer returns an empty list as we're operating on the server with !level.isClientside()
                         List<ServerPlayer> playersNearby = level.getEntitiesOfClass(ServerPlayer.class, searched_area, Player::isAlive); // checking for nearby living player around the block
                         
                         if (!playersNearby.isEmpty()) {
@@ -285,14 +223,12 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                             mincer.setItem(INPUT_SLOT, inputStack);
                             mincer.setItem(OUTPUT_SLOT, recipe.getResultItem(level.registryAccess()));
                             
-                            // reset back to 0
                             level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, 0), Block.UPDATE_ALL);
                             return;
                         }
                         
                     }
                     
-                    // hitting 4 is the only time it will reset the value back to 0 (similar logic placed in use() of MincerBlock.java)
                     if (full_rotations >= 4) {
                         level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, 0), Block.UPDATE_ALL);
                         return;
@@ -303,23 +239,6 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
             else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
                 level.setBlock(pos, state.setValue(MincerBlock.CRANKED, 0), Block.UPDATE_ALL);
             }
-            
-            // KEEP COMMENTED: reconstruction of base logic. turns the crank, does nothing else.
-//            if (crank > 0) {
-//                if (cranked < MincerBlock.CRANKS_NEEDED) {
-//                    cranked++;
-//                }
-//                crank -= 1;
-//                if (cranked >= MincerBlock.CRANKS_NEEDED) {
-//                    cranked = 0;
-//                }
-//                level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked), Block.UPDATE_ALL);
-//            }
-//            else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
-//                level.setBlock(pos, state.setValue(MincerBlock.CRANKED, 0), Block.UPDATE_ALL);
-//            }
-            
         }
-        
     }
 }
