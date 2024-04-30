@@ -40,7 +40,38 @@ import java.util.Map;
 
 @SuppressWarnings({"deprecation", "unused"})
 public class SiloBlock extends FacingBlock implements EntityBlock {
-    public static final HashMap<Item, Item> DRYERS = new HashMap<>();
+
+    // public static final HashMap<Item, Item> DRYERS = new HashMap<>();
+
+    // ObjectRegistry.WILD_BARLEY.get(),
+    // ObjectRegistry.WILD_POTATOES.get(),
+    // ObjectRegistry.WILD_OAT.get(),
+    // ObjectRegistry.WILD_TOMATOES.get(),
+    // ObjectRegistry.WILD_STRAWBERRIES.get(),
+    // ObjectRegistry.WILD_BEETROOTS.get(),
+    // ObjectRegistry.WILD_ONIONS.get(),
+    // ObjectRegistry.WILD_CORN.get(),
+    // ObjectRegistry.WILD_LETTUCE.get(),
+    // ObjectRegistry.WILD_EMMER.get(),
+    // ObjectRegistry.WILD_RIBWORT.get(),
+    // ObjectRegistry.WILD_CARROTS.get()
+
+    public static final ItemLike[] DRYABLE = new ItemLike[]{
+            Items.BONE_MEAL, Items.ROTTEN_FLESH, Blocks.PODZOL,
+            ObjectRegistry.WILD_BARLEY.get(),
+            ObjectRegistry.WILD_POTATOES.get(),
+            ObjectRegistry.WILD_OAT.get(),
+            ObjectRegistry.WILD_TOMATOES.get(),
+            ObjectRegistry.WILD_STRAWBERRIES.get(),
+            ObjectRegistry.WILD_BEETROOTS.get(),
+            ObjectRegistry.WILD_ONIONS.get(),
+            ObjectRegistry.WILD_CORN.get(),
+            ObjectRegistry.WILD_LETTUCE.get(),
+            ObjectRegistry.WILD_EMMER.get(),
+            ObjectRegistry.WILD_RIBWORT.get(),
+            ObjectRegistry.WILD_CARROTS.get()
+    };
+
     private static boolean isDryersInitialized = false;
     public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
@@ -65,10 +96,7 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
         return state.setValue(FACING, facing);
     }
 
-    public static void addDry(ItemLike itemLike, ItemLike resultItem) {
-        if (itemLike.asItem() != Items.AIR && resultItem.asItem() != Items.AIR)
-            DRYERS.put(itemLike.asItem(), resultItem.asItem());
-    }
+
 
 
 
@@ -85,27 +113,74 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
 
     @Override
     public @NotNull InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        ItemStack itemStack = player.getItemInHand(interactionHand);
-        if (level.isClientSide)
-            return itemStack.isEmpty() || isDryItem(itemStack) ? InteractionResult.SUCCESS : isSilo(itemStack) || player.isDiscrete() ? InteractionResult.PASS : InteractionResult.CONSUME;
-        BlockEntity be = level.getBlockEntity(blockPos);
-        if (be instanceof SiloBlockEntity siloBE) {
-            SiloBlockEntity siloController = siloBE.getControllerBE();
-            if (siloController == null)
+
+//        ItemStack itemStack = player.getItemInHand(interactionHand);
+//
+//        if (level.isClientSide) {
+
+        // TODO: THIS IS A SIN!!!! ternary operators should only be used a single time on any line, otherwise if-else
+//            return itemStack.isEmpty() || isDryItem(itemStack) ? InteractionResult.SUCCESS : isSilo(itemStack) || player.isDiscrete() ? InteractionResult.PASS : InteractionResult.CONSUME;
+//        }
+//
+//
+//        BlockEntity be = level.getBlockEntity(blockPos);
+//
+//        if (be instanceof SiloBlockEntity siloBE) {
+//            SiloBlockEntity siloController = siloBE.getControllerBE();
+//            if (siloController == null)
+//                return InteractionResult.PASS;
+//
+//
+//
+//
+//            if (itemStack.isEmpty()) {
+//                if (player.isDiscrete()) {
+//                    ItemStack returnStack = siloBE.tryRemoveItem();
+//                    if (!returnStack.isEmpty())
+//                        player.addItem(itemStack);
+//                } else {
+//                    siloController.open(!blockState.getValue(OPEN));
+//                }
+//                return InteractionResult.SUCCESS;
+//            }
+//
+//            else if (isDryItem(itemStack) && siloController.tryAddItem(itemStack)) {
+//                return InteractionResult.SUCCESS;
+//            }
+//        }
+//
+//        return isSilo(itemStack) || player.isDiscrete() ? InteractionResult.PASS : InteractionResult.CONSUME;
+
+        ItemStack stack = player.getMainHandItem();
+
+        BlockEntity entity = level.getBlockEntity(blockPos);
+
+        if (entity instanceof SiloBlockEntity siloEntity) {
+            SiloBlockEntity controller = siloEntity.getControllerBE();
+
+            if (controller == null) {
                 return InteractionResult.PASS;
-            if (itemStack.isEmpty()) {
-                if (player.isDiscrete()) {
-                    ItemStack returnStack = siloBE.tryRemoveItem();
-                    if (!returnStack.isEmpty())
-                        player.addItem(itemStack);
-                } else {
-                    siloController.open(!blockState.getValue(OPEN));
-                }
+            }
+
+            if (stack.isEmpty()) {
+//                if (!player.isDiscrete()) {
+                    ItemStack returnStack = siloEntity.tryRemoveItem();
+                    if (!returnStack.isEmpty()) {
+                        player.addItem(stack);
+                    }
+                    else {
+                        controller.open(!blockState.getValue(OPEN));
+                    }
+                    return InteractionResult.SUCCESS;
+//                }
+            }
+            else if (controller.tryAddItem(stack)) {
                 return InteractionResult.SUCCESS;
-            } else if (isDryItem(itemStack) && siloController.tryAddItem(itemStack))
-                return InteractionResult.SUCCESS;
+            }
+
         }
-        return isSilo(itemStack) || player.isDiscrete() ? InteractionResult.PASS : InteractionResult.CONSUME;
+
+        return InteractionResult.CONSUME;
     }
 
     @Override
@@ -228,33 +303,38 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
         }
     }
 
-    public static Map<Item, Item> getDryers() {
-        return Collections.unmodifiableMap(DRYERS);
-    }
-
-    public static synchronized void initializeDryersIfNeeded() {
-        if (!isDryersInitialized) {
-            addDry(Items.BONE_MEAL, ObjectRegistry.FERTILIZER.get());
-            addDry(Items.ROTTEN_FLESH, ObjectRegistry.FERTILIZER.get());
-            addDry(Blocks.PODZOL, ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
-            addDry(ObjectRegistry.WILD_BARLEY.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_POTATOES.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_OAT.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_TOMATOES.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_STRAWBERRIES.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_BEETROOTS.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_ONIONS.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_CORN.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_LETTUCE.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_EMMER.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_RIBWORT.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_CARROTS.get(), Items.BONE_MEAL);
-            isDryersInitialized = true;
-        }
-    }
-
-    public static boolean isDryItem(ItemStack itemStack) {
-        initializeDryersIfNeeded();
-        return DRYERS.containsKey(itemStack.getItem());
-    }
+//    public static void addDry(ItemLike itemLike, ItemLike resultItem) {
+//        if (itemLike.asItem() != Items.AIR && resultItem.asItem() != Items.AIR)
+//            DRYERS.put(itemLike.asItem(), resultItem.asItem());
+//    }
+//
+//    public static Map<Item, Item> getDryers() {
+//        return Collections.unmodifiableMap(DRYERS);
+//    }
+//
+//    public static synchronized void initializeDryersIfNeeded() {
+//        if (!isDryersInitialized) {
+//            addDry(Items.BONE_MEAL, ObjectRegistry.FERTILIZER.get());
+//            addDry(Items.ROTTEN_FLESH, ObjectRegistry.FERTILIZER.get());
+//            addDry(Blocks.PODZOL, ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
+//            addDry(ObjectRegistry.WILD_BARLEY.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_POTATOES.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_OAT.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_TOMATOES.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_STRAWBERRIES.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_BEETROOTS.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_ONIONS.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_CORN.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_LETTUCE.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_EMMER.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_RIBWORT.get(), Items.BONE_MEAL);
+//            addDry(ObjectRegistry.WILD_CARROTS.get(), Items.BONE_MEAL);
+//            isDryersInitialized = true;
+//        }
+//    }
+//
+//    public static boolean isDryItem(ItemStack itemStack) {
+//        initializeDryersIfNeeded();
+//        return DRYERS.containsKey(itemStack.getItem());
+//    }
 }

@@ -23,7 +23,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import satisfy.farm_and_charm.block.SiloBlock;
+import satisfy.farm_and_charm.recipe.SiloRecipe;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
+import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import satisfy.farm_and_charm.util.ConnectivityHandler;
 import satisfy.farm_and_charm.util.IMultiBlockEntityContainer;
 
@@ -33,7 +35,7 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     public static final int MAX_CAPACITY = MAX_WIDTH * MAX_WIDTH * MAX_HEIGHT;
     private static final int DRY_TIME = 10 * 20;
     protected BlockPos controller;
-    protected boolean updateConnectivity;
+    protected boolean shouldUpdateBlockConnections;
     protected int width;
     protected int height;
     private NonNullList<ItemStack> items = NonNullList.withSize(MAX_CAPACITY * 2, ItemStack.EMPTY);
@@ -41,14 +43,14 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
 
     public SiloBlockEntity(BlockPos pos, BlockState state) {
         super(EntityTypeRegistry.SILO_BLOCK_ENTITY.get(), pos, state);
-        updateConnectivity = false;
+        shouldUpdateBlockConnections = false;
         height = 1;
         width = 1;
     }
 
     @Override
     public void preventConnectivityUpdate() {
-        updateConnectivity = false;
+        shouldUpdateBlockConnections = false;
     }
 
     @Override
@@ -91,7 +93,7 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     public void removeController(boolean keepContents) {
         if (level == null || level.isClientSide)
             return;
-        updateConnectivity = true;
+        shouldUpdateBlockConnections = true;
         controller = null;
         width = 1;
         height = 1;
@@ -106,17 +108,106 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     }
 
     @Override
-    public void tick(Level level, BlockPos blockPos, BlockState blockState, SiloBlockEntity blockEntity) {
-        if (this.level == null)
+    public void tick(Level level, BlockPos pos, BlockState state, SiloBlockEntity silo) {
+
+        if (this.level == null) {
             this.level = level;
-        if (updateConnectivity)
-            updateConnectivity();
-        dry();
-        tryDropFinish(blockState);
+        }
+
+        if (shouldUpdateBlockConnections) {
+            this.updateConnectivity();
+        }
+
+        // this.dry();
+
+        this.dry(level, pos, (SiloBlockEntity) level.getBlockEntity(pos));
+
+        this.tryDropFinish(state);
+
+
+        return;
+
+//        if (this.level == null)
+//            this.level = level;
+//        if (shouldUpdateBlockConnections)
+//            updateConnectivity();
+//        dry();
+//        tryDropFinish(state);
+    }
+
+    private void dry(Level level, BlockPos pos, SiloBlockEntity siloEntity) {
+
+        if (!level.isClientSide() & level.getBlockState(pos).getBlock() instanceof SiloBlock & siloEntity.isController()) {
+
+            // begin iterating over items in container
+            for (int index=0; index < this.getCapacity(); index++) {
+
+                // get the ItemStack from the index
+                ItemStack stack = this.getItem(index);
+
+                // set the drying time, and increment it by one
+                int dryTime = this.times[index];
+                dryTime++;
+
+                // if dryTime is greater than 200 ticks or 10 seconds
+                if (dryTime >= DRY_TIME) {
+
+                    // iterate over the max capacity added to the current capacity
+                    for (int finish = MAX_CAPACITY; finish < MAX_CAPACITY + this.getCapacity(); finish++) {
+
+                        SiloRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.SILO_RECIPE_TYPE.get(), siloEntity, level).orElse(null);
+
+                        if (recipe != null & this.getItem(finish).isEmpty()) {
+
+                            // ItemStack inputStack = this.removeItem(index, stack.getCount());
+
+                            this.removeItem(index, 1);
+
+                            // side effect from original removeItem
+                            this.setChanged();
+
+                            // sets output item to the result of the recipe
+                            this.items.set(finish, recipe.getResultItem(level.registryAccess()));
+
+
+                            dryTime = 0;
+                            break;
+
+                        }
+
+//                        if (this.getItem(finish).isEmpty()) {
+//                            ItemStack finishStack = this.removeItem(index, stack.getCount());
+//                            this.setItem(finish, SiloBlock.isDryItem(finishStack) ? new ItemStack(SiloBlock.DRYERS.get(finishStack.getItem()), finishStack.getCount()) : finishStack);
+//                            dryTime = 0;
+//                            break;
+//                        }
+                    }
+                }
+
+            }
+        }
+
+
+//        for (int fresh = 0; fresh < this.getCapacity(); fresh++) {
+//            ItemStack freshStack = this.getItem(fresh);
+//            if (!freshStack.isEmpty()) {
+//                int dryTime = this.times[fresh];
+//                dryTime++;
+//                if (dryTime >= DRY_TIME)
+//                    for (int finish = MAX_CAPACITY; finish < MAX_CAPACITY + this.getCapacity(); finish++)
+//                        if (this.getItem(finish).isEmpty()) {
+//                            ItemStack finishStack = this.removeItem(fresh, freshStack.getCount());
+//                            this.setItem(finish, SiloBlock.isDryItem(finishStack) ? new ItemStack(SiloBlock.DRYERS.get(finishStack.getItem()), finishStack.getCount()) : finishStack);
+//                            dryTime = 0;
+//                            break;
+//                        }
+//                this.times[fresh] = dryTime;
+//            }
+//        }
     }
 
     public void updateConnectivity() {
-        updateConnectivity = false;
+        shouldUpdateBlockConnections = false;
         if (level == null || level.isClientSide)
             return;
         if (!isController())
@@ -182,25 +273,6 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
                         };
                     level.setBlockAndUpdate(pos, blockState.setValue(SiloBlock.SHAPE, shape));
                 }
-            }
-        }
-    }
-
-    private void dry() {
-        for (int fresh = 0; fresh < this.getCapacity(); fresh++) {
-            ItemStack freshStack = this.getItem(fresh);
-            if (!freshStack.isEmpty()) {
-                int dryTime = this.times[fresh];
-                dryTime++;
-                if (dryTime >= DRY_TIME)
-                    for (int finish = MAX_CAPACITY; finish < MAX_CAPACITY + this.getCapacity(); finish++)
-                        if (this.getItem(finish).isEmpty()) {
-                            ItemStack finishStack = this.removeItem(fresh, freshStack.getCount());
-                            this.setItem(finish, SiloBlock.isDryItem(finishStack) ? new ItemStack(SiloBlock.DRYERS.get(finishStack.getItem()), finishStack.getCount()) : finishStack);
-                            dryTime = 0;
-                            break;
-                        }
-                this.times[fresh] = dryTime;
             }
         }
     }
@@ -314,19 +386,18 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
         super.saveAdditional(compoundTag);
         if (this.controller != null)
             GeneralUtil.putBlockPos(compoundTag, this.controller);
-        compoundTag.putBoolean("Update", this.updateConnectivity);
+        compoundTag.putBoolean("Update", this.shouldUpdateBlockConnections);
         compoundTag.putInt("Width", this.width);
         compoundTag.putInt("Height", this.height);
         ContainerHelper.saveAllItems(compoundTag, this.items);
         compoundTag.putIntArray("Times", this.times);
     }
 
-
     @Override
     public void load(CompoundTag compoundTag) {
         super.load(compoundTag);
         this.controller = GeneralUtil.readBlockPos(compoundTag);
-        this.updateConnectivity = !compoundTag.contains("Update") || compoundTag.getBoolean("Update");
+        this.shouldUpdateBlockConnections = !compoundTag.contains("Update") || compoundTag.getBoolean("Update");
         this.width = compoundTag.contains("Width") ? compoundTag.getInt("Width") : 1;
         this.height = compoundTag.contains("Height") ? compoundTag.getInt("Height") : 1;
         this.items = NonNullList.withSize(MAX_CAPACITY * 2, ItemStack.EMPTY);

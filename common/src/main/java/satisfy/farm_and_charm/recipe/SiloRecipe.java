@@ -7,6 +7,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
@@ -16,7 +17,7 @@ import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
 @SuppressWarnings("unused")
-public class SiloRecipe implements Recipe<SimpleContainer> {
+public class SiloRecipe implements Recipe<Container> {
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
@@ -27,22 +28,36 @@ public class SiloRecipe implements Recipe<SimpleContainer> {
         this.output = output;
         this.recipeItems = recipeItems;
     }
-    @Override
-    public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        if(pLevel.isClientSide()) {
-            return false;
-        }
 
-        return recipeItems.get(0).test(pContainer.getItem(1));
-    }
+//    @Override
+//    public boolean matches(SimpleContainer pContainer, Level pLevel) {
+//        if(pLevel.isClientSide()) {
+//            return false;
+//        }
+//
+//        return recipeItems.get(0).test(pContainer.getItem(1));
+//    }
 
     @Override
     public @NotNull NonNullList<Ingredient> getIngredients() {
         return recipeItems;
     }
 
+//    @Override
+//    public @NotNull ItemStack assemble(SimpleContainer container, RegistryAccess registryAccess) {
+//        return output;
+//    }
+
     @Override
-    public @NotNull ItemStack assemble(SimpleContainer container, RegistryAccess registryAccess) {
+    public boolean matches(Container container, Level level) {
+        if(level.isClientSide()) {
+            return false;
+        }
+        return recipeItems.get(0).test(container.getItem(1));
+    }
+
+    @Override
+    public ItemStack assemble(Container container, RegistryAccess registryAccess) {
         return output;
     }
 
