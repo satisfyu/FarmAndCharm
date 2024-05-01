@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:dripstone_block"
+  },
+  "recipe_type": "STONE",
+  "result": {
+    "item": "minecraft:pointed_dripstone",
+    "count": 4
+  }
+}
