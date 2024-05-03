@@ -137,6 +137,11 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
 
     private void dry(Level level, BlockPos pos, SiloBlockEntity siloEntity) {
 
+        // early return so we only operate on the server
+        if (level.isClientSide()) {
+            return;
+        }
+
         // System.out.println("level client side: " + level.isClientSide());
 
 //        if (!level.isClientSide() && level.getBlockState(pos).getBlock() instanceof SiloBlock && siloEntity.isController()) {
