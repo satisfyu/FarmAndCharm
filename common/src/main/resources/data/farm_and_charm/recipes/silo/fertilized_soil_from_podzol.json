@@ -1,5 +1,6 @@
 {
   "type": "farm_and_charm:drying",
+  "category": "misc",
   "ingredients": [
     {
       "item": "minecraft:podzol"

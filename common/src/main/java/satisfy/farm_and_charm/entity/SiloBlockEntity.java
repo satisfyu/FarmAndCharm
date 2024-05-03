@@ -137,81 +137,110 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
 
     private void dry(Level level, BlockPos pos, SiloBlockEntity siloEntity) {
 
-        if (!level.isClientSide() & level.getBlockState(pos).getBlock() instanceof SiloBlock & siloEntity.isController()) {
+        // System.out.println("level client side: " + level.isClientSide());
 
-            // begin iterating over items in container
-            for (int index=0; index < this.getCapacity(); index++) {
-
-                // get the ItemStack from the index
-                ItemStack stack = this.getItem(index);
-
-                // set the drying time, and increment it by one
-                int dryTime = this.times[index];
-                dryTime++;
-
-                // if dryTime is greater than 200 ticks or 10 seconds
-                if (dryTime >= DRY_TIME) {
-
-                    // iterate over the max capacity added to the current capacity
-                    for (int finish = MAX_CAPACITY; finish < MAX_CAPACITY + this.getCapacity(); finish++) {
-
-                        SiloRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.SILO_RECIPE_TYPE.get(), siloEntity, level).orElse(null);
-
-                        if (recipe != null & this.getItem(finish).isEmpty()) {
-
-                            // ItemStack inputStack = this.removeItem(index, stack.getCount());
-
-                            this.removeItem(index, 1);
-
-                            // side effect from original removeItem
-                            this.setChanged();
-
-                            // sets output item to the result of the recipe
-                            this.items.set(finish, recipe.getResultItem(level.registryAccess()));
-
-
-                            dryTime = 0;
-                            break;
-
-                        }
-
-//                        if (this.getItem(finish).isEmpty()) {
-//                            ItemStack finishStack = this.removeItem(index, stack.getCount());
-//                            this.setItem(finish, SiloBlock.isDryItem(finishStack) ? new ItemStack(SiloBlock.DRYERS.get(finishStack.getItem()), finishStack.getCount()) : finishStack);
-//                            dryTime = 0;
-//                            break;
-//                        }
-                    }
-                }
-
-            }
-        }
-
-
-//        for (int fresh = 0; fresh < this.getCapacity(); fresh++) {
-//            ItemStack freshStack = this.getItem(fresh);
-//            if (!freshStack.isEmpty()) {
-//                int dryTime = this.times[fresh];
+//        if (!level.isClientSide() && level.getBlockState(pos).getBlock() instanceof SiloBlock && siloEntity.isController()) {
+//
+//            // System.out.println("We are ticking!");
+//            /* FLAG: WE ARE HITTING */
+//
+//            // begin iterating over items in container
+//            for (int index=0; index < this.getCapacity(); index++) {
+//
+//                // get the ItemStack from the index
+//                ItemStack stack = this.getItem(index);
+//
+//                // set the drying time, and increment it by one
+//                int dryTime = this.times[index];
 //                dryTime++;
-//                if (dryTime >= DRY_TIME)
-//                    for (int finish = MAX_CAPACITY; finish < MAX_CAPACITY + this.getCapacity(); finish++)
-//                        if (this.getItem(finish).isEmpty()) {
-//                            ItemStack finishStack = this.removeItem(fresh, freshStack.getCount());
-//                            this.setItem(finish, SiloBlock.isDryItem(finishStack) ? new ItemStack(SiloBlock.DRYERS.get(finishStack.getItem()), finishStack.getCount()) : finishStack);
+//
+//                // if dryTime is greater than 200 ticks or 10 seconds
+//                if (dryTime >= DRY_TIME) {
+//
+//                    System.out.println("Crafting?");
+//
+//                    // iterate over the max capacity added to the current capacity
+//                    for (int finish = MAX_CAPACITY; finish < MAX_CAPACITY + this.getCapacity(); finish++) {
+//
+//                        SiloRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.SILO_RECIPE_TYPE.get(), siloEntity, level).orElse(null);
+//
+//                        if (recipe != null & this.getItem(finish).isEmpty()) {
+//
+//                            System.out.println("SHOULD CRAFT");
+//
+//                            // ItemStack inputStack = this.removeItem(index, stack.getCount());
+//
+//                            this.removeItem(index, 1);
+//
+//                            // side effect from original removeItem
+//                            this.setChanged();
+//
+//                            // sets output item to the result of the recipe
+//                            this.items.set(finish, recipe.getResultItem(level.registryAccess()));
+//
+//
 //                            dryTime = 0;
 //                            break;
+//
+//                        } else {
+//                            System.out.println("FAILED TO CRAFT");
 //                        }
-//                this.times[fresh] = dryTime;
+//
+////                        if (this.getItem(finish).isEmpty()) {
+////                            ItemStack finishStack = this.removeItem(index, stack.getCount());
+////                            this.setItem(finish, SiloBlock.isDryItem(finishStack) ? new ItemStack(SiloBlock.DRYERS.get(finishStack.getItem()), finishStack.getCount()) : finishStack);
+////                            dryTime = 0;
+////                            break;
+////                        }
+//                    }
+//                }
+//
 //            }
 //        }
+
+
+        for (int fresh = 0; fresh < this.getCapacity(); fresh++) {
+            ItemStack freshStack = this.getItem(fresh);
+            if (!freshStack.isEmpty()) {
+                int dryTime = this.times[fresh];
+                dryTime++;
+                if (dryTime >= DRY_TIME)
+                    for (int finish = MAX_CAPACITY; finish < MAX_CAPACITY + this.getCapacity(); finish++)
+                        if (this.getItem(finish).isEmpty()) {
+
+
+                            SiloRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.SILO_RECIPE_TYPE.get(), siloEntity, level).orElse(null);
+
+                            if (recipe != null) {
+
+                                System.out.println("Crafting?");
+
+                                this.removeItem(fresh, freshStack.getCount());
+
+                                ItemStack finalItem = recipe.getResultItem(level.registryAccess());
+
+                                this.setItem(finish, finalItem);
+
+                                dryTime = 0;
+
+                                break;
+                            } else {
+                                System.out.println("Recipe was null!");
+                            }
+                        }
+                this.times[fresh] = dryTime;
+            }
+        }
     }
 
     public void updateConnectivity() {
         shouldUpdateBlockConnections = false;
-        if (level == null || level.isClientSide)
+        if (level == null || level.isClientSide) {
             return;
-        if (!isController())
+        }
+        if (!isController()) {
             return;
+        }
         ConnectivityHandler.formMulti(this);
     }
 
@@ -228,8 +257,9 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     public ItemStack tryRemoveItem() {
         for (int slot = MAX_CAPACITY + this.getCapacity(); slot > MAX_CAPACITY; --slot) {
             ItemStack stack = this.getItem(slot);
-            if (!stack.isEmpty())
+            if (!stack.isEmpty()) {
                 return this.removeItem(slot, stack.getCount());
+            }
         }
         return ItemStack.EMPTY;
     }
@@ -244,24 +274,31 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
             state = state.setValue(BlockStateProperties.HORIZONTAL_FACING, level.getBlockState(getController()).getValue(BlockStateProperties.HORIZONTAL_FACING));
             level.setBlock(worldPosition, state, 6);
         }
-        if (isController())
+        if (isController()) {
             updateShape();
+        }
     }
 
     public void updateShape() {
         for (int yOffset = 0; yOffset < height; yOffset++) {
             for (int xOffset = 0; xOffset < width; xOffset++) {
                 for (int zOffset = 0; zOffset < width; zOffset++) {
+
                     BlockPos pos = this.worldPosition.offset(xOffset, yOffset, zOffset);
                     assert this.level != null;
+
                     BlockState blockState = this.level.getBlockState(pos);
-                    if (!SiloBlock.isSilo(blockState))
+                    if (!SiloBlock.isSilo(blockState)) {
                         continue;
+                    }
+
                     SiloBlock.Shape shape = SiloBlock.Shape.NONE;
-                    if (width == 2)
+                    if (width == 2) {
                         shape = xOffset == 0 ? zOffset == 0 ? SiloBlock.Shape.NORTH_WEST : SiloBlock.Shape.SOUTH_WEST
                                 : zOffset == 0 ? SiloBlock.Shape.NORTH_EAST : SiloBlock.Shape.SOUTH_EAST;
-                    if (width == 3)
+                    }
+
+                    if (width == 3) {
                         shape = switch (xOffset) {
                             case 0 ->
                                     zOffset == 0 ? SiloBlock.Shape.NORTH_WEST : zOffset == 2 ? SiloBlock.Shape.SOUTH_WEST : SiloBlock.Shape.WEST;
@@ -271,6 +308,8 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
                                     zOffset == 0 ? SiloBlock.Shape.NORTH_EAST : zOffset == 2 ? SiloBlock.Shape.SOUTH_EAST : SiloBlock.Shape.EAST;
                             default -> SiloBlock.Shape.NONE;
                         };
+                    }
+
                     level.setBlockAndUpdate(pos, blockState.setValue(SiloBlock.SHAPE, shape));
                 }
             }

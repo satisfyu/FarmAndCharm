@@ -1,5 +1,6 @@
 {
   "type": "farm_and_charm:drying",
+  "category": "misc",
   "ingredients": [
     {
       "item": "farm_and_charm:wild_ribwort"

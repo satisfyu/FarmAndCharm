@@ -185,22 +185,27 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
 
     @Override
     public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
-        if (oldState.getBlock() == state.getBlock())
+        if (oldState.getBlock() == state.getBlock()) {
             return;
-        if (notify)
+        }
+
+        if (notify) {
             return;
+        }
 
         BlockEntity be = world.getBlockEntity(pos);
-        if (be instanceof SiloBlockEntity siloBlockEntity)
+        if (be instanceof SiloBlockEntity siloBlockEntity) {
             siloBlockEntity.updateConnectivity();
+        }
     }
 
     @Override
     public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState newState, boolean moved) {
         if (blockState.hasBlockEntity() && (blockState.getBlock() != newState.getBlock() || !newState.hasBlockEntity())) {
             BlockEntity be = level.getBlockEntity(blockPos);
-            if (!(be instanceof SiloBlockEntity siloBE))
+            if (!(be instanceof SiloBlockEntity siloBE)) {
                 return;
+            }
             Containers.dropContents(level, blockPos, siloBE);
             level.removeBlockEntity(blockPos);
             ConnectivityHandler.splitMulti(siloBE);
@@ -228,8 +233,9 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
 
     @Override
     public @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        if (context == CollisionContext.empty())
+        if (context == CollisionContext.empty()) {
             return CAMPFIRE_SMOKE_CLIP;
+        }
         return state.getShape(world, pos);
     }
 
