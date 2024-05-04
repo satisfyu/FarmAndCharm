@@ -22,6 +22,8 @@ import net.minecraft.world.level.material.PushReaction;
 import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.block.*;
 import satisfy.farm_and_charm.block.crops.*;
+import satisfy.farm_and_charm.block.crops.TomatoCropBodyBlock;
+import satisfy.farm_and_charm.block.crops.TomatoCropHeadBlock;
 import satisfy.farm_and_charm.item.*;
 import satisfy.farm_and_charm.item.food.EffectBlockItem;
 import satisfy.farm_and_charm.item.food.EffectItem;
@@ -36,7 +38,8 @@ public class ObjectRegistry {
     public static final Registrar<Item> ITEM_REGISTRAR = ITEMS.getRegistrar();
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.BLOCK);
     public static final Registrar<Block> BLOCK_REGISTRAR = BLOCKS.getRegistrar();
-    public static final RegistrySupplier<Block> TOMATO_CROP = registerWithoutItem("tomato_crop", () -> new TomatoCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+    public static final RegistrySupplier<Block> TOMATO_CROP = registerWithoutItem("tomato_crop", () -> new TomatoCropHeadBlock(getBushSettings().randomTicks()));
+    public static final RegistrySupplier<Block> TOMATO_CROP_BODY = registerWithoutItem("tomato_crop_body", () -> new TomatoCropBodyBlock(getBushSettings().randomTicks()));
     public static final RegistrySupplier<Item> TOMATO_SEEDS = registerItem("tomato_seeds", () -> new ItemNameBlockItem(TOMATO_CROP.get(), getSettings()));
     public static final RegistrySupplier<Block> LETTUCE_CROP = registerWithoutItem("lettuce_crop", () -> new LettuceCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
     public static final RegistrySupplier<Item> LETTUCE_SEEDS = registerItem("lettuce_seeds", () -> new ItemNameBlockItem(LETTUCE_CROP.get(), getSettings()));

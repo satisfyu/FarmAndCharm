@@ -79,12 +79,24 @@ public class CookingPotBlock extends BaseEntityBlock {
     @Override
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         if (!world.isClientSide) {
-            if (state.getValue(NEEDS_SUPPORT) && !world.getBlockState(pos.below()).isSolidRender(world, pos.below())) {
-                world.destroyBlock(pos, true);
+            if (state.getValue(NEEDS_SUPPORT)) {
+                boolean isSupported = world.getBlockState(pos.below()).isSolidRender(world, pos.below()) || world.getBlockState(pos.below()).is(BlockTags.CAMPFIRES);
+                if (!isSupported) {
+                    for (Direction direction : Direction.Plane.HORIZONTAL) {
+                        BlockPos neighborPos = pos.relative(direction);
+                        BlockState neighborState = world.getBlockState(neighborPos);
+                        if (neighborState.getBlock() instanceof CookingPotBlock && neighborState.getValue(NEEDS_SUPPORT)) {
+                            isSupported = true;
+                            break;
+                        }
+                    }
+                }
+                if (!isSupported) {
+                    world.destroyBlock(pos, true);
+                }
             }
         }
     }
-
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
