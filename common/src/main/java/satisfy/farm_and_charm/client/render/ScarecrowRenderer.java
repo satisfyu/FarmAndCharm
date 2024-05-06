@@ -15,7 +15,7 @@ import org.joml.Quaternionf;
 import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.block.ScarecrowBlock;
 import satisfy.farm_and_charm.client.model.ScarecrowModel;
-import satisfy.farm_and_charm.entity.ScarecrowBlockEntity;
+import satisfy.farm_and_charm.block.entity.ScarecrowBlockEntity;
 
 import java.util.Objects;
 

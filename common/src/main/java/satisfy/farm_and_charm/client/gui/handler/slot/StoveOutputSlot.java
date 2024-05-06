@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.entity.StoveBlockEntity;
+import satisfy.farm_and_charm.block.entity.StoveBlockEntity;
 
 public class StoveOutputSlot extends Slot {
 

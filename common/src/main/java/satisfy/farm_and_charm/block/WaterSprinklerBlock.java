@@ -19,7 +19,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.entity.WaterSprinklerBlockEntity;
+import satisfy.farm_and_charm.block.entity.WaterSprinklerBlockEntity;
 
 @SuppressWarnings("deprecation")
 public class WaterSprinklerBlock extends BaseEntityBlock {

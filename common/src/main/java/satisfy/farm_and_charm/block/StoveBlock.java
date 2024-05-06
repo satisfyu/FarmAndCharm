@@ -31,7 +31,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.entity.StoveBlockEntity;
+import satisfy.farm_and_charm.block.entity.StoveBlockEntity;
 
 @SuppressWarnings("deprecation")
 public class StoveBlock extends Block implements EntityBlock {

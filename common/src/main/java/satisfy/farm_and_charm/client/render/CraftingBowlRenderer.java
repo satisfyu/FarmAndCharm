@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.block.CraftingBowlBlock;
 import satisfy.farm_and_charm.client.model.CraftingBowlModel;
-import satisfy.farm_and_charm.entity.CraftingBowlBlockEntity;
+import satisfy.farm_and_charm.block.entity.CraftingBowlBlockEntity;
 
 public class CraftingBowlRenderer implements BlockEntityRenderer<CraftingBowlBlockEntity> {
     private final ModelPart bowl;

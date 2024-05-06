@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.client.model.CartModel;
-import satisfy.farm_and_charm.entity.cart.CartEntity;
+import satisfy.farm_and_charm.entity.CartEntity;
 import satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 public class CartRenderer extends EntityRenderer<CartEntity> {

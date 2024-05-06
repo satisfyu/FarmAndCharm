@@ -10,7 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import satisfy.farm_and_charm.block.StoveBlock;
-import satisfy.farm_and_charm.entity.StoveBlockEntity;
+import satisfy.farm_and_charm.block.entity.StoveBlockEntity;
 
 import java.util.Arrays;
 

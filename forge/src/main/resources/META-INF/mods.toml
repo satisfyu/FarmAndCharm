@@ -29,7 +29,7 @@ side = "BOTH"
 [[dependencies.farm_and_charm]]
 modId = "doapi"
 mandatory = true
-versionRange = "[1.2.8,)"
+versionRange = "[1.2.11,)"
 ordering = "NONE"
 side = "BOTH"
 

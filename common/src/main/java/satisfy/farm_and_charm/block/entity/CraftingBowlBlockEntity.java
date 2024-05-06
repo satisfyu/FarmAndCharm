@@ -1,4 +1,4 @@
-package satisfy.farm_and_charm.entity;
+package satisfy.farm_and_charm.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

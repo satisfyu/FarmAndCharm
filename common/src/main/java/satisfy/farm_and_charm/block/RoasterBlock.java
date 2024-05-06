@@ -40,7 +40,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.entity.RoasterBlockEntity;
+import satisfy.farm_and_charm.block.entity.RoasterBlockEntity;
 
 import java.util.HashMap;
 import java.util.List;

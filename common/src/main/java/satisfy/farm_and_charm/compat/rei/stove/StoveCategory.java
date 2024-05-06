@@ -12,7 +12,7 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.network.chat.Component;
-import satisfy.farm_and_charm.entity.StoveBlockEntity;
+import satisfy.farm_and_charm.block.entity.StoveBlockEntity;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 
 import java.text.DecimalFormat;

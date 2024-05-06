@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.client.gui.StoveGui;
 import satisfy.farm_and_charm.compat.jei.Farm_And_Charm_JEIPlugin;
-import satisfy.farm_and_charm.entity.StoveBlockEntity;
+import satisfy.farm_and_charm.block.entity.StoveBlockEntity;
 import satisfy.farm_and_charm.recipe.StoveRecipe;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 

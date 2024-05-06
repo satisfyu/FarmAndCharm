@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.client.gui.CookingPotGui;
 import satisfy.farm_and_charm.compat.jei.Farm_And_Charm_JEIPlugin;
-import satisfy.farm_and_charm.entity.CookingPotBlockEntity;
+import satisfy.farm_and_charm.block.entity.CookingPotBlockEntity;
 import satisfy.farm_and_charm.recipe.CookingPotRecipe;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 

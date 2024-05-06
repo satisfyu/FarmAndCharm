@@ -44,7 +44,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.entity.MincerBlockEntity;
+import satisfy.farm_and_charm.block.entity.MincerBlockEntity;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 
 import java.util.Collections;

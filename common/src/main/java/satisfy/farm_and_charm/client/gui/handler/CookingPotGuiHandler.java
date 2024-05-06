@@ -13,7 +13,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import satisfy.farm_and_charm.client.gui.handler.slot.ExtendedSlot;
 import satisfy.farm_and_charm.client.recipebook.group.CookingPotRecipeBookGroup;
-import satisfy.farm_and_charm.entity.CookingPotBlockEntity;
+import satisfy.farm_and_charm.block.entity.CookingPotBlockEntity;
 import satisfy.farm_and_charm.recipe.CookingPotRecipe;
 import satisfy.farm_and_charm.registry.ScreenhandlerTypeRegistry;
 import satisfy.farm_and_charm.registry.TagRegistry;

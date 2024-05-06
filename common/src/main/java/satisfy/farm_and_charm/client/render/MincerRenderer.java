@@ -17,7 +17,7 @@ import org.joml.Vector3f;
 import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.block.MincerBlock;
 import satisfy.farm_and_charm.client.model.MincerModel;
-import satisfy.farm_and_charm.entity.MincerBlockEntity;
+import satisfy.farm_and_charm.block.entity.MincerBlockEntity;
 
 public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
     private final ModelPart mincer;

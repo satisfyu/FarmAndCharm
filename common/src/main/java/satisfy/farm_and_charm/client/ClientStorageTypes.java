@@ -1,7 +1,7 @@
 package satisfy.farm_and_charm.client;
 
-import de.cristelknight.doapi.client.render.block.storage.StorageBlockEntityRenderer;
-import de.cristelknight.doapi.client.render.block.storage.StorageTypeRenderer;
+import de.cristelknight.doapi.client.render.block.storage.api.StorageBlockEntityRenderer;
+import de.cristelknight.doapi.client.render.block.storage.api.StorageTypeRenderer;
 import net.minecraft.resources.ResourceLocation;
 import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.client.render.ToolRackRenderer;

@@ -1,4 +1,4 @@
-package satisfy.farm_and_charm.entity;
+package satisfy.farm_and_charm.block.entity;
 
 import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;

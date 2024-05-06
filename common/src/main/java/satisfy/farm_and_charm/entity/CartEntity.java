@@ -1,4 +1,4 @@
-package satisfy.farm_and_charm.entity.cart;
+package satisfy.farm_and_charm.entity;
 
 import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import net.minecraft.core.BlockPos;

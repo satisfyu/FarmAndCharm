@@ -1,4 +1,4 @@
-package satisfy.farm_and_charm.entity.cart;
+package satisfy.farm_and_charm.entity;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;

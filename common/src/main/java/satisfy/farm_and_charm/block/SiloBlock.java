@@ -29,7 +29,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.entity.SiloBlockEntity;
+import satisfy.farm_and_charm.block.entity.SiloBlockEntity;
 import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.ObjectRegistry;
 import satisfy.farm_and_charm.util.ConnectivityHandler;

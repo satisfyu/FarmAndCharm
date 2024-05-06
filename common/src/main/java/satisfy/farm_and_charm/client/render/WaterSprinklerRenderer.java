@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import org.joml.Quaternionf;
 import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.client.model.WaterSprinklerModel;
-import satisfy.farm_and_charm.entity.WaterSprinklerBlockEntity;
+import satisfy.farm_and_charm.block.entity.WaterSprinklerBlockEntity;
 
 import java.util.Objects;
 

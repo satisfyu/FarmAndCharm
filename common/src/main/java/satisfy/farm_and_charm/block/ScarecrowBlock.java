@@ -28,7 +28,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import satisfy.farm_and_charm.entity.ScarecrowBlockEntity;
+import satisfy.farm_and_charm.block.entity.ScarecrowBlockEntity;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,4 @@
-package satisfy.farm_and_charm.entity;
+package satisfy.farm_and_charm.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,7 +33,6 @@ import satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class MincerBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer, BlockEntityTicker<MincerBlockEntity> {
