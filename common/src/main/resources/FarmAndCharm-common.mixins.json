@@ -1,11 +1,12 @@
 {
   "required": true,
-  "package": "satisfy.farm_and_charm.mixin",
+  "package": "net.satisfy.farm_and_charm.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
   ],
   "mixins": [
+    "CatMixin",
     "AnimalEntityMixin",
     "CampfireBlockMixin",
     "CatAvoidEntityGoalMixin",
