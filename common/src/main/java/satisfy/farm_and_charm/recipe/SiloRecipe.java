@@ -1,53 +1,63 @@
 package satisfy.farm_and_charm.recipe;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import satisfy.farm_and_charm.FarmAndCharm;
 import satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 
-@SuppressWarnings("unused")
-public class SiloRecipe implements Recipe<SimpleContainer> {
-    private final ResourceLocation id;
+public class SiloRecipe implements Recipe<Container> {
+
+    final ResourceLocation id;
+    private final String recipe_type;
+    private final Ingredient input;
     private final ItemStack output;
-    private final NonNullList<Ingredient> recipeItems;
 
-    public SiloRecipe(ResourceLocation id, ItemStack output,
-                      NonNullList<Ingredient> recipeItems) {
+    public SiloRecipe(ResourceLocation id, String type, Ingredient input, ItemStack output) {
         this.id = id;
+        this.recipe_type = type;
+        this.input = input;
         this.output = output;
-        this.recipeItems = recipeItems;
     }
-    @Override
-    public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        if(pLevel.isClientSide()) {
-            return false;
-        }
 
-        return recipeItems.get(0).test(pContainer.getItem(1));
+    public Ingredient getInput() {
+        return this.input;
+    }
+
+    public ItemStack getOutput() {
+        return this.output.copy();
     }
 
     @Override
     public @NotNull NonNullList<Ingredient> getIngredients() {
-        return recipeItems;
+        NonNullList<Ingredient> nonNullList = NonNullList.create();
+        nonNullList.add(this.input);
+        return nonNullList;
+    }
+
+    public String getRecipeType() {
+        return this.recipe_type;
     }
 
     @Override
-    public @NotNull ItemStack assemble(SimpleContainer container, RegistryAccess registryAccess) {
-        return output;
+    public boolean matches(Container inventory, Level world) {
+        return input.test(inventory.getItem(0));
     }
 
     @Override
-    public boolean canCraftInDimensions(int pWidth, int pHeight) {
+    public @NotNull ItemStack assemble(Container container, RegistryAccess registryAccess) {
+        return output.copy();
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
@@ -71,49 +81,34 @@ public class SiloRecipe implements Recipe<SimpleContainer> {
         return RecipeTypeRegistry.SILO_RECIPE_TYPE.get();
     }
 
-    public static class Type implements RecipeType<SiloRecipe> {
-        private Type() { }
-        public static final Type INSTANCE = new Type();
-        public static final String ID = "drying";
+    @Override
+    public boolean isSpecial() {
+        return true;
     }
 
-
     public static class Serializer implements RecipeSerializer<SiloRecipe> {
-        public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(FarmAndCharm.MOD_ID, "drying");
 
         @Override
-        public @NotNull SiloRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
-
-            JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
-            NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }
-
-            return new SiloRecipe(pRecipeId, output, inputs);
+        public @NotNull SiloRecipe fromJson(ResourceLocation id, JsonObject json) {
+            String recipe_type = GsonHelper.getAsString(json, "recipe_type");
+            Ingredient input = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
+            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
+            return new SiloRecipe(id, recipe_type, input, output);
         }
 
         @Override
         public @NotNull SiloRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-
-            inputs.replaceAll(ignored -> Ingredient.fromNetwork(buf));
-
+            Ingredient input = Ingredient.fromNetwork(buf);
             ItemStack output = buf.readItem();
-            return new SiloRecipe(id, output, inputs);
+            String recipe_type = buf.readUtf();
+            return new SiloRecipe(id, recipe_type, input, output);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, SiloRecipe recipe) {
-            buf.writeInt(recipe.getIngredients().size());
-
-            for (Ingredient ing : recipe.getIngredients()) {
-                ing.toNetwork(buf);
-            }
-            buf.writeItem(recipe.getResultItem(null));
+            recipe.input.toNetwork(buf);
+            buf.writeItem(recipe.output);
+            buf.writeUtf(recipe.recipe_type);
         }
     }
 }

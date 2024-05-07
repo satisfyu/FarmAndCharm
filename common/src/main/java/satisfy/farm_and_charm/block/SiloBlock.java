@@ -41,7 +41,7 @@ import java.util.Map;
 @SuppressWarnings({"deprecation", "unused"})
 public class SiloBlock extends FacingBlock implements EntityBlock {
     public static final HashMap<Item, Item> DRYERS = new HashMap<>();
-    private static boolean isDryersInitialized = false;
+    public static boolean isDryersInitialized = false;
     public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
