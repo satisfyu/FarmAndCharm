@@ -31,6 +31,10 @@ import java.util.Objects;
 @JeiPlugin
 public class Farm_And_Charm_JEIPlugin implements IModPlugin {
 
+    public static void addSlot(IRecipeLayoutBuilder builder, int x, int y, Ingredient ingredient) {
+        builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(ingredient);
+    }
+
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new CookingPotCategory(registration.getJeiHelpers().getGuiHelper()));
@@ -40,7 +44,6 @@ public class Farm_And_Charm_JEIPlugin implements IModPlugin {
         registration.addRecipeCategories(new SiloCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new MincerCategory(registration.getJeiHelpers().getGuiHelper()));
     }
-
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
@@ -82,9 +85,5 @@ public class Farm_And_Charm_JEIPlugin implements IModPlugin {
         registration.addRecipeCatalyst(ObjectRegistry.MINCER.get().asItem().getDefaultInstance(), MincerCategory.MINCING_TYPE);
         registration.addRecipeCatalyst(ObjectRegistry.SILO_WOOD.get().asItem().getDefaultInstance(), SiloCategory.DRYING_TYPE);
 
-    }
-
-    public static void addSlot(IRecipeLayoutBuilder builder, int x, int y, Ingredient ingredient){
-        builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(ingredient);
     }
 }

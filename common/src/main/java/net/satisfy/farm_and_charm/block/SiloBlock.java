@@ -41,11 +41,12 @@ import java.util.Map;
 @SuppressWarnings({"deprecation", "unused"})
 public class SiloBlock extends FacingBlock implements EntityBlock {
     public static final HashMap<Item, Item> DRYERS = new HashMap<>();
-    public static boolean isDryersInitialized = false;
     public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
     public static final EnumProperty<Shape> SHAPE = EnumProperty.create("shape", Shape.class);
+    static final VoxelShape CAMPFIRE_SMOKE_CLIP = Block.box(0, 4, 0, 16, 16, 16);
+    public static boolean isDryersInitialized = false;
 
     public SiloBlock(Properties settings) {
         super(settings);
@@ -57,20 +58,10 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
                 .setValue(FACING, Direction.NORTH));
     }
 
-    public Direction getFacing(BlockState state) {
-        return state.getValue(FACING);
-    }
-
-    public BlockState setFacing(BlockState state, Direction facing) {
-        return state.setValue(FACING, facing);
-    }
-
     public static void addDry(ItemLike itemLike, ItemLike resultItem) {
         if (itemLike.asItem() != Items.AIR && resultItem.asItem() != Items.AIR)
             DRYERS.put(itemLike.asItem(), resultItem.asItem());
     }
-
-
 
     public static boolean isSilo(ItemStack itemStack) {
         Item item = itemStack.getItem();
@@ -81,6 +72,44 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
 
     public static boolean isSilo(BlockState state) {
         return state.getBlock() instanceof SiloBlock;
+    }
+
+    public static Map<Item, Item> getDryers() {
+        return Collections.unmodifiableMap(DRYERS);
+    }
+
+    public static synchronized void initializeDryersIfNeeded() {
+        if (!isDryersInitialized) {
+            addDry(Items.BONE_MEAL, ObjectRegistry.FERTILIZER.get());
+            addDry(Items.ROTTEN_FLESH, ObjectRegistry.FERTILIZER.get());
+            addDry(Blocks.PODZOL, ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
+            addDry(ObjectRegistry.WILD_BARLEY.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_POTATOES.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_OAT.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_TOMATOES.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_STRAWBERRIES.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_BEETROOTS.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_ONIONS.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_CORN.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_LETTUCE.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_EMMER.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_RIBWORT.get(), Items.BONE_MEAL);
+            addDry(ObjectRegistry.WILD_CARROTS.get(), Items.BONE_MEAL);
+            isDryersInitialized = true;
+        }
+    }
+
+    public static boolean isDryItem(ItemStack itemStack) {
+        initializeDryersIfNeeded();
+        return DRYERS.containsKey(itemStack.getItem());
+    }
+
+    public Direction getFacing(BlockState state) {
+        return state.getValue(FACING);
+    }
+
+    public BlockState setFacing(BlockState state, Direction facing) {
+        return state.setValue(FACING, facing);
     }
 
     @Override
@@ -132,12 +161,10 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
         }
     }
 
-
     @Override
     public boolean skipRendering(BlockState blockState, BlockState blockState2, Direction direction) {
         return blockState2.is(this) || super.skipRendering(blockState, blockState2, direction);
     }
-
 
     @Override
     public boolean hasAnalogOutputSignal(BlockState blockState) {
@@ -148,8 +175,6 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
     public int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos blockPos) {
         return level.getBlockEntity(blockPos, EntityTypeRegistry.SILO_BLOCK_ENTITY.get()).map(AbstractContainerMenu::getRedstoneSignalFromContainer).orElse(0);
     }
-
-    static final VoxelShape CAMPFIRE_SMOKE_CLIP = Block.box(0, 4, 0, 16, 16, 16);
 
     @Override
     public @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
@@ -218,7 +243,6 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
         };
     }
 
-
     public enum Shape implements StringRepresentable {
         NONE, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST;
 
@@ -226,35 +250,5 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
         public @NotNull String getSerializedName() {
             return this.name().toLowerCase();
         }
-    }
-
-    public static Map<Item, Item> getDryers() {
-        return Collections.unmodifiableMap(DRYERS);
-    }
-
-    public static synchronized void initializeDryersIfNeeded() {
-        if (!isDryersInitialized) {
-            addDry(Items.BONE_MEAL, ObjectRegistry.FERTILIZER.get());
-            addDry(Items.ROTTEN_FLESH, ObjectRegistry.FERTILIZER.get());
-            addDry(Blocks.PODZOL, ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
-            addDry(ObjectRegistry.WILD_BARLEY.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_POTATOES.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_OAT.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_TOMATOES.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_STRAWBERRIES.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_BEETROOTS.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_ONIONS.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_CORN.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_LETTUCE.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_EMMER.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_RIBWORT.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_CARROTS.get(), Items.BONE_MEAL);
-            isDryersInitialized = true;
-        }
-    }
-
-    public static boolean isDryItem(ItemStack itemStack) {
-        initializeDryersIfNeeded();
-        return DRYERS.containsKey(itemStack.getItem());
     }
 }

@@ -5,26 +5,8 @@ import de.cristelknight.doapi.common.util.datafixer.StringPairs;
 import net.satisfy.farm_and_charm.FarmAndCharm;
 
 public class DataFixerRegistry {
-
-    public static void init(){
+    public static void init() {
         StringPairs p = DataFixers.getOrCreate(FarmAndCharm.MOD_ID);
-        p.add("candlelight:pasta", "candlelight:pasta_with_mozzarella");
-        p.add("candlelight:lettuce_salad", "candlelight:salad");
-        p.add("candlelight:cooked_beef", "candlelight:fillet_steak");
-        p.add("candlelight:pasta_bolognese", "candlelight:pasta_with_bolognese");
-        p.add("candlelight:salmon_wine", "candlelight:salmon_on_white_wine");
-        p.add("candlelight:pancake", "candlelight:omelet");
-        p.add("candlelight:ettuce_beef", "candlelight:roasted_lamb_with_lettuce");
-        p.add("candlelight:lettuce_tomato_block", "candlelight:fresh_garden_salad_block");
-        p.add("candlelight:lettuce_tomato", "candlelight:fresh_garden_salad");
-        p.add("candlelight:veggie_plate", "candlelight:harvest_plate");
-        p.add("candlelight:fricasse", "candlelight:beef_with_mushroom_in_wine_and_potatoes");
-        p.add("candlelight:chocolate", "candlelight:chocolate_mousse");
-        p.add("candlelight:roastbeef_carrots", "candlelight:roastbeef_with_glazed_carrots");
-        p.add("candlelight:lasagna_block", "candlelight:lasagne_block");
-        p.add("candlelight:lasagna", "candlelight:lasagne");
-        p.add("candlelight:chicken", "candlelight:chicken_with_vegetables");
-        p.add("candlelight:glass_block", "candlelight:wine_glass");
         p.add("candlelight:tomato_crop", "farm_and_charm:tomato_crop");
         p.add("candlelight:tomato_seeds", "farm_and_charm:tomato_seeds");
         p.add("candlelight:lettuce_crop", "farm_and_charm:lettuce_crop");
@@ -59,7 +41,7 @@ public class DataFixerRegistry {
         p.add("bakery:small_cooking_pot", "farm_and_charm:small_cooking_pot");
         p.add("bakery:strawberry_crate", "farm_and_charm:strawberry_bag");
         p.add("bakery:oat_block", "farm_and_charm:oat_ball");
-        p.add("bakery:oat_crate", "brewery:oat_ball");
+        p.add("bakery:oat_crate", "farm_and_charm:oat_ball");
         p.add("bakery:brick_stove", "farm_and_charm:stove");
         p.add("bakery:mud_stove", "farm_and_charm:stove");
         p.add("bakery:end_stove", "farm_and_charm:stove");

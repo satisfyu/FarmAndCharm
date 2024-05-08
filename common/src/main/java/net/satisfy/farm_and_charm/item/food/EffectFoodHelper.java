@@ -86,7 +86,7 @@ public class EffectFoodHelper {
 
     public static List<Pair<MobEffectInstance, Float>> fromNbt(ListTag list) {
         List<Pair<MobEffectInstance, Float>> effects = Lists.newArrayList();
-        for(int i = 0; i < list.size(); ++i) {
+        for (int i = 0; i < list.size(); ++i) {
             CompoundTag nbtCompound = list.getCompound(i);
             MobEffect effect = MobEffect.byId(nbtCompound.getShort("id"));
             assert effect != null;
@@ -114,7 +114,7 @@ public class EffectFoodHelper {
         if (effects.isEmpty()) {
             tooltip.add(Component.translatable("effect.none").withStyle(ChatFormatting.GRAY));
         } else {
-            for(Pair<MobEffectInstance, Float> effectPair : effects) {
+            for (Pair<MobEffectInstance, Float> effectPair : effects) {
                 statusEffect = effectPair.getFirst();
                 mutableText = Component.translatable(statusEffect.getDescriptionId());
                 if (statusEffect.getAmplifier() > 0) {

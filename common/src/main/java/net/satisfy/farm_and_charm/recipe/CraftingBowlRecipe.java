@@ -32,7 +32,6 @@ public class CraftingBowlRecipe implements Recipe<Container> {
     }
 
 
-
     @Override
     public boolean matches(Container inventory, Level world) {
         int nonEmptySlots = 0;

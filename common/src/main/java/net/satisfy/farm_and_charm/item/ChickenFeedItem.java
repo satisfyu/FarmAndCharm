@@ -26,7 +26,7 @@ import java.util.List;
 
 public class ChickenFeedItem extends Item {
     public ChickenFeedItem(Properties properties) {
-       super(properties.food(new FoodProperties.Builder().nutrition(0).saturationMod(0f).build()));
+        super(properties.food(new FoodProperties.Builder().nutrition(0).saturationMod(0f).build()));
     }
 
     @Override

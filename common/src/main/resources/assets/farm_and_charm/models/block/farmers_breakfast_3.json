@@ -1,107 +1,463 @@
 {
-	"credit": "Made by Satisfy",
-	"textures": {
-		"0": "farm_and_charm:block/plate_top_crumbs",
-		"1": "farm_and_charm:block/plate_bottom",
-		"2": "farm_and_charm:block/farmers_breakfast",
-		"particle": "farm_and_charm:block/farmers_breakfast"
-	},
-	"elements": [
-		{
-			"from": [1, 0, 1],
-			"to": [15, 2, 15],
-			"faces": {
-				"north": {"uv": [1, 14, 15, 16], "texture": "#0"},
-				"east": {"uv": [1, 14, 15, 16], "texture": "#0"},
-				"south": {"uv": [1, 14, 15, 16], "texture": "#0"},
-				"west": {"uv": [1, 14, 15, 16], "texture": "#0"},
-				"up": {"uv": [1, 0, 15, 14], "texture": "#0"},
-				"down": {"uv": [1, 0, 15, 14], "texture": "#1"}
-			}
-		},
-		{
-			"from": [3, 2, 12],
-			"to": [10, 4, 14],
-			"rotation": {"angle": 0, "axis": "y", "origin": [5.74843, 3, 10.05761]},
-			"faces": {
-				"north": {"uv": [7, 0, 0, 2], "texture": "#2"},
-				"east": {"uv": [0, 0, 2, 2], "texture": "#2"},
-				"south": {"uv": [0, 2, 7, 4], "texture": "#2"},
-				"west": {"uv": [5, 2, 7, 4], "texture": "#2"},
-				"up": {"uv": [0, 0, 7, 2], "texture": "#2"},
-				"down": {"uv": [9, 1, 12.5, 0], "texture": "#missing"}
-			}
-		},
-		{
-			"from": [2.9, 1.9, 11.9],
-			"to": [10.1, 4.1, 14.1],
-			"rotation": {"angle": 0, "axis": "y", "origin": [5.74843, 3, 10.05761]},
-			"faces": {
-				"north": {"uv": [14, 0, 7, 2], "texture": "#2"},
-				"south": {"uv": [7, 0, 14, 2], "texture": "#2"},
-				"west": {"uv": [9, 1, 11, 3], "texture": "#2"},
-				"up": {"uv": [7, 2, 14, 4], "texture": "#2"}
-			}
-		},
-		{
-			"from": [10, 2, 6],
-			"to": [14, 6, 13],
-			"faces": {
-				"north": {"uv": [8, 4, 12, 8], "texture": "#2"},
-				"east": {"uv": [8, 4, 1, 8], "texture": "#2"},
-				"south": {"uv": [8, 8, 12, 12], "texture": "#2"},
-				"west": {"uv": [1, 4, 8, 8], "texture": "#2"},
-				"up": {"uv": [12, 4, 16, 11], "texture": "#2"},
-				"down": {"uv": [12, 4, 16, 11], "texture": "#2"}
-			}
-		},
-		{
-			"from": [4, 2.05, 4],
-			"to": [11, 2.05, 11],
-			"faces": {
-				"north": {"uv": [0, 0, 7, 0], "texture": "#2"},
-				"east": {"uv": [0, 0, 7, 0], "texture": "#2"},
-				"south": {"uv": [0, 0, 7, 0], "texture": "#2"},
-				"west": {"uv": [0, 0, 7, 0], "texture": "#2"},
-				"up": {"uv": [0, 9, 7, 16], "texture": "#2"},
-				"down": {"uv": [0, 9, 7, 16], "texture": "#2"}
-			}
-		},
-		{
-			"from": [6, 2.05, 6],
-			"to": [9, 3.05, 9],
-			"faces": {
-				"north": {"uv": [16, 13, 13, 14], "texture": "#2"},
-				"east": {"uv": [13, 13, 16, 14], "texture": "#2"},
-				"south": {"uv": [13, 15, 16, 16], "texture": "#2"},
-				"west": {"uv": [16, 15, 13, 16], "texture": "#2"},
-				"up": {"uv": [13, 13, 16, 16], "texture": "#2"},
-				"down": {"uv": [13, 13, 16, 16], "texture": "#2"}
-			}
-		}
-	],
-	"groups": [
-		0,
-		{
-			"name": "corn_1",
-			"origin": [60.18933, 1, -16.67805],
-			"color": 0,
-			"nbt": "{}",
-			"children": [1, 2]
-		},
-		{
-			"name": "bread",
-			"origin": [0, 0, 0],
-			"color": 0,
-			"nbt": "{}",
-			"children": [3]
-		},
-		{
-			"name": "egg",
-			"origin": [0, 0, 0],
-			"color": 0,
-			"nbt": "{}",
-			"children": [4, 5]
-		}
-	]
+  "credit": "Made by Satisfy",
+  "textures": {
+    "0": "farm_and_charm:block/plate_top_crumbs",
+    "1": "farm_and_charm:block/plate_bottom",
+    "2": "farm_and_charm:block/farmers_breakfast",
+    "particle": "farm_and_charm:block/farmers_breakfast"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        2,
+        15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            1,
+            0,
+            15,
+            14
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            1,
+            0,
+            15,
+            14
+          ],
+          "texture": "#1"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        2,
+        12
+      ],
+      "to": [
+        10,
+        4,
+        14
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          5.74843,
+          3,
+          10.05761
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            7,
+            0,
+            0,
+            2
+          ],
+          "texture": "#2"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            2,
+            2
+          ],
+          "texture": "#2"
+        },
+        "south": {
+          "uv": [
+            0,
+            2,
+            7,
+            4
+          ],
+          "texture": "#2"
+        },
+        "west": {
+          "uv": [
+            5,
+            2,
+            7,
+            4
+          ],
+          "texture": "#2"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            7,
+            2
+          ],
+          "texture": "#2"
+        },
+        "down": {
+          "uv": [
+            9,
+            1,
+            12.5,
+            0
+          ],
+          "texture": "#missing"
+        }
+      }
+    },
+    {
+      "from": [
+        2.9,
+        1.9,
+        11.9
+      ],
+      "to": [
+        10.1,
+        4.1,
+        14.1
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          5.74843,
+          3,
+          10.05761
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            14,
+            0,
+            7,
+            2
+          ],
+          "texture": "#2"
+        },
+        "south": {
+          "uv": [
+            7,
+            0,
+            14,
+            2
+          ],
+          "texture": "#2"
+        },
+        "west": {
+          "uv": [
+            9,
+            1,
+            11,
+            3
+          ],
+          "texture": "#2"
+        },
+        "up": {
+          "uv": [
+            7,
+            2,
+            14,
+            4
+          ],
+          "texture": "#2"
+        }
+      }
+    },
+    {
+      "from": [
+        10,
+        2,
+        6
+      ],
+      "to": [
+        14,
+        6,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            8,
+            4,
+            12,
+            8
+          ],
+          "texture": "#2"
+        },
+        "east": {
+          "uv": [
+            8,
+            4,
+            1,
+            8
+          ],
+          "texture": "#2"
+        },
+        "south": {
+          "uv": [
+            8,
+            8,
+            12,
+            12
+          ],
+          "texture": "#2"
+        },
+        "west": {
+          "uv": [
+            1,
+            4,
+            8,
+            8
+          ],
+          "texture": "#2"
+        },
+        "up": {
+          "uv": [
+            12,
+            4,
+            16,
+            11
+          ],
+          "texture": "#2"
+        },
+        "down": {
+          "uv": [
+            12,
+            4,
+            16,
+            11
+          ],
+          "texture": "#2"
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        2.05,
+        4
+      ],
+      "to": [
+        11,
+        2.05,
+        11
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            7,
+            0
+          ],
+          "texture": "#2"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            7,
+            0
+          ],
+          "texture": "#2"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            7,
+            0
+          ],
+          "texture": "#2"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            7,
+            0
+          ],
+          "texture": "#2"
+        },
+        "up": {
+          "uv": [
+            0,
+            9,
+            7,
+            16
+          ],
+          "texture": "#2"
+        },
+        "down": {
+          "uv": [
+            0,
+            9,
+            7,
+            16
+          ],
+          "texture": "#2"
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        2.05,
+        6
+      ],
+      "to": [
+        9,
+        3.05,
+        9
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            16,
+            13,
+            13,
+            14
+          ],
+          "texture": "#2"
+        },
+        "east": {
+          "uv": [
+            13,
+            13,
+            16,
+            14
+          ],
+          "texture": "#2"
+        },
+        "south": {
+          "uv": [
+            13,
+            15,
+            16,
+            16
+          ],
+          "texture": "#2"
+        },
+        "west": {
+          "uv": [
+            16,
+            15,
+            13,
+            16
+          ],
+          "texture": "#2"
+        },
+        "up": {
+          "uv": [
+            13,
+            13,
+            16,
+            16
+          ],
+          "texture": "#2"
+        },
+        "down": {
+          "uv": [
+            13,
+            13,
+            16,
+            16
+          ],
+          "texture": "#2"
+        }
+      }
+    }
+  ],
+  "groups": [
+    0,
+    {
+      "name": "corn_1",
+      "origin": [
+        60.18933,
+        1,
+        -16.67805
+      ],
+      "color": 0,
+      "nbt": "{}",
+      "children": [
+        1,
+        2
+      ]
+    },
+    {
+      "name": "bread",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "color": 0,
+      "nbt": "{}",
+      "children": [
+        3
+      ]
+    },
+    {
+      "name": "egg",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "color": 0,
+      "nbt": "{}",
+      "children": [
+        4,
+        5
+      ]
+    }
+  ]
 }

@@ -81,17 +81,15 @@ public class FertilizedSoilBlock extends Block {
     }
 
 
-
-
     private void spawnBreakParticles(Level level, BlockPos pos, BlockState state) {
         if (!level.isClientSide) {
-            ((ServerLevel)level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 20, 0.5, 0.5, 0.5, 0.2);
+            ((ServerLevel) level).sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 20, 0.5, 0.5, 0.5, 0.2);
         }
     }
 
     private void applyBoneMealEffect(Level level, BlockPos centerPos) {
         if (!level.isClientSide) {
-            ServerLevel serverLevel = (ServerLevel)level;
+            ServerLevel serverLevel = (ServerLevel) level;
             BlockPos.betweenClosedStream(centerPos.offset(-5, -1, -5), centerPos.offset(5, 1, 5))
                     .forEach(pos -> {
                         if (serverLevel.random.nextInt(100) < 20) {

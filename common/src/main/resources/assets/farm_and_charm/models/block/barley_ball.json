@@ -1,7 +1,7 @@
 {
-	"parent": "minecraft:block/cube_column",
-	"textures": {
-		"end": "farm_and_charm:block/barley_ball_top",
-		"side": "farm_and_charm:block/barley_ball_side"
-	}
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "farm_and_charm:block/barley_ball_top",
+    "side": "farm_and_charm:block/barley_ball_side"
+  }
 }

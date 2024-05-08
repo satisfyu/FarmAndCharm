@@ -13,7 +13,7 @@ public class CatAvoidEntityGoalMixin {
     @Inject(method = "canUse", at = @At("HEAD"), cancellable = true)
     private void modifyCanUse(CallbackInfoReturnable<Boolean> cir) {
         Cat.CatAvoidEntityGoal<?> goal = (Cat.CatAvoidEntityGoal<?>) (Object) this;
-        if(goal.toAvoid instanceof Player p && p.isHolding(ObjectRegistry.CAT_FOOD.get().asItem())) {
+        if (goal.toAvoid instanceof Player p && p.isHolding(ObjectRegistry.CAT_FOOD.get().asItem())) {
             cir.setReturnValue(false);
         }
     }
@@ -21,7 +21,7 @@ public class CatAvoidEntityGoalMixin {
     @Inject(method = "canContinueToUse", at = @At("HEAD"), cancellable = true)
     private void modifyCanContinueToUse(CallbackInfoReturnable<Boolean> cir) {
         Cat.CatAvoidEntityGoal<?> goal = (Cat.CatAvoidEntityGoal<?>) (Object) this;
-        if(goal.toAvoid instanceof Player p && p.isHolding(ObjectRegistry.CAT_FOOD.get().asItem())) {
+        if (goal.toAvoid instanceof Player p && p.isHolding(ObjectRegistry.CAT_FOOD.get().asItem())) {
             cir.setReturnValue(false);
         }
     }

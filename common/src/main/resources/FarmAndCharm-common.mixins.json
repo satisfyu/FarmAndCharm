@@ -6,7 +6,6 @@
   "client": [
   ],
   "mixins": [
-    "CatMixin",
     "AnimalEntityMixin",
     "CampfireBlockMixin",
     "CatAvoidEntityGoalMixin",

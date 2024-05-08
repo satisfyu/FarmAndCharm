@@ -34,6 +34,7 @@ public class StoveRecipe implements Recipe<Container> {
     public boolean matches(Container inventory, Level world) {
         return GeneralUtil.matchesRecipe(inventory, inputs, 1, 3);
     }
+
     @Override
     public @NotNull ItemStack assemble(Container container, RegistryAccess registryAccess) {
         return ItemStack.EMPTY;

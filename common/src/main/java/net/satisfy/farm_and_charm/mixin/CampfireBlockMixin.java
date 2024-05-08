@@ -25,7 +25,7 @@ public abstract class CampfireBlockMixin {
     @Unique
     private static final VoxelShape BASE_SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 7.0, 16.0);
     @Unique
-    private static final VoxelShape[] CORNERS = new VoxelShape[] {
+    private static final VoxelShape[] CORNERS = new VoxelShape[]{
             Block.box(0.0, 7.0, 0.0, 1.0, 15.0, 1.0),
             Block.box(15.0, 7.0, 0.0, 16.0, 15.0, 1.0),
             Block.box(0.0, 7.0, 15.0, 1.0, 15.0, 16.0),

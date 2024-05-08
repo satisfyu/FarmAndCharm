@@ -30,16 +30,15 @@ public class RoasterDisplay extends BasicDisplay {
         super(inputs, outputs, location);
     }
 
-
-    @Override
-    public CategoryIdentifier<?> getCategoryIdentifier() {
-        return ROASTER_DISPLAY;
-    }
-
     public static ItemStack getContainer(Recipe<Container> recipe) {
         if (recipe instanceof RoasterRecipe c) {
             return c.getContainer();
         } else return ItemStack.EMPTY;
+    }
+
+    @Override
+    public CategoryIdentifier<?> getCategoryIdentifier() {
+        return ROASTER_DISPLAY;
     }
 
 }

@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class CatMixin {
     @Inject(method = "isFood", at = @At("HEAD"), cancellable = true)
     private void modifyCanScare(ItemStack itemStack, CallbackInfoReturnable<Boolean> cir) {
-        if(itemStack.is(ObjectRegistry.CAT_FOOD.get().asItem())) cir.setReturnValue(true);
+        if (itemStack.is(ObjectRegistry.CAT_FOOD.get().asItem())) cir.setReturnValue(true);
     }
 }

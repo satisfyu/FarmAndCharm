@@ -88,13 +88,13 @@ public class RoasterRecipe implements Recipe<Container> {
             } else if (ingredients.size() > 6) {
                 throw new JsonParseException("Too many ingredients for Roaster Recipe");
             } else {
-                return new RoasterRecipe(id, ingredients,  ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "container")), ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result")));
+                return new RoasterRecipe(id, ingredients, ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "container")), ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result")));
             }
         }
 
         @Override
         public @NotNull RoasterRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            final var ingredients  = NonNullList.withSize(buf.readVarInt(), Ingredient.EMPTY);
+            final var ingredients = NonNullList.withSize(buf.readVarInt(), Ingredient.EMPTY);
             ingredients.replaceAll(ignored -> Ingredient.fromNetwork(buf));
             return new RoasterRecipe(id, ingredients, buf.readItem(), buf.readItem());
         }

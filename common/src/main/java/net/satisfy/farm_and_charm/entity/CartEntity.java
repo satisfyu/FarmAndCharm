@@ -33,7 +33,8 @@ public abstract class CartEntity extends DrivableEntity {
     }
 
     private float originalYRot = 0.0F;
-    private boolean shouldResetRot = false;    private float wheelRot;
+    private boolean shouldResetRot = false;
+    private float wheelRot;
     private int rollOut;
     private int soundCooldown = 0;
     private double lastDriverX, lastDriverY, lastDriverZ;
@@ -235,14 +236,13 @@ public abstract class CartEntity extends DrivableEntity {
         this.spawnAtLocation(ObjectRegistry.SUPPLY_CART.get());
     }
 
-    public void setDamage(float damage) {
-        this.entityData.set(DATA_ID_DAMAGE, Math.min(damage, 40.0F));
-    }
-
     public float getDamage() {
         return this.entityData.get(DATA_ID_DAMAGE);
     }
 
+    public void setDamage(float damage) {
+        this.entityData.set(DATA_ID_DAMAGE, Math.min(damage, 40.0F));
+    }
 
     @Override
     public boolean canBeCollidedWith() {

@@ -23,11 +23,15 @@ import java.util.List;
 public class StoveRecipeBook extends PrivateRecipeBookWidget {
     private static final Component TOGGLE_COOKABLE_TEXT;
 
+    static {
+        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.farm_and_charm.recipebook.toggleRecipes.cookable");
+    }
+
     public StoveRecipeBook() {
     }
 
     @Override
-    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots,  RegistryAccess registryAccess) {
+    public void showGhostRecipe(Recipe<?> recipe, List<Slot> slots, RegistryAccess registryAccess) {
         this.ghostSlots.addSlot(recipe.getResultItem(registryAccess), slots.get(0).x, slots.get(0).y);
         int j = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
@@ -82,18 +86,13 @@ public class StoveRecipeBook extends PrivateRecipeBookWidget {
         return TOGGLE_COOKABLE_TEXT;
     }
 
-    static {
-        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.farm_and_charm.recipebook.toggleRecipes.cookable");
+    @Override
+    public boolean isFocused() {
+        return false;
     }
-
 
     @Override
     public void setFocused(boolean bl) {
 
-    }
-
-    @Override
-    public boolean isFocused() {
-        return false;
     }
 }

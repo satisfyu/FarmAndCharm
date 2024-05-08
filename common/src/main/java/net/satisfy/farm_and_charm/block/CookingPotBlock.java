@@ -54,6 +54,12 @@ public class CookingPotBlock extends BaseEntityBlock {
     public static final BooleanProperty LIT = BooleanProperty.create("lit");
     public static final BooleanProperty COOKING = BooleanProperty.create("cooking");
     public static final BooleanProperty NEEDS_SUPPORT = BooleanProperty.create("needs_support");
+    private static final Map<Direction, VoxelShape> SHAPES = Util.make(new HashMap<>(), map -> {
+        Supplier<VoxelShape> voxelShapeSupplier = () -> Shapes.or(Shapes.box(0.1875, 0, 0.1875, 0.8125, 0.5, 0.8125), Shapes.box(0.0625, 0.3125, 0.25, 0.9375, 0.4375, 0.75));
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
 
     public CookingPotBlock(Properties properties) {
         super(properties);
@@ -68,13 +74,6 @@ public class CookingPotBlock extends BaseEntityBlock {
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPES.getOrDefault(state.getValue(FACING), Shapes.empty());
     }
-
-    private static final Map<Direction, VoxelShape> SHAPES = Util.make(new HashMap<>(), map -> {
-        Supplier<VoxelShape> voxelShapeSupplier = () -> Shapes.or(Shapes.box(0.1875, 0, 0.1875, 0.8125, 0.5, 0.8125), Shapes.box(0.0625, 0.3125, 0.25, 0.9375, 0.4375, 0.75));
-        for (Direction direction : Direction.Plane.HORIZONTAL) {
-            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
-        }
-    });
 
     @Override
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
@@ -136,7 +135,7 @@ public class CookingPotBlock extends BaseEntityBlock {
         if (!world.isClientSide) {
             BlockEntity entity = world.getBlockEntity(pos);
             if (entity instanceof MenuProvider) {
-                player.openMenu((MenuProvider)entity);
+                player.openMenu((MenuProvider) entity);
                 return InteractionResult.CONSUME;
             }
         }

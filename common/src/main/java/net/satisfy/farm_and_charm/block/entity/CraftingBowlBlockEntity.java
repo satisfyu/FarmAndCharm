@@ -98,6 +98,11 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
         return this.stacks;
     }
 
+    @Override
+    protected void setItems(NonNullList<ItemStack> stacks) {
+        this.stacks = stacks;
+    }
+
     public int filledSlots() {
         int count = 0;
         for (ItemStack stack : this.stacks) {
@@ -108,19 +113,12 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
         return count;
     }
 
-
-
-    @Override
-    protected void setItems(NonNullList<ItemStack> stacks) {
-        this.stacks = stacks;
-    }
-
     public boolean canAddItem(ItemStack stack) {
         return this.canPlaceItem(0, stack) && filledSlots() < this.getContainerSize();
     }
 
     public void addItemStack(ItemStack stack) {
-        for(int j = 0; j < this.getContainerSize(); ++j) {
+        for (int j = 0; j < this.getContainerSize(); ++j) {
             if (this.getItem(j) == ItemStack.EMPTY) {
                 this.setItem(j, stack);
                 setChanged();

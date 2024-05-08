@@ -141,15 +141,35 @@
     }
   },
   "requirements": [
-    ["farm_and_charm:barley_soup"],
-    ["farm_and_charm:corn_grits"],
-    ["farm_and_charm:strawberry_tea"],
-    ["farm_and_charm:nettle_tea"],
-    ["farm_and_charm:ribwort_tea"],
-    ["farm_and_charm:goulash"],
-    ["farm_and_charm:onion_soup"],
-    ["farm_and_charm:potato_soup"],
-    ["farm_and_charm:simple_tomato_soup"],
-    ["farm_and_charm:yeast"]
+    [
+      "farm_and_charm:barley_soup"
+    ],
+    [
+      "farm_and_charm:corn_grits"
+    ],
+    [
+      "farm_and_charm:strawberry_tea"
+    ],
+    [
+      "farm_and_charm:nettle_tea"
+    ],
+    [
+      "farm_and_charm:ribwort_tea"
+    ],
+    [
+      "farm_and_charm:goulash"
+    ],
+    [
+      "farm_and_charm:onion_soup"
+    ],
+    [
+      "farm_and_charm:potato_soup"
+    ],
+    [
+      "farm_and_charm:simple_tomato_soup"
+    ],
+    [
+      "farm_and_charm:yeast"
+    ]
   ]
 }

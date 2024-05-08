@@ -40,7 +40,7 @@ public class StoveBlockRenderer implements BlockEntityRenderer<StoveBlockEntity>
         int[] slots = blockEntity.getIngredientSlots();
         int nonEmptyCount = (int) Arrays.stream(slots).filter(slot -> !blockEntity.getItem(slot).isEmpty()).count();
         double ySpacing = 1.0 / 50;
- 
+
         double yOffset = 0.1;
         for (int slot : slots) {
             ItemStack stack = blockEntity.getItem(slot);

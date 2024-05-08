@@ -52,7 +52,7 @@ public class TeaJugBlock extends FacingBlock {
             ItemStack teaItemStack = new ItemStack(getTeaItem(state));
             player.addItem(teaItemStack);
             int newFillLevel = state.getValue(FILL) - 1;
-            if(newFillLevel > 0) {
+            if (newFillLevel > 0) {
                 world.setBlock(pos, state.setValue(FILL, newFillLevel), 3);
             } else {
                 world.destroyBlock(pos, true);

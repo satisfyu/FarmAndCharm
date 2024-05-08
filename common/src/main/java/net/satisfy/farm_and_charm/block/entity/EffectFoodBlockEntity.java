@@ -16,45 +16,46 @@ import org.apache.commons.compress.utils.Lists;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EffectFoodBlockEntity extends BlockEntity  {
-	public static final String STORED_EFFECTS_KEY = "StoredEffects";
-	private List<Pair<MobEffectInstance, Float>> effects;
+public class EffectFoodBlockEntity extends BlockEntity {
+    public static final String STORED_EFFECTS_KEY = "StoredEffects";
+    private List<Pair<MobEffectInstance, Float>> effects;
 
-	public EffectFoodBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(EntityTypeRegistry.EFFECT_FOOD_BLOCK_ENTITY.get(), blockPos, blockState);
-	}
+    public EffectFoodBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(EntityTypeRegistry.EFFECT_FOOD_BLOCK_ENTITY.get(), blockPos, blockState);
+    }
 
-	@SuppressWarnings("all")
-	public void addEffects(List<Pair<MobEffectInstance, Float>> effects) {
-		List<Pair<MobEffectInstance, Float>> filteredEffects = effects.stream()
-				.filter(effectPair -> effectPair.getFirst().getEffect() != MobEffects.HUNGER)
-				.collect(Collectors.toList());
+    @SuppressWarnings("all")
+    public void addEffects(List<Pair<MobEffectInstance, Float>> effects) {
+        List<Pair<MobEffectInstance, Float>> filteredEffects = effects.stream()
+                .filter(effectPair -> effectPair.getFirst().getEffect() != MobEffects.HUNGER)
+                .collect(Collectors.toList());
 
-		this.effects = filteredEffects;
-	}
-	public List<Pair<MobEffectInstance, Float>> getEffects() {
-		return effects != null ? effects : Lists.newArrayList();
-	}
+        this.effects = filteredEffects;
+    }
 
-	@Override
-	public void load(CompoundTag nbt) {
-		super.load(nbt);
-		this.effects = EffectFoodHelper.fromNbt(nbt != null ? nbt.getList(STORED_EFFECTS_KEY, 10) : new ListTag());
-	}
+    public List<Pair<MobEffectInstance, Float>> getEffects() {
+        return effects != null ? effects : Lists.newArrayList();
+    }
 
-	@Override
-	protected void saveAdditional(CompoundTag nbt) {
-		super.saveAdditional(nbt);
-		if (effects == null) {
-			return;
-		}
-		ListTag nbtList = new ListTag();
-		for (Pair<MobEffectInstance, Float> effect : effects) {
-			nbtList.add(EffectFoodHelper.createNbt((short) MobEffect.getId(effect.getFirst().getEffect()), effect));
+    @Override
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        this.effects = EffectFoodHelper.fromNbt(nbt != null ? nbt.getList(STORED_EFFECTS_KEY, 10) : new ListTag());
+    }
 
-		}
-		nbt.put(STORED_EFFECTS_KEY, nbtList);
-	}
+    @Override
+    protected void saveAdditional(CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        if (effects == null) {
+            return;
+        }
+        ListTag nbtList = new ListTag();
+        for (Pair<MobEffectInstance, Float> effect : effects) {
+            nbtList.add(EffectFoodHelper.createNbt((short) MobEffect.getId(effect.getFirst().getEffect()), effect));
+
+        }
+        nbt.put(STORED_EFFECTS_KEY, nbtList);
+    }
 }
 
 

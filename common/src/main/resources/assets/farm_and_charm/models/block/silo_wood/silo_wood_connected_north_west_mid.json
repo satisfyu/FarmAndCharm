@@ -1,18 +1,45 @@
 {
-	"credit": "Made by Satisfy",
-	"texture_size": [64, 64],
-	"textures": {
-		"6": "farm_and_charm:block/silo/silo_connected_wood",
-		"particle": "farm_and_charm:block/silo/silo_connected_wood"
-	},
-	"elements": [
-		{
-			"from": [1, 0, 1],
-			"to": [16, 16, 16],
-			"faces": {
-				"north": {"uv": [12.25, 4, 16, 8], "texture": "#6"},
-				"west": {"uv": [16, 4, 12.25, 8], "texture": "#6"}
-			}
-		}
-	]
+  "credit": "Made by Satisfy",
+  "texture_size": [
+    64,
+    64
+  ],
+  "textures": {
+    "6": "farm_and_charm:block/silo/silo_connected_wood",
+    "particle": "farm_and_charm:block/silo/silo_connected_wood"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            12.25,
+            4,
+            16,
+            8
+          ],
+          "texture": "#6"
+        },
+        "west": {
+          "uv": [
+            16,
+            4,
+            12.25,
+            8
+          ],
+          "texture": "#6"
+        }
+      }
+    }
+  ]
 }

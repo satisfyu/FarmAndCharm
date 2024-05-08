@@ -1,21 +1,64 @@
 {
-	"credit": "Made by Satisfy",
-	"texture_size": [64, 64],
-	"textures": {
-		"4": "farm_and_charm:block/silo/silo_top_connected",
-		"5": "farm_and_charm:block/silo/silo_connected",
-		"particle": "farm_and_charm:block/silo/silo_connected"
-	},
-	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [16, 16, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
-			"faces": {
-				"east": {"uv": [8, 12, 12, 16], "texture": "#5"},
-				"up": {"uv": [11.75, 8, 15.75, 4], "texture": "#4"},
-				"down": {"uv": [11.75, 8, 15.75, 4], "texture": "#4"}
-			}
-		}
-	]
+  "credit": "Made by Satisfy",
+  "texture_size": [
+    64,
+    64
+  ],
+  "textures": {
+    "4": "farm_and_charm:block/silo/silo_top_connected",
+    "5": "farm_and_charm:block/silo/silo_connected",
+    "particle": "farm_and_charm:block/silo/silo_connected"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          16,
+          0,
+          0
+        ]
+      },
+      "faces": {
+        "east": {
+          "uv": [
+            8,
+            12,
+            12,
+            16
+          ],
+          "texture": "#5"
+        },
+        "up": {
+          "uv": [
+            11.75,
+            8,
+            15.75,
+            4
+          ],
+          "texture": "#4"
+        },
+        "down": {
+          "uv": [
+            11.75,
+            8,
+            15.75,
+            4
+          ],
+          "texture": "#4"
+        }
+      }
+    }
+  ]
 }

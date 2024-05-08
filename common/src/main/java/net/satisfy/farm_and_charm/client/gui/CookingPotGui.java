@@ -19,6 +19,10 @@ public class CookingPotGui extends AbstractRecipeBookGUIScreen<CookingPotGuiHand
     public static final int ARROW_X = 95;
     public static final int ARROW_Y = 14;
 
+    static {
+        BACKGROUND = new FarmAndCharmIdentifier("textures/gui/pot_gui.png");
+    }
+
     public CookingPotGui(CookingPotGuiHandler handler, Inventory playerInventory, Component title) {
         super(handler, playerInventory, title, new CookingPotRecipeBook(), BACKGROUND);
     }
@@ -40,9 +44,5 @@ public class CookingPotGui extends AbstractRecipeBookGUIScreen<CookingPotGuiHand
         if (this.menu.isBeingBurned()) {
             guiGraphics.blit(BACKGROUND, posX + 124, posY + 56, 176, 0, 17, 15);
         }
-    }
-
-    static {
-        BACKGROUND = new FarmAndCharmIdentifier("textures/gui/pot_gui.png");
     }
 }

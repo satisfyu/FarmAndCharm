@@ -43,27 +43,14 @@ import java.util.Objects;
 
 public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<StoveBlockEntity>, ImplementedInventory, MenuProvider {
 
-    private NonNullList<ItemStack> inventory;
-
+    public static final int TOTAL_COOKING_TIME = 240;
+    protected static final int FUEL_SLOT = StoveGuiHandler.FUEL_SLOT;
+    protected static final int[] INGREDIENT_SLOTS = {1, 2, 3};
+    protected static final int OUTPUT_SLOT = StoveGuiHandler.OUTPUT_SLOT;
     protected int burnTime;
     protected int burnTimeTotal;
     protected int cookTime;
     protected int cookTimeTotal;
-
-    protected float experience;
-
-    protected static final int FUEL_SLOT = StoveGuiHandler.FUEL_SLOT;
-    protected static final int[] INGREDIENT_SLOTS = {1, 2, 3};
-    protected static final int OUTPUT_SLOT = StoveGuiHandler.OUTPUT_SLOT;
-    public static final int TOTAL_COOKING_TIME = 240;
-    public int[] getIngredientSlots() {
-        return INGREDIENT_SLOTS;
-    }
-
-    public int getOutputSlot() {
-        return OUTPUT_SLOT;
-    }
-
     private final ContainerData propertyDelegate = new ContainerData() {
         @Override
         public int get(int index) {
@@ -91,10 +78,20 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
             return 4;
         }
     };
+    protected float experience;
+    private NonNullList<ItemStack> inventory;
 
     public StoveBlockEntity(BlockPos pos, BlockState state) {
         super(EntityTypeRegistry.STOVE_BLOCK_ENTITY.get(), pos, state);
         this.inventory = NonNullList.withSize(5, ItemStack.EMPTY);
+    }
+
+    public int[] getIngredientSlots() {
+        return INGREDIENT_SLOTS;
+    }
+
+    public int getOutputSlot() {
+        return OUTPUT_SLOT;
     }
 
     public void dropExperience(ServerLevel world, Vec3 pos) {
@@ -103,9 +100,9 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
 
     @Override
     public int @NotNull [] getSlotsForFace(Direction side) {
-        if(side.equals(Direction.UP)){
+        if (side.equals(Direction.UP)) {
             return INGREDIENT_SLOTS;
-        } else if (side.equals(Direction.DOWN)){
+        } else if (side.equals(Direction.DOWN)) {
             return new int[]{OUTPUT_SLOT};
         } else return new int[]{FUEL_SLOT};
     }

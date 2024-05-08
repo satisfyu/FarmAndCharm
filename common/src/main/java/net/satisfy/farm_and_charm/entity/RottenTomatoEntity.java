@@ -60,14 +60,14 @@ public class RottenTomatoEntity extends ThrowableItemProjectile {
             livingEntity.addEffect(new MobEffectInstance(MobEffects.POISON, 30, 0));
         }
         int damage = 1;
-        entity.hurt(entity.damageSources().thrown(this, this.getOwner()), (float)damage);
+        entity.hurt(entity.damageSources().thrown(this, this.getOwner()), (float) damage);
     }
 
     @Override
     protected void onHit(HitResult hitResult) {
         super.onHit(hitResult);
         if (!this.level().isClientSide) {
-            this.level().broadcastEntityEvent(this, (byte)3);
+            this.level().broadcastEntityEvent(this, (byte) 3);
             this.playSound(SoundEvents.SLIME_BLOCK_BREAK, 1.0F, 1.0F);
             if (this.random.nextFloat() < 0.15F) {
                 this.spawnAtLocation(ObjectRegistry.TOMATO_SEEDS.get());

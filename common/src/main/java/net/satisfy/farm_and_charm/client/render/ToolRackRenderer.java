@@ -18,7 +18,7 @@ import net.satisfy.farm_and_charm.registry.TagRegistry;
 public class ToolRackRenderer implements StorageTypeRenderer {
     @Override
     public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
-        for(int i = 0; i < itemStacks.size(); i++) {
+        for (int i = 0; i < itemStacks.size(); i++) {
             ItemStack stack = itemStacks.get(i);
 
             if (!stack.isEmpty()) {

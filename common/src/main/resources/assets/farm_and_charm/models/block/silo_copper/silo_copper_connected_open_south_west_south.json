@@ -1,23 +1,76 @@
 {
-	"credit": "Made by Satisfy",
-	"texture_size": [64, 64],
-	"textures": {
-		"2": "farm_and_charm:block/silo/silo_single_connected_open",
-		"4": "farm_and_charm:block/silo/silo_top_connected",
-		"6": "farm_and_charm:block/silo/silo_connected",
-		"particle": "farm_and_charm:block/silo/silo_single_connected_open"
-	},
-	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [16, 16, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
-			"faces": {
-				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"west": {"uv": [8, 12, 4, 16], "texture": "#6"},
-				"up": {"uv": [8.25, 0.25, 4.25, 4.25], "rotation": 180, "texture": "#4"},
-				"down": {"uv": [8.25, 4.25, 4.25, 0.25], "rotation": 180, "texture": "#4"}
-			}
-		}
-	]
+  "credit": "Made by Satisfy",
+  "texture_size": [
+    64,
+    64
+  ],
+  "textures": {
+    "2": "farm_and_charm:block/silo/silo_single_connected_open",
+    "4": "farm_and_charm:block/silo/silo_top_connected",
+    "6": "farm_and_charm:block/silo/silo_connected",
+    "particle": "farm_and_charm:block/silo/silo_single_connected_open"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          16,
+          0,
+          0
+        ]
+      },
+      "faces": {
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#2"
+        },
+        "west": {
+          "uv": [
+            8,
+            12,
+            4,
+            16
+          ],
+          "texture": "#6"
+        },
+        "up": {
+          "uv": [
+            8.25,
+            0.25,
+            4.25,
+            4.25
+          ],
+          "rotation": 180,
+          "texture": "#4"
+        },
+        "down": {
+          "uv": [
+            8.25,
+            4.25,
+            4.25,
+            0.25
+          ],
+          "rotation": 180,
+          "texture": "#4"
+        }
+      }
+    }
+  ]
 }

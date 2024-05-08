@@ -30,16 +30,15 @@ public class CookingPotDisplay extends BasicDisplay {
         super(inputs, outputs, location);
     }
 
-
-    @Override
-    public CategoryIdentifier<?> getCategoryIdentifier() {
-        return COOKING_POT_DISPLAY;
-    }
-
     public static ItemStack getContainer(Recipe<Container> recipe) {
         if (recipe instanceof CookingPotRecipe c) {
             return c.getContainer();
         } else return ItemStack.EMPTY;
+    }
+
+    @Override
+    public CategoryIdentifier<?> getCategoryIdentifier() {
+        return COOKING_POT_DISPLAY;
     }
 
 }

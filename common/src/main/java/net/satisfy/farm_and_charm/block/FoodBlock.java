@@ -36,8 +36,8 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 public class FoodBlock extends FacingBlock {
 
-    private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 8, 15);
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, 3);
+    private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 8, 15);
     private final MobEffectInstance effect;
     private final int nutrition;
     private final float saturationMod;

@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/cross",
-	"textures": {
-		"cross": "farm_and_charm:block/wild_strawberries3"
-	}
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "farm_and_charm:block/wild_strawberries3"
+  }
 }

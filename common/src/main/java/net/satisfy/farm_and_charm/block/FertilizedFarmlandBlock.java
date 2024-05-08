@@ -18,6 +18,12 @@ public class FertilizedFarmlandBlock extends FarmBlock {
         super(properties);
     }
 
+    public static void turnToSoil(@Nullable Entity entity, BlockState blockState, Level level, BlockPos blockPos) {
+        BlockState blockState2 = pushEntitiesUp(blockState, ObjectRegistry.FERTILIZED_SOIL_BLOCK.get().defaultBlockState(), level, blockPos);
+        level.setBlockAndUpdate(blockPos, blockState2);
+        level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(entity, blockState2));
+    }
+
     @Override
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
         super.randomTick(blockState, serverLevel, blockPos, randomSource);
@@ -45,12 +51,6 @@ public class FertilizedFarmlandBlock extends FarmBlock {
         if (currentBlockState.is(ObjectRegistry.FERTILIZED_SOIL_BLOCK.get())) {
             turnToSoil(null, currentBlockState, serverLevel, blockPos);
         }
-    }
-
-    public static void turnToSoil(@Nullable Entity entity, BlockState blockState, Level level, BlockPos blockPos) {
-        BlockState blockState2 = pushEntitiesUp(blockState, ObjectRegistry.FERTILIZED_SOIL_BLOCK.get().defaultBlockState(), level, blockPos);
-        level.setBlockAndUpdate(blockPos, blockState2);
-        level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(entity, blockState2));
     }
 
     @Override

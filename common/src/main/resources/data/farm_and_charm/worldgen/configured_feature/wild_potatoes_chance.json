@@ -40,6 +40,8 @@
     "tries": 25,
     "xz_spread": 3,
     "y_spread": 1,
-    "whitelist": ["minecraft:grass_block"]
+    "whitelist": [
+      "minecraft:grass_block"
+    ]
   }
 }

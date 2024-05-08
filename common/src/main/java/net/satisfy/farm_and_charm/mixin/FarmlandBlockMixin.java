@@ -23,7 +23,7 @@ public class FarmlandBlockMixin {
                 return;
             }
             blockPos2 = var2.next();
-        } while(!levelReader.getBlockState(blockPos2).is(ObjectRegistry.WATER_SPRINKLER.get()));
+        } while (!levelReader.getBlockState(blockPos2).is(ObjectRegistry.WATER_SPRINKLER.get()));
         cir.setReturnValue(true);
     }
 }

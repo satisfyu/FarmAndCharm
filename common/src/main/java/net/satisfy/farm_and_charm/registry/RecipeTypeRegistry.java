@@ -16,19 +16,18 @@ import java.util.function.Supplier;
 public class RecipeTypeRegistry {
 
     private static final Registrar<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.RECIPE_TYPE).getRegistrar();
-    private static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.RECIPE_SERIALIZER).getRegistrar();
-
     public static final RegistrySupplier<RecipeType<CookingPotRecipe>> COOKING_POT_RECIPE_TYPE = create("pot_cooking");
-    public static final RegistrySupplier<RecipeSerializer<CookingPotRecipe>> COOKING_POT_RECIPE_SERIALIZER = create("pot_cooking", CookingPotRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<CraftingBowlRecipe>> CRAFTING_BOWL_RECIPE_TYPE = create("crafting_bowl");
-    public static final RegistrySupplier<RecipeSerializer<CraftingBowlRecipe>> CRAFTING_BOWL_RECIPE_SERIALIZER = create("crafting_bowl", CraftingBowlRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<StoveRecipe>> STOVE_RECIPE_TYPE = create("stove");
-    public static final RegistrySupplier<RecipeSerializer<StoveRecipe>> STOVE_RECIPE_SERIALIZER = create("stove", StoveRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<MincerRecipe>> MINCER_RECIPE_TYPE = create("mincer");
-    public static final RegistrySupplier<RecipeSerializer<MincerRecipe>> MINCER_RECIPE_SERIALIZER = create("mincer", MincerRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<RoasterRecipe>> ROASTER_RECIPE_TYPE = create("roaster");
-    public static final RegistrySupplier<RecipeSerializer<RoasterRecipe>> ROASTER_RECIPE_SERIALIZER = create("roaster", RoasterRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeType<SiloRecipe>> SILO_RECIPE_TYPE = create("drying");
+    private static final Registrar<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.RECIPE_SERIALIZER).getRegistrar();
+    public static final RegistrySupplier<RecipeSerializer<CookingPotRecipe>> COOKING_POT_RECIPE_SERIALIZER = create("pot_cooking", CookingPotRecipe.Serializer::new);
+    public static final RegistrySupplier<RecipeSerializer<CraftingBowlRecipe>> CRAFTING_BOWL_RECIPE_SERIALIZER = create("crafting_bowl", CraftingBowlRecipe.Serializer::new);
+    public static final RegistrySupplier<RecipeSerializer<StoveRecipe>> STOVE_RECIPE_SERIALIZER = create("stove", StoveRecipe.Serializer::new);
+    public static final RegistrySupplier<RecipeSerializer<MincerRecipe>> MINCER_RECIPE_SERIALIZER = create("mincer", MincerRecipe.Serializer::new);
+    public static final RegistrySupplier<RecipeSerializer<RoasterRecipe>> ROASTER_RECIPE_SERIALIZER = create("roaster", RoasterRecipe.Serializer::new);
     public static final RegistrySupplier<RecipeSerializer<SiloRecipe>> SILO_RECIPE_SERIALIZER = create("drying", SiloRecipe.Serializer::new);
 
 

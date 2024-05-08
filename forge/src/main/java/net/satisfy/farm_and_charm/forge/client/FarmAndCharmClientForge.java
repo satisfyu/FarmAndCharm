@@ -20,7 +20,7 @@ public class FarmAndCharmClientForge {
 
     @SubscribeEvent
     public static void preClientSetup(FMLClientSetupEvent event) {
-        if(!initialized){
+        if (!initialized) {
             FarmAndCharmClient.preInitClient();
             initialized = true;
         }

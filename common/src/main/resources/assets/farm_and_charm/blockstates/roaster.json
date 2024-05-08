@@ -60,7 +60,6 @@
       "model": "farm_and_charm:block/roaster",
       "y": 270
     },
-
     "facing=east,lit=false,roasting=false,hanging=true": {
       "model": "farm_and_charm:block/roaster_hanging",
       "y": 90

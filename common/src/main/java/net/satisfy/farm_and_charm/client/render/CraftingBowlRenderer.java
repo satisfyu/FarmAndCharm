@@ -58,7 +58,8 @@ public class CraftingBowlRenderer implements BlockEntityRenderer<CraftingBowlBlo
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityTranslucent(location));
 
         bowl.render(poseStack, vertexConsumer, i, j);
-        if (level.getBlockState(blockEntity.getBlockPos()).getValue(CraftingBowlBlock.STIRRING) > 0) poseStack.mulPose (Axis.YP.rotation(((float) (System.currentTimeMillis() % 100000) / 100f)% 360));
+        if (level.getBlockState(blockEntity.getBlockPos()).getValue(CraftingBowlBlock.STIRRING) > 0)
+            poseStack.mulPose(Axis.YP.rotation(((float) (System.currentTimeMillis() % 100000) / 100f) % 360));
         swing.render(poseStack, vertexConsumer, i, j);
 
         this.renderItems(poseStack, multiBufferSource, blockEntity.getItems(), i, j);
@@ -83,17 +84,17 @@ public class CraftingBowlRenderer implements BlockEntityRenderer<CraftingBowlBlo
         itemRenderer.renderStatic(player, items.get(0), ItemDisplayContext.FIXED, false, poseStack, multiBufferSource, Minecraft.getInstance().level, i, j, 0);
         poseStack.mulPose(Axis.XP.rotationDegrees(-90));
 
-        poseStack.translate(2*offset, 0.1f, 0f);
+        poseStack.translate(2 * offset, 0.1f, 0f);
         poseStack.mulPose(Axis.XP.rotationDegrees(90));
         itemRenderer.renderStatic(player, items.get(1), ItemDisplayContext.FIXED, false, poseStack, multiBufferSource, Minecraft.getInstance().level, i, j, 0);
         poseStack.mulPose(Axis.XP.rotationDegrees(-90));
 
-        poseStack.translate(0f, 0.1f, 2*offset);
+        poseStack.translate(0f, 0.1f, 2 * offset);
         poseStack.mulPose(Axis.XP.rotationDegrees(90));
         itemRenderer.renderStatic(player, items.get(2), ItemDisplayContext.FIXED, false, poseStack, multiBufferSource, Minecraft.getInstance().level, i, j, 0);
         poseStack.mulPose(Axis.XP.rotationDegrees(-90));
 
-        poseStack.translate(-2*offset, 0.1f, 0f);
+        poseStack.translate(-2 * offset, 0.1f, 0f);
         poseStack.mulPose(Axis.XP.rotationDegrees(90));
         itemRenderer.renderStatic(player, items.get(3), ItemDisplayContext.FIXED, false, poseStack, multiBufferSource, Minecraft.getInstance().level, i, j, 0);
         poseStack.mulPose(Axis.XP.rotationDegrees(-90));

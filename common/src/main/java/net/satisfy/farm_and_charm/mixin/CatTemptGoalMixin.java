@@ -12,10 +12,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Cat.CatTemptGoal.class)
 public class CatTemptGoalMixin {
-    @Shadow @Nullable private Player selectedPlayer;
+    @Shadow
+    @Nullable
+    private Player selectedPlayer;
 
     @Inject(method = "canScare", at = @At("HEAD"), cancellable = true)
     private void modifyCanScare(CallbackInfoReturnable<Boolean> cir) {
-        if(selectedPlayer != null && selectedPlayer.isHolding(ObjectRegistry.CAT_FOOD.get().asItem())) cir.setReturnValue(false);
+        if (selectedPlayer != null && selectedPlayer.isHolding(ObjectRegistry.CAT_FOOD.get().asItem()))
+            cir.setReturnValue(false);
     }
 }

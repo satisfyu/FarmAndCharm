@@ -1,8 +1,8 @@
 {
-	"credit": "Made by Satisfy",
-	"textures": {
-		"particle": "farm_and_charm:block/oat_ball_side"
-	},
-	"render_type": "translucent"
+  "credit": "Made by Satisfy",
+  "textures": {
+    "particle": "farm_and_charm:block/oat_ball_side"
+  },
+  "render_type": "translucent"
 }
 

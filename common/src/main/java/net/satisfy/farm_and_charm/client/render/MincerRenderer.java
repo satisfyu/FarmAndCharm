@@ -20,10 +20,9 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
+    private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/mincer.png");
     private final ModelPart mincer;
     private final ModelPart crank;
-
-    private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/mincer.png");
 
     public MincerRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart root = context.bakeLayer(MincerModel.LAYER_LOCATION);
@@ -39,7 +38,7 @@ public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
         assert level != null;
         BlockState blockState = level.getBlockState(blockEntity.getBlockPos());
         if (!(blockState.getBlock() instanceof MincerBlock)) return;
-        
+
         poseStack.pushPose();
 
         Direction facing = blockState.getValue(MincerBlock.FACING);
@@ -68,9 +67,9 @@ public class MincerRenderer implements BlockEntityRenderer<MincerBlockEntity> {
         poseStack.mulPose(com.mojang.math.Axis.YP.rotationDegrees(rotationDegrees));
 
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
-        
+
         mincer.render(poseStack, vertexConsumer, light, overlay);
-        
+
         if (blockState.getValue(MincerBlock.CRANK) > 0) {
             long time = System.currentTimeMillis();
             float angle = (time % 3600) / 5f;

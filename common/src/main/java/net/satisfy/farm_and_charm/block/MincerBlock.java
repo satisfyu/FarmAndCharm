@@ -60,6 +60,20 @@ public class MincerBlock extends BaseEntityBlock {
     public static final IntegerProperty CRANKED = IntegerProperty.create("cranked", 0, 100);
     public static final IntegerProperty FULL_ROTATIONS = IntegerProperty.create("full_rotations", 0, 5);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0, 0.1875, 0.9375, 0.0625, 0.8125), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.25, 0.0625, 0.3125, 0.5625, 0.375, 0.6875), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0.375, 0.25, 0.625, 0.8125, 0.75), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.625, 0.4375, 0.3125, 0.9375, 0.75, 0.6875), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.25, 0.8125, 0.3125, 0.5625, 1, 0.6875), BooleanOp.OR);
+        return shape;
+    };
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
 
     public MincerBlock(Properties settings) {
         super(settings);
@@ -129,11 +143,10 @@ public class MincerBlock extends BaseEntityBlock {
                             countToTakeFromPlayer += 1;
                         }
 
-                        inputStack.setCount(inputStack.getCount()+countToTakeFromPlayer);
+                        inputStack.setCount(inputStack.getCount() + countToTakeFromPlayer);
                         mincer.setItem(mincer.INPUT_SLOT, inputStack);
                         playerStack.shrink(countToTakeFromPlayer);
-                    }
-                    else if (inputStack.isEmpty()) {
+                    } else if (inputStack.isEmpty()) {
                         inputStack = playerStack.copy();
                         mincer.setItem(mincer.INPUT_SLOT, inputStack);
                         playerStack.shrink(playerStack.getCount());
@@ -145,8 +158,7 @@ public class MincerBlock extends BaseEntityBlock {
                 if (level.isClientSide() && playerStack.getItem() instanceof BlockItem) {
                     return InteractionResult.sidedSuccess(level.isClientSide());
                 }
-            }
-            else if (playerStack.isEmpty()) {
+            } else if (playerStack.isEmpty()) {
 
                 if (cranked >= CRANKS_NEEDED && crank == 0) {
                     level.setBlock(pos, state.setValue(CRANKED, 0), Block.UPDATE_ALL);
@@ -259,22 +271,6 @@ public class MincerBlock extends BaseEntityBlock {
             super.onRemove(state, world, pos, newState, isMoving);
         }
     }
-
-    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0, 0.1875, 0.9375, 0.0625, 0.8125), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.25, 0.0625, 0.3125, 0.5625, 0.375, 0.6875), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.1875, 0.375, 0.25, 0.625, 0.8125, 0.75), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.625, 0.4375, 0.3125, 0.9375, 0.75, 0.6875), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.25, 0.8125, 0.3125, 0.5625, 1, 0.6875), BooleanOp.OR);
-        return shape;
-    };
-
-    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
-        for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
-        }
-    });
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {

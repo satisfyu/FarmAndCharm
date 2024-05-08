@@ -1,21 +1,77 @@
 {
-	"credit": "Made by Satisfy",
-	"textures": {
-		"0": "farm_and_charm:block/fertilized_soil",
-		"particle": "farm_and_charm:block/fertilized_soil"
-	},
-	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [16, 12, 16],
-			"faces": {
-				"north": {"uv": [0, 0, 16, 12], "texture": "#0"},
-				"east": {"uv": [0, 0, 16, 12], "texture": "#0"},
-				"south": {"uv": [0, 0, 16, 12], "texture": "#0"},
-				"west": {"uv": [0, 0, 16, 12], "texture": "#0"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
-			}
-		}
-	]
+  "credit": "Made by Satisfy",
+  "textures": {
+    "0": "farm_and_charm:block/fertilized_soil",
+    "particle": "farm_and_charm:block/fertilized_soil"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        12,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            12
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            12
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            12
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            12
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ]
 }

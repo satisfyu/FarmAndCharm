@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 public class FarmAndCharm {
     public static final String MOD_ID = "farm_and_charm";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-    
+
     public static void init() {
         DataFixerRegistry.init();
         MobEffectRegistry.init();
@@ -19,7 +19,7 @@ public class FarmAndCharm {
         KeybindRegistry.init();
     }
 
-    public static void commonSetup(){
+    public static void commonSetup() {
         FlammableBlockRegistry.init();
     }
 }

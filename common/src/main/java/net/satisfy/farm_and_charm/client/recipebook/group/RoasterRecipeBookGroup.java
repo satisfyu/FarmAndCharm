@@ -18,6 +18,7 @@ public enum RoasterRecipeBookGroup implements IRecipeBookGroup {
     SEARCH(new ItemStack(Items.COMPASS)),
     MISC(new ItemStack(ObjectRegistry.DOUGH.get()));
 
+    public static final List<IRecipeBookGroup> ROASTER_GROUPS = ImmutableList.of(SEARCH, MISC);
     private final List<ItemStack> icons;
 
     RoasterRecipeBookGroup(ItemStack... entries) {
@@ -33,6 +34,4 @@ public enum RoasterRecipeBookGroup implements IRecipeBookGroup {
     public boolean fitRecipe(Recipe<? extends Container> recipe, RegistryAccess registryAccess) {
         return true;
     }
-
-    public static final List<IRecipeBookGroup> ROASTER_GROUPS = ImmutableList.of(SEARCH, MISC);
 }

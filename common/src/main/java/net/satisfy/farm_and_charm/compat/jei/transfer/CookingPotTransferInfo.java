@@ -39,7 +39,7 @@ public class CookingPotTransferInfo implements IRecipeTransferInfo<CookingPotGui
     public @NotNull List<Slot> getRecipeSlots(CookingPotGuiHandler container, CookingPotRecipe recipe) {
         List<Slot> slots = new ArrayList<>();
         slots.add(container.getSlot(7));
-        for(int i = 1; i <= recipe.getIngredients().size() && i < 7; i++){
+        for (int i = 1; i <= recipe.getIngredients().size() && i < 7; i++) {
             slots.add(container.getSlot(i));
         }
         return slots;

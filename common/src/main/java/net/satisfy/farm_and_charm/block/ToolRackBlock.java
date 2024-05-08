@@ -34,21 +34,20 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class ToolRackBlock extends StorageBlock {
-    public ToolRackBlock(BlockBehaviour.Properties settings) {
-        super(settings);
-    }
-
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = Shapes.empty();
         shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0.8125, 0.875, 1, 0.9375, 1), BooleanOp.OR);
         return shape;
     };
-
     public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
         }
     });
+
+    public ToolRackBlock(BlockBehaviour.Properties settings) {
+        super(settings);
+    }
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {

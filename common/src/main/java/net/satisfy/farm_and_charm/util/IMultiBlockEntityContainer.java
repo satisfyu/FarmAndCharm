@@ -21,12 +21,12 @@ public interface IMultiBlockEntityContainer {
 
     void notifyMultiUpdated();
 
-    default void setExtraData(@Nullable Object data) {
-    }
-
     @Nullable
     default Object getExtraData() {
         return null;
+    }
+
+    default void setExtraData(@Nullable Object data) {
     }
 
     default Object modifyExtraData(Object data) {

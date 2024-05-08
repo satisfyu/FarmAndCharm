@@ -18,16 +18,30 @@ import org.joml.Quaternionf;
 import java.util.Objects;
 
 public class WaterSprinklerRenderer implements BlockEntityRenderer<WaterSprinklerBlockEntity> {
+    private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/water_sprinkler.png");
     private final ModelPart rotating;
     private final ModelPart basin;
-
-    private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/water_sprinkler.png");
 
     public WaterSprinklerRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart root = context.bakeLayer(WaterSprinklerModel.LAYER_LOCATION);
 
         this.rotating = root.getChild("rotating");
         this.basin = root.getChild("basin");
+    }
+
+    private static float getAngle(WaterSprinklerBlockEntity blockEntity, float partialTicks) {
+        Level level = Objects.requireNonNull(blockEntity.getLevel());
+        long gameTime = level.getGameTime();
+        boolean isRaining = level.isRaining();
+        boolean isThundering = level.isThundering();
+        float angle;
+        if (isRaining || isThundering) {
+            angle = (float) Math.sin(gameTime * 0.03) * 7.0F;
+        } else {
+            float speedMultiplier = 5.0F;
+            angle = (gameTime + partialTicks) * speedMultiplier % 360;
+        }
+        return angle;
     }
 
     @Override
@@ -47,20 +61,5 @@ public class WaterSprinklerRenderer implements BlockEntityRenderer<WaterSprinkle
         matrixStack.popPose();
 
         basin.render(matrixStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY);
-    }
-
-    private static float getAngle(WaterSprinklerBlockEntity blockEntity, float partialTicks) {
-        Level level = Objects.requireNonNull(blockEntity.getLevel());
-        long gameTime = level.getGameTime();
-        boolean isRaining = level.isRaining();
-        boolean isThundering = level.isThundering();
-        float angle;
-        if (isRaining || isThundering) {
-            angle = (float) Math.sin(gameTime * 0.03) * 7.0F;
-        } else {
-            float speedMultiplier = 5.0F;
-            angle = (gameTime + partialTicks) * speedMultiplier % 360;
-        }
-        return angle;
     }
 }

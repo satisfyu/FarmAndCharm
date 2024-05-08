@@ -46,6 +46,21 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
         width = 1;
     }
 
+    public static void dropStack(Level level, double x, double y, double z, ItemStack itemStack, Direction direction) {
+        double g = EntityType.ITEM.getWidth();
+        double h = 1.0 - g;
+        double i = g / 2.0;
+        double j = Math.floor(x) + level.random.nextDouble() * h + i;
+        double k = Math.floor(y) + level.random.nextDouble() * h;
+        double l = Math.floor(z) + level.random.nextDouble() * h + i;
+
+        while (!itemStack.isEmpty()) {
+            ItemEntity itemEntity = new ItemEntity(level, j, k, l, itemStack.split(level.random.nextInt(21) + 10));
+            itemEntity.setDeltaMovement(level.random.triangle(direction.getStepX() * 0.4, 0.11485000171139836), level.random.triangle(-0.2, 0.11485000171139836), level.random.triangle(direction.getStepZ() * 0.4, 0.11485000171139836));
+            level.addFreshEntity(itemEntity);
+        }
+    }
+
     @Override
     public void preventConnectivityUpdate() {
         updateConnectivity = false;
@@ -225,21 +240,6 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
                 dropStack(this.level, this.worldPosition.getX() + x, this.worldPosition.getY() + 0.5, this.worldPosition.getZ() + z, finishStack, direction);
                 return;
             }
-        }
-    }
-
-    public static void dropStack(Level level, double x, double y, double z, ItemStack itemStack, Direction direction) {
-        double g = EntityType.ITEM.getWidth();
-        double h = 1.0 - g;
-        double i = g / 2.0;
-        double j = Math.floor(x) + level.random.nextDouble() * h + i;
-        double k = Math.floor(y) + level.random.nextDouble() * h;
-        double l = Math.floor(z) + level.random.nextDouble() * h + i;
-
-        while (!itemStack.isEmpty()) {
-            ItemEntity itemEntity = new ItemEntity(level, j, k, l, itemStack.split(level.random.nextInt(21) + 10));
-            itemEntity.setDeltaMovement(level.random.triangle(direction.getStepX() * 0.4, 0.11485000171139836), level.random.triangle(-0.2, 0.11485000171139836), level.random.triangle(direction.getStepZ() * 0.4, 0.11485000171139836));
-            level.addFreshEntity(itemEntity);
         }
     }
 

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class HorseMixin {
     @Inject(method = "mobInteract", at = @At("HEAD"), cancellable = true)
     private void injectCustomItemInteraction(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
-        Horse self = (Horse)(Object)this;
+        Horse self = (Horse) (Object) this;
         ItemStack itemStack = player.getItemInHand(hand);
         if (!self.isTamed() && itemStack.getItem() instanceof HorseFodderItem) {
             if (!self.level().isClientSide) {

@@ -41,11 +41,27 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     public final int OUTPUT_SLOT = 1;
 
     private NonNullList<ItemStack> stacks = NonNullList.withSize(SLOT_COUNT, ItemStack.EMPTY);
-    
+
     public MincerBlockEntity(BlockPos position, BlockState state) {
         super(EntityTypeRegistry.MINCER_BLOCK_ENTITY.get(), position, state);
     }
-    
+
+    public static void spawnItem(Level world, ItemStack stack, int speed, Direction side, Position pos) {
+        double d = pos.x();
+        double e = pos.y();
+        double f = pos.z();
+        if (side.getAxis() == Direction.Axis.Y) {
+            e -= 0.125;
+        } else {
+            e -= 0.15625;
+        }
+
+        ItemEntity itemEntity = new ItemEntity(world, d, e, f, stack);
+        double g = world.random.nextDouble() * 0.1 + 0.2;
+        itemEntity.setDeltaMovement(world.random.triangle((double) side.getStepX() * g, 0.0172275 * (double) speed), world.random.triangle(0.2, 0.0172275 * (double) speed), world.random.triangle((double) side.getStepZ() * g, 0.0172275 * (double) speed));
+        world.addFreshEntity(itemEntity);
+    }
+
     @Override
     public void load(CompoundTag compound) {
         super.load(compound);
@@ -89,79 +105,63 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
         return ChestMenu.threeRows(id, inventory);
     }
 
-    public static void spawnItem(Level world, ItemStack stack, int speed, Direction side, Position pos) {
-        double d = pos.x();
-        double e = pos.y();
-        double f = pos.z();
-        if (side.getAxis() == Direction.Axis.Y) {
-            e -= 0.125;
-        } else {
-            e -= 0.15625;
-        }
-        
-        ItemEntity itemEntity = new ItemEntity(world, d, e, f, stack);
-        double g = world.random.nextDouble() * 0.1 + 0.2;
-        itemEntity.setDeltaMovement(world.random.triangle((double)side.getStepX() * g, 0.0172275 * (double)speed), world.random.triangle(0.2, 0.0172275 * (double)speed), world.random.triangle((double)side.getStepZ() * g, 0.0172275 * (double)speed));
-        world.addFreshEntity(itemEntity);
-    }
-    
     private void dropItemsInOutputSlot(Level level, BlockPos pos, BlockState state, MincerBlockEntity mincer) {
-        
+
         Direction direction = state.getValue(MincerBlock.FACING).getClockWise();
-        
+
         if (!level.isClientSide() && !this.stacks.get(OUTPUT_SLOT).isEmpty()) {
             ItemStack droppedStack = new ItemStack(mincer.stacks.get(OUTPUT_SLOT).getItem());
             droppedStack.setCount(mincer.stacks.get(OUTPUT_SLOT).getCount());
             this.stacks.set(OUTPUT_SLOT, ItemStack.EMPTY);
-            
+
             Vec3 vec3d = Vec3.atCenterOf(pos);
             Vec3 vec3d2 = vec3d.relative(direction, 0.7);
             ((ServerLevel) level).sendParticles(ParticleTypes.SPIT, vec3d2.x(), vec3d2.y(), vec3d2.z(), 3, 0.2, 0.1, 0, 0.1);
             spawnItem(level, droppedStack, 6, direction, vec3d2);
-          }
+        }
     }
-    
+
     @Override
     public int getMaxStackSize() {
         return 64;
     }
-    
+
     @Override
     public int getContainerSize() {
         return stacks.size();
     }
-    
+
     @Override
     public boolean canPlaceItem(int index, ItemStack stack) {
         ItemStack inputSlotItemStack = this.stacks.get(INPUT_SLOT);
         return (index == INPUT_SLOT) && inputSlotItemStack.isEmpty() || (stack.is(inputSlotItemStack.getItem()) && (inputSlotItemStack.getCount() < inputSlotItemStack.getMaxStackSize()));
     }
-    
+
     @Override
     public @NotNull ItemStack getItem(int index) {
         return this.getItems().get(index);
     }
-    
+
     @Override
     public @NotNull NonNullList<ItemStack> getItems() {
         return this.stacks;
     }
-    
+
     @Override
     protected void setItems(NonNullList<ItemStack> stacks) {
         this.stacks = stacks;
     }
-    
+
     @Override
     public int @NotNull [] getSlotsForFace(Direction side) {
         return IntStream.range(0, this.getContainerSize()).toArray();
     }
-    
+
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
         return this.canPlaceItem(index, stack);
     }
-    
+
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return (direction == Direction.UP) && canPlaceItem(index, stack);
@@ -169,11 +169,11 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
 
     @Override
     public void tick(Level level, BlockPos pos, BlockState state, MincerBlockEntity mincer) {
-        
+
         dropItemsInOutputSlot(level, pos, state, mincer);
-        
+
         if (!level.isClientSide() && level.getBlockState(pos).getBlock() instanceof MincerBlock) {
-            
+
             int crank = state.getValue(MincerBlock.CRANK);
             int cranked = state.getValue(MincerBlock.CRANKED);
             int full_rotations = state.getValue(MincerBlock.FULL_ROTATIONS);
@@ -186,27 +186,27 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                 if (cranked >= MincerBlock.CRANKS_NEEDED) {
                     cranked = 0;
                     full_rotations += 1;
-                    
+
                     MincerRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.MINCER_RECIPE_TYPE.get(), mincer, level).orElse(null);
-                    
+
                     if (recipe != null) {
-                        
+
                         ItemStack inputStack = this.stacks.get(INPUT_SLOT);
-                        
+
                         String recipe_type = recipe.getRecipeType();
                         int recipe_difficulty = 5;
-                        
+
                         switch (recipe_type) {
                             case "MEAT" -> recipe_difficulty = 1;
                             case "WOOD" -> recipe_difficulty = 2;
                             case "STONE" -> recipe_difficulty = 3;
                             case "METAL" -> recipe_difficulty = 4;
                         }
-                        
+
                         AABB searched_area = new AABB(pos);
                         searched_area.inflate(4.0D);
                         List<ServerPlayer> playersNearby = level.getEntitiesOfClass(ServerPlayer.class, searched_area, Player::isAlive); // checking for nearby living player around the block
-                        
+
                         if (!playersNearby.isEmpty()) {
                             for (Player player : playersNearby) {
                                 if (player != null && player.getOffhandItem().is(inputStack.getItem())) {
@@ -214,28 +214,27 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                                 }
                             }
                         }
-                        
+
                         if (full_rotations >= recipe_difficulty) {
-                            
+
                             inputStack.shrink(1);
                             inputStack = inputStack.isEmpty() ? ItemStack.EMPTY : inputStack;
                             mincer.setItem(INPUT_SLOT, inputStack);
                             mincer.setItem(OUTPUT_SLOT, recipe.getResultItem(level.registryAccess()));
-                            
+
                             level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, 0), Block.UPDATE_ALL);
                             return;
                         }
-                        
+
                     }
-                    
+
                     if (full_rotations >= 4) {
                         level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, 0), Block.UPDATE_ALL);
                         return;
                     }
                 }
                 level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, full_rotations), Block.UPDATE_ALL);
-            }
-            else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
+            } else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
                 level.setBlock(pos, state.setValue(MincerBlock.CRANKED, 0), Block.UPDATE_ALL);
             }
         }

@@ -1,48 +1,149 @@
 {
-	"credit": "Made by Satisfy",
-	"texture_size": [32, 32],
-	"textures": {
-		"1": "farm_and_charm:block/silo/silo_wood",
-		"5": "farm_and_charm:block/silo/silo_connected_wood",
-		"particle": "farm_and_charm:block/silo/silo_connected_wood"
-	},
-	"elements": [
-		{
-			"from": [0, 0, 1],
-			"to": [16, 16, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
-			"faces": {
-				"north": {"uv": [8, 4, 12, 0], "rotation": 180, "texture": "#5"},
-				"up": {"uv": [16, 8, 8.5, 16], "rotation": 90, "texture": "#1"}
-			}
-		},
-		{
-			"from": [0, 16, 16],
-			"to": [1, 16, 32],
-			"faces": {
-				"up": {"uv": [1.75, 1.5, 2, 5.5], "texture": "#5"}
-			}
-		},
-		{
-			"from": [15, 16, 16],
-			"to": [16, 16, 32],
-			"faces": {
-				"up": {"uv": [0.75, 3.75, 1, 7.75], "texture": "#5"}
-			}
-		},
-		{
-			"from": [1, 16, 16],
-			"to": [15, 16, 17],
-			"faces": {
-				"up": {"uv": [4, 2.75, 7.5, 3], "texture": "#5"}
-			}
-		},
-		{
-			"from": [1, 16, 31],
-			"to": [15, 16, 32],
-			"faces": {
-				"up": {"uv": [4.5, 3, 8, 2.75], "texture": "#5"}
-			}
-		}
-	]
+  "credit": "Made by Satisfy",
+  "texture_size": [
+    32,
+    32
+  ],
+  "textures": {
+    "1": "farm_and_charm:block/silo/silo_wood",
+    "5": "farm_and_charm:block/silo/silo_connected_wood",
+    "particle": "farm_and_charm:block/silo/silo_connected_wood"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        1
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          16,
+          0,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            8,
+            4,
+            12,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#5"
+        },
+        "up": {
+          "uv": [
+            16,
+            8,
+            8.5,
+            16
+          ],
+          "rotation": 90,
+          "texture": "#1"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        16,
+        16
+      ],
+      "to": [
+        1,
+        16,
+        32
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            1.75,
+            1.5,
+            2,
+            5.5
+          ],
+          "texture": "#5"
+        }
+      }
+    },
+    {
+      "from": [
+        15,
+        16,
+        16
+      ],
+      "to": [
+        16,
+        16,
+        32
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            0.75,
+            3.75,
+            1,
+            7.75
+          ],
+          "texture": "#5"
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        16,
+        16
+      ],
+      "to": [
+        15,
+        16,
+        17
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            4,
+            2.75,
+            7.5,
+            3
+          ],
+          "texture": "#5"
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        16,
+        31
+      ],
+      "to": [
+        15,
+        16,
+        32
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            4.5,
+            3,
+            8,
+            2.75
+          ],
+          "texture": "#5"
+        }
+      }
+    }
+  ]
 }

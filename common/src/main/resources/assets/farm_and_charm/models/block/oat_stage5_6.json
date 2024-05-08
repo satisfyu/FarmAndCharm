@@ -1,6 +1,6 @@
 {
-	"parent": "farm_and_charm:block/oat_template",
-	"textures": {
-		"crop": "farm_and_charm:block/oat_stage5_6"
-	}
+  "parent": "farm_and_charm:block/oat_template",
+  "textures": {
+    "crop": "farm_and_charm:block/oat_stage5_6"
+  }
 }

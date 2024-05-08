@@ -39,12 +39,12 @@ public class TeaJugItem extends BlockItem {
         if (list2.isEmpty()) {
             tooltip.add(Component.translatable("effect.none").withStyle(ChatFormatting.GRAY));
         } else {
-            for(Pair<MobEffectInstance, Float> statusEffectInstance : list2) {
+            for (Pair<MobEffectInstance, Float> statusEffectInstance : list2) {
                 MutableComponent mutableText = Component.translatable(statusEffectInstance.getFirst().getDescriptionId());
                 MobEffect statusEffect = statusEffectInstance.getFirst().getEffect();
                 Map<Attribute, AttributeModifier> map = statusEffect.getAttributeModifiers();
                 if (!map.isEmpty()) {
-                    for(Map.Entry<Attribute, AttributeModifier> entry : map.entrySet()) {
+                    for (Map.Entry<Attribute, AttributeModifier> entry : map.entrySet()) {
                         AttributeModifier entityAttributeModifier = entry.getValue();
                         AttributeModifier entityAttributeModifier2 = new AttributeModifier(
                                 entityAttributeModifier.getName(),
@@ -69,7 +69,7 @@ public class TeaJugItem extends BlockItem {
             tooltip.add(Component.empty());
             tooltip.add(Component.translatable("potion.whenDrank").withStyle(ChatFormatting.DARK_PURPLE));
 
-            for(Pair<Attribute, AttributeModifier> pair : list3) {
+            for (Pair<Attribute, AttributeModifier> pair : list3) {
                 AttributeModifier entityAttributeModifier3 = pair.getSecond();
                 double d = entityAttributeModifier3.getAmount();
                 double e;
@@ -82,16 +82,16 @@ public class TeaJugItem extends BlockItem {
                 if (d > 0.0) {
                     tooltip.add(
                             Component.translatable(
-                                    "attribute.modifier.plus." + entityAttributeModifier3.getOperation().toValue(),
-                                    ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
+                                            "attribute.modifier.plus." + entityAttributeModifier3.getOperation().toValue(),
+                                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
                                     .withStyle(ChatFormatting.BLUE)
                     );
                 } else if (d < 0.0) {
                     e *= -1.0;
                     tooltip.add(
                             Component.translatable(
-                                    "attribute.modifier.take." + entityAttributeModifier3.getOperation().toValue(),
-                                    ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
+                                            "attribute.modifier.take." + entityAttributeModifier3.getOperation().toValue(),
+                                            ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(e), Component.translatable(pair.getFirst().getDescriptionId()))
                                     .withStyle(ChatFormatting.RED)
                     );
                 }

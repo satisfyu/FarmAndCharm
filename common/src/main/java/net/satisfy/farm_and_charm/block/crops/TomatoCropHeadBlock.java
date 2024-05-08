@@ -21,6 +21,10 @@ public class TomatoCropHeadBlock extends TomatoCropBlock implements Bonemealable
         this.registerDefaultState(defaultBlockState().setValue(AGE, 0));
     }
 
+    public static boolean canGrowInto(ServerLevel serverLevel, BlockPos blockPos) {
+        return serverLevel.getBlockState(blockPos).isAir() && (isRopeAbove(serverLevel, blockPos) || getHeight(blockPos.below(), serverLevel) < 2);
+    }
+
     @Override
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
         super.tick(blockState, serverLevel, blockPos, randomSource);
@@ -28,8 +32,6 @@ public class TomatoCropHeadBlock extends TomatoCropBlock implements Bonemealable
             serverLevel.destroyBlock(blockPos, true);
         }
     }
-
-
 
     @Override
     public boolean isRandomlyTicking(BlockState blockState) {
@@ -81,9 +83,5 @@ public class TomatoCropHeadBlock extends TomatoCropBlock implements Bonemealable
             dropHops(serverLevel, blockPos, blockState);
         }
 
-    }
-
-    public static boolean canGrowInto(ServerLevel serverLevel, BlockPos blockPos) {
-        return serverLevel.getBlockState(blockPos).isAir() && (isRopeAbove(serverLevel, blockPos) || getHeight(blockPos.below(), serverLevel) < 2);
     }
 }

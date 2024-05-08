@@ -25,7 +25,6 @@ public class SiloCategory implements DisplayCategory<SiloDisplay> {
     }
 
 
-
     @Override
     public Component getTitle() {
         return Component.translatable("rei.farm_and_charm.silo_category");

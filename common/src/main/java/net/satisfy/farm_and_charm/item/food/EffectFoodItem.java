@@ -41,14 +41,13 @@ public class EffectFoodItem extends Item implements EffectFood {
             playerInventory = player.getInventory();
             slot = playerInventory.findSlotMatchingUnusedItem(stack);
         }
-        ItemStack returnStack =  super.finishUsingItem(stack, world, user);
+        ItemStack returnStack = super.finishUsingItem(stack, world, user);
         int stage = EffectFoodHelper.getStage(stack);
         if (playerInventory != null && stage < this.foodStages) {
             ItemStack itemStack = EffectFoodHelper.setStage(new ItemStack(this), stage + 1);
             if (playerInventory.getItem(slot).isEmpty()) {
                 playerInventory.add(slot, itemStack);
-            }
-            else {
+            } else {
                 slot = playerInventory.getSlotWithRemainingSpace(itemStack);
                 playerInventory.add(slot, itemStack);
             }

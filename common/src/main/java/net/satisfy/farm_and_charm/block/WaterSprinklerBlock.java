@@ -52,32 +52,32 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
         if (!world.isRaining() && !world.isThundering()) {
             super.animateTick(state, world, pos, random);
             if (world.isClientSide) {
-            double x = pos.getX() + 0.5;
-            double y = pos.getY() + 1.0;
-            double z = pos.getZ() + 0.5;
-            double velocity = 0.2;
-            float speedMultiplier = 5.0F;
-            long gameTime = world.getGameTime();
-            float partialTicks = Minecraft.getInstance().getFrameTime();
-            float angle = (gameTime + partialTicks) * speedMultiplier % 360;
-            double startOffset = 0.5;
+                double x = pos.getX() + 0.5;
+                double y = pos.getY() + 1.0;
+                double z = pos.getZ() + 0.5;
+                double velocity = 0.2;
+                float speedMultiplier = 5.0F;
+                long gameTime = world.getGameTime();
+                float partialTicks = Minecraft.getInstance().getFrameTime();
+                float angle = (gameTime + partialTicks) * speedMultiplier % 360;
+                double startOffset = 0.5;
 
-            for (int i = 0; i < 4; ++i) {
-                double angleRadians = Math.toRadians(angle + 90 * i);
-                double cos = Math.cos(angleRadians);
-                double sin = Math.sin(angleRadians);
-                double dx = cos * velocity;
-                double dz = sin * velocity;
-                double startX = x + cos * startOffset;
-                double startZ = z + sin * startOffset;
+                for (int i = 0; i < 4; ++i) {
+                    double angleRadians = Math.toRadians(angle + 90 * i);
+                    double cos = Math.cos(angleRadians);
+                    double sin = Math.sin(angleRadians);
+                    double dx = cos * velocity;
+                    double dz = sin * velocity;
+                    double startX = x + cos * startOffset;
+                    double startZ = z + sin * startOffset;
 
-                for (double length = 0; length < 3; length += 0.5) {
-                    double currentX = startX + dx * length;
-                    double currentZ = startZ + dz * length;
-                    world.addParticle(ParticleTypes.SPLASH, currentX, y, currentZ, dx, 0.0D, dz);
+                    for (double length = 0; length < 3; length += 0.5) {
+                        double currentX = startX + dx * length;
+                        double currentZ = startZ + dz * length;
+                        world.addParticle(ParticleTypes.SPLASH, currentX, y, currentZ, dx, 0.0D, dz);
+                    }
                 }
             }
-        }
         }
     }
 
@@ -99,7 +99,7 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
 
     private void playContinuousSound(ServerLevel world, BlockPos pos) {
         world.playSound(null, pos, DoApiSoundEventRegistry.WATER_SPRINKLER.get(), SoundSource.BLOCKS, 0.25F, 0.75F);
-         world.scheduleTick(pos, this, 80);
+        world.scheduleTick(pos, this, 80);
     }
 
     @Override

@@ -37,10 +37,15 @@ public class StoveDisplay extends BasicDisplay implements SimpleGridMenuDisplay 
         this.xp = xp;
     }
 
+    public static <R extends StoveDisplay> BasicDisplay.Serializer<R> serializer(BasicDisplay.Serializer.RecipeLessConstructor<R> constructor) {
+        return BasicDisplay.Serializer.ofRecipeLess(constructor, (display, tag) -> {
+            tag.putFloat("experience", display.getXp());
+        });
+    }
+
     public float getXp() {
         return xp;
     }
-
 
     @Override
     public int getWidth() {
@@ -50,12 +55,6 @@ public class StoveDisplay extends BasicDisplay implements SimpleGridMenuDisplay 
     @Override
     public int getHeight() {
         return 1;
-    }
-
-    public static <R extends StoveDisplay> BasicDisplay.Serializer<R> serializer(BasicDisplay.Serializer.RecipeLessConstructor<R> constructor) {
-        return BasicDisplay.Serializer.ofRecipeLess(constructor, (display, tag) -> {
-            tag.putFloat("experience", display.getXp());
-        });
     }
 
     @Override

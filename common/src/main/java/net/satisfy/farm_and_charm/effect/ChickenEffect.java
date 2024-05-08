@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items;
 public class ChickenEffect extends MobEffect {
 
     public ChickenEffect() {
-            super(MobEffectCategory.BENEFICIAL, 0xFFFFFF);
+        super(MobEffectCategory.BENEFICIAL, 0xFFFFFF);
     }
 
     @Override

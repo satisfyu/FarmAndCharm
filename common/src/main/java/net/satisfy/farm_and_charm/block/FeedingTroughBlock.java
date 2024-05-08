@@ -34,6 +34,16 @@ import java.util.function.Supplier;
 @SuppressWarnings("deprecation")
 public class FeedingTroughBlock extends LineConnectingBlock implements EntityBlock {
     public static final IntegerProperty SIZE = IntegerProperty.create("size", 0, 4);
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0, 0.125, 1, 0.625, 0.875), BooleanOp.OR);
+        return shape;
+    };
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
 
     public FeedingTroughBlock(Properties settings) {
         super(settings);
@@ -61,23 +71,10 @@ public class FeedingTroughBlock extends LineConnectingBlock implements EntityBlo
         return InteractionResult.PASS;
     }
 
-
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new FeedingTroughBlockEntity(pos, state);
     }
-
-    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0, 0.125, 1, 0.625, 0.875), BooleanOp.OR);
-        return shape;
-    };
-
-    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
-        for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
-        }
-    });
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {

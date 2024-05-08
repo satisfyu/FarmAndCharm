@@ -1,6 +1,6 @@
 {
-	"parent": "farm_and_charm:block/tall_crop",
-	"textures": {
-		"crop": "farm_and_charm:block/corn_stage4-3"
-	}
+  "parent": "farm_and_charm:block/tall_crop",
+  "textures": {
+    "crop": "farm_and_charm:block/corn_stage4-3"
+  }
 }

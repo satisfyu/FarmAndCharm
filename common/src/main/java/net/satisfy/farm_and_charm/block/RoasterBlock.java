@@ -63,6 +63,18 @@ public class RoasterBlock extends BaseEntityBlock {
             Shapes.box(0.9375, 0.4375, 0.4375, 0.9375, 0.875, 0.5625),
             Shapes.box(0.0625, 0.875, 0.4375, 0.9375, 0.875, 0.5625)
     );
+    private static final Map<Direction, VoxelShape> SHAPES = Util.make(new HashMap<>(), map -> {
+        Supplier<VoxelShape> voxelShapeSupplier = () -> Shapes.or(
+                Shapes.box(0.1875, 0.375, 0.25, 0.8125, 0.4375, 0.75),
+                Shapes.box(0.4375, 0.4375, 0.4375, 0.5625, 0.5, 0.5625),
+                Shapes.box(0, 0.1875, 0.3125, 0.125, 0.3125, 0.6875),
+                Shapes.box(0.125, 0, 0.1875, 0.875, 0.375, 0.8125),
+                Shapes.box(0.875, 0.1875, 0.3125, 1, 0.3125, 0.6875)
+        );
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
 
     public RoasterBlock(Properties properties) {
         super(properties);
@@ -84,19 +96,6 @@ public class RoasterBlock extends BaseEntityBlock {
             return SHAPES.get(facing);
         }
     }
-
-    private static final Map<Direction, VoxelShape> SHAPES = Util.make(new HashMap<>(), map -> {
-        Supplier<VoxelShape> voxelShapeSupplier = () -> Shapes.or(
-                Shapes.box(0.1875, 0.375, 0.25, 0.8125, 0.4375, 0.75),
-                Shapes.box(0.4375, 0.4375, 0.4375, 0.5625, 0.5, 0.5625),
-                Shapes.box(0, 0.1875, 0.3125, 0.125, 0.3125, 0.6875),
-                Shapes.box(0.125, 0, 0.1875, 0.875, 0.375, 0.8125),
-                Shapes.box(0.875, 0.1875, 0.3125, 1, 0.3125, 0.6875)
-        );
-        for (Direction direction : Direction.Plane.HORIZONTAL) {
-            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
-        }
-    });
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {

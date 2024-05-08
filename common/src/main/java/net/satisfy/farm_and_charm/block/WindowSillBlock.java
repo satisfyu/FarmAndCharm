@@ -34,13 +34,25 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class WindowSillBlock extends StorageBlock {
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0, 0.4375, 1, 0.125, 1), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0.125, 0.5, 0.4375, 0.5, 0.875), BooleanOp.OR);
+        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.53125, 0.125, 0.53125, 0.90625, 0.5, 0.90625), BooleanOp.OR);
+        return shape;
+    };
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
+
     public WindowSillBlock(Properties settings) {
         super(settings);
     }
 
-
     @Override
-    public int size(){
+    public int size() {
         return 2;
     }
 
@@ -81,8 +93,6 @@ public class WindowSillBlock extends StorageBlock {
         }
     }
 
-
-
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!state.canSurvive(world, pos)) {
@@ -102,20 +112,6 @@ public class WindowSillBlock extends StorageBlock {
     public @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
-
-    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0, 0, 0.4375, 1, 0.125, 1), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.0625, 0.125, 0.5, 0.4375, 0.5, 0.875), BooleanOp.OR);
-        shape = Shapes.joinUnoptimized(shape, Shapes.box(0.53125, 0.125, 0.53125, 0.90625, 0.5, 0.90625), BooleanOp.OR);
-        return shape;
-    };
-
-    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
-        for (Direction direction : Direction.Plane.HORIZONTAL) {
-            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
-        }
-    });
 
     @Override
     @SuppressWarnings("deprecation")

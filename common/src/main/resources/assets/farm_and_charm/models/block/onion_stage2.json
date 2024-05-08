@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/crop",
-	"textures": {
-		"crop": "farm_and_charm:block/onion_stage2"
-	}
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "farm_and_charm:block/onion_stage2"
+  }
 }

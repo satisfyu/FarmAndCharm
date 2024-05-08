@@ -17,6 +17,7 @@ public class StoveGui extends AbstractRecipeBookGUIScreen<StoveGuiHandler> {
 
     public static final int ARROW_X = 93;
     public static final int ARROW_Y = 32;
+
     public StoveGui(StoveGuiHandler handler, Inventory inventory, Component title) {
         super(handler, inventory, title, new StoveRecipeBook(), BG);
     }
@@ -31,7 +32,7 @@ public class StoveGui extends AbstractRecipeBookGUIScreen<StoveGuiHandler> {
     @Override
     public void renderProgressArrow(GuiGraphics guiGraphics) {
         int progress = this.menu.getScaledProgress(18);
-        guiGraphics.blit(BG,leftPos + 93, topPos + 32, 178, 20, progress, 25);
+        guiGraphics.blit(BG, leftPos + 93, topPos + 32, 178, 20, progress, 25);
     }
 
     @Override

@@ -54,6 +54,7 @@ public class HorseFodderItem extends Item {
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> tooltip, TooltipFlag tooltipFlag) {
         tooltip.add(Component.translatable("tooltip.farm_and_charm.animal_fed_to_horse").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.farm_and_charm.horse_effect_1").withStyle(ChatFormatting.BLUE));
-        tooltip.add(Component.translatable("tooltip.farm_and_charm.horse_effect_2").withStyle(ChatFormatting.BLUE));}
+        tooltip.add(Component.translatable("tooltip.farm_and_charm.horse_effect_2").withStyle(ChatFormatting.BLUE));
+    }
 }
 

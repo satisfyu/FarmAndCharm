@@ -38,7 +38,7 @@ public class CookingPotGuiHandler extends AbstractRecipeBookGUIScreenHandler {
     }
 
     private void buildBlockEntityContainer(Container inventory) {
-    this.addSlot(new ExtendedSlot(inventory, 6, 95, 55, stack -> stack.is(TagRegistry.CONTAINER)));
+        this.addSlot(new ExtendedSlot(inventory, 6, 95, 55, stack -> stack.is(TagRegistry.CONTAINER)));
 
         for (int row = 0; row < 2; row++) {
             for (int slot = 0; slot < 3; slot++) {

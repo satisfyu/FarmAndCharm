@@ -1,9 +1,9 @@
 {
-	"credit": "Made by Satisfy",
-	"textures": {
-			"all": "minecraft:block/spruce_planks",
-			"particle": "minecraft:block/spruce_planks",
-			"0": "minecraft:block/spruce_planks"
-		},
-		"render_type": "translucent"
-	}
+  "credit": "Made by Satisfy",
+  "textures": {
+    "all": "minecraft:block/spruce_planks",
+    "particle": "minecraft:block/spruce_planks",
+    "0": "minecraft:block/spruce_planks"
+  },
+  "render_type": "translucent"
+}

@@ -13,8 +13,8 @@ public class MincingDisplay extends BasicDisplay {
 
     public MincingDisplay(MincerRecipe recipe) {
         super(
-            Collections.singletonList(EntryIngredients.ofIngredient(recipe.getInput())),
-            Collections.singletonList(EntryIngredients.of(recipe.getOutput()))
+                Collections.singletonList(EntryIngredients.ofIngredient(recipe.getInput())),
+                Collections.singletonList(EntryIngredients.of(recipe.getOutput()))
         );
     }
 

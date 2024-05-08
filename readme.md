@@ -1,4 +1,3 @@
-
 <h1 align="center">Be Part of Our Journey</h1>
 
 <p align="center">

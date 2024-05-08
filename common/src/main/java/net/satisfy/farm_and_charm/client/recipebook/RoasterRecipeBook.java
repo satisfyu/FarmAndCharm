@@ -24,6 +24,10 @@ import java.util.List;
 public class RoasterRecipeBook extends PrivateRecipeBookWidget {
     private static final Component TOGGLE_COOKABLE_TEXT;
 
+    static {
+        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.farm_and_charm.recipebook.toggleRecipes.cookable");
+    }
+
     public RoasterRecipeBook() {
     }
 
@@ -36,14 +40,11 @@ public class RoasterRecipeBook extends PrivateRecipeBookWidget {
         int j = 1;
         for (Ingredient ingredient : recipe.getIngredients()) {
             ItemStack[] inputStacks = ingredient.getItems();
-            if(inputStacks.length == 0) continue;
+            if (inputStacks.length == 0) continue;
             ItemStack inputStack = inputStacks[RandomSource.create().nextInt(0, inputStacks.length)];
             this.ghostSlots.addSlot(inputStack, slots.get(j).x, slots.get(j++).y);
         }
     }
-
-
-
 
     @Override
     public void insertRecipe(Recipe<?> recipe) {
@@ -101,17 +102,13 @@ public class RoasterRecipeBook extends PrivateRecipeBookWidget {
         return TOGGLE_COOKABLE_TEXT;
     }
 
-    static {
-        TOGGLE_COOKABLE_TEXT = Component.translatable("gui.farm_and_charm.recipebook.toggleRecipes.cookable");
+    @Override
+    public boolean isFocused() {
+        return false;
     }
 
     @Override
     public void setFocused(boolean bl) {
 
-    }
-
-    @Override
-    public boolean isFocused() {
-        return false;
     }
 }

@@ -21,10 +21,9 @@ import java.util.Objects;
 
 public class ScarecrowRenderer implements BlockEntityRenderer<ScarecrowBlockEntity> {
 
+    private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/scarecrow.png");
     private final ModelPart scarecrow;
     private final ModelPart post;
-
-    private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/scarecrow.png");
 
     public ScarecrowRenderer(BlockEntityRendererProvider.Context context) {
         ModelPart root = context.bakeLayer(ScarecrowModel.LAYER_LOCATION);
@@ -44,8 +43,8 @@ public class ScarecrowRenderer implements BlockEntityRenderer<ScarecrowBlockEnti
         poseStack.pushPose();
 
         poseStack.translate(0.5, 0, 0.5);
-        poseStack.mulPose(new Quaternionf().rotateY((float)Math.toRadians(rotationDegrees)));
-        poseStack.mulPose(new Quaternionf().rotateX((float)Math.toRadians(angleDegrees)));
+        poseStack.mulPose(new Quaternionf().rotateY((float) Math.toRadians(rotationDegrees)));
+        poseStack.mulPose(new Quaternionf().rotateX((float) Math.toRadians(angleDegrees)));
         poseStack.translate(-0.5, 0, -0.5);
 
         VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));

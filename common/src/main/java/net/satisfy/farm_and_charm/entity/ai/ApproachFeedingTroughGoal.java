@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.satisfy.farm_and_charm.block.FeedingTroughBlock;
+
 public class ApproachFeedingTroughGoal extends MoveToBlockGoal {
     protected final Animal animal;
 

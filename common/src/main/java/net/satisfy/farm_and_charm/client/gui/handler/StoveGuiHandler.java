@@ -37,6 +37,10 @@ public class StoveGuiHandler extends AbstractRecipeBookGUIScreenHandler {
         buildPlayerContainer(playerInventory);
     }
 
+    private static boolean isFuel(ItemStack stack) {
+        return AbstractFurnaceBlockEntity.isFuel(stack);
+    }
+
     private void buildBlockEntityContainer(Inventory playerInventory, Container inventory) {
         this.addSlot(new StoveOutputSlot(playerInventory.player, inventory, 0, 126, 42));
 
@@ -62,10 +66,6 @@ public class StoveGuiHandler extends AbstractRecipeBookGUIScreenHandler {
 
     private boolean isIngredient(ItemStack stack) {
         return this.world.getRecipeManager().getAllRecipesFor(RecipeTypeRegistry.STOVE_RECIPE_TYPE.get()).stream().anyMatch(recipe -> recipe.getIngredients().stream().anyMatch(x -> x.test(stack)));
-    }
-
-    private static boolean isFuel(ItemStack stack) {
-        return AbstractFurnaceBlockEntity.isFuel(stack);
     }
 
     public int getScaledProgress(int arrowWidth) {

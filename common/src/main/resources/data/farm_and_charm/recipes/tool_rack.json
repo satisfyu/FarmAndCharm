@@ -1,19 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "///",
-        "iii"
-    ],
-    "key": {
-        "i": {
-            "item": "minecraft:iron_ingot"
-        },
-        "/": {
-            "item": "minecraft:stick"
-        }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "///",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
     },
-    "result": {
-        "item": "farm_and_charm:tool_rack",
-        "count": 3
+    "/": {
+      "item": "minecraft:stick"
     }
+  },
+  "result": {
+    "item": "farm_and_charm:tool_rack",
+    "count": 3
+  }
 }

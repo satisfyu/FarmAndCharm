@@ -45,6 +45,25 @@ import java.util.function.Supplier;
 public class EffectFoodBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING;
     public static final IntegerProperty BITES;
+    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.or(shape, Shapes.box(0.125, 0, 0.125, 0.875, 0.0625, 0.875));
+        shape = Shapes.or(shape, Shapes.box(0.1875, 0.0625, 0.1875, 0.8125, 0.4375, 0.8125));
+
+
+        return shape;
+    };
+    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
+        for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
+            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+        }
+    });
+
+    static {
+        FACING = BlockStateProperties.HORIZONTAL_FACING;
+        BITES = IntegerProperty.create("bites", 0, 3);
+    }
+
     private final int maxBites;
     private final FoodProperties foodComponent;
 
@@ -93,8 +112,6 @@ public class EffectFoodBlock extends BaseEntityBlock {
         return tryEat(world, pos, state, player);
     }
 
-
-
     private InteractionResult tryEat(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
         if (!player.canEat(false)) {
             return InteractionResult.PASS;
@@ -122,7 +139,6 @@ public class EffectFoodBlock extends BaseEntityBlock {
         }
     }
 
-
     public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
@@ -136,31 +152,10 @@ public class EffectFoodBlock extends BaseEntityBlock {
         builder.add(FACING, BITES);
     }
 
-
-    static {
-        FACING = BlockStateProperties.HORIZONTAL_FACING;
-        BITES = IntegerProperty.create("bites", 0, 3);
-    }
-
     @Override
     public @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
-
-    private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
-        VoxelShape shape = Shapes.empty();
-        shape = Shapes.or(shape, Shapes.box(0.125, 0, 0.125, 0.875, 0.0625, 0.875));
-        shape = Shapes.or(shape, Shapes.box(0.1875, 0.0625, 0.1875, 0.8125, 0.4375, 0.8125));
-
-
-        return shape;
-    };
-
-    public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
-        for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
-        }
-    });
 
     @Override
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {

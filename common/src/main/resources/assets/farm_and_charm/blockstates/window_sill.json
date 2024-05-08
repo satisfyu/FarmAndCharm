@@ -1,36 +1,102 @@
 {
   "variants": {
     "facing=east": [
-      { "model": "farm_and_charm:block/window_sill_1", "y": 90 },
-      { "model": "farm_and_charm:block/window_sill_2", "y": 90 },
-      { "model": "farm_and_charm:block/window_sill_3", "y": 90 },
-      { "model": "farm_and_charm:block/window_sill_4", "y": 90 },
-      { "model": "farm_and_charm:block/window_sill_5", "y": 90 },
-      { "model": "farm_and_charm:block/window_sill_6", "y": 90 }
+      {
+        "model": "farm_and_charm:block/window_sill_1",
+        "y": 90
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_2",
+        "y": 90
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_3",
+        "y": 90
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_4",
+        "y": 90
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_5",
+        "y": 90
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_6",
+        "y": 90
+      }
     ],
     "facing=north": [
-      { "model": "farm_and_charm:block/window_sill_1" },
-      { "model": "farm_and_charm:block/window_sill_2" },
-      { "model": "farm_and_charm:block/window_sill_3" },
-      { "model": "farm_and_charm:block/window_sill_4" },
-      { "model": "farm_and_charm:block/window_sill_5" },
-      { "model": "farm_and_charm:block/window_sill_6" }
+      {
+        "model": "farm_and_charm:block/window_sill_1"
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_2"
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_3"
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_4"
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_5"
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_6"
+      }
     ],
     "facing=south": [
-      { "model": "farm_and_charm:block/window_sill_1", "y": 180 },
-      { "model": "farm_and_charm:block/window_sill_2", "y": 180 },
-      { "model": "farm_and_charm:block/window_sill_3", "y": 180 },
-      { "model": "farm_and_charm:block/window_sill_4", "y": 180 },
-      { "model": "farm_and_charm:block/window_sill_5", "y": 180 },
-      { "model": "farm_and_charm:block/window_sill_6", "y": 180 }
+      {
+        "model": "farm_and_charm:block/window_sill_1",
+        "y": 180
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_2",
+        "y": 180
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_3",
+        "y": 180
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_4",
+        "y": 180
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_5",
+        "y": 180
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_6",
+        "y": 180
+      }
     ],
     "facing=west": [
-      { "model": "farm_and_charm:block/window_sill_1", "y": 270 },
-      { "model": "farm_and_charm:block/window_sill_2", "y": 270 },
-      { "model": "farm_and_charm:block/window_sill_3", "y": 270 },
-      { "model": "farm_and_charm:block/window_sill_4", "y": 270 },
-      { "model": "farm_and_charm:block/window_sill_5", "y": 270 },
-      { "model": "farm_and_charm:block/window_sill_6", "y": 270 }
+      {
+        "model": "farm_and_charm:block/window_sill_1",
+        "y": 270
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_2",
+        "y": 270
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_3",
+        "y": 270
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_4",
+        "y": 270
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_5",
+        "y": 270
+      },
+      {
+        "model": "farm_and_charm:block/window_sill_6",
+        "y": 270
+      }
     ]
   }
 }

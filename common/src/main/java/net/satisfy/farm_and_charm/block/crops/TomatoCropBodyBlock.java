@@ -64,12 +64,11 @@ public class TomatoCropBodyBlock extends TomatoCropBlock implements Bonemealable
     public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
         return true;
     }
-    
+
     @Override
     public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
         return true;
     }
-
 
 
     @Override
