@@ -12,11 +12,12 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -28,25 +29,23 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfy.farm_and_charm.block.entity.SiloBlockEntity;
+import net.satisfy.farm_and_charm.recipe.SiloRecipe;
 import net.satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import net.satisfy.farm_and_charm.registry.ObjectRegistry;
+import net.satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import net.satisfy.farm_and_charm.util.ConnectivityHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 @SuppressWarnings({"deprecation", "unused"})
 public class SiloBlock extends FacingBlock implements EntityBlock {
-    public static final HashMap<Item, Item> DRYERS = new HashMap<>();
     public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final BooleanProperty BOTTOM = BooleanProperty.create("bottom");
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
     public static final EnumProperty<Shape> SHAPE = EnumProperty.create("shape", Shape.class);
     static final VoxelShape CAMPFIRE_SMOKE_CLIP = Block.box(0, 4, 0, 16, 16, 16);
-    public static boolean isDryersInitialized = false;
 
     public SiloBlock(Properties settings) {
         super(settings);
@@ -56,11 +55,6 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
                 .setValue(OPEN, false)
                 .setValue(SHAPE, Shape.NONE)
                 .setValue(FACING, Direction.NORTH));
-    }
-
-    public static void addDry(ItemLike itemLike, ItemLike resultItem) {
-        if (itemLike.asItem() != Items.AIR && resultItem.asItem() != Items.AIR)
-            DRYERS.put(itemLike.asItem(), resultItem.asItem());
     }
 
     public static boolean isSilo(ItemStack itemStack) {
@@ -74,34 +68,12 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
         return state.getBlock() instanceof SiloBlock;
     }
 
-    public static Map<Item, Item> getDryers() {
-        return Collections.unmodifiableMap(DRYERS);
+    public static boolean isDryItem(Level level, ItemStack itemStack) {
+        return getDryItemRecipe(level, itemStack).isPresent();
     }
 
-    public static synchronized void initializeDryersIfNeeded() {
-        if (!isDryersInitialized) {
-            addDry(Items.BONE_MEAL, ObjectRegistry.FERTILIZER.get());
-            addDry(Items.ROTTEN_FLESH, ObjectRegistry.FERTILIZER.get());
-            addDry(Blocks.PODZOL, ObjectRegistry.FERTILIZED_SOIL_BLOCK.get());
-            addDry(ObjectRegistry.WILD_BARLEY.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_POTATOES.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_OAT.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_TOMATOES.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_STRAWBERRIES.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_BEETROOTS.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_ONIONS.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_CORN.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_LETTUCE.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_EMMER.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_RIBWORT.get(), Items.BONE_MEAL);
-            addDry(ObjectRegistry.WILD_CARROTS.get(), Items.BONE_MEAL);
-            isDryersInitialized = true;
-        }
-    }
-
-    public static boolean isDryItem(ItemStack itemStack) {
-        initializeDryersIfNeeded();
-        return DRYERS.containsKey(itemStack.getItem());
+    public static Optional<SiloRecipe> getDryItemRecipe(Level level, ItemStack itemStack) {
+        return level.getRecipeManager().getAllRecipesFor(RecipeTypeRegistry.SILO_RECIPE_TYPE.get()).stream().filter(siloRecipe -> siloRecipe.getInput().test(itemStack)).findFirst();
     }
 
     public Direction getFacing(BlockState state) {
@@ -116,7 +88,7 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
     public @NotNull InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         if (level.isClientSide)
-            return itemStack.isEmpty() || isDryItem(itemStack) ? InteractionResult.SUCCESS : isSilo(itemStack) || player.isDiscrete() ? InteractionResult.PASS : InteractionResult.CONSUME;
+            return itemStack.isEmpty() || isDryItem(level, itemStack) ? InteractionResult.SUCCESS : isSilo(itemStack) || player.isDiscrete() ? InteractionResult.PASS : InteractionResult.CONSUME;
         BlockEntity be = level.getBlockEntity(blockPos);
         if (be instanceof SiloBlockEntity siloBE) {
             SiloBlockEntity siloController = siloBE.getControllerBE();
@@ -131,7 +103,7 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
                     siloController.open(!blockState.getValue(OPEN));
                 }
                 return InteractionResult.SUCCESS;
-            } else if (isDryItem(itemStack) && siloController.tryAddItem(itemStack))
+            } else if (isDryItem(level, itemStack) && siloController.tryAddItem(itemStack))
                 return InteractionResult.SUCCESS;
         }
         return isSilo(itemStack) || player.isDiscrete() ? InteractionResult.PASS : InteractionResult.CONSUME;

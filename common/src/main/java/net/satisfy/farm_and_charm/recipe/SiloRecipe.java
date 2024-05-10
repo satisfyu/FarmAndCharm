@@ -48,7 +48,12 @@ public class SiloRecipe implements Recipe<Container> {
 
     @Override
     public boolean matches(Container inventory, Level world) {
-        return input.test(inventory.getItem(0));
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            if(input.test(inventory.getItem(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

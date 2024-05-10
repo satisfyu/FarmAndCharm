@@ -21,11 +21,14 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.satisfy.farm_and_charm.block.SiloBlock;
+import net.satisfy.farm_and_charm.recipe.SiloRecipe;
 import net.satisfy.farm_and_charm.registry.EntityTypeRegistry;
 import net.satisfy.farm_and_charm.util.ConnectivityHandler;
 import net.satisfy.farm_and_charm.util.IMultiBlockEntityContainer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityContainer.Inventory, ImplementedInventory, MenuProvider, BlockEntityTicker<SiloBlockEntity> {
     private static final int MAX_WIDTH = 3;
@@ -204,14 +207,16 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     private void dry() {
         for (int fresh = 0; fresh < this.getCapacity(); fresh++) {
             ItemStack freshStack = this.getItem(fresh);
-            if (!freshStack.isEmpty()) {
+            Optional<SiloRecipe> recipe = SiloBlock.getDryItemRecipe(level, freshStack);
+            if (recipe.isPresent() && !freshStack.isEmpty()) {
                 int dryTime = this.times[fresh];
                 dryTime++;
                 if (dryTime >= DRY_TIME)
                     for (int finish = MAX_CAPACITY; finish < MAX_CAPACITY + this.getCapacity(); finish++)
                         if (this.getItem(finish).isEmpty()) {
                             ItemStack finishStack = this.removeItem(fresh, freshStack.getCount());
-                            this.setItem(finish, SiloBlock.isDryItem(finishStack) ? new ItemStack(SiloBlock.DRYERS.get(finishStack.getItem()), finishStack.getCount()) : finishStack);
+                            ItemStack outputStack = recipe.get().getResultItem(level.registryAccess()).copyWithCount(finishStack.getCount());
+                            this.setItem(finish, SiloBlock.isDryItem(level, finishStack) ? outputStack : finishStack);
                             dryTime = 0;
                             break;
                         }
