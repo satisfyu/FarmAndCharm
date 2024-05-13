@@ -8,6 +8,10 @@
     {
       "id": "farmersdelight:stove",
       "required": false
+    },
+    {
+      "id": "meadow:cooking_cauldron",
+      "required": false
     }
   ]
 }

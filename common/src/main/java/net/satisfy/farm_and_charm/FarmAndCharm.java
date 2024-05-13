@@ -16,7 +16,6 @@ public class FarmAndCharm {
         TabRegistry.init();
         ScreenhandlerTypeRegistry.init();
         RecipeTypeRegistry.init();
-        KeybindRegistry.init();
     }
 
     public static void commonSetup() {

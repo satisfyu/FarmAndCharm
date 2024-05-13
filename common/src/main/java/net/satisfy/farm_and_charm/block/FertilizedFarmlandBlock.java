@@ -5,6 +5,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.FarmBlock;
@@ -25,8 +26,16 @@ public class FertilizedFarmlandBlock extends FarmBlock {
     }
 
     @Override
+    public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+        return !this.defaultBlockState().canSurvive(blockPlaceContext.getLevel(), blockPlaceContext.getClickedPos()) ? ObjectRegistry.FERTILIZED_SOIL_BLOCK.get().defaultBlockState() : super.getStateForPlacement(blockPlaceContext);
+    }
+
+    @Override
+    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+    }
+
+    @Override
     public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        super.randomTick(blockState, serverLevel, blockPos, randomSource);
         if (randomSource.nextFloat() < getGrowthChance(serverLevel, blockPos)) {
             applyBonemealEffect(serverLevel, blockPos, randomSource);
         }

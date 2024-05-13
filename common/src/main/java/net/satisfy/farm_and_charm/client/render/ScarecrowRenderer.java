@@ -16,9 +16,6 @@ import net.satisfy.farm_and_charm.block.ScarecrowBlock;
 import net.satisfy.farm_and_charm.block.entity.ScarecrowBlockEntity;
 import net.satisfy.farm_and_charm.client.model.ScarecrowModel;
 import org.joml.Quaternionf;
-
-import java.util.Objects;
-
 public class ScarecrowRenderer implements BlockEntityRenderer<ScarecrowBlockEntity> {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/scarecrow.png");
@@ -36,21 +33,23 @@ public class ScarecrowRenderer implements BlockEntityRenderer<ScarecrowBlockEnti
         Direction direction = blockEntity.getBlockState().getValue(ScarecrowBlock.FACING);
         float rotationDegrees = -direction.toYRot() + 180;
 
-        long gameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
-        boolean isStormy = blockEntity.getLevel().isThundering() || blockEntity.getLevel().isRaining();
-        float speedMultiplier = isStormy ? 0.1f : 0.05f;
-        float angleDegrees = isStormy ? 2.0f : Mth.sin((gameTime + partialTicks) * speedMultiplier) * 1;
-        poseStack.pushPose();
+        if (blockEntity.getLevel() != null && blockEntity.getLevel().isLoaded(blockEntity.getBlockPos())) {
+            long gameTime = blockEntity.getLevel().getGameTime();
+            boolean isStormy = blockEntity.getLevel().isThundering() || blockEntity.getLevel().isRaining();
+            float speedMultiplier = isStormy ? 0.1f : 0.05f;
+            float angleDegrees = isStormy ? 2.0f : Mth.sin((gameTime + partialTicks) * speedMultiplier) * 1;
 
-        poseStack.translate(0.5, 0, 0.5);
-        poseStack.mulPose(new Quaternionf().rotateY((float) Math.toRadians(rotationDegrees)));
-        poseStack.mulPose(new Quaternionf().rotateX((float) Math.toRadians(angleDegrees)));
-        poseStack.translate(-0.5, 0, -0.5);
+            poseStack.pushPose();
+            poseStack.translate(0.5, 0, 0.5);
+            poseStack.mulPose(new Quaternionf().rotateY((float) Math.toRadians(rotationDegrees)));
+            poseStack.mulPose(new Quaternionf().rotateX((float) Math.toRadians(angleDegrees)));
+            poseStack.translate(-0.5, 0, -0.5);
 
-        VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
-        scarecrow.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        post.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
+            scarecrow.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+            post.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 
-        poseStack.popPose();
+            poseStack.popPose();
+        }
     }
 }
