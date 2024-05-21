@@ -19,6 +19,7 @@ public class WaterSprinklerRenderer implements BlockEntityRenderer<WaterSprinkle
     private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/water_sprinkler.png");
     private final ModelPart rotating;
     private final ModelPart basin;
+    private long lastRenderTime = 0;
     private float rotationAngle = 0.0F;
 
     public WaterSprinklerRenderer(BlockEntityRendererProvider.Context context) {
@@ -32,8 +33,18 @@ public class WaterSprinklerRenderer implements BlockEntityRenderer<WaterSprinkle
         assert level != null;
         boolean isRaining = level.isRaining();
         boolean isThundering = level.isThundering();
-        float rotationIncrement = isRaining || isThundering ? 2.0F : 1.0F;
-        rotationAngle = (rotationAngle + rotationIncrement) % 360;
+        float rotationSpeed = isRaining || isThundering ? 2.0F : 1.0F;
+
+        long currentTime = System.currentTimeMillis();
+        if (lastRenderTime == 0) {
+            lastRenderTime = currentTime;
+        }
+        float deltaTime = (currentTime - lastRenderTime) / 1000.0F;
+        lastRenderTime = currentTime;
+
+        rotationAngle += rotationSpeed * deltaTime * 20.0F;
+        rotationAngle %= 360;
+
         return rotationAngle;
     }
 

@@ -17,6 +17,7 @@
       {
         "item": "farm_and_charm:flour"
       }
-    ]
+    ],
+    "processingTime": 50
   }
 }

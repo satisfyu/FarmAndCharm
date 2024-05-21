@@ -18,6 +18,7 @@
         "item": "farm_and_charm:bacon",
         "count": 2
       }
-    ]
+    ],
+    "processingTime": 50
   }
 }

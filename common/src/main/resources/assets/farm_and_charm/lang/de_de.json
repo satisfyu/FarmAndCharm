@@ -96,7 +96,7 @@
   "block.farm_and_charm.barley_crop": "Gerstenpflanze",
   "block.farm_and_charm.onion_crop": "Zwiebelpflanze",
   "creativetab.farm_and_charm.tab": "[Let's Do] Farm & Charm",
-  "effect.farm_and_charm.chicken": "Gack!",
+  "effect.farm_and_charm.cluck": "Gack!",
   "effect.farm_and_charm.farmers_blessing": "Bauernsegen",
   "effect.farm_and_charm.feast": "Festmahl",
   "effect.farm_and_charm.grandmas_blessing": "Omas Segen",
@@ -176,8 +176,8 @@
   "tooltip.farm_and_charm.animal_fed_to_horse": "Wenn einem Pferd verfüttert:",
   "tooltip.farm_and_charm.canbeplaced": "Kann platziert werden",
   "tooltip.farm_and_charm.canbeplacedwall": "Kann an Wänden platziert werden",
-  "tooltip.farm_and_charm.cat_effect_1": "Sofortheilung",
-  "tooltip.farm_and_charm.chicken_effect_1": "Gluck! (0:30)",
+  "tooltip.farm_and_charm.cat_effect_1": "Erhöhte Chance für das zähmen von wilden Katzen",
+  "tooltip.farm_and_charm.cluck": "Gluck! (0:30)",
   "tooltip.farm_and_charm.dog_effect_1": "Angriffsschaden (3:00)",
   "tooltip.farm_and_charm.dog_effect_2": "Angriffsgeschwindigkeit (3:00)",
   "tooltip.farm_and_charm.dog_effect_3": "Rückstoßresistenz (3:00)",
@@ -186,5 +186,6 @@
   "tooltip.farm_and_charm.thankyou_1": "Eine Belohnung für die Herstellung aller Gerichte",
   "tooltip.farm_and_charm.thankyou_2": "Wenn platziert:",
   "tooltip.farm_and_charm.thankyou_3": "Danke, dass du Farm&Charm spielst!",
-  "tooltip.farm_and_charm.thankyou_4": "Steigert die Wachstumsrate umliegender Felder"
+  "tooltip.farm_and_charm.thankyou_4": "Steigert die Wachstumsrate umliegender Felder",
+  "effect.farm_and_charm.dog_food": "Hundefutter"
 }

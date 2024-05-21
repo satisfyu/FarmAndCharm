@@ -17,6 +17,7 @@
       {
         "item": "farm_and_charm:fertilizer"
       }
-    ]
+    ],
+    "processingTime": 50
   }
 }

@@ -115,6 +115,11 @@ public class MincerBlock extends BaseEntityBlock {
 
         if (entity instanceof MincerBlockEntity mincer) {
 
+            if (player.isShiftKeyDown()) {
+                Containers.dropContents(level, pos, mincer);
+                return InteractionResult.SUCCESS;
+            }
+
             ItemStack inputStack = mincer.getItem(mincer.INPUT_SLOT);
 
             int crank = state.getValue(CRANK);

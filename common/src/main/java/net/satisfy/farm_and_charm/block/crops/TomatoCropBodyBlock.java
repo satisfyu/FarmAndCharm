@@ -84,7 +84,7 @@ public class TomatoCropBodyBlock extends TomatoCropBlock implements Bonemealable
         if (this.canGrow(blockState)) {
             serverLevel.setBlockAndUpdate(blockPos, getStateForAge(blockState.getValue(AGE) + 1));
         } else {
-            dropHops(serverLevel, blockPos, blockState);
+            dropTomatoes(serverLevel, blockPos, blockState);
         }
     }
 }

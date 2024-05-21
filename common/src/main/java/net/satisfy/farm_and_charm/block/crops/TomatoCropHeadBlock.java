@@ -48,8 +48,18 @@ public class TomatoCropHeadBlock extends TomatoCropBlock implements Bonemealable
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
+        return true;
+    }
+
+    @Override
+    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
+        return true;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
     public @NotNull BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
         if ((direction == Direction.DOWN && !blockState.canSurvive(levelAccessor, blockPos)) || (getHeight(blockPos, levelAccessor) > 2 && !isRopeAbove(levelAccessor, blockPos))) {
             levelAccessor.scheduleTick(blockPos, this, 1);
@@ -62,16 +72,6 @@ public class TomatoCropHeadBlock extends TomatoCropBlock implements Bonemealable
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
-        return true;
-    }
-
-    @Override
-    public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
-        return true;
-    }
-
-    @Override
     public void performBonemeal(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState) {
         if (randomSource.nextBoolean() && canGrowInto(serverLevel, blockPos.above())) {
             serverLevel.setBlockAndUpdate(blockPos.above(), this.defaultBlockState());
@@ -80,8 +80,7 @@ public class TomatoCropHeadBlock extends TomatoCropBlock implements Bonemealable
         if (this.canGrow(blockState)) {
             serverLevel.setBlockAndUpdate(blockPos, getStateForAge(blockState.getValue(AGE) + 1));
         } else {
-            dropHops(serverLevel, blockPos, blockState);
+            dropTomatoes(serverLevel, blockPos, blockState);
         }
-
     }
 }

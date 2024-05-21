@@ -104,17 +104,17 @@ public abstract class TomatoCropBlock extends Block {
         }
         int age = blockState.getValue(AGE);
         if (age > 1) {
-            dropHops(level, blockPos, blockState);
+            dropTomatoes(level, blockPos, blockState);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
             return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
         }
     }
 
-    protected void dropHops(Level level, BlockPos blockPos, BlockState blockState) {
+    protected void dropTomatoes(Level level, BlockPos blockPos, BlockState blockState) {
         int age = blockState.getValue(AGE);
-        int amount = level.getRandom().nextInt(2);
-        ItemStack drop = new ItemStack(ObjectRegistry.TOMATO.get(), amount + (age >= MAX_AGE ? 1 : 0));
+        int amount = level.getRandom().nextInt(2) + (age >= MAX_AGE ? 1 : 0);
+        ItemStack drop = new ItemStack(ObjectRegistry.TOMATO.get(), amount);
         if (level.getRandom().nextFloat() < 0.05) {
             drop = new ItemStack(ObjectRegistry.ROTTEN_TOMATO.get(), 1);
         }

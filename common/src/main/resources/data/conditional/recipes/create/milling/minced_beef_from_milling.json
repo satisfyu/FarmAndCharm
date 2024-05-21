@@ -17,6 +17,7 @@
       {
         "item": "farm_and_charm:minced_beef"
       }
-    ]
+    ],
+    "processingTime": 50
   }
 }

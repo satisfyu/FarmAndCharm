@@ -17,6 +17,7 @@
       {
         "item": "farm_and_charm:raw_pasta"
       }
-    ]
+    ],
+    "processingTime": 50
   }
 }

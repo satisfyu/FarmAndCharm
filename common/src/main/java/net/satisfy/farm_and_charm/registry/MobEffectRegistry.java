@@ -17,7 +17,7 @@ public class MobEffectRegistry {
     public static final RegistrySupplier<MobEffect> SWEETS;
     public static final RegistrySupplier<MobEffect> HORSE_FODDER;
     public static final RegistrySupplier<MobEffect> DOG_FOOD;
-    public static final RegistrySupplier<MobEffect> CHICKEN;
+    public static final RegistrySupplier<MobEffect> CLUCK;
     public static final RegistrySupplier<MobEffect> GRANDMAS_BLESSING;
     public static final RegistrySupplier<MobEffect> RESTED;
     public static final RegistrySupplier<MobEffect> FARMERS_BLESSING;
@@ -31,7 +31,7 @@ public class MobEffectRegistry {
         SWEETS = registerEffect("sweets", SweetsEffect::new);
         HORSE_FODDER = registerEffect("horse_fodder", HorseFodderEffect::new);
         DOG_FOOD = registerEffect("dog_food", DogFoodEffect::new);
-        CHICKEN = registerEffect("cluck", ChickenEffect::new);
+        CLUCK = registerEffect("cluck", ChickenEffect::new);
         GRANDMAS_BLESSING = registerEffect("grandmas_blessing", GrandmasBlessingEffect::new);
         RESTED = registerEffect("rested", RestedEffect::new);
         FARMERS_BLESSING = registerEffect("farmers_blessing", FarmersBlessingEffect::new);
