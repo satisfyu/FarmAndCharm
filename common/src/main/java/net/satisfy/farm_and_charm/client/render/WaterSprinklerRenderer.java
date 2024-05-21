@@ -42,9 +42,10 @@ public class WaterSprinklerRenderer implements BlockEntityRenderer<WaterSprinkle
         float deltaTime = (currentTime - lastRenderTime) / 1000.0F;
         lastRenderTime = currentTime;
 
-        rotationAngle += rotationSpeed * deltaTime * 20.0F;
+        rotationAngle += rotationSpeed * deltaTime * 40.0F;
         rotationAngle %= 360;
 
+        blockEntity.setRotationAngle(rotationAngle);
         return rotationAngle;
     }
 
