@@ -1,4 +1,5 @@
 accessWidener   v2  named
+accessible method net/minecraft/world/level/Level getEntities ()Lnet/minecraft/world/level/entity/LevelEntityGetter;
 accessible class net/minecraft/world/entity/animal/Cat$CatTemptGoal
 accessible class net/minecraft/world/entity/animal/Cat$CatAvoidEntityGoal
 accessible field net/minecraft/world/entity/ai/goal/AvoidEntityGoal toAvoid Lnet/minecraft/world/entity/LivingEntity;

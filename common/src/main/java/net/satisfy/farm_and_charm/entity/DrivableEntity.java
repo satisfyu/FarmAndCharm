@@ -1,15 +1,13 @@
 package net.satisfy.farm_and_charm.entity;
 
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.RelativeMovement;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Set;
+import java.util.List;
 
 public abstract class DrivableEntity extends Entity {
     public static final String DRIVER_TAG = "Driver";
@@ -18,74 +16,50 @@ public abstract class DrivableEntity extends Entity {
 
     protected DrivableEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
-        this.driver = null;
     }
 
     public boolean hasDriver() {
-        return null != this.driver;
+        return this.driver != null;
     }
 
-    public final Entity getDriver() {
+    public final @Nullable Entity getDriver() {
         return this.driver;
     }
 
-
     public boolean addDriver(Entity entity) {
-        if (this.hasDriver() || !this.canAddDriver(entity)) {
-            return false;
+        if (entity instanceof Player) {
+            List<Entity> entities = this.level().getEntitiesOfClass(Entity.class, entity.getBoundingBox().inflate(100)); // angenommene Methode mit Bereich
+            for (Entity ent : entities) {
+                if (ent instanceof DrivableEntity drivable) {
+                    if (drivable.hasDriver()) {
+                        assert drivable.getDriver() != null;
+                        if (drivable.getDriver().equals(entity)) {
+                            return false;
+                        }
+                    }
+                }
+            }
         }
-        this.driver = entity;
-        return true;
+
+        if (!this.hasDriver() && this.canAddDriver()) {
+            this.driver = entity;
+            return true;
+        }
+        return false;
     }
 
     protected void removeDriver() {
-        if (this.hasDriver()) {
-            this.driver = null;
-        }
+        this.driver = null;
     }
 
-    public boolean canAddDriver(Entity entity) {
-        return !this.hasDriver() && !this.getPassengers().contains(entity);
-    }
-
-    @Override
-    protected boolean canAddPassenger(Entity entity) {
-        return super.canAddPassenger(entity) && this.getDriver() != entity;
-    }
-
-    @Override
-    public boolean teleportTo(ServerLevel serverLevel, double d, double e, double f, Set<RelativeMovement> set, float g, float h) {
-        if (serverLevel == this.level()) {
-            this.teleportDriver();
-        }
-        return super.teleportTo(serverLevel, d, e, f, set, g, h);
-    }
-
-    @Override
-    public void teleportTo(double d, double e, double f) {
-        super.teleportTo(d, e, f);
-        if (this.level() instanceof ServerLevel && null != this.driver) {
-            this.teleportDriver();
-        }
-    }
-
-    private void teleportDriver() {
-        assert null != this.driver;
-        double d = this.getY() + this.getPassengersRidingOffset() + this.driver.getMyRidingOffset();
-        this.driver.moveTo(this.getX(), d, this.getZ());
-    }
-
-    @Override
-    public boolean causeFallDamage(float f, float g, DamageSource damageSource) {
-        if (this.hasDriver()) {
-            this.getDriver().causeFallDamage(f, g, damageSource);
-        }
-        return super.causeFallDamage(f, g, damageSource);
+    public boolean canAddDriver() {
+        return !this.hasDriver();
     }
 
     @Override
     protected void addAdditionalSaveData(CompoundTag compoundTag) {
         if (this.hasDriver()) {
+            assert this.getDriver() != null;
             compoundTag.putInt(DRIVER_TAG, this.getDriver().getId());
         }
     }
