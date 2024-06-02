@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "tag": "minecraft:planks"
+      "item": "minecraft:iron_ingot"
     },
     "U": {
       "item": "minecraft:iron_nugget"
