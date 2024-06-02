@@ -37,7 +37,7 @@ public abstract class CartEntity extends DrivableEntity {
     private float wheelRot;
     private int rollOut;
     private int soundCooldown = 0;
-    private double lastDriverX, lastDriverY, lastDriverZ;
+    public double lastDriverX, lastDriverY, lastDriverZ;
 
     protected CartEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
@@ -54,7 +54,7 @@ public abstract class CartEntity extends DrivableEntity {
 
     protected abstract float wheelRadius();
 
-    protected float holdOffset() {
+    public float holdOffset() {
         return 2.0F;
     }
 
@@ -99,7 +99,7 @@ public abstract class CartEntity extends DrivableEntity {
 
         this.setupMovement();
         this.setupWheels();
-        this.setupRotation();
+        // this.setupRotation();
 
         if (shouldResetRot) {
             this.setYRot(originalYRot);
