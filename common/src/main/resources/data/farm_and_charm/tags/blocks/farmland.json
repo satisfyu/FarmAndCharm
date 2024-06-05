@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "farm_and_charm:fertilized_farmland",
+    "minecraft:farmland",
+    {
+      "id": "farmersdelight:rich_soil_farmland",
+      "required": false
+    },
+    {
+      "id": "swampier_swamps:fertile_farmland",
+      "required": false
+    },
+    {
+      "id": "biomemakeover:peat_farmland",
+      "required": false
+    }
+  ]
+}
