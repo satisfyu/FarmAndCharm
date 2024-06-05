@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "farm_and_charm:onion_bag"
+    ]
+  },
+  "criteria": {
+    "has_onion": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:onion"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "farm_and_charm:onion_bag"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_onion",
+      "has_the_recipe"
+    ]
+  ]
+}

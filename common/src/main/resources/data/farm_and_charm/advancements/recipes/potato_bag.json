@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "farm_and_charm:potato_bag"
+    ]
+  },
+  "criteria": {
+    "has_potato": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:potato"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "farm_and_charm:potato_bag"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_potato",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "farm_and_charm:lettuce_bag"
+    ]
+  },
+  "criteria": {
+    "has_lettuce": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:lettuce"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "farm_and_charm:lettuce_bag"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lettuce",
+      "has_the_recipe"
+    ]
+  ]
+}

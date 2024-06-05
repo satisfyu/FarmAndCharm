@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "farm_and_charm:fertilized_soil"
+    ]
+  },
+  "criteria": {
+    "has_fertilizer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:fertilizer"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "farm_and_charm:fertilized_soil"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fertilizer",
+      "has_the_recipe"
+    ]
+  ]
+}

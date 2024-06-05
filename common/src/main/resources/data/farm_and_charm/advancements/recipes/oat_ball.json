@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "farm_and_charm:oat_ball"
+    ]
+  },
+  "criteria": {
+    "has_oat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:oat"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "farm_and_charm:oat_ball"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_oat",
+      "has_the_recipe"
+    ]
+  ]
+}

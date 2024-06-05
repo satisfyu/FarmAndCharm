@@ -196,7 +196,7 @@ public class ObjectRegistry {
     }
 
     private static Item.Properties getFoodItemSettings(int nutrition, float saturationMod, MobEffect effect, int duration) {
-        return getFoodItemSettings(nutrition, saturationMod, effect, duration, true, false);
+        return getFoodItemSettings(nutrition, saturationMod, effect, duration, false, false);
     }
 
     @SuppressWarnings("all")
@@ -213,11 +213,10 @@ public class ObjectRegistry {
     }
 
     private static FoodProperties teaFoodComponent(MobEffect effect, int duration) {
-        FoodProperties.Builder component = new FoodProperties.Builder().nutrition(1).saturationMod(1);
+        FoodProperties.Builder component = new FoodProperties.Builder().nutrition(1).saturationMod(1).alwaysEat();
         if (effect != null) component.effect(new MobEffectInstance(effect, duration), 1.0f);
         return component.build();
     }
-
 
     private static BlockBehaviour.Properties getTeaSettings() {
         return BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion().instabreak();

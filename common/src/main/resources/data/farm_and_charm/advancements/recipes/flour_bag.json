@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "farm_and_charm:flour_bag"
+    ]
+  },
+  "criteria": {
+    "has_flour": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:flour"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "farm_and_charm:flour_bag"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_flour",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "farm_and_charm:corn"
+    ]
+  },
+  "criteria": {
+    "has_kernels": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:kernels"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "farm_and_charm:corn"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_kernels",
+      "has_the_recipe"
+    ]
+  ]
+}
