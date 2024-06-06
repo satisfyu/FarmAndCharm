@@ -8,7 +8,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.satisfy.farm_and_charm.FarmAndCharm;
 import net.satisfy.farm_and_charm.registry.CompostableRegistry;
 
-
 @Mod(FarmAndCharm.MOD_ID)
 public class FarmAndCharmForge {
 

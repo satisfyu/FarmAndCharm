@@ -25,5 +25,4 @@ public class FarmAndCharmClientForge {
             initialized = true;
         }
     }
-
 }
