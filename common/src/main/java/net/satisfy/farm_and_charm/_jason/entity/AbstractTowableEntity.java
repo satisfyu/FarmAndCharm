@@ -27,6 +27,13 @@ public abstract class AbstractTowableEntity extends Entity {
     public @Nullable Entity driver;
     public double lastDriverX, lastDriverY, lastDriverZ;
 
+    private int lerpSteps;
+    private double lerpX;
+    private double lerpY;
+    private double lerpZ;
+    private double lerpYaw;
+    private double lerpPitch;
+
     public AbstractTowableEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
         this.setMaxUpStep(1.2f);
@@ -233,6 +240,31 @@ public abstract class AbstractTowableEntity extends Entity {
         }
     }
 
+    private void tickLerp() {
+        if (this.lerpSteps > 0) {
+            final double dx = (this.lerpX - this.getX()) / this.lerpSteps;
+            final double dy = (this.lerpY - this.getY()) / this.lerpSteps;
+            final double dz = (this.lerpZ - this.getZ()) / this.lerpSteps;
+            this.setYRot((float) (this.getYRot() + Mth.wrapDegrees(this.lerpYaw - this.getYRot()) / this.lerpSteps));
+            this.setXRot((float) (this.getXRot() + (this.lerpPitch - this.getXRot()) / this.lerpSteps));
+            this.lerpSteps--;
+            this.setOnGround(true);
+            this.move(MoverType.SELF, new Vec3(dx, dy, dz));
+            this.setRot(this.getYRot(), this.getXRot());
+        }
+    }
+
+    @Override
+    //Client
+    public void lerpTo(final double x, final double y, final double z, final float yaw, final float pitch, final int posRotationIncrements, final boolean teleport) {
+        this.lerpX = x;
+        this.lerpY = y;
+        this.lerpZ = z;
+        this.lerpYaw = yaw;
+        this.lerpPitch = pitch;
+        this.lerpSteps = posRotationIncrements;
+    }
+
     @Override
     public void tick() {
 
@@ -242,6 +274,7 @@ public abstract class AbstractTowableEntity extends Entity {
 
         super.tick();
 
+        this.tickLerp();
 
         if (this.driver != null) {
             this.pulledTick();
