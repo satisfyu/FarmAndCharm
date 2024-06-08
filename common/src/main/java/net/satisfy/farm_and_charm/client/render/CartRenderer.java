@@ -16,7 +16,7 @@ import net.satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 import org.jetbrains.annotations.NotNull;
 
 public class CartRenderer extends EntityRenderer<CartEntity> {
-    private static final ResourceLocation CART_TEXTURE = new FarmAndCharmIdentifier("textures/entity/supply_cart.png");
+    public static final ResourceLocation CART_TEXTURE = new FarmAndCharmIdentifier("textures/entity/supply_cart.png");
     private final CartModel<CartEntity> model;
 
     public CartRenderer(EntityRendererProvider.Context context) {

@@ -8,6 +8,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.satisfy.farm_and_charm.FarmAndCharm;
+import net.satisfy.farm_and_charm._jason.entity.JasonPlowCartEntity;
+import net.satisfy.farm_and_charm._jason.entity.JasonSupplyCartEntity;
 import net.satisfy.farm_and_charm.block.entity.*;
 import net.satisfy.farm_and_charm.entity.ChestCart;
 import net.satisfy.farm_and_charm.entity.PlowCart;
@@ -21,6 +23,8 @@ public enum EntityTypeRegistry {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.ENTITY_TYPE);
     public static final RegistrySupplier<EntityType<RottenTomatoEntity>> ROTTEN_TOMATO = registerEntityType("rotten_tomato", () -> EntityType.Builder.<RottenTomatoEntity>of(RottenTomatoEntity::new, MobCategory.MISC).sized(0.25f, 0.25f).build(new FarmAndCharmIdentifier("rotten_tomato").toString()));
+
+
     public static final RegistrySupplier<EntityType<ChestCart>> CHEST_CART = registerEntityType("chest_cart", () ->
             EntityType.Builder.of(ChestCart::new, MobCategory.MISC)
                     .sized(1.875f, 0.875f)
@@ -28,15 +32,31 @@ public enum EntityTypeRegistry {
                     .build(new FarmAndCharmIdentifier("chest_cart").toString())
     );
 
+    public static final RegistrySupplier<EntityType<JasonSupplyCartEntity>> TEST_CART = registerEntityType("test_cart", () ->
+            EntityType.Builder.of(JasonSupplyCartEntity::new, MobCategory.MISC)
+                    .sized(1.875f, 0.875f)
+                    .clientTrackingRange(10)
+                    .build(new FarmAndCharmIdentifier("test_cart").toString())
+    );
+
     private static final Registrar<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.BLOCK_ENTITY_TYPE).getRegistrar();
     public static final RegistrySupplier<BlockEntityType<StoveBlockEntity>> STOVE_BLOCK_ENTITY = registerBlockEntity("stove_block", () -> BlockEntityType.Builder.of(StoveBlockEntity::new, ObjectRegistry.STOVE.get()).build(null));
     public static final RegistrySupplier<BlockEntityType<RoasterBlockEntity>> ROASTER_BLOCK_ENTITY = registerBlockEntity("roaster", () -> BlockEntityType.Builder.of(RoasterBlockEntity::new, ObjectRegistry.ROASTER.get()).build(null));
+
     public static final RegistrySupplier<EntityType<PlowCart>> PLOW = registerEntityType("plow", () ->
             EntityType.Builder.of(PlowCart::new, MobCategory.MISC)
                     .sized(1.875f, 0.875f)
                     .clientTrackingRange(10)
                     .build(new FarmAndCharmIdentifier("plow").toString())
     );
+
+    public static final RegistrySupplier<EntityType<JasonPlowCartEntity>> TEST_PLOW = registerEntityType("test_plow", () ->
+            EntityType.Builder.of(JasonPlowCartEntity::new, MobCategory.MISC)
+                    .sized(1.875f, 0.875f)
+                    .clientTrackingRange(10)
+                    .build(new FarmAndCharmIdentifier("test_plow").toString())
+    );
+
     public static final RegistrySupplier<BlockEntityType<CookingPotBlockEntity>> COOKING_POT_BLOCK_ENTITY = registerBlockEntity("cooking_pot", () -> BlockEntityType.Builder.of(CookingPotBlockEntity::new, ObjectRegistry.COOKING_POT.get()).build(null));
 
     private static <T extends BlockEntityType<?>> RegistrySupplier<T> registerBlockEntity(final String path, final Supplier<T> type) {

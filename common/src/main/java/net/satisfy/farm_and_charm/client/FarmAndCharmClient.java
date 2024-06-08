@@ -9,6 +9,10 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.satisfy.farm_and_charm._jason.model.JasonPlowCartModel;
+import net.satisfy.farm_and_charm._jason.model.JasonSupplyCartModel;
+import net.satisfy.farm_and_charm._jason.renderer.JasonPlowCartRenderer;
+import net.satisfy.farm_and_charm._jason.renderer.JasonSupplyCartRenderer;
 import net.satisfy.farm_and_charm.client.gui.CookingPotGui;
 import net.satisfy.farm_and_charm.client.gui.RoasterGui;
 import net.satisfy.farm_and_charm.client.gui.StoveGui;
@@ -53,6 +57,9 @@ public class FarmAndCharmClient {
         EntityRendererRegistry.register(EntityTypeRegistry.ROTTEN_TOMATO, ThrownItemRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.CHEST_CART, CartRenderer::new);
         EntityRendererRegistry.register(EntityTypeRegistry.PLOW, PlowRenderer::new);
+
+        EntityRendererRegistry.register(EntityTypeRegistry.TEST_PLOW, JasonPlowCartRenderer::new);
+        EntityRendererRegistry.register(EntityTypeRegistry.TEST_CART, JasonSupplyCartRenderer::new);
     }
 
 
@@ -68,5 +75,8 @@ public class FarmAndCharmClient {
         EntityModelLayerRegistry.register(ScarecrowModel.LAYER_LOCATION, ScarecrowModel::getTexturedModelData);
         EntityModelLayerRegistry.register(ModelRegistry.CART, CartModel::createBodyLayer);
         EntityModelLayerRegistry.register(ModelRegistry.PLOW, PlowModel::createBodyLayer);
+
+        EntityModelLayerRegistry.register(ModelRegistry.TEST_PLOW, JasonPlowCartModel::createBodyLayer);
+        EntityModelLayerRegistry.register(ModelRegistry.TEST_CART, JasonSupplyCartModel::createBodyLayer);
     }
 }
