@@ -110,9 +110,8 @@ public abstract class AbstractTowableEntity extends Entity {
     }
 
     private void setupMovement() {
-        if (this.hasDriver()) {
+        if (this.hasDriver() && this.getDriver() != null) {
             Vec3 lastMoveVec = this.position().subtract(this.lastDriverX, this.lastDriverY, this.lastDriverZ).scale(0.5D);
-            assert this.getDriver() != null;
             Vec3 driverMoveVec = this.getDriver().position().subtract(this.lastDriverX, this.lastDriverY, this.lastDriverZ).reverse().scale(0.5D);
             Vec3 newPosVec = driverMoveVec.add(lastMoveVec).normalize().scale(2.0D);
             Vec3 desiredPos = this.getDriver().position().add(newPosVec);
@@ -121,16 +120,15 @@ public abstract class AbstractTowableEntity extends Entity {
                 this.setDeltaMovement(this.getDeltaMovement().add(movVec).scale(0.2D));
             }
         }
+    }
+
+    @Override
+    public void tick() {
 
         if (!this.isNoGravity()) {
             this.setDeltaMovement(this.getDeltaMovement().add(0.0, -0.08, 0.0));
         }
 
-        this.move(MoverType.SELF, this.getDeltaMovement());
-    }
-
-    @Override
-    public void tick() {
         super.tick();
 
         Vec3 currentPos = this.position();
@@ -140,5 +138,7 @@ public abstract class AbstractTowableEntity extends Entity {
         this.lastDriverZ = currentPos.z;
 
         this.setupMovement();
+
+        this.move(MoverType.SELF, this.getDeltaMovement());
     }
 }
