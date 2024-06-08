@@ -13,6 +13,7 @@ import net.satisfy.farm_and_charm._jason.model.JasonPlowCartModel;
 import net.satisfy.farm_and_charm.client.model.PlowModel;
 import net.satisfy.farm_and_charm.client.render.PlowRenderer;
 import net.satisfy.farm_and_charm.entity.CartEntity;
+import org.jetbrains.annotations.NotNull;
 
 public class JasonPlowCartRenderer extends EntityRenderer<JasonPlowCartEntity> {
 
@@ -24,11 +25,11 @@ public class JasonPlowCartRenderer extends EntityRenderer<JasonPlowCartEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(JasonPlowCartEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(JasonPlowCartEntity entity) {
         return PlowRenderer.CART_TEXTURE;
     }
 
-    @Override
+    @Override @SuppressWarnings("all")
     public void render(JasonPlowCartEntity cart, float yaw, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
         super.render(cart, yaw, g, poseStack, multiBufferSource, light);
         poseStack.pushPose();

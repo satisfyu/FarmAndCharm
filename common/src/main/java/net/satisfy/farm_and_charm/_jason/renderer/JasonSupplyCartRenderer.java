@@ -12,6 +12,7 @@ import net.satisfy.farm_and_charm._jason.entity.JasonSupplyCartEntity;
 import net.satisfy.farm_and_charm._jason.model.JasonSupplyCartModel;
 import net.satisfy.farm_and_charm.client.model.CartModel;
 import net.satisfy.farm_and_charm.client.render.CartRenderer;
+import org.jetbrains.annotations.NotNull;
 
 public class JasonSupplyCartRenderer extends EntityRenderer<JasonSupplyCartEntity> {
 
@@ -23,7 +24,7 @@ public class JasonSupplyCartRenderer extends EntityRenderer<JasonSupplyCartEntit
     }
 
     @Override
-    public ResourceLocation getTextureLocation(JasonSupplyCartEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(JasonSupplyCartEntity entity) {
         return CartRenderer.CART_TEXTURE;
     }
 
