@@ -55,7 +55,7 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
         if (player.isSecondaryUseActive()) {
             return super.interact(player, interactionHand);
         } else {
-            if (this.canAddPassenger(player)) {
+            if (this.driver != player && this.canAddPassenger(player)) { // todo make sure this works
                 if (!this.level().isClientSide()) {
                     return player.startRiding(this) ? InteractionResult.CONSUME : InteractionResult.PASS;
                 } else {

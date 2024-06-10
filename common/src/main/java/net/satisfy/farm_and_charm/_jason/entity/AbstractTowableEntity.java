@@ -14,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.satisfy.farm_and_charm.FarmAndCharm;
+import net.satisfy.farm_and_charm.entity.CartEntity;
 import net.satisfy.farm_and_charm.entity.DrivableEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -225,18 +226,18 @@ public abstract class AbstractTowableEntity extends Entity {
         }
     }
 
-    public static final ResourceLocation CART_ONE_CM = new ResourceLocation(FarmAndCharm.MOD_ID, "cart_one_cm");
+    // public static final ResourceLocation CART_ONE_CM = new ResourceLocation(FarmAndCharm.MOD_ID, "cart_one_cm");
 
     private void addStats(final double x, final double y, final double z) {
         if (!this.level().isClientSide) {
-            final int cm = Math.round(Mth.sqrt((float) (x * x + y * y + z * z)) * 100.0F);
-            if (cm > 0) {
-                for (final Entity passenger : this.getPassengers()) {
-                    if (passenger instanceof Player player) {
-                        player.awardStat(CART_ONE_CM, cm);
-                    }
-                }
-            }
+//            final int cm = Math.round(Mth.sqrt((float) (x * x + y * y + z * z)) * 100.0F);
+//            if (cm > 0) {
+//                for (final Entity passenger : this.getPassengers()) {
+//                    if (passenger instanceof Player player) {
+//                        player.awardStat(CartEntity.CART_ONE_CM, cm);
+//                    }
+//                }
+//            }
         }
     }
 

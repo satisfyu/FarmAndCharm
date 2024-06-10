@@ -12,7 +12,9 @@ import net.satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 @SuppressWarnings("unused")
 public class CartModel<T extends CartEntity> extends EntityModel<T> {
+
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new FarmAndCharmIdentifier("cart"), "main");
+
     private final ModelPart cart;
     private final ModelPart right_wheel;
     private final ModelPart left_wheel;
@@ -45,9 +47,24 @@ public class CartModel<T extends CartEntity> extends EntityModel<T> {
         return LayerDefinition.create(meshdefinition, 256, 256);
     }
 
+//    @Override
+//    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+//        this.cart.xRot = entity.balance();
+//
+//        this.right_wheel.xRot = entity.wheelRot();
+//        this.left_wheel.xRot = entity.wheelRot();
+//    }
+//
+//    @Override
+//    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+//        this.cart.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+//        this.right_wheel.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+//        this.left_wheel.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+//    }
+
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.cart.xRot = entity.balance();
+        this.cart.xRot = (float) Math.toRadians(headPitch);
 
         this.right_wheel.xRot = entity.wheelRot();
         this.left_wheel.xRot = entity.wheelRot();
