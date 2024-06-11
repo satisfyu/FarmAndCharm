@@ -7,7 +7,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -25,7 +24,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
-import net.satisfy.farm_and_charm.FarmAndCharm;
 import net.satisfy.farm_and_charm.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 
@@ -116,10 +114,12 @@ public abstract class CartEntity extends DrivableEntity {
         final double y;
         final double z;
         if (delta == 1.0F) {
+            assert this.driver != null;
             x = this.driver.getX() - this.getX();
             y = this.driver.getY() - this.getY();
             z = this.driver.getZ() - this.getZ();
         } else {
+            assert this.driver != null;
             x = Mth.lerp(delta, this.driver.xOld, this.driver.getX()) - Mth.lerp(delta, this.xOld, this.getX());
             y = Mth.lerp(delta, this.driver.yOld, this.driver.getY()) - Mth.lerp(delta, this.yOld, this.getY());
             z = Mth.lerp(delta, this.driver.zOld, this.driver.getZ()) - Mth.lerp(delta, this.zOld, this.getZ());
@@ -131,10 +131,6 @@ public abstract class CartEntity extends DrivableEntity {
         return new Vec3(x + nx * r, y, z + nz * r);
     }
 
-    /**
-     * Handles the rotation of this cart and its components.
-     *
-     */
     public void handleRotation(final Vec3 target) {
         this.setYRot(getYaw(target));
         this.setXRot(getPitch(target));
@@ -146,21 +142,6 @@ public abstract class CartEntity extends DrivableEntity {
 
     public static float getPitch(final Vec3 vec) {
         return Mth.wrapDegrees((float) Math.toDegrees(-Mth.atan2(vec.y, Mth.sqrt((float) (vec.x * vec.x + vec.z * vec.z)))));
-    }
-
-    // public static final ResourceLocation CART_ONE_CM = new ResourceLocation(FarmAndCharm.MOD_ID, "cart_one_cm");
-
-    private void addStats(final double x, final double y, final double z) {
-        if (!this.level().isClientSide) {
-//            final int cm = Math.round(Mth.sqrt((float) (x * x + y * y + z * z)) * 100.0F);
-//            if (cm > 0) {
-//                for (final Entity passenger : this.getPassengers()) {
-//                    if (passenger instanceof Player player) {
-//                        player.awardStat(CART_ONE_CM, cm);
-//                    }
-//                }
-//            }
-        }
     }
 
     public void pulledTick() {
@@ -199,21 +180,7 @@ public abstract class CartEntity extends DrivableEntity {
         if (!this.isAlive()) {
             return;
         }
-        this.addStats(this.getX() - startX, this.getY() - startY, this.getZ() - startZ);
-        if (this.level().isClientSide) {
-//            for (final CartWheel wheel : this.wheels) {
-//                wheel.tick();
-//            }
-        } else {
-            targetVec = this.getRelativeTargetVec(1.0F);
-            if (targetVec.length() > relativeSpacing + 1.0D) {
-                this.driver = null;
-            }
-        }
         this.updatePassengers();
-//        if (this.drawn != null) {
-//            this.drawn.pulledTick();
-//        }
     }
 
     public void updatePassengers() {
@@ -236,7 +203,7 @@ public abstract class CartEntity extends DrivableEntity {
         }
 
         Vec3 currentPos = this.position();
-        double distanceMoved = Math.sqrt(Math.pow(currentPos.x - this.lastDriverX, 1.5) + Math.pow(currentPos.y - this.lastDriverY, 1.5) + Math.pow(currentPos.z - this.lastDriverZ, 1.5));
+        double distanceMoved = Math.sqrt(Math.pow(currentPos.x - this.lastDriverX, 2) + Math.pow(currentPos.y - this.lastDriverY, 2) + Math.pow(currentPos.z - this.lastDriverZ, 2));
         final double MIN_MOVEMENT_THRESHOLD = 0.05;
 
         if (distanceMoved > MIN_MOVEMENT_THRESHOLD) {
@@ -244,19 +211,9 @@ public abstract class CartEntity extends DrivableEntity {
             playMovementSound();
         }
 
-
-
-//        this.lastDriverX = currentPos.x;
-//        this.lastDriverY = currentPos.y;
-//        this.lastDriverZ = currentPos.z;
-
-        //this.setupMovement();
-        // this.setupRotation();
-
-//        if (shouldResetRot) {
-//            this.setYRot(originalYRot);
-//            shouldResetRot = false;
-//        }
+        this.lastDriverX = currentPos.x;
+        this.lastDriverY = currentPos.y;
+        this.lastDriverZ = currentPos.z;
 
         this.tickLerp();
 
@@ -268,7 +225,6 @@ public abstract class CartEntity extends DrivableEntity {
     }
 
     private void setupWheels(Vec3 velocity) {
-//        Vec3 velocity = this.getDeltaMovement();
         float xzDist = (float) Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
         if (0.01F < xzDist && 10 >= this.rollOut) {
             float anglePerTick = (xzDist / this.wheelRadius()) / ((float) this.rollOut);
@@ -288,7 +244,6 @@ public abstract class CartEntity extends DrivableEntity {
     public float wheelRot() {
         return this.wheelRot;
     }
-
 
     private void playMovementSound() {
         if (soundCooldown <= 0) {
@@ -323,7 +278,7 @@ public abstract class CartEntity extends DrivableEntity {
         double maxBackX = Math.sqrt(this.lastPoint() * this.lastPoint() - this.wheelYOffset() * this.wheelYOffset());
         double maxBackSlope = Math.atan2(this.wheelYOffset(), maxBackX);
 
-        double desiredXRot = Math.toRadians(-this.getXRot());
+        double desiredXRot = Math.toRadians(this.getXRot());
         return this.onGround() ? (float) Math.max(Math.min(desiredXRot, maxBackSlope), maxFrontSlope) : (float) desiredXRot;
     }
 
@@ -358,7 +313,6 @@ public abstract class CartEntity extends DrivableEntity {
             return true;
         }
     }
-
 
     protected void destroy(DamageSource damageSource) {
         this.spawnAtLocation(ObjectRegistry.SUPPLY_CART.get());
