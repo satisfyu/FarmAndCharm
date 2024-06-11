@@ -192,7 +192,10 @@ public abstract class CartEntity extends DrivableEntity {
         final double startX = this.getX();
         final double startY = this.getY();
         final double startZ = this.getZ();
+
         this.move(MoverType.SELF, move);
+        this.setupWheels(move);
+
         if (!this.isAlive()) {
             return;
         }
@@ -248,7 +251,6 @@ public abstract class CartEntity extends DrivableEntity {
 //        this.lastDriverZ = currentPos.z;
 
         //this.setupMovement();
-        this.setupWheels();
         // this.setupRotation();
 
 //        if (shouldResetRot) {
@@ -265,8 +267,8 @@ public abstract class CartEntity extends DrivableEntity {
         this.move(MoverType.SELF, this.getDeltaMovement());
     }
 
-    private void setupWheels() {
-        Vec3 velocity = this.getDeltaMovement();
+    private void setupWheels(Vec3 velocity) {
+//        Vec3 velocity = this.getDeltaMovement();
         float xzDist = (float) Math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z);
         if (0.01F < xzDist && 10 >= this.rollOut) {
             float anglePerTick = (xzDist / this.wheelRadius()) / ((float) this.rollOut);
