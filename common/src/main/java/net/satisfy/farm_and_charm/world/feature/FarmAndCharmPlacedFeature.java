@@ -14,7 +14,6 @@ public class FarmAndCharmPlacedFeature {
     public static final ResourceKey<PlacedFeature> WILD_ONIONS_PATCH_CHANCE_KEY = registerKey("wild_onions_chance");
     public static final ResourceKey<PlacedFeature> WILD_TOMATOES_PATCH_CHANCE_KEY = registerKey("wild_tomatoes_chance");
     public static final ResourceKey<PlacedFeature> WILD_STRAWBERRY_PATCH_CHANCE_KEY = registerKey("wild_strawberry_chance");
-
     public static final ResourceKey<PlacedFeature> WILD_OAT_PATCH_CHANCE_KEY = registerKey("wild_oat_chance");
     public static final ResourceKey<PlacedFeature> WILD_BARLEY_PATCH_CHANCE_KEY = registerKey("wild_barley_chance");
     public static final ResourceKey<PlacedFeature> WILD_NETTLE_PATCH_CHANCE_KEY = registerKey("wild_nettle_chance");

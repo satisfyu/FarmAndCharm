@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.satisfy.farm_and_charm.registry.RecipeTypeRegistry;
+import net.satisfy.farm_and_charm.util.FarmAndCharmUtil;
 import org.jetbrains.annotations.NotNull;
 
 public class CraftingBowlRecipe implements Recipe<Container> {
@@ -40,7 +41,7 @@ public class CraftingBowlRecipe implements Recipe<Container> {
                 nonEmptySlots++;
             }
         }
-        return nonEmptySlots >= 1 && nonEmptySlots <= inputs.size() && GeneralUtil.matchesRecipe(inventory, inputs, 0, 3);
+        return nonEmptySlots >= 1 && nonEmptySlots <= inputs.size() && FarmAndCharmUtil.matchesRecipe(inventory, inputs, 0, 3);
     }
 
     @Override
@@ -89,7 +90,7 @@ public class CraftingBowlRecipe implements Recipe<Container> {
     public static class Serializer implements RecipeSerializer<CraftingBowlRecipe> {
         @Override
         public @NotNull CraftingBowlRecipe fromJson(ResourceLocation id, JsonObject json) {
-            NonNullList<Ingredient> ingredients = GeneralUtil.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
+            NonNullList<Ingredient> ingredients = FarmAndCharmUtil.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
             JsonObject resultJson = GsonHelper.getAsJsonObject(json, "result");
             ItemStack result = ShapedRecipe.itemStackFromJson(resultJson);
             int count = GsonHelper.getAsInt(resultJson, "count", 1);

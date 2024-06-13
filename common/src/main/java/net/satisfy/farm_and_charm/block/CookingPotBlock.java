@@ -1,7 +1,5 @@
 package net.satisfy.farm_and_charm.block;
 
-import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
-import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -40,6 +38,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfy.farm_and_charm.block.entity.CookingPotBlockEntity;
+import net.satisfy.farm_and_charm.registry.SoundEventRegistry;
+import net.satisfy.farm_and_charm.util.FarmAndCharmUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -57,7 +57,7 @@ public class CookingPotBlock extends BaseEntityBlock {
     private static final Map<Direction, VoxelShape> SHAPES = Util.make(new HashMap<>(), map -> {
         Supplier<VoxelShape> voxelShapeSupplier = () -> Shapes.or(Shapes.box(0.1875, 0, 0.1875, 0.8125, 0.5, 0.8125), Shapes.box(0.0625, 0.3125, 0.25, 0.9375, 0.4375, 0.75));
         for (Direction direction : Direction.Plane.HORIZONTAL) {
-            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+            map.put(direction, FarmAndCharmUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
         }
     });
 
@@ -150,7 +150,7 @@ public class CookingPotBlock extends BaseEntityBlock {
         double e = pos.getY() + 0.7;
         double f = pos.getZ() + 0.5;
 
-        world.playLocalSound(d, e, f, DoApiSoundEventRegistry.COOKING_POT_BOILING.get(), SoundSource.BLOCKS, 0.05f, 1.0f, false);
+        world.playLocalSound(d, e, f, SoundEventRegistry.COOKING_POT_BOILING.get(), SoundSource.BLOCKS, 0.05f, 1.0f, false);
 
 
         double h = random.nextDouble() * 0.6 - 0.3;

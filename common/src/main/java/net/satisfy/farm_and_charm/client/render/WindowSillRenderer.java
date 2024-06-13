@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.satisfy.farm_and_charm.util.FarmAndCharmClientUtil;
 
 @Environment(EnvType.CLIENT)
 public class WindowSillRenderer implements StorageTypeRenderer {
@@ -25,7 +26,7 @@ public class WindowSillRenderer implements StorageTypeRenderer {
             if (!stack.isEmpty() && stack.getItem() instanceof BlockItem blockItem) {
                 matrices.pushPose();
                 matrices.translate(0f, 0f, -0.5f * i);
-                ClientUtil.renderBlockFromItem(blockItem, matrices, vertexConsumers, entity);
+                FarmAndCharmClientUtil.renderBlockFromItem(blockItem, matrices, vertexConsumers, entity);
                 matrices.popPose();
             }
         }

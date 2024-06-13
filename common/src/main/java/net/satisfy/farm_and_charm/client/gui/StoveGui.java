@@ -1,6 +1,5 @@
 package net.satisfy.farm_and_charm.client.gui;
 
-import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
@@ -11,6 +10,7 @@ import net.satisfy.farm_and_charm.client.gui.handler.StoveGuiHandler;
 import net.satisfy.farm_and_charm.client.recipebook.StoveRecipeBook;
 import net.satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
+//TODO
 @Environment(EnvType.CLIENT)
 public class StoveGui extends AbstractRecipeBookGUIScreen<StoveGuiHandler> {
     public static final ResourceLocation BG = new FarmAndCharmIdentifier("textures/gui/stove_gui.png");

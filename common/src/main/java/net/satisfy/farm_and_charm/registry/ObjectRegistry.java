@@ -1,8 +1,5 @@
 package net.satisfy.farm_and_charm.registry;
 
-import de.cristelknight.doapi.Util;
-import de.cristelknight.doapi.common.block.FacingBlock;
-import de.cristelknight.doapi.common.block.StackableEatableBlock;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
@@ -27,6 +24,7 @@ import net.satisfy.farm_and_charm.item.*;
 import net.satisfy.farm_and_charm.item.food.EffectBlockItem;
 import net.satisfy.farm_and_charm.item.food.EffectItem;
 import net.satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
+import net.satisfy.farm_and_charm.util.FarmAndCharmUtil;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -229,14 +227,14 @@ public class ObjectRegistry {
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithItem(String name, Supplier<T> block) {
-        return Util.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, new FarmAndCharmIdentifier(name), block);
+        return FarmAndCharmUtil.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, new FarmAndCharmIdentifier(name), block);
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithoutItem(String path, Supplier<T> block) {
-        return Util.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, new FarmAndCharmIdentifier(path), block);
+        return FarmAndCharmUtil.registerWithoutItem(BLOCKS, BLOCK_REGISTRAR, new FarmAndCharmIdentifier(path), block);
     }
 
     public static <T extends Item> RegistrySupplier<T> registerItem(String path, Supplier<T> itemSupplier) {
-        return Util.registerItem(ITEMS, ITEM_REGISTRAR, new FarmAndCharmIdentifier(path), itemSupplier);
+        return FarmAndCharmUtil.registerItem(ITEMS, ITEM_REGISTRAR, new FarmAndCharmIdentifier(path), itemSupplier);
     }
 }

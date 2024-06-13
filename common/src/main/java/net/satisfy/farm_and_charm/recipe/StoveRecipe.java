@@ -2,7 +2,6 @@ package net.satisfy.farm_and_charm.recipe;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
@@ -13,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.satisfy.farm_and_charm.registry.RecipeTypeRegistry;
+import net.satisfy.farm_and_charm.util.FarmAndCharmUtil;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -32,7 +32,7 @@ public class StoveRecipe implements Recipe<Container> {
 
     @Override
     public boolean matches(Container inventory, Level world) {
-        return GeneralUtil.matchesRecipe(inventory, inputs, 1, 3);
+        return FarmAndCharmUtil.matchesRecipe(inventory, inputs, 1, 3);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class StoveRecipe implements Recipe<Container> {
 
         @Override
         public @NotNull StoveRecipe fromJson(ResourceLocation id, JsonObject json) {
-            final var ingredients = GeneralUtil.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
+            final var ingredients = FarmAndCharmUtil.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (ingredients.isEmpty()) {
                 throw new JsonParseException("No ingredients for Stove Recipe");
             } else if (ingredients.size() > 3) {

@@ -1,7 +1,5 @@
 package net.satisfy.farm_and_charm.client.gui;
 
-
-import de.cristelknight.doapi.client.recipebook.screen.AbstractRecipeBookGUIScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;

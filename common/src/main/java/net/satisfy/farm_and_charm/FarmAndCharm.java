@@ -13,6 +13,7 @@ public class FarmAndCharm {
         MobEffectRegistry.init();
         ObjectRegistry.init();
         EntityTypeRegistry.init();
+        SoundEventRegistry.init();
         TabRegistry.init();
         ScreenhandlerTypeRegistry.init();
         RecipeTypeRegistry.init();

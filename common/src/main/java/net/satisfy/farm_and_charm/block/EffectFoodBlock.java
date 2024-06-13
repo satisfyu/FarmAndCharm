@@ -1,7 +1,6 @@
 package net.satisfy.farm_and_charm.block;
 
 import com.mojang.datafixers.util.Pair;
-import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,6 +32,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.satisfy.farm_and_charm.block.entity.EffectFoodBlockEntity;
 import net.satisfy.farm_and_charm.item.food.EffectFoodHelper;
+import net.satisfy.farm_and_charm.util.FarmAndCharmUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,7 +55,7 @@ public class EffectFoodBlock extends BaseEntityBlock {
     };
     public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
-            map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
+            map.put(direction, FarmAndCharmUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
         }
     });
 
@@ -86,7 +86,7 @@ public class EffectFoodBlock extends BaseEntityBlock {
 
     @Override
     public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
-        return GeneralUtil.isFullAndSolid(levelReader, blockPos);
+        return FarmAndCharmUtil.isFullAndSolid(levelReader, blockPos);
     }
 
     @Override

@@ -26,17 +26,6 @@ allprojects {
     group = rootProject.maven_group
 
     repositories {
-        exclusiveContent {
-            forRepository {
-                maven {
-                    name = "Modrinth"
-                    url = "https://api.modrinth.com/maven"
-                }
-            }
-            filter {
-                includeGroup "maven.modrinth"
-            }
-        }
         maven {
             name = "Jared's maven"
             url = "https://maven.blamejared.com/"

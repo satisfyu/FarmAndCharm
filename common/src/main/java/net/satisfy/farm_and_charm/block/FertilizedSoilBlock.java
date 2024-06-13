@@ -55,14 +55,12 @@ public class FertilizedSoilBlock extends Block {
             int newSize = state.getValue(SIZE) - 1;
             if (newSize < 0) {
                 level.removeBlock(pos, false);
-                spawnBreakParticles(level, pos, state);
-                level.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
             } else {
                 level.setBlock(pos, state.setValue(SIZE, newSize), 3);
                 applyBoneMealEffect(level, pos);
-                spawnBreakParticles(level, pos, state);
-                level.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
+            spawnBreakParticles(level, pos, state);
+            level.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
             itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
             return InteractionResult.SUCCESS;
         } else if (itemStack.getItem() instanceof HoeItem) {

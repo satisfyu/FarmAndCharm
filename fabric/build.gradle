@@ -26,10 +26,6 @@ configurations {
 
 repositories {
     maven {
-        name "TerraformersMC"
-        url "https://maven.terraformersmc.com"
-    }
-    maven {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
         content {
@@ -47,10 +43,6 @@ dependencies {
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}")
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
-
-    modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
-    modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
-    include(implementation("blue.endless:jankson:${jankson_version}"))
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
