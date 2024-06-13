@@ -10,7 +10,6 @@ public class FarmAndCharmFabric implements ModInitializer {
     public void onInitialize() {
         FarmAndCharm.init();
         CompostableRegistry.registerCompostable();
-        FarmAndCharm.commonSetup();
         FarmAndCharmBiomeModification.init();
     }
 

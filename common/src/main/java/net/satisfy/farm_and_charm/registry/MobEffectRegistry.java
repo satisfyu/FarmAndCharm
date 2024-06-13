@@ -13,6 +13,8 @@ import net.satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 import java.util.function.Supplier;
 
 public class MobEffectRegistry {
+    private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.MOB_EFFECT);
+    private static final Registrar<MobEffect> MOB_EFFECTS_REGISTRAR = MOB_EFFECTS.getRegistrar();
 
     public static final RegistrySupplier<MobEffect> SWEETS;
     public static final RegistrySupplier<MobEffect> HORSE_FODDER;
@@ -24,8 +26,18 @@ public class MobEffectRegistry {
     public static final RegistrySupplier<MobEffect> SUSTENANCE;
     public static final RegistrySupplier<MobEffect> SATIATION;
     public static final RegistrySupplier<MobEffect> FEAST;
-    private static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.MOB_EFFECT);
-    private static final Registrar<MobEffect> MOB_EFFECTS_REGISTRAR = MOB_EFFECTS.getRegistrar();
+
+    private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect) {
+        if (Platform.isForge()) {
+            return MOB_EFFECTS.register(name, effect);
+        }
+        return MOB_EFFECTS_REGISTRAR.register(new FarmAndCharmIdentifier(name), effect);
+    }
+
+    public static void init() {
+        FarmAndCharm.LOGGER.debug("Mob effects");
+        MOB_EFFECTS.register();
+    }
 
     static {
         SWEETS = registerEffect("sweets", SweetsEffect::new);
@@ -39,17 +51,5 @@ public class MobEffectRegistry {
         SATIATION = registerEffect("satiation", SatiationEffect::new);
         FEAST = registerEffect("feast", FeastEffect::new);
 
-    }
-
-    private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect) {
-        if (Platform.isForge()) {
-            return MOB_EFFECTS.register(name, effect);
-        }
-        return MOB_EFFECTS_REGISTRAR.register(new FarmAndCharmIdentifier(name), effect);
-    }
-
-    public static void init() {
-        FarmAndCharm.LOGGER.debug("Mob effects");
-        MOB_EFFECTS.register();
     }
 }

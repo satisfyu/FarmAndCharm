@@ -60,15 +60,4 @@ public enum EntityTypeRegistry {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 }

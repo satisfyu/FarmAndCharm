@@ -6,7 +6,7 @@ license = "Custom"
 modId = "farm_and_charm"
 version = "${version}"
 displayName = "[Let's Do] Farm & Charm"
-authors = "satisfy, baumeisterJO, cristelknight123"
+authors = "satisfy, cristelknight123"
 description = '''
 The farm calls: Experience the art of advanced agriculture and farmhouse cuisine! Use mincers, cooking pots, as well as new grains and fruit varieties to enhance your culinary and agricultural skills.
 '''

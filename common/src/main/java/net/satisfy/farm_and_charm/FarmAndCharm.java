@@ -17,8 +17,4 @@ public class FarmAndCharm {
         ScreenhandlerTypeRegistry.init();
         RecipeTypeRegistry.init();
     }
-
-    public static void commonSetup() {
-        FlammableBlockRegistry.init();
-    }
 }
