@@ -34,7 +34,6 @@ public class FarmAndCharmClient {
 
         );
 
-
         ClientStorageTypes.init();
         RenderTypeRegistry.register(RenderType.translucent(), SCARECROW.get());
         BlockEntityRendererRegistry.register(EntityTypeRegistry.STOVE_BLOCK_ENTITY.get(), StoveBlockRenderer::new);
@@ -45,9 +44,7 @@ public class FarmAndCharmClient {
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.COOKING_POT_SCREEN_HANDLER.get(), CookingPotGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.STOVE_SCREEN_HANDLER.get(), StoveGui::new);
         MenuRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.ROASTER_SCREEN_HANDLER.get(), RoasterGui::new);
-
     }
-
 
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(EntityTypeRegistry.ROTTEN_TOMATO, ThrownItemRenderer::new);

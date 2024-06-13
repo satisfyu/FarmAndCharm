@@ -22,6 +22,4 @@ public class FarmAndCharmDoAPI implements DoApiAPI {
     public <T extends LivingEntity> void registerArmor(CustomArmorManager<T> customArmorManager, EntityModelSet entityModelSet) {
 
     }
-
-
 }

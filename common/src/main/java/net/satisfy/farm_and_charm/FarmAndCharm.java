@@ -9,16 +9,14 @@ public class FarmAndCharm {
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static void init() {
-        DataFixerRegistry.init();
-        MobEffectRegistry.init();
         ObjectRegistry.init();
         EntityTypeRegistry.init();
+        MobEffectRegistry.init();
         TabRegistry.init();
         ScreenhandlerTypeRegistry.init();
         RecipeTypeRegistry.init();
     }
 
-    public static void commonSetup() {
-        FlammableBlockRegistry.init();
+    public static void commonInit() {
     }
 }

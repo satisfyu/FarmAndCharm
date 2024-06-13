@@ -21,6 +21,5 @@ public class FarmAndCharmForge {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(CompostableRegistry::registerCompostable);
-        FarmAndCharm.commonSetup();
     }
 }
