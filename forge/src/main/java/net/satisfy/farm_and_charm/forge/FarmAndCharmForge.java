@@ -15,7 +15,6 @@ public class FarmAndCharmForge {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         EventBuses.registerModEventBus(FarmAndCharm.MOD_ID, modEventBus);
         FarmAndCharm.init();
-
         modEventBus.addListener(this::commonSetup);
     }
 

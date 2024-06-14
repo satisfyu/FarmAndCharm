@@ -13,6 +13,7 @@ import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.alchemy.PotionUtils;
 
@@ -22,34 +23,27 @@ public class EffectFoodHelper {
     public static final String STORED_EFFECTS_KEY = "StoredEffects";
     public static final String FOOD_STAGE = "CustomModelData";
 
-    public EffectFoodHelper() {
-    }
-
     public static void addEffect(ItemStack stack, Pair<MobEffectInstance, Float> effect) {
-        if (isBannedEffect(effect.getFirst())) {
-            return;
-        }
-
+        removeHungerEffect(stack);
+        removeRawChickenEffects(stack);
         ListTag nbtList = getEffectNbt(stack);
-        boolean isNewEffect = true;
-        int effectId = MobEffect.getId(effect.getFirst().getEffect());
+        boolean bl = true;
+        int id = MobEffect.getId(effect.getFirst().getEffect());
 
         for (int i = 0; i < nbtList.size(); ++i) {
             CompoundTag nbtCompound = nbtList.getCompound(i);
-            if (nbtCompound.getInt("id") == effectId) {
-                isNewEffect = false;
+            int idTemp = nbtCompound.getInt("id");
+            if (idTemp == id) {
+                bl = false;
                 break;
             }
         }
 
-        if (isNewEffect) {
-            nbtList.add(createNbt((short) effectId, effect));
-            stack.getOrCreateTag().put(STORED_EFFECTS_KEY, nbtList);
+        if (bl) {
+            nbtList.add(createNbt((short) id, effect));
         }
-    }
 
-    private static boolean isBannedEffect(MobEffectInstance effectInstance) {
-        return effectInstance.getEffect() == MobEffects.HUNGER;
+        stack.getOrCreateTag().put(STORED_EFFECTS_KEY, nbtList);
     }
 
     private static ListTag getEffectNbt(ItemStack stack) {
@@ -67,20 +61,54 @@ public class EffectFoodHelper {
     }
 
     public static List<Pair<MobEffectInstance, Float>> getEffects(ItemStack stack) {
+        removeHungerEffect(stack);
+        removeRawChickenEffects(stack);
+        List<Pair<MobEffectInstance, Float>> effects = Lists.newArrayList();
         if (stack.getItem() instanceof EffectFood) {
-            return fromNbt(getEffectNbt(stack));
-        } else if (!(stack.getItem() instanceof PotionItem)) {
-            FoodProperties foodComponent = stack.getItem().getFoodProperties();
-            return foodComponent != null ? foodComponent.getEffects() : Lists.newArrayList();
+            effects = fromNbt(getEffectNbt(stack));
+        } else if (stack.getItem() instanceof PotionItem) {
+            List<MobEffectInstance> potionEffects = PotionUtils.getMobEffects(stack);
+            for (MobEffectInstance effect : potionEffects) {
+                effects.add(new Pair<>(effect, 1.0f));
+            }
         } else {
-            List<MobEffectInstance> effects = PotionUtils.getMobEffects(stack);
-            List<Pair<MobEffectInstance, Float>> returnEffects = Lists.newArrayList();
+            FoodProperties foodComponent = stack.getItem().getFoodProperties();
+            if (foodComponent != null) {
+                effects = foodComponent.getEffects();
+            }
+        }
+        return effects;
+    }
 
-            for (MobEffectInstance effect : effects) {
-                returnEffects.add(new Pair<>(effect, 1.0F));
+    private static void removeHungerEffect(ItemStack stack) {
+        ListTag nbtList = getEffectNbt(stack);
+        ListTag updatedList = new ListTag();
+
+        for (int i = 0; i < nbtList.size(); ++i) {
+            CompoundTag nbtCompound = nbtList.getCompound(i);
+            MobEffect effect = MobEffect.byId(nbtCompound.getShort("id"));
+            if (effect != MobEffects.HUNGER) {
+                updatedList.add(nbtCompound);
+            }
+        }
+
+        stack.getOrCreateTag().put(STORED_EFFECTS_KEY, updatedList);
+    }
+
+    private static void removeRawChickenEffects(ItemStack stack) {
+        if (stack.getItem() == Items.CHICKEN) {
+            ListTag nbtList = getEffectNbt(stack);
+            ListTag updatedList = new ListTag();
+
+            for (int i = 0; i < nbtList.size(); ++i) {
+                CompoundTag nbtCompound = nbtList.getCompound(i);
+                MobEffect effect = MobEffect.byId(nbtCompound.getShort("id"));
+                if (effect != MobEffects.HUNGER) {
+                    updatedList.add(nbtCompound);
+                }
             }
 
-            return returnEffects;
+            stack.getOrCreateTag().put(STORED_EFFECTS_KEY, updatedList);
         }
     }
 
@@ -109,21 +137,20 @@ public class EffectFoodHelper {
 
     public static void getTooltip(ItemStack stack, List<Component> tooltip) {
         List<Pair<MobEffectInstance, Float>> effects = getEffects(stack);
-        MobEffectInstance statusEffect;
-        MutableComponent mutableText;
         if (effects.isEmpty()) {
             tooltip.add(Component.translatable("effect.none").withStyle(ChatFormatting.GRAY));
         } else {
             for (Pair<MobEffectInstance, Float> effectPair : effects) {
-                statusEffect = effectPair.getFirst();
-                mutableText = Component.translatable(statusEffect.getDescriptionId());
+                MobEffectInstance statusEffect = effectPair.getFirst();
+                MutableComponent mutableText = Component.translatable(statusEffect.getDescriptionId());
+
                 if (statusEffect.getAmplifier() > 0) {
                     mutableText = Component.translatable("potion.withAmplifier", mutableText, Component.translatable("potion.potency." + statusEffect.getAmplifier()));
                 }
-
-                if (statusEffect.getDuration() > 20) {
-                    mutableText = Component.translatable("potion.withDuration", mutableText, MobEffectUtil.formatDuration(statusEffect, 1.0F));
+                if (effectPair.getFirst().getDuration() > 20) {
+                    mutableText = Component.translatable("potion.withDuration", mutableText, MobEffectUtil.formatDuration(statusEffect, 1.0f));
                 }
+
                 tooltip.add(mutableText.withStyle(statusEffect.getEffect().getCategory().getTooltipFormatting()));
             }
         }

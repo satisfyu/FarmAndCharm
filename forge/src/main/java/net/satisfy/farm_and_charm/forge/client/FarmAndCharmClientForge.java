@@ -11,18 +11,13 @@ import net.satisfy.farm_and_charm.client.FarmAndCharmClient;
 @Mod.EventBusSubscriber(modid = FarmAndCharm.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class FarmAndCharmClientForge {
 
-    private static boolean initialized = false;
-
     @SubscribeEvent
-    public static void onClientSetup(RegisterEvent event) {
+    public static void beforeClientSetup(RegisterEvent event) {
         FarmAndCharmClient.preInitClient();
     }
 
     @SubscribeEvent
-    public static void preClientSetup(FMLClientSetupEvent event) {
-        if (!initialized) {
-            FarmAndCharmClient.preInitClient();
-            initialized = true;
-        }
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        FarmAndCharmClient.onInitializeClient();
     }
 }

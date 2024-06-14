@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public class ChickenEffect extends MobEffect {
+    private static final int TICK_INTERVAL = 120;
 
     public ChickenEffect() {
         super(MobEffectCategory.BENEFICIAL, 0xFFFFFF);
@@ -19,17 +20,19 @@ public class ChickenEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide) {
-            if (entity.level().random.nextFloat() < 0.015) {
-                ItemEntity eggEntity = new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), new ItemStack(Items.EGG));
-                entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.CHICKEN_EGG, SoundSource.NEUTRAL, 1.0F, 1.0F);
-                entity.level().addFreshEntity(eggEntity);
-            }
-            if (entity.level().random.nextFloat() < 0.01) {
-                ItemEntity featherEntity = new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), new ItemStack(Items.FEATHER));
-                entity.level().addFreshEntity(featherEntity);
-            }
-            if (entity instanceof Player && entity.level().random.nextFloat() < 0.1) {
-                entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.CHICKEN_AMBIENT, SoundSource.PLAYERS, 1.0F, 1.0F);
+            if (entity.tickCount % TICK_INTERVAL == 0) {
+                if (entity.level().random.nextFloat() < 0.015) {
+                    ItemEntity eggEntity = new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), new ItemStack(Items.EGG));
+                    entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.CHICKEN_EGG, SoundSource.NEUTRAL, 1.0F, 1.0F);
+                    entity.level().addFreshEntity(eggEntity);
+                }
+                if (entity.level().random.nextFloat() < 0.01) {
+                    ItemEntity featherEntity = new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), new ItemStack(Items.FEATHER));
+                    entity.level().addFreshEntity(featherEntity);
+                }
+                if (entity instanceof Player && entity.level().random.nextFloat() < 0.1) {
+                    entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.CHICKEN_AMBIENT, SoundSource.PLAYERS, 1.0F, 1.0F);
+                }
             }
         }
     }
