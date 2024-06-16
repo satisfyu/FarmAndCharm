@@ -59,6 +59,96 @@
     "bites=3,facing=west": {
       "model": "farm_and_charm:block/stuffed_chicken_1",
       "y": 270
+    },
+    "bites=4,facing=north": {
+      "model": "farm_and_charm:block/farmers_breakfast_1"
+    },
+    "bites=4,facing=east": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 90
+    },
+    "bites=4,facing=south": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 180
+    },
+    "bites=4,facing=west": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 270
+    },
+    "bites=5,facing=north": {
+      "model": "farm_and_charm:block/farmers_breakfast_1"
+    },
+    "bites=5,facing=east": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 90
+    },
+    "bites=5,facing=south": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 180
+    },
+    "bites=5,facing=west": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 270
+    },
+    "bites=6,facing=north": {
+      "model": "farm_and_charm:block/farmers_breakfast_1"
+    },
+    "bites=6,facing=east": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 90
+    },
+    "bites=6,facing=south": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 180
+    },
+    "bites=6,facing=west": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 270
+    },
+    "bites=7,facing=north": {
+      "model": "farm_and_charm:block/farmers_breakfast_1"
+    },
+    "bites=7,facing=east": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 90
+    },
+    "bites=7,facing=south": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 180
+    },
+    "bites=7,facing=west": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 270
+    },
+    "bites=8,facing=north": {
+      "model": "farm_and_charm:block/farmers_breakfast_1"
+    },
+    "bites=8,facing=east": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 90
+    },
+    "bites=8,facing=south": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 180
+    },
+    "bites=8,facing=west": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 270
+    },
+    "bites=9,facing=north": {
+      "model": "farm_and_charm:block/farmers_breakfast_1"
+    },
+    "bites=9,facing=east": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 90
+    },
+    "bites=9,facing=south": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 180
+    },
+    "bites=9,facing=west": {
+      "model": "farm_and_charm:block/farmers_breakfast_1",
+      "y": 270
     }
   }
 }

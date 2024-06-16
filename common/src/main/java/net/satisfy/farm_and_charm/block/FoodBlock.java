@@ -28,12 +28,15 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
 
+@SuppressWarnings("deprecation")
 public class FoodBlock extends FacingBlock {
     public static final DirectionProperty FACING;
     public static final IntegerProperty BITES;
@@ -73,9 +76,17 @@ public class FoodBlock extends FacingBlock {
         return tryEat(world, pos, state, player);
     }
 
-
-
     private InteractionResult tryEat(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
+        if (world instanceof Level) {
+            Level level = (Level) world;
+            for (int count = 0; count < 10; ++count) {
+                double d0 = level.random.nextGaussian() * 0.02D;
+                double d1 = level.random.nextGaussian() * 0.02D;
+                double d2 = level.random.nextGaussian() * 0.02D;
+                level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, d0, d1, d2);
+            }
+        }
+
         if (!player.canEat(false)) {
             return InteractionResult.PASS;
         } else {
@@ -84,7 +95,8 @@ public class FoodBlock extends FacingBlock {
             world.gameEvent(player, GameEvent.EAT, pos);
 
             int bites = state.getValue(BITES);
-            if (bites < maxBites) {
+
+            if (bites < maxBites - 1) {
                 world.setBlock(pos, state.setValue(BITES, bites + 1), 3);
             } else {
                 world.destroyBlock(pos, false);
@@ -94,12 +106,11 @@ public class FoodBlock extends FacingBlock {
         }
     }
 
-
-    public BlockState rotate(BlockState state, Rotation rotation) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirror) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
@@ -108,14 +119,13 @@ public class FoodBlock extends FacingBlock {
         builder.add(FACING, BITES);
     }
 
-
     static {
         FACING = BlockStateProperties.HORIZONTAL_FACING;
-        BITES = IntegerProperty.create("bites", 0, 3);
+        BITES = IntegerProperty.create("bites", 0, 9);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
