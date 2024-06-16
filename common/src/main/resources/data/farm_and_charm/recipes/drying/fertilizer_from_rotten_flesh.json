@@ -1,9 +1,9 @@
 {
   "type": "farm_and_charm:drying",
+  "recipe_type": "MEAT",
   "ingredient": {
     "item": "minecraft:rotten_flesh"
   },
-  "recipe_type": "MEAT",
   "result": {
     "item": "farm_and_charm:fertilizer",
     "count": 1

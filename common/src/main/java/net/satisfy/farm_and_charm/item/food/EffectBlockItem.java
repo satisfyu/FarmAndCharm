@@ -14,7 +14,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -106,11 +105,5 @@ public class EffectBlockItem extends BlockItem {
             return super.place(context);
         }
         return InteractionResult.PASS;
-    }
-
-    @Override
-    public @NotNull ItemStack finishUsingItem(ItemStack stack, Level world, net.minecraft.world.entity.LivingEntity entity) {
-        super.finishUsingItem(stack, world, entity);
-        return stack.isEmpty() ? new ItemStack(Items.BOWL) : stack;
     }
 }

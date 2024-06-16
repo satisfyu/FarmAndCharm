@@ -16,7 +16,4 @@ public class FarmAndCharm {
         ScreenhandlerTypeRegistry.init();
         RecipeTypeRegistry.init();
     }
-
-    public static void commonInit() {
-    }
 }

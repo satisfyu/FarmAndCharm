@@ -106,7 +106,7 @@ public class EffectItem extends Item {
             }
             return stack.isEmpty() ? new ItemStack(Items.GLASS_BOTTLE) : stack;
         } else {
-            return stack.isEmpty() ? new ItemStack(Items.BOWL) : stack;
+            return ItemStack.EMPTY;
         }
     }
 }

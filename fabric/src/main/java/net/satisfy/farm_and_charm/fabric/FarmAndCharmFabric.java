@@ -12,6 +12,4 @@ public class FarmAndCharmFabric implements ModInitializer {
         CompostableRegistry.registerCompostable();
         FarmAndCharmBiomeModification.init();
     }
-
-
 }
