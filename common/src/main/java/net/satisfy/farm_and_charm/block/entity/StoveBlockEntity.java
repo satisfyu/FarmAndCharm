@@ -161,7 +161,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
                 }
             }
         }
-        if (isBurning() && canCraft(recipe, access)) {
+        if ((isBurning() || initialBurningState) && canCraft(recipe, access)) {
             ++this.cookTime;
             if (this.cookTime == cookTimeTotal) {
                 this.cookTime = 0;
@@ -186,26 +186,21 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     protected boolean canCraft(StoveRecipe recipe, RegistryAccess access) {
         if (recipe == null || recipe.getResultItem(access).isEmpty()) {
             return false;
-        } else if (this.getItem(FUEL_SLOT).isEmpty()) {
-            return false;
-        } else if (this.getItem(OUTPUT_SLOT).isEmpty()) {
-            return true;
-        } else {
-            if (this.getItem(OUTPUT_SLOT).isEmpty()) {
-                return true;
-            }
-            final ItemStack recipeOutput = recipe.getResultItem(access);
-            final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
-            final int outputSlotCount = outputSlotStack.getCount();
-            if (this.getItem(OUTPUT_SLOT).isEmpty()) {
-                return true;
-            } else if (!ItemStack.isSameItemSameTags(outputSlotStack, recipeOutput)) {
+        }
+        for (int slot : INGREDIENT_SLOTS) {
+            if (this.getItem(slot).isEmpty()) {
                 return false;
-            } else if (outputSlotCount < this.getMaxStackSize() && outputSlotCount < outputSlotStack.getMaxStackSize()) {
-                return true;
-            } else {
-                return outputSlotCount < recipeOutput.getMaxStackSize();
             }
+        }
+        final ItemStack recipeOutput = recipe.getResultItem(access);
+        final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
+        if (outputSlotStack.isEmpty()) {
+            return true;
+        } else if (!ItemStack.isSameItemSameTags(outputSlotStack, recipeOutput)) {
+            return false;
+        } else {
+            final int outputSlotCount = outputSlotStack.getCount();
+            return outputSlotCount + recipeOutput.getCount() <= outputSlotStack.getMaxStackSize();
         }
     }
 
