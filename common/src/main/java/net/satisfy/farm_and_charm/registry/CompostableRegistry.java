@@ -10,6 +10,7 @@ public class CompostableRegistry {
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.OAT.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.BARLEY_SEEDS.get(), 0.2F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.BARLEY.get(), 0.3F);
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.LETTUCE_SEEDS.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.LETTUCE_CROP.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.LETTUCE.get(), 0.3F);
         ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ONION.get(), 0.3F);
