@@ -96,17 +96,21 @@ public class EffectItem extends Item {
     }
 
     @Override
-    public @NotNull ItemStack finishUsingItem(ItemStack stack, Level world, net.minecraft.world.entity.LivingEntity entity) {
-        super.finishUsingItem(stack, world, entity);
-        if (stack.getItem() == ObjectRegistry.STRAWBERRY_TEA_CUP.get() || stack.getItem() == ObjectRegistry.NETTLE_TEA_CUP.get() || stack.getItem() == ObjectRegistry.RIBWORT_TEA_CUP.get()) {
-            if (entity instanceof Player player) {
-                if (!player.getInventory().add(new ItemStack(Items.GLASS_BOTTLE))) {
-                    player.drop(new ItemStack(Items.GLASS_BOTTLE), false);
-                }
-            }
-            return stack.isEmpty() ? new ItemStack(Items.GLASS_BOTTLE) : stack;
-        } else {
-            return ItemStack.EMPTY;
+    public @NotNull ItemStack finishUsingItem(ItemStack item, Level level, LivingEntity entity) {
+        ItemStack itemStack = super.finishUsingItem(item, level, entity);
+
+        if (entity instanceof Player && ((Player) entity).getAbilities().instabuild)
+            return itemStack;
+
+        Item giveBackItem = Items.AIR;
+        if(itemStack.getItem() == ObjectRegistry.STRAWBERRY_TEA_CUP.get() || itemStack.getItem() == ObjectRegistry.NETTLE_TEA_CUP.get() || itemStack.getItem() == ObjectRegistry.RIBWORT_TEA_CUP.get()){
+            giveBackItem = Items.GLASS_BOTTLE;
         }
+
+        if (giveBackItem != Items.AIR && (!level.isClientSide) && (entity instanceof Player player)) {
+            ItemStack giveBackStack = new ItemStack(giveBackItem);
+            if (!player.getInventory().add(giveBackStack)) player.drop(giveBackStack, false);
+        }
+        return itemStack;
     }
 }
