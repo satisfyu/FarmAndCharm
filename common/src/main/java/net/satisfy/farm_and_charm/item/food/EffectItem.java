@@ -96,7 +96,7 @@ public class EffectItem extends Item {
     }
 
     @Override
-    public @NotNull ItemStack finishUsingItem(ItemStack item, Level level, LivingEntity entity) {
+    public @NotNull ItemStack finishUsingItem(ItemStack item, Level level, net.minecraft.world.entity.LivingEntity entity) {
         ItemStack itemStack = super.finishUsingItem(item, level, entity);
 
         if (entity instanceof Player && ((Player) entity).getAbilities().instabuild)
