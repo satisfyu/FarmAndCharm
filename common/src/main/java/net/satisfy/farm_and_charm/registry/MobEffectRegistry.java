@@ -28,7 +28,7 @@ public class MobEffectRegistry {
     public static final RegistrySupplier<MobEffect> FEAST;
 
     private static RegistrySupplier<MobEffect> registerEffect(String name, Supplier<MobEffect> effect) {
-        if (Platform.isForge()) {
+        if (Platform.isNeoForge()) {
             return MOB_EFFECTS.register(name, effect);
         }
         return MOB_EFFECTS_REGISTRAR.register(new FarmAndCharmIdentifier(name), effect);

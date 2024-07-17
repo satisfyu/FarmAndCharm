@@ -3,6 +3,8 @@ package net.satisfy.farm_and_charm.item.food;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -15,7 +17,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PotionItem;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
 
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class EffectFoodHelper {
         removeRawChickenEffects(stack);
         ListTag nbtList = getEffectNbt(stack);
         boolean bl = true;
-        int id = MobEffect.getId(effect.getFirst().getEffect());
+        int id = BuiltInRegistries.MOB_EFFECT.asHolderIdMap().getId(effect.getFirst().getEffect()) + 1;
 
         for (int i = 0; i < nbtList.size(); ++i) {
             CompoundTag nbtCompound = nbtList.getCompound(i);
@@ -67,14 +69,17 @@ public class EffectFoodHelper {
         if (stack.getItem() instanceof EffectFood) {
             effects = fromNbt(getEffectNbt(stack));
         } else if (stack.getItem() instanceof PotionItem) {
-            List<MobEffectInstance> potionEffects = PotionUtils.getMobEffects(stack);
-            for (MobEffectInstance effect : potionEffects) {
+            PotionContents potionContents = stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY);
+
+            for (MobEffectInstance effect : potionContents.customEffects()) {
                 effects.add(new Pair<>(effect, 1.0f));
             }
         } else {
-            FoodProperties foodComponent = stack.getItem().getFoodProperties();
+            FoodProperties foodComponent = stack.get(DataComponents.FOOD);
             if (foodComponent != null) {
-                effects = foodComponent.getEffects();
+                for(FoodProperties.PossibleEffect effect : foodComponent.effects()) {
+                    effects.add(new Pair<>(effect.effect(), effect.probability()));
+                }
             }
         }
         return effects;
@@ -148,10 +153,10 @@ public class EffectFoodHelper {
                     mutableText = Component.translatable("potion.withAmplifier", mutableText, Component.translatable("potion.potency." + statusEffect.getAmplifier()));
                 }
                 if (effectPair.getFirst().getDuration() > 20) {
-                    mutableText = Component.translatable("potion.withDuration", mutableText, MobEffectUtil.formatDuration(statusEffect, 1.0f));
+                    mutableText = Component.translatable("potion.withDuration", mutableText, MobEffectUtil.formatDuration(statusEffect, 1.0f, 1));
                 }
 
-                tooltip.add(mutableText.withStyle(statusEffect.getEffect().getCategory().getTooltipFormatting()));
+                tooltip.add(mutableText.withStyle(statusEffect.getEffect().value().getCategory().getTooltipFormatting()));
             }
         }
     }

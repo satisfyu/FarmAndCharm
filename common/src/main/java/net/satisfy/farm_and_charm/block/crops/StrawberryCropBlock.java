@@ -48,7 +48,8 @@ public class StrawberryCropBlock extends CropBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
+        InteractionHand hand = player.getUsedItemHand();
         int i = state.getValue(AGE);
         boolean bl = i == getMaxAge();
         if (!bl && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
@@ -60,7 +61,7 @@ public class StrawberryCropBlock extends CropBlock {
             world.setBlock(pos, state.setValue(AGE, 1), 2);
             return InteractionResult.sidedSuccess(world.isClientSide);
         } else {
-            return super.use(state, world, pos, player, hand, hit);
+            return super.useWithoutItem(state, world, pos, player, blockHitResult);
         }
     }
 }
