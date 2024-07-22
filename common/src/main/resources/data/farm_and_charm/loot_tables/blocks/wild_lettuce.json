@@ -52,6 +52,15 @@
                   "condition": "minecraft:random_chance"
                 }
               ],
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 2,
+                    "max": 5
+                  }
+                }
+              ],
               "name": "farm_and_charm:lettuce"
             }
           ]
@@ -59,6 +68,5 @@
       ],
       "rolls": 1.0
     }
-  ],
-  "random_sequence": "minecraft:blocks/grass"
+  ]
 }

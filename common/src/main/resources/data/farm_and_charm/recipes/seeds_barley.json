@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:barley"
+    }
+  ],
+  "result": {
+    "item": "farm_and_charm:barley_seeds",
+    "count": 3
+  }
+}
