@@ -17,7 +17,9 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -63,44 +65,37 @@ public class FoodBlock extends FacingBlock {
 
     @Override
     public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack itemStack = player.getItemInHand(hand);
         if (world.isClientSide) {
-            if (tryEat(world, pos, state, player).consumesAction()) {
-                return InteractionResult.SUCCESS;
-            }
-
-            if (itemStack.isEmpty()) {
-                return InteractionResult.CONSUME;
-            }
+            return tryEat(world, pos, state, player) == InteractionResult.SUCCESS ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
+        } else {
+            return tryEat(world, pos, state, player);
         }
-        return tryEat(world, pos, state, player);
     }
 
     private InteractionResult tryEat(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
-        if (world instanceof Level) {
-            Level level = (Level) world;
-            for (int count = 0; count < 10; ++count) {
-                double d0 = level.random.nextGaussian() * 0.02D;
-                double d1 = level.random.nextGaussian() * 0.02D;
-                double d2 = level.random.nextGaussian() * 0.02D;
-                level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, d0, d1, d2);
-            }
-        }
-
         if (!player.canEat(false)) {
             return InteractionResult.PASS;
         } else {
             player.getFoodData().eat(foodComponent.getNutrition(), foodComponent.getSaturationModifier());
-            world.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.5f, world.getRandom().nextFloat() * 0.1f + 0.9f);
-            world.gameEvent(player, GameEvent.EAT, pos);
+            if (world instanceof Level level) {
+                level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.5f, level.getRandom().nextFloat() * 0.1f + 0.9f);
+                level.gameEvent(player, GameEvent.EAT, pos);
 
-            int bites = state.getValue(BITES);
+                int bites = state.getValue(BITES);
 
-            if (bites < maxBites - 1) {
-                world.setBlock(pos, state.setValue(BITES, bites + 1), 3);
-            } else {
-                world.destroyBlock(pos, false);
-                world.gameEvent(player, GameEvent.BLOCK_DESTROY, pos);
+                if (bites < maxBites - 1) {
+                    world.setBlock(pos, state.setValue(BITES, bites + 1), 3);
+                } else {
+                    world.destroyBlock(pos, false);
+                    world.gameEvent(player, GameEvent.BLOCK_DESTROY, pos);
+                }
+
+                for (int count = 0; count < 10; ++count) {
+                    double d0 = level.random.nextGaussian() * 0.02D;
+                    double d1 = level.random.nextGaussian() * 0.02D;
+                    double d2 = level.random.nextGaussian() * 0.02D;
+                    level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, state), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, d0, d1, d2);
+                }
             }
             return InteractionResult.SUCCESS;
         }
