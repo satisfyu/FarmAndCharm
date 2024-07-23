@@ -45,11 +45,13 @@ public class EffectFoodItem extends Item implements EffectFood {
         int stage = EffectFoodHelper.getStage(stack);
         if (playerInventory != null && stage < this.foodStages) {
             ItemStack itemStack = EffectFoodHelper.setStage(new ItemStack(this), stage + 1);
-            if (playerInventory.getItem(slot).isEmpty()) {
+            if (slot >= 0 && slot < playerInventory.items.size() && playerInventory.getItem(slot).isEmpty()) {
                 playerInventory.add(slot, itemStack);
             } else {
                 slot = playerInventory.getSlotWithRemainingSpace(itemStack);
-                playerInventory.add(slot, itemStack);
+                if (slot >= 0 && slot < playerInventory.items.size()) {
+                    playerInventory.add(slot, itemStack);
+                }
             }
         }
         return returnStack;
