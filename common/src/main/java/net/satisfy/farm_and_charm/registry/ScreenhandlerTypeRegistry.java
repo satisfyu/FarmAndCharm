@@ -15,17 +15,16 @@ import java.util.function.Supplier;
 public class ScreenhandlerTypeRegistry {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(FarmAndCharm.MOD_ID, Registries.MENU);
 
+    public static final RegistrySupplier<MenuType<StoveGuiHandler>> STOVE_SCREEN_HANDLER = create("stove_gui_handler", () -> new MenuType<>(StoveGuiHandler::new, FeatureFlags.VANILLA_SET));
+    public static final RegistrySupplier<MenuType<CookingPotGuiHandler>> COOKING_POT_SCREEN_HANDLER = create("cooking_pot_gui_handler", () -> new MenuType<>(CookingPotGuiHandler::new, FeatureFlags.VANILLA_SET));
+    public static final RegistrySupplier<MenuType<RoasterGuiHandler>> ROASTER_SCREEN_HANDLER = create("roaster_gui_handler", () -> new MenuType<>(RoasterGuiHandler::new, FeatureFlags.VANILLA_SET));
+
     public static void init() {
         MENU_TYPES.register();
-    }    public static final RegistrySupplier<MenuType<StoveGuiHandler>> STOVE_SCREEN_HANDLER = create("stove_gui_handler", () -> new MenuType<>(StoveGuiHandler::new, FeatureFlags.VANILLA_SET));
+    }
 
     private static <T extends MenuType<?>> RegistrySupplier<T> create(String name, Supplier<T> type) {
         return MENU_TYPES.register(name, type);
-    }    public static final RegistrySupplier<MenuType<CookingPotGuiHandler>> COOKING_POT_SCREEN_HANDLER = create("cooking_pot_gui_handler", () -> new MenuType<>(CookingPotGuiHandler::new, FeatureFlags.VANILLA_SET));
-    public static final RegistrySupplier<MenuType<RoasterGuiHandler>> ROASTER_SCREEN_HANDLER = create("roaster_gui_handler", () -> new MenuType<>(RoasterGuiHandler::new, FeatureFlags.VANILLA_SET));
-
-
-
-
+    }
 }
 
