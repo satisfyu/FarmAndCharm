@@ -2,12 +2,14 @@ package net.satisfy.farm_and_charm.item.food;
 
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
+import de.cristelknight.doapi.common.util.GeneralUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
@@ -96,21 +98,8 @@ public class EffectItem extends Item {
     }
 
     @Override
-    public @NotNull ItemStack finishUsingItem(ItemStack item, Level level, net.minecraft.world.entity.LivingEntity entity) {
-        ItemStack itemStack = super.finishUsingItem(item, level, entity);
-
-        if (entity instanceof Player && ((Player) entity).getAbilities().instabuild)
-            return itemStack;
-
-        Item giveBackItem = Items.AIR;
-        if(itemStack.getItem() == ObjectRegistry.STRAWBERRY_TEA_CUP.get() || itemStack.getItem() == ObjectRegistry.NETTLE_TEA_CUP.get() || itemStack.getItem() == ObjectRegistry.RIBWORT_TEA_CUP.get()){
-            giveBackItem = Items.GLASS_BOTTLE;
-        }
-
-        if (giveBackItem != Items.AIR && (!level.isClientSide) && (entity instanceof Player player)) {
-            ItemStack giveBackStack = new ItemStack(giveBackItem);
-            if (!player.getInventory().add(giveBackStack)) player.drop(giveBackStack, false);
-        }
-        return itemStack;
+    public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
+        super.finishUsingItem(itemStack, level, livingEntity);
+        return GeneralUtil.convertStackAfterFinishUsing(livingEntity, itemStack, Items.BOWL, this);
     }
 }

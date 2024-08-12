@@ -21,12 +21,12 @@ public class ChickenEffect extends MobEffect {
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide) {
             if (entity.tickCount % TICK_INTERVAL == 0) {
-                if (entity.level().random.nextFloat() < 0.015) {
+                if (entity.level().random.nextFloat() < 0.2) {
                     ItemEntity eggEntity = new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), new ItemStack(Items.EGG));
                     entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.CHICKEN_EGG, SoundSource.NEUTRAL, 1.0F, 1.0F);
                     entity.level().addFreshEntity(eggEntity);
                 }
-                if (entity.level().random.nextFloat() < 0.01) {
+                if (entity.level().random.nextFloat() < 0.2) {
                     ItemEntity featherEntity = new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), new ItemStack(Items.FEATHER));
                     entity.level().addFreshEntity(featherEntity);
                 }

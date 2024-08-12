@@ -26,6 +26,7 @@ import net.satisfy.farm_and_charm.block.crops.*;
 import net.satisfy.farm_and_charm.item.*;
 import net.satisfy.farm_and_charm.item.food.EffectBlockItem;
 import net.satisfy.farm_and_charm.item.food.EffectItem;
+import net.satisfy.farm_and_charm.item.food.EffectJugItem;
 import net.satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 import java.util.function.Consumer;
@@ -75,9 +76,9 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Item> COOKED_SALMON = registerItem("cooked_salmon", () -> new EffectItem(getFoodItemSettings(7, 0.9f, MobEffectRegistry.SATIATION.get(), 4800), 4800));
     public static final RegistrySupplier<Item> COOKED_COD = registerItem("cooked_cod", () -> new EffectItem(getFoodItemSettings(7, 0.9f, MobEffectRegistry.SUSTENANCE.get(), 4800), 4800));
     public static final RegistrySupplier<Item> ROASTED_CHICKEN = registerItem("roasted_chicken", () -> new EffectItem(getFoodItemSettings(5, 0.8f, MobEffectRegistry.SATIATION.get(), 4800), 4800));
-    public static final RegistrySupplier<Item> STRAWBERRY_TEA_CUP = registerItem("strawberry_tea_cup", () -> new EffectItem(getFoodItemSettings(1, 0.05f, MobEffects.DIG_SPEED, 120), 120));
-    public static final RegistrySupplier<Item> NETTLE_TEA_CUP = registerItem("nettle_tea_cup", () -> new EffectItem(getFoodItemSettings(1, 0.05f, MobEffects.HEAL, -0), -0));
-    public static final RegistrySupplier<Item> RIBWORT_TEA_CUP = registerItem("ribwort_tea_cup", () -> new EffectItem(getFoodItemSettings(1, 0.05f, MobEffects.REGENERATION, 60), 60));
+    public static final RegistrySupplier<Item> STRAWBERRY_TEA_CUP = registerItem("strawberry_tea_cup", () -> new EffectJugItem(getFoodItemSettings(1, 0.05f, MobEffects.DIG_SPEED, 120), 120));
+    public static final RegistrySupplier<Item> NETTLE_TEA_CUP = registerItem("nettle_tea_cup", () -> new EffectJugItem(getFoodItemSettings(1, 0.05f, MobEffects.HEAL, -0), -0));
+    public static final RegistrySupplier<Item> RIBWORT_TEA_CUP = registerItem("ribwort_tea_cup", () -> new EffectJugItem(getFoodItemSettings(1, 0.05f, MobEffects.REGENERATION, 60), 60));
     public static final RegistrySupplier<Item> CAT_FOOD = registerItem("cat_food", () -> new CatFoodItem(getSettings()));
     public static final RegistrySupplier<Item> HORSE_FODDER = registerItem("horse_fodder", () -> new HorseFodderItem(getSettings()));
     public static final RegistrySupplier<Item> DOG_FOOD = registerItem("dog_food", () -> new DogFoodItem(getSettings()));
