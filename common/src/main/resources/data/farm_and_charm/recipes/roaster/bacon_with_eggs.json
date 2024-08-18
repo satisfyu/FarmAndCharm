@@ -14,7 +14,7 @@
       "item": "minecraft:egg"
     },
     {
-      "item": "farm_and_charm:butter"
+      "tag": "farm_and_charm:butter"
     }
   ],
   "container": {
