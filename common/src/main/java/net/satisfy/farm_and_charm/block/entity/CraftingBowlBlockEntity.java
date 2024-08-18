@@ -169,9 +169,9 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
                             for (int slot = 0; slot < size; slot++) {
                                 ItemStack stack = blockEntity.getItem(slot);
                                 if (ingredient.test(stack)) {
+                                    ItemStack remainder = getRemainderItem(stack);
                                     stack.shrink(1);
                                     if (stack.isEmpty()) {
-                                        ItemStack remainder = getRemainderItem(stack);
                                         blockEntity.setItem(slot, ItemStack.EMPTY);
                                         if (!remainder.isEmpty()) {
                                             double offsetX = level.random.nextDouble() * 0.7D + 0.15D;
@@ -190,7 +190,6 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
                         blockEntity.setItem(4, resultItem);
                     }
                 }
-
                 stirring -= 1;
                 level.setBlock(blockPos, blockState.setValue(CraftingBowlBlock.STIRRING, stirring).setValue(CraftingBowlBlock.STIRRED, stirred), 3);
             } else if (stirred > 0 && stirred < CraftingBowlBlock.STIRS_NEEDED) {
