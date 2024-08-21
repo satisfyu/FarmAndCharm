@@ -11,8 +11,11 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
 public class EffectJugItem extends Item {
-    public EffectJugItem(Properties properties, int duration) {
+    private final boolean returnBottle;
+
+    public EffectJugItem(Properties properties, int duration, boolean returnBottle) {
         super(properties);
+        this.returnBottle = returnBottle;
     }
 
     @Override
@@ -23,6 +26,10 @@ public class EffectJugItem extends Item {
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         super.finishUsingItem(itemStack, level, livingEntity);
-        return GeneralUtil.convertStackAfterFinishUsing(livingEntity, itemStack, Items.GLASS_BOTTLE, this);
+        if (this.returnBottle) {
+            return GeneralUtil.convertStackAfterFinishUsing(livingEntity, itemStack, Items.GLASS_BOTTLE, this);
+        } else {
+            return itemStack.isEmpty() ? new ItemStack(Items.AIR) : itemStack;
+        }
     }
 }

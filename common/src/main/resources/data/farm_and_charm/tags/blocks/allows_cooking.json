@@ -10,7 +10,7 @@
       "required": false
     },
     {
-      "id": "meadow:meadow:stove_tiles_wood",
+      "id": "meadow:stove_tiles_wood",
       "required": false
     }
   ]

@@ -12,13 +12,11 @@ import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.satisfy.farm_and_charm.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,8 +25,11 @@ import java.util.Map;
 
 @SuppressWarnings("unused")
 public class EffectItem extends Item {
-    public EffectItem(Properties properties, int duration) {
+    private final boolean returnBowl;
+
+    public EffectItem(Properties properties, int duration, boolean returnBowl) {
         super(properties);
+        this.returnBowl = returnBowl;
     }
 
     @Override
@@ -100,6 +101,10 @@ public class EffectItem extends Item {
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         super.finishUsingItem(itemStack, level, livingEntity);
-        return GeneralUtil.convertStackAfterFinishUsing(livingEntity, itemStack, Items.BOWL, this);
+        if (this.returnBowl) {
+            return GeneralUtil.convertStackAfterFinishUsing(livingEntity, itemStack, Items.BOWL, this);
+        } else {
+            return itemStack.isEmpty() ? new ItemStack(Items.AIR) : itemStack;
+        }
     }
 }
