@@ -5,7 +5,7 @@
       "tag": "farm_and_charm:dough"
     },
     {
-      "item": "minecraft:water_bucket"
+      "tag": "farm_and_charm:water_bottles"
     }
   ],
   "item": "farm_and_charm:farmers_bread",
