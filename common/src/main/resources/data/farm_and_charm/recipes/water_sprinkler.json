@@ -10,7 +10,7 @@
       "tag": "minecraft:planks"
     },
     "B": {
-      "item": "minecraft:water_bucket"
+      "tag": "farm_and_charm:water_bottles"
     },
     "I": {
       "item": "minecraft:iron_ingot"
