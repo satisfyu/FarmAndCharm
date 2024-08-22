@@ -1,0 +1,22 @@
+{
+  "type": "farm_and_charm:pot_cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "farm_and_charm:strawberry"
+    },
+    {
+      "item": "farm_and_charm:strawberry"
+    }
+  ],
+  "container": {
+    "id": "minecraft:glass_bottle",
+    "count": 1
+  },
+  "result": {
+    "id": "farm_and_charm:strawberry_tea",
+    "count": 1
+  }
+}

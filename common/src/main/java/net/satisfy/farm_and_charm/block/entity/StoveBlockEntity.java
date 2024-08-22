@@ -1,10 +1,7 @@
 package net.satisfy.farm_and_charm.block.entity;
 
 import de.cristelknight.doapi.common.world.ImplementedInventory;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
@@ -22,6 +19,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -36,9 +35,7 @@ import net.satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 
 public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<StoveBlockEntity>, ImplementedInventory, MenuProvider {
@@ -108,25 +105,26 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
         this.inventory = NonNullList.withSize(5, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.inventory);
-        this.burnTime = nbt.getShort("BurnTime");
-        this.cookTime = nbt.getShort("CookTime");
-        this.cookTimeTotal = nbt.getShort("CookTimeTotal");
+        ContainerHelper.loadAllItems(compoundTag, this.inventory, provider);
+        this.burnTime = compoundTag.getShort("BurnTime");
+        this.cookTime = compoundTag.getShort("CookTime");
+        this.cookTimeTotal = compoundTag.getShort("CookTimeTotal");
         this.burnTimeTotal = this.getTotalBurnTime(this.getItem(FUEL_SLOT));
-        this.experience = nbt.getFloat("Experience");
+        this.experience = compoundTag.getFloat("Experience");
+
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
-        nbt.putShort("BurnTime", (short) this.burnTime);
-        nbt.putShort("CookTime", (short) this.cookTime);
-        nbt.putShort("CookTimeTotal", (short) this.cookTimeTotal);
-        nbt.putFloat("Experience", this.experience);
-        ContainerHelper.saveAllItems(nbt, this.inventory);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
+        compoundTag.putShort("BurnTime", (short) this.burnTime);
+        compoundTag.putShort("CookTime", (short) this.cookTime);
+        compoundTag.putShort("CookTimeTotal", (short) this.cookTimeTotal);
+        compoundTag.putFloat("Experience", this.experience);
+        ContainerHelper.saveAllItems(compoundTag, this.inventory, provider);
     }
 
     protected boolean isBurning() {
@@ -144,10 +142,14 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
             --this.burnTime;
         }
 
-        final StoveRecipe recipe = world.getRecipeManager().getRecipeFor(RecipeTypeRegistry.STOVE_RECIPE_TYPE.get(), blockEntity, world).orElse(null);
         assert level != null;
+
+        RecipeManager recipeManager = world.getRecipeManager();
+        List<RecipeHolder<StoveRecipe>> recipes = recipeManager.getAllRecipesFor(RecipeTypeRegistry.STOVE_RECIPE_TYPE.get());
+        Optional<StoveRecipe> recipe = Optional.ofNullable(getRecipe(recipes, inventory));
+
         RegistryAccess access = level.registryAccess();
-        if (!initialBurningState && canCraft(recipe, access)) {
+        if (!initialBurningState && recipe.isPresent() && canCraft(recipe.get(), access)) {
             this.burnTime = this.burnTimeTotal = this.getTotalBurnTime(this.getItem(FUEL_SLOT));
             if (burnTime > 0) {
                 dirty = true;
@@ -161,14 +163,14 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
                 }
             }
         }
-        if ((isBurning() || initialBurningState) && canCraft(recipe, access)) {
+        if ((isBurning() || initialBurningState) && recipe.isPresent() && canCraft(recipe.get(), access)) {
             ++this.cookTime;
             if (this.cookTime == cookTimeTotal) {
                 this.cookTime = 0;
-                craft(recipe, access);
+                craft(recipe.get(), access);
                 dirty = true;
             }
-        } else if (!canCraft(recipe, access)) {
+        } else if (recipe.isPresent() && !canCraft(recipe.get(), access)) {
             this.cookTime = 0;
         }
         if (initialBurningState != isBurning()) {
@@ -196,7 +198,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
             return true;
-        } else if (!ItemStack.isSameItemSameTags(outputSlotStack, recipeOutput)) {
+        } else if (!ItemStack.isSameItemSameComponents(outputSlotStack, recipeOutput)) {
             return false;
         } else {
             final int outputSlotCount = outputSlotStack.getCount();
@@ -212,7 +214,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         final ItemStack outputSlotStack = this.getItem(OUTPUT_SLOT);
         if (outputSlotStack.isEmpty()) {
             setItem(OUTPUT_SLOT, recipeOutput);
-        } else if (ItemStack.isSameItemSameTags(outputSlotStack, recipeOutput)) {
+        } else if (ItemStack.isSameItemSameComponents(outputSlotStack, recipeOutput)) {
             outputSlotStack.grow(recipeOutput.getCount());
         }
 
@@ -233,7 +235,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
                                     this.setItem(i, remainderStack.copy());
                                     added = true;
                                     break;
-                                } else if (ItemStack.isSameItemSameTags(is, remainderStack) && is.getCount() < is.getMaxStackSize()) {
+                                } else if (ItemStack.isSameItemSameComponents(is, remainderStack) && is.getCount() < is.getMaxStackSize()) {
                                     is.grow(1);
                                     added = true;
                                     break;
@@ -289,7 +291,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         }
         boolean hasIngredientChange = false;
         for (int ingredientSlot : INGREDIENT_SLOTS) {
-            if (!ItemStack.isSameItemSameTags(this.getItem(ingredientSlot), stackInSlot)) {
+            if (!ItemStack.isSameItemSameComponents(this.getItem(ingredientSlot), stackInSlot)) {
                 hasIngredientChange = true;
                 break;
             }
@@ -337,9 +339,31 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
     }
 
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider provider) {
         CompoundTag compoundTag = new CompoundTag();
-        this.saveAdditional(compoundTag);
+        this.saveAdditional(compoundTag, provider);
         return compoundTag;
+    }
+
+    private StoveRecipe getRecipe(List<RecipeHolder<StoveRecipe>> recipes, NonNullList<ItemStack> inventory) {
+        recipeLoop:
+        for (RecipeHolder<StoveRecipe> recipeHolder : recipes) {
+            StoveRecipe recipe = recipeHolder.value();
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                boolean ingredientFound = false;
+                for (int slotIndex = 1; slotIndex < inventory.size(); slotIndex++) {
+                    ItemStack slotItem = inventory.get(slotIndex);
+                    if (ingredient.test(slotItem)) {
+                        ingredientFound = true;
+                        break;
+                    }
+                }
+                if (!ingredientFound) {
+                    continue recipeLoop;
+                }
+            }
+            return recipe;
+        }
+        return null;
     }
 }

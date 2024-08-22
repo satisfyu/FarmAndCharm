@@ -12,7 +12,7 @@ import net.minecraft.world.entity.Entity;
 import net.satisfy.farm_and_charm.FarmAndCharm;
 
 public class WaterSprinklerModel<T extends Entity> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(FarmAndCharm.MOD_ID, "water_sprinkler"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(FarmAndCharm.MOD_ID, "water_sprinkler"), "main");
     private final ModelPart rotating;
     private final ModelPart basin;
 
@@ -43,13 +43,12 @@ public class WaterSprinklerModel<T extends Entity> extends EntityModel<T> {
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
-    @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        rotating.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-        basin.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-    }
-
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
     }
 
+    @Override
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j, int k) {
+        rotating.render(poseStack, vertexConsumer, i, j);
+        basin.render(poseStack, vertexConsumer, i, j);
+    }
 }

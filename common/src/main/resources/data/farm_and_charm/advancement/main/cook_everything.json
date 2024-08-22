@@ -1,0 +1,176 @@
+{
+  "parent": "farm_and_charm:main/place_cooking_pot",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "farm_and_charm:goulash"
+    },
+    "title": {
+      "translate": "advancement.farm_and_charm.cook_everything"
+    },
+    "description": {
+      "translate": "advancement.farm_and_charm.cook_everything.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 50
+  },
+  "criteria": {
+    "farm_and_charm:barley_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:barley_soup"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:corn_grits": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:corn_grits"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:strawberry_tea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:strawberry_tea"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:nettle_tea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:nettle_tea"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:ribwort_tea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:ribwort_tea"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:goulash": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:goulash"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:onion_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:onion_soup"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:potato_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:potato_soup"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:simple_tomato_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:simple_tomato_soup"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:yeast": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:yeast"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "farm_and_charm:barley_soup"
+    ],
+    [
+      "farm_and_charm:corn_grits"
+    ],
+    [
+      "farm_and_charm:strawberry_tea"
+    ],
+    [
+      "farm_and_charm:nettle_tea"
+    ],
+    [
+      "farm_and_charm:ribwort_tea"
+    ],
+    [
+      "farm_and_charm:goulash"
+    ],
+    [
+      "farm_and_charm:onion_soup"
+    ],
+    [
+      "farm_and_charm:potato_soup"
+    ],
+    [
+      "farm_and_charm:simple_tomato_soup"
+    ],
+    [
+      "farm_and_charm:yeast"
+    ]
+  ]
+}

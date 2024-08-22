@@ -1,27 +1,27 @@
 package net.satisfy.farm_and_charm.recipe;
 
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import org.jetbrains.annotations.NotNull;
 
-public class MincerRecipe implements Recipe<Container> {
+public class MincerRecipe implements Recipe<RecipeInput> {
 
-    final ResourceLocation id;
     private final String recipe_type;
     private final Ingredient input;
     private final ItemStack output;
 
-    public MincerRecipe(ResourceLocation id, String type, Ingredient input, ItemStack output) {
-        this.id = id;
+    public MincerRecipe(String type, Ingredient input, ItemStack output) {
         this.recipe_type = type;
         this.input = input;
         this.output = output;
@@ -47,12 +47,12 @@ public class MincerRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container inventory, Level world) {
-        return input.test(inventory.getItem(0));
+    public boolean matches(RecipeInput recipeInput, Level level) {
+        return input.test(recipeInput.getItem(0));
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container container, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
         return output.copy();
     }
 
@@ -62,13 +62,12 @@ public class MincerRecipe implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider provider) {
         return output.copy();
     }
 
-    @Override
     public @NotNull ResourceLocation getId() {
-        return id;
+        return RecipeTypeRegistry.MINCER_RECIPE_TYPE.getId();
     }
 
     @Override
@@ -88,27 +87,28 @@ public class MincerRecipe implements Recipe<Container> {
 
     public static class Serializer implements RecipeSerializer<MincerRecipe> {
 
+        public static final MapCodec<MincerRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                Codec.STRING.fieldOf("recipe_type").forGetter(MincerRecipe::getRecipeType),
+                Ingredient.CODEC.fieldOf("ingredient").forGetter(MincerRecipe::getInput),
+                ItemStack.CODEC.fieldOf("result").forGetter(MincerRecipe::getOutput)
+                ).apply(instance, MincerRecipe::new)
+        );
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, MincerRecipe> STREAM_CODEC = StreamCodec.composite(
+                ByteBufCodecs.fromCodec(Codec.STRING), MincerRecipe::getRecipeType,
+                Ingredient.CONTENTS_STREAM_CODEC, MincerRecipe::getInput,
+                ItemStack.STREAM_CODEC, MincerRecipe::getOutput,
+                MincerRecipe::new
+        );
+
         @Override
-        public @NotNull MincerRecipe fromJson(ResourceLocation id, JsonObject json) {
-            String recipe_type = GsonHelper.getAsString(json, "recipe_type");
-            Ingredient input = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-            return new MincerRecipe(id, recipe_type, input, output);
+        public @NotNull MapCodec<MincerRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public @NotNull MincerRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            Ingredient input = Ingredient.fromNetwork(buf);
-            ItemStack output = buf.readItem();
-            String recipe_type = buf.readUtf();
-            return new MincerRecipe(id, recipe_type, input, output);
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf buf, MincerRecipe recipe) {
-            recipe.input.toNetwork(buf);
-            buf.writeItem(recipe.output);
-            buf.writeUtf(recipe.recipe_type);
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, MincerRecipe> streamCodec() {
+            return STREAM_CODEC;
         }
     }
 }

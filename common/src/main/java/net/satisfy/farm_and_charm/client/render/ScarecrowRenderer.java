@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.satisfy.farm_and_charm.FarmAndCharm;
 import net.satisfy.farm_and_charm.block.ScarecrowBlock;
 import net.satisfy.farm_and_charm.block.entity.ScarecrowBlockEntity;
@@ -19,7 +18,7 @@ import org.joml.Quaternionf;
 
 public class ScarecrowRenderer implements BlockEntityRenderer<ScarecrowBlockEntity> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/scarecrow.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(FarmAndCharm.MOD_ID, "textures/entity/scarecrow.png");
     private final ModelPart scarecrow;
     private final ModelPart post;
     private float swayAngle = 0.0F;
@@ -60,8 +59,8 @@ public class ScarecrowRenderer implements BlockEntityRenderer<ScarecrowBlockEnti
         poseStack.mulPose(new Quaternionf().rotateX((float) Math.toRadians(angle)));
         poseStack.translate(-0.5, 0, -0.5);
 
-        scarecrow.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        post.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        scarecrow.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY);
+        post.render(poseStack, vertexConsumer, combinedLight, OverlayTexture.NO_OVERLAY);
 
         poseStack.popPose();
     }

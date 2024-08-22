@@ -1,0 +1,38 @@
+{
+  "parent": "farm_and_charm:main/place_feeding_trough",
+  "criteria": {
+    "water_sprinkler": {
+      "conditions": {
+        "location": [
+          {
+            "block": "farm_and_charm:water_sprinkler",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.farm_and_charm.place_water_sprinkler.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "farm_and_charm:water_sprinkler"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.farm_and_charm.place_water_sprinkler"
+    }
+  },
+  "requirements": [
+    [
+      "water_sprinkler"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

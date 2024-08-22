@@ -2,6 +2,7 @@ package net.satisfy.farm_and_charm.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -13,6 +14,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
@@ -24,7 +28,9 @@ import net.satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer, BlockEntityTicker<CraftingBowlBlockEntity> {
@@ -36,18 +42,18 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
     }
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
-        if (!this.tryLoadLootTable(compound))
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
+        if (!this.tryLoadLootTable(compoundTag))
             this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(compound, this.stacks);
+        ContainerHelper.loadAllItems(compoundTag, this.stacks, provider);
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        if (!this.trySaveLootTable(compound))
-            ContainerHelper.saveAllItems(compound, this.stacks);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
+        if(!this.trySaveLootTable(compoundTag))
+            ContainerHelper.saveAllItems(compoundTag, this.stacks, provider);
     }
 
     @Override
@@ -56,8 +62,8 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
     }
 
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        return this.saveWithoutMetadata();
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+        return this.saveWithoutMetadata(provider);
     }
 
     @Override
@@ -162,9 +168,13 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
             if (stirring > 0) {
                 if (stirred < CraftingBowlBlock.STIRS_NEEDED) {
                     stirred++;
-                    CraftingBowlRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.CRAFTING_BOWL_RECIPE_TYPE.get(), blockEntity, level).orElse(null);
-                    if (stirred == CraftingBowlBlock.STIRS_NEEDED && recipe != null) {
-                        recipe.getIngredients().forEach(ingredient -> {
+
+                    RecipeManager recipeManager = level.getRecipeManager();
+                    List<RecipeHolder<CraftingBowlRecipe>> recipes = recipeManager.getAllRecipesFor(RecipeTypeRegistry.CRAFTING_BOWL_RECIPE_TYPE.get());
+                    Optional<CraftingBowlRecipe> recipe = Optional.ofNullable(getRecipe(recipes, stacks));
+
+                    if (stirred == CraftingBowlBlock.STIRS_NEEDED && recipe.isPresent()) {
+                        recipe.get().getIngredients().forEach(ingredient -> {
                             int size = blockEntity.getItems().size();
                             for (int slot = 0; slot < size; slot++) {
                                 ItemStack stack = blockEntity.getItem(slot);
@@ -182,8 +192,8 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
                                 }
                             }
                         });
-                        ItemStack resultItem = recipe.getResultItem(level.registryAccess()).copy();
-                        resultItem.setCount(recipe.getOutputCount());
+                        ItemStack resultItem = recipe.get().getResultItem(level.registryAccess()).copy();
+                        resultItem.setCount(recipe.get().getOutputCount());
                         blockEntity.setItem(4, resultItem);
                     }
                 }
@@ -194,5 +204,27 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
                 level.setBlock(blockPos, blockState.setValue(CraftingBowlBlock.STIRRED, 0), 3);
             }
         }
+    }
+
+    private CraftingBowlRecipe getRecipe(List<RecipeHolder<CraftingBowlRecipe>> recipes, NonNullList<ItemStack> inventory) {
+        recipeLoop:
+        for (RecipeHolder<CraftingBowlRecipe> recipeHolder : recipes) {
+            CraftingBowlRecipe recipe = recipeHolder.value();
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                boolean ingredientFound = false;
+                for (int slotIndex = 1; slotIndex < inventory.size(); slotIndex++) {
+                    ItemStack slotItem = inventory.get(slotIndex);
+                    if (ingredient.test(slotItem)) {
+                        ingredientFound = true;
+                        break;
+                    }
+                }
+                if (!ingredientFound) {
+                    continue recipeLoop;
+                }
+            }
+            return recipe;
+        }
+        return null;
     }
 }

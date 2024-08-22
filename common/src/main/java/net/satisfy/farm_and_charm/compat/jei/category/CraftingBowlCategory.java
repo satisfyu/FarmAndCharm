@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 public class CraftingBowlCategory implements IRecipeCategory<CraftingBowlRecipe> {
     public static final RecipeType<CraftingBowlRecipe> DOUGHING = RecipeType.create(FarmAndCharm.MOD_ID, "doughing", CraftingBowlRecipe.class);
     public final static ResourceLocation TEXTURE =
-            new ResourceLocation(FarmAndCharm.MOD_ID, "textures/gui/crafting_bowl.png");
+            ResourceLocation.fromNamespaceAndPath(FarmAndCharm.MOD_ID, "textures/gui/crafting_bowl.png");
 
     private final IDrawable background;
     private final IDrawable icon;
