@@ -177,7 +177,6 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
 
             int crank = state.getValue(MincerBlock.CRANK);
             int cranked = state.getValue(MincerBlock.CRANKED);
-            int full_rotations = state.getValue(MincerBlock.FULL_ROTATIONS);
 
             if (crank > 0) {
                 if (cranked < MincerBlock.CRANKS_NEEDED) {
@@ -186,7 +185,6 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                 crank -= 1;
                 if (cranked >= MincerBlock.CRANKS_NEEDED) {
                     cranked = 0;
-                    full_rotations += 1;
 
                     RecipeManager recipeManager = level.getRecipeManager();
                     List<RecipeHolder<MincerRecipe>> recipes = recipeManager.getAllRecipesFor(RecipeTypeRegistry.MINCER_RECIPE_TYPE.get());
@@ -219,25 +217,19 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                             }
                         }
 
-                        if (full_rotations >= recipe_difficulty) {
-
+                        if (recipe_difficulty > 0) {
                             inputStack.shrink(1);
                             inputStack = inputStack.isEmpty() ? ItemStack.EMPTY : inputStack;
                             mincer.setItem(INPUT_SLOT, inputStack);
                             mincer.setItem(OUTPUT_SLOT, recipe.get().getResultItem(level.registryAccess()));
 
-                            level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, 0), Block.UPDATE_ALL);
+                            level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked), Block.UPDATE_ALL);
                             return;
                         }
 
                     }
-
-                    if (full_rotations >= 4) {
-                        level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, 0), Block.UPDATE_ALL);
-                        return;
-                    }
                 }
-                level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked).setValue(MincerBlock.FULL_ROTATIONS, full_rotations), Block.UPDATE_ALL);
+                level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked), Block.UPDATE_ALL);
             } else if (cranked > 0 && cranked < MincerBlock.CRANKS_NEEDED) {
                 level.setBlock(pos, state.setValue(MincerBlock.CRANKED, 0), Block.UPDATE_ALL);
             }

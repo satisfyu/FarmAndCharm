@@ -2,7 +2,7 @@
   "type": "farm_and_charm:pot_cooking",
   "ingredients": [
     {
-      "item": "minecraft:water_bucket"
+      "tag": "farm_and_charm:water_bottles"
     },
     {
       "item": "farm_and_charm:wild_nettle"

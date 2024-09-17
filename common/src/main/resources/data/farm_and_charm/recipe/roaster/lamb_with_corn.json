@@ -11,7 +11,7 @@
       "item": "farm_and_charm:lamb_ham"
     },
     {
-      "item": "farm_and_charm:butter"
+      "tag": "farm_and_charm:butter"
     }
   ],
   "container": {

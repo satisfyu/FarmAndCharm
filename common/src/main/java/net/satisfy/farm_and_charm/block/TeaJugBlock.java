@@ -60,15 +60,12 @@ public class TeaJugBlock extends FacingBlock {
             }
             if (!player.getAbilities().instabuild) {
                 itemStack.shrink(1);
-                ItemStack glassBottleStack = new ItemStack(Items.GLASS_BOTTLE);
-                if (!player.getInventory().add(glassBottleStack)) {
-                    player.drop(glassBottleStack, false);
-                }
             }
             return InteractionResult.sidedSuccess(world.isClientSide);
         }
         return super.useWithoutItem(state, world, pos, player, hit);
     }
+
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {

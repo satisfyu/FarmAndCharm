@@ -189,8 +189,15 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         if (recipe == null || recipe.getResultItem(access).isEmpty()) {
             return false;
         }
-        for (int slot : INGREDIENT_SLOTS) {
-            if (this.getItem(slot).isEmpty()) {
+        for (Ingredient ingredient : recipe.getIngredients()) {
+            boolean found = false;
+            for (int slot : INGREDIENT_SLOTS) {
+                if (ingredient.test(this.getItem(slot))) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
                 return false;
             }
         }
@@ -201,8 +208,7 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         } else if (!ItemStack.isSameItemSameComponents(outputSlotStack, recipeOutput)) {
             return false;
         } else {
-            final int outputSlotCount = outputSlotStack.getCount();
-            return outputSlotCount + recipeOutput.getCount() <= outputSlotStack.getMaxStackSize();
+            return outputSlotStack.getCount() + recipeOutput.getCount() <= outputSlotStack.getMaxStackSize();
         }
     }
 

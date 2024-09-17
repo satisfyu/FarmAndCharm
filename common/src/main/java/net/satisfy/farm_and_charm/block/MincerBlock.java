@@ -61,7 +61,6 @@ public class MincerBlock extends BaseEntityBlock {
     public static final int CRANKS_NEEDED = 20;
     public static final IntegerProperty CRANK = IntegerProperty.create("crank", 0, 32);
     public static final IntegerProperty CRANKED = IntegerProperty.create("cranked", 0, 100);
-    public static final IntegerProperty FULL_ROTATIONS = IntegerProperty.create("full_rotations", 0, 5);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final Supplier<VoxelShape> voxelShapeSupplier = () -> {
         VoxelShape shape = Shapes.empty();
@@ -80,7 +79,7 @@ public class MincerBlock extends BaseEntityBlock {
 
     public MincerBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(this.stateDefinition.any().setValue(CRANK, 0).setValue(CRANKED, 0).setValue(FULL_ROTATIONS, 0).setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(CRANK, 0).setValue(CRANKED, 0).setValue(FACING, Direction.NORTH));
     }
 
     @Override
@@ -100,7 +99,7 @@ public class MincerBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, CRANK, CRANKED, FULL_ROTATIONS);
+        builder.add(FACING, CRANK, CRANKED);
     }
 
     @Override
@@ -133,7 +132,6 @@ public class MincerBlock extends BaseEntityBlock {
 
             int crank = state.getValue(CRANK);
             int cranked = state.getValue(CRANKED);
-            int full_rotations = state.getValue(FULL_ROTATIONS);
 
             if (!playerStack.isEmpty() && crank == 0) {
 
@@ -193,11 +191,6 @@ public class MincerBlock extends BaseEntityBlock {
                     level.playSound(null, pos, DoApiSoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 1.0F, 2.5F);
                     return InteractionResult.SUCCESS;
                 }
-
-                if (full_rotations >= 4) {
-                    level.setBlockAndUpdate(pos, state.setValue(MincerBlock.FULL_ROTATIONS, 0));
-                    return InteractionResult.SUCCESS;
-                }
             }
 
             if (cranked >= CRANKS_NEEDED && crank == 0) {
@@ -217,11 +210,6 @@ public class MincerBlock extends BaseEntityBlock {
 
                 level.setBlock(pos, state.setValue(CRANK, 10), Block.UPDATE_ALL);
                 level.playSound(null, pos, DoApiSoundEventRegistry.MINCER_CRANKING.get(), SoundSource.BLOCKS, 0.05f, 2.5F);
-                return InteractionResult.SUCCESS;
-            }
-
-            if (full_rotations >= 4) {
-                level.setBlockAndUpdate(pos, state.setValue(MincerBlock.FULL_ROTATIONS, 0));
                 return InteractionResult.SUCCESS;
             }
 

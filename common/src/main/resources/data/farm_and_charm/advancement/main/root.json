@@ -17,14 +17,15 @@
     "background": "farm_and_charm:textures/block/fertilized_soil.png"
   },
   "criteria": {
-    "farm_and_charm": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {}
+    "example_criterion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "position": {
+          "x": {
+            "min": 1000000
+          }
+        }
+      }
     }
-  },
-  "requirements": [
-    [
-      "farm_and_charm"
-    ]
-  ]
+  }
 }

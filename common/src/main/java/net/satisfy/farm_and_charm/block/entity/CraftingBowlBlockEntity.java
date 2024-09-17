@@ -180,13 +180,16 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
                                 ItemStack stack = blockEntity.getItem(slot);
                                 if (ingredient.test(stack)) {
                                     ItemStack remainder = getRemainderItem(stack);
-                                    blockEntity.setItem(slot, ItemStack.EMPTY);
-                                    if (!remainder.isEmpty()) {
-                                        double offsetX = level.random.nextDouble() * 0.7D + 0.15D;
-                                        double offsetY = level.random.nextDouble() * 0.7D + 0.15D;
-                                        double offsetZ = level.random.nextDouble() * 0.7D + 0.15D;
-                                        ItemEntity itemEntity = new ItemEntity(level, blockPos.getX() + offsetX, blockPos.getY() + offsetY, blockPos.getZ() + offsetZ, remainder);
-                                        level.addFreshEntity(itemEntity);
+                                    stack.shrink(1);
+                                    if (stack.isEmpty()) {
+                                        blockEntity.setItem(slot, ItemStack.EMPTY);
+                                        if (!remainder.isEmpty()) {
+                                            double offsetX = level.random.nextDouble() * 0.7D + 0.15D;
+                                            double offsetY = level.random.nextDouble() * 0.7D + 0.15D;
+                                            double offsetZ = level.random.nextDouble() * 0.7D + 0.15D;
+                                            ItemEntity itemEntity = new ItemEntity(level, blockPos.getX() + offsetX, blockPos.getY() + offsetY, blockPos.getZ() + offsetZ, remainder);
+                                            level.addFreshEntity(itemEntity);
+                                        }
                                     }
                                     break;
                                 }
@@ -197,7 +200,6 @@ public class CraftingBowlBlockEntity extends RandomizableContainerBlockEntity im
                         blockEntity.setItem(4, resultItem);
                     }
                 }
-
                 stirring -= 1;
                 level.setBlock(blockPos, blockState.setValue(CraftingBowlBlock.STIRRING, stirring).setValue(CraftingBowlBlock.STIRRED, stirred), 3);
             } else if (stirred > 0 && stirred < CraftingBowlBlock.STIRS_NEEDED) {

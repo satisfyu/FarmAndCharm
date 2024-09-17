@@ -115,6 +115,7 @@ public class Farm_And_Charm_JEIPlugin implements IModPlugin {
         registration.addRecipeCatalyst(ObjectRegistry.ROASTER.get().asItem().getDefaultInstance(), RoasterCategory.ROASTER);
         registration.addRecipeCatalyst(ObjectRegistry.MINCER.get().asItem().getDefaultInstance(), MincerCategory.MINCING_TYPE);
         registration.addRecipeCatalyst(ObjectRegistry.SILO_WOOD.get().asItem().getDefaultInstance(), SiloCategory.DRYING_TYPE);
+        registration.addRecipeCatalyst(ObjectRegistry.SILO_COPPER.get().asItem().getDefaultInstance(), SiloCategory.DRYING_TYPE);
 
     }
 }
