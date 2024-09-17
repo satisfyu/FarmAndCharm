@@ -6,7 +6,7 @@ architectury {
     neoForge()
 }
 
-def jarFileName = 'letsdo-farm_and_charm-forge'
+def jarFileName = 'letsdo-farm_and_charm-neoforge'
 
 archivesBaseName = jarFileName
 
@@ -16,7 +16,7 @@ repositories {
 
 configurations {
     common
-    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    shadowCommon
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
     developmentNeoForge.extendsFrom common
@@ -37,7 +37,7 @@ dependencies {
 
     forgeRuntimeLibrary("blue.endless:jankson:${jankson_version}")
 
-    modImplementation "maven.modrinth:do-api:${project.doapi_version}-forge"
+    modImplementation "maven.modrinth:do-api:${project.doapi_version}-neoforge"
 
     modImplementation "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")

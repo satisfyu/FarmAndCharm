@@ -55,7 +55,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-@SuppressWarnings("deprecation")
 public class MincerBlock extends BaseEntityBlock {
     public static final MapCodec<MincerBlock> CODEC = simpleCodec(MincerBlock::new);
     public static final int CRANKS_NEEDED = 20;
