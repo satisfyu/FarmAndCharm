@@ -14,7 +14,7 @@ public class FeastEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.getCommandSenderWorld().isClientSide && entity instanceof Player player) {
             FoodData foodData = player.getFoodData();
 
@@ -23,22 +23,24 @@ public class FeastEffect extends MobEffect {
 
             long worldTime = player.getCommandSenderWorld().getDayTime() % 24000;
 
-            if (foodData.needsFood() || player.hasEffect(MobEffects.REGENERATION) || foodData.getSaturationLevel() <= 0f) {
-                if (!shouldHeal) {
-                    if (foodData.getFoodLevel() > 3 || foodData.getSaturationLevel() <= 0f) {
+            if (!shouldHeal) {
+                if (foodData.needsFood()) {
+                    if (foodData.getFoodLevel() > 3) {
                         foodData.setFoodLevel(Math.max(foodData.getFoodLevel() - 1, 3));
                     }
                     foodData.addExhaustion(-4.0f);
                 }
-                if (worldTime >= 10000 && worldTime <= 13000) {
-                    foodData.eat(6, 0.6f);
-                }
+            }
+
+            if (worldTime >= 10000 && worldTime <= 13000) {
+                foodData.eat(6, 0.6f);
             }
         }
+        return true;
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int i, int j) {
         return true;
     }
 }

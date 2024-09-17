@@ -49,7 +49,7 @@ public class FertilizedFarmlandBlock extends FarmBlock {
     private void applyBonemealEffect(ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
         BlockPos posAbove = blockPos.above();
         BlockState stateAbove = serverLevel.getBlockState(posAbove);
-        if (stateAbove.getBlock() instanceof BonemealableBlock bonemealableBlock && bonemealableBlock.isValidBonemealTarget(serverLevel, posAbove, stateAbove, false)) {
+        if (stateAbove.getBlock() instanceof BonemealableBlock bonemealableBlock && bonemealableBlock.isValidBonemealTarget(serverLevel, posAbove, stateAbove)) {
             bonemealableBlock.performBonemeal(serverLevel, randomSource, posAbove, stateAbove);
             serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, posAbove.getX() + 0.5, posAbove.getY() + 1.0, posAbove.getZ() + 0.5, 5, 0.5, 0.5, 0.5, 0.5);
         }

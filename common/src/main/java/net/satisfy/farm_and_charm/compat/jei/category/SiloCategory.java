@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SiloCategory implements IRecipeCategory<SiloRecipe> {
     public static final RecipeType<SiloRecipe> DRYING_TYPE = RecipeType.create(FarmAndCharm.MOD_ID, "drying", SiloRecipe.class);
-    public final static ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/gui/silo.png");
+    public final static ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(FarmAndCharm.MOD_ID, "textures/gui/silo.png");
 
     private final IDrawable background;
     private final IDrawable icon;

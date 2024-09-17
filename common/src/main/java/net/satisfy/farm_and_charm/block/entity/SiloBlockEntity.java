@@ -4,6 +4,7 @@ import de.cristelknight.doapi.common.util.GeneralUtil;
 import de.cristelknight.doapi.common.world.ImplementedInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -207,7 +209,7 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     private void dry() {
         for (int fresh = 0; fresh < this.getCapacity(); fresh++) {
             ItemStack freshStack = this.getItem(fresh);
-            Optional<SiloRecipe> recipe = SiloBlock.getDryItemRecipe(level, freshStack);
+            Optional<RecipeHolder<SiloRecipe>> recipe = SiloBlock.getDryItemRecipe(level, freshStack);
             if (recipe.isPresent() && !freshStack.isEmpty()) {
                 int dryTime = this.times[fresh];
                 dryTime++;
@@ -215,7 +217,7 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
                     for (int finish = MAX_CAPACITY; finish < MAX_CAPACITY + this.getCapacity(); finish++)
                         if (this.getItem(finish).isEmpty()) {
                             ItemStack finishStack = this.removeItem(fresh, freshStack.getCount());
-                            ItemStack outputStack = recipe.get().getResultItem(level.registryAccess()).copyWithCount(finishStack.getCount());
+                            ItemStack outputStack = recipe.get().value().getResultItem(level.registryAccess()).copyWithCount(finishStack.getCount());
                             this.setItem(finish, SiloBlock.isDryItem(level, finishStack) ? outputStack : finishStack);
                             dryTime = 0;
                             break;
@@ -315,27 +317,26 @@ public class SiloBlockEntity extends BlockEntity implements IMultiBlockEntityCon
     }
 
     @Override
-    protected void saveAdditional(CompoundTag compoundTag) {
-        super.saveAdditional(compoundTag);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
         if (this.controller != null)
             GeneralUtil.putBlockPos(compoundTag, this.controller);
         compoundTag.putBoolean("Update", this.updateConnectivity);
         compoundTag.putInt("Width", this.width);
         compoundTag.putInt("Height", this.height);
-        ContainerHelper.saveAllItems(compoundTag, this.items);
+        ContainerHelper.saveAllItems(compoundTag, this.items, provider);
         compoundTag.putIntArray("Times", this.times);
     }
 
-
     @Override
-    public void load(CompoundTag compoundTag) {
-        super.load(compoundTag);
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
         this.controller = GeneralUtil.readBlockPos(compoundTag);
         this.updateConnectivity = !compoundTag.contains("Update") || compoundTag.getBoolean("Update");
         this.width = compoundTag.contains("Width") ? compoundTag.getInt("Width") : 1;
         this.height = compoundTag.contains("Height") ? compoundTag.getInt("Height") : 1;
         this.items = NonNullList.withSize(MAX_CAPACITY * 2, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(compoundTag, this.items);
+        ContainerHelper.loadAllItems(compoundTag, this.items, provider);
         this.times = compoundTag.contains("Times") ? compoundTag.getIntArray("Times") : new int[MAX_CAPACITY];
     }
 

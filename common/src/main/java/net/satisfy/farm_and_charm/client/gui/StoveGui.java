@@ -13,7 +13,7 @@ import net.satisfy.farm_and_charm.util.FarmAndCharmIdentifier;
 
 @Environment(EnvType.CLIENT)
 public class StoveGui extends AbstractRecipeBookGUIScreen<StoveGuiHandler> {
-    public static final ResourceLocation BG = new FarmAndCharmIdentifier("textures/gui/stove_gui.png");
+    public static final ResourceLocation BG = FarmAndCharmIdentifier.of("textures/gui/stove_gui.png");
 
     public static final int ARROW_X = 93;
     public static final int ARROW_Y = 32;

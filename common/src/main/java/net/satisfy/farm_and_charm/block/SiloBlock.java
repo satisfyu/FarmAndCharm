@@ -12,6 +12,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -72,8 +73,8 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
         return getDryItemRecipe(level, itemStack).isPresent();
     }
 
-    public static Optional<SiloRecipe> getDryItemRecipe(Level level, ItemStack itemStack) {
-        return level.getRecipeManager().getAllRecipesFor(RecipeTypeRegistry.SILO_RECIPE_TYPE.get()).stream().filter(siloRecipe -> siloRecipe.getInput().test(itemStack)).findFirst();
+    public static Optional<RecipeHolder<SiloRecipe>> getDryItemRecipe(Level level, ItemStack itemStack) {
+        return level.getRecipeManager().getAllRecipesFor(RecipeTypeRegistry.SILO_RECIPE_TYPE.get()).stream().filter(siloRecipe -> siloRecipe.value().getInput().test(itemStack)).findFirst();
     }
 
     public Direction getFacing(BlockState state) {
@@ -85,7 +86,8 @@ public class SiloBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+    public @NotNull InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
+        InteractionHand interactionHand = blockHitResult.getDirection() == Direction.UP ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
         ItemStack itemStack = player.getItemInHand(interactionHand);
         if (level.isClientSide)
             return itemStack.isEmpty() || isDryItem(level, itemStack) ? InteractionResult.SUCCESS : isSilo(itemStack) || player.isDiscrete() ? InteractionResult.PASS : InteractionResult.CONSUME;

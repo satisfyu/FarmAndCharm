@@ -1,27 +1,26 @@
 package net.satisfy.farm_and_charm.recipe;
 
-import com.google.gson.JsonObject;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import org.jetbrains.annotations.NotNull;
 
-public class SiloRecipe implements Recipe<Container> {
-
-    final ResourceLocation id;
+public class SiloRecipe implements Recipe<RecipeInput> {
     private final String recipe_type;
     private final Ingredient input;
     private final ItemStack output;
 
-    public SiloRecipe(ResourceLocation id, String type, Ingredient input, ItemStack output) {
-        this.id = id;
+    public SiloRecipe(String type, Ingredient input, ItemStack output) {
         this.recipe_type = type;
         this.input = input;
         this.output = output;
@@ -47,9 +46,9 @@ public class SiloRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container inventory, Level world) {
-        for (int i = 0; i < inventory.getContainerSize(); i++) {
-            if(input.test(inventory.getItem(i))) {
+    public boolean matches(RecipeInput recipeInput, Level level) {
+        for (int i = 0; i < recipeInput.size(); i++) {
+            if(input.test(recipeInput.getItem(i))) {
                 return true;
             }
         }
@@ -57,7 +56,7 @@ public class SiloRecipe implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull ItemStack assemble(Container container, RegistryAccess registryAccess) {
+    public @NotNull ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
         return output.copy();
     }
 
@@ -67,13 +66,12 @@ public class SiloRecipe implements Recipe<Container> {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
+    public @NotNull ItemStack getResultItem(HolderLookup.Provider provider) {
         return output.copy();
     }
 
-    @Override
     public @NotNull ResourceLocation getId() {
-        return id;
+        return RecipeTypeRegistry.SILO_RECIPE_TYPE.getId();
     }
 
     @Override
@@ -92,28 +90,29 @@ public class SiloRecipe implements Recipe<Container> {
     }
 
     public static class Serializer implements RecipeSerializer<SiloRecipe> {
+        public static final MapCodec<SiloRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+                        Codec.STRING.fieldOf("recipe_type").forGetter(SiloRecipe::getRecipeType),
+                        Ingredient.CODEC.fieldOf("ingredient").forGetter(SiloRecipe::getInput),
+                        ItemStack.CODEC.fieldOf("result").forGetter(SiloRecipe::getOutput)
+                ).apply(instance, SiloRecipe::new)
+        );
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, SiloRecipe> STREAM_CODEC = StreamCodec.composite(
+                ByteBufCodecs.fromCodec(Codec.STRING), SiloRecipe::getRecipeType,
+                Ingredient.CONTENTS_STREAM_CODEC, SiloRecipe::getInput,
+                ItemStack.STREAM_CODEC, SiloRecipe::getOutput,
+                SiloRecipe::new
+        );
+
 
         @Override
-        public @NotNull SiloRecipe fromJson(ResourceLocation id, JsonObject json) {
-            String recipe_type = GsonHelper.getAsString(json, "recipe_type");
-            Ingredient input = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "ingredient"));
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-            return new SiloRecipe(id, recipe_type, input, output);
+        public @NotNull MapCodec<SiloRecipe> codec() {
+            return CODEC;
         }
 
         @Override
-        public @NotNull SiloRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            Ingredient input = Ingredient.fromNetwork(buf);
-            ItemStack output = buf.readItem();
-            String recipe_type = buf.readUtf();
-            return new SiloRecipe(id, recipe_type, input, output);
-        }
-
-        @Override
-        public void toNetwork(FriendlyByteBuf buf, SiloRecipe recipe) {
-            recipe.input.toNetwork(buf);
-            buf.writeItem(recipe.output);
-            buf.writeUtf(recipe.recipe_type);
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, SiloRecipe> streamCodec() {
+            return STREAM_CODEC;
         }
     }
 }

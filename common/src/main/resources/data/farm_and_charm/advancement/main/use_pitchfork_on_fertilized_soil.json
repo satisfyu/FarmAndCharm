@@ -1,0 +1,52 @@
+{
+  "parent": "farm_and_charm:main/place_fertilized_soil",
+  "criteria": {
+    "use_fertilized_soil": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "farm_and_charm:fertilized_soil"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "farm_and_charm:pitchfork"
+              ]
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.farm_and_charm.use_pitchfork_on_fertilized_soil.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "count": 1,
+      "id": "farm_and_charm:pitchfork"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.farm_and_charm.use_pitchfork_on_fertilized_soil"
+    }
+  },
+  "requirements": [
+    [
+      "use_fertilized_soil"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

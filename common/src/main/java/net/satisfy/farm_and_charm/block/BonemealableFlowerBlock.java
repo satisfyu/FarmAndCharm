@@ -10,15 +10,16 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Holder;
 
 public class BonemealableFlowerBlock extends FlowerBlock implements BonemealableBlock {
-    public BonemealableFlowerBlock(MobEffect mobEffect, int i, Properties properties) {
-        super(mobEffect, i, properties);
+    public BonemealableFlowerBlock(Holder<MobEffect> mobEffectHolder, int i, Properties properties) {
+        super(mobEffectHolder, i, properties);
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
-        return true;
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return false;
     }
 
     @Override
