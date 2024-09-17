@@ -5,10 +5,10 @@ import de.cristelknight.doapi.client.recipebook.IRecipeBookGroup;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.satisfy.farm_and_charm.registry.ObjectRegistry;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public enum RoasterRecipeBookGroup implements IRecipeBookGroup {
     }
 
     @Override
-    public boolean fitRecipe(Recipe<? extends Container> recipe, RegistryAccess registryAccess) {
+    public boolean fitRecipe(Recipe<? extends RecipeInput> recipe, RegistryAccess registryAccess) {
         return true;
     }
 }

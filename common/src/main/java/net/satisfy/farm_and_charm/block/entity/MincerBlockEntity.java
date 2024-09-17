@@ -1,9 +1,6 @@
 package net.satisfy.farm_and_charm.block.entity;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.core.Position;
+import net.minecraft.core.*;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -18,6 +15,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -33,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class MincerBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer, BlockEntityTicker<MincerBlockEntity> {
@@ -63,18 +64,18 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     }
 
     @Override
-    public void load(CompoundTag compound) {
-        super.load(compound);
-        if (!this.tryLoadLootTable(compound))
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
+        if (!this.tryLoadLootTable(compoundTag))
             this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(compound, this.stacks);
+        ContainerHelper.loadAllItems(compoundTag, this.stacks, provider);
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        if (!this.trySaveLootTable(compound))
-            ContainerHelper.saveAllItems(compound, this.stacks);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
+        if (!this.trySaveLootTable(compoundTag))
+            ContainerHelper.saveAllItems(compoundTag, this.stacks, provider);
     }
 
     @Override
@@ -83,8 +84,8 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
     }
 
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        return this.saveWithoutMetadata();
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+        return this.saveWithoutMetadata(provider);
     }
 
     @Override
@@ -185,13 +186,16 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                 if (cranked >= MincerBlock.CRANKS_NEEDED) {
                     cranked = 0;
 
-                    MincerRecipe recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.MINCER_RECIPE_TYPE.get(), mincer, level).orElse(null);
+                    RecipeManager recipeManager = level.getRecipeManager();
+                    List<RecipeHolder<MincerRecipe>> recipes = recipeManager.getAllRecipesFor(RecipeTypeRegistry.MINCER_RECIPE_TYPE.get());
+                    Optional<MincerRecipe> recipe = Optional.ofNullable(getRecipe(recipes, stacks));
 
-                    if (recipe != null) {
+
+                    if (recipe.isPresent()) {
 
                         ItemStack inputStack = this.stacks.get(INPUT_SLOT);
 
-                        String recipe_type = recipe.getRecipeType();
+                        String recipe_type = recipe.get().getRecipeType();
                         int recipe_difficulty = 5;
 
                         switch (recipe_type) {
@@ -217,7 +221,7 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                             inputStack.shrink(1);
                             inputStack = inputStack.isEmpty() ? ItemStack.EMPTY : inputStack;
                             mincer.setItem(INPUT_SLOT, inputStack);
-                            mincer.setItem(OUTPUT_SLOT, recipe.getResultItem(level.registryAccess()));
+                            mincer.setItem(OUTPUT_SLOT, recipe.get().getResultItem(level.registryAccess()));
 
                             level.setBlock(pos, state.setValue(MincerBlock.CRANK, crank).setValue(MincerBlock.CRANKED, cranked), Block.UPDATE_ALL);
                             return;
@@ -230,5 +234,26 @@ public class MincerBlockEntity extends RandomizableContainerBlockEntity implemen
                 level.setBlock(pos, state.setValue(MincerBlock.CRANKED, 0), Block.UPDATE_ALL);
             }
         }
+    }
+
+    private MincerRecipe getRecipe(List<RecipeHolder<MincerRecipe>> recipes, NonNullList<ItemStack> inventory) {
+        recipeLoop:
+        for (RecipeHolder<MincerRecipe> recipeHolder : recipes) {
+            MincerRecipe recipe = recipeHolder.value();
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                boolean ingredientFound = false;
+                for (ItemStack slotItem : inventory) {
+                    if (ingredient.test(slotItem)) {
+                        ingredientFound = true;
+                        break;
+                    }
+                }
+                if (!ingredientFound) {
+                    continue recipeLoop;
+                }
+            }
+            return recipe;
+        }
+        return null;
     }
 }

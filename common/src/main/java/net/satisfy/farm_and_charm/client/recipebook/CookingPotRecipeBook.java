@@ -7,13 +7,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.*;
 import net.satisfy.farm_and_charm.recipe.CookingPotRecipe;
 import net.satisfy.farm_and_charm.registry.RecipeTypeRegistry;
 import org.jetbrains.annotations.Nullable;
@@ -80,11 +77,6 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    protected void setCraftableButtonTexture() {
-        this.toggleCraftableButton.initTextureValues(152, 41, 28, 18, TEXTURE);
-    }
-
-    @Override
     public void slotClicked(@Nullable Slot slot) {
         super.slotClicked(slot);
         if (slot != null && slot.index < this.screenHandler.getCraftingSlotCount()) {
@@ -93,7 +85,7 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
     }
 
     @Override
-    protected RecipeType<? extends Recipe<Container>> getRecipeType() {
+    protected RecipeType<? extends Recipe<RecipeInput>> getRecipeType() {
         return RecipeTypeRegistry.COOKING_POT_RECIPE_TYPE.get();
     }
 
@@ -109,6 +101,11 @@ public class CookingPotRecipeBook extends PrivateRecipeBookWidget {
 
     @Override
     public void setFocused(boolean bl) {
+
+    }
+
+    @Override
+    public void recipesShown(List<RecipeHolder<?>> list) {
 
     }
 }

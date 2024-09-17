@@ -1,0 +1,22 @@
+{
+  "type": "farm_and_charm:pot_cooking",
+  "ingredients": [
+    {
+      "tag": "farm_and_charm:tomato"
+    },
+    {
+      "tag": "farm_and_charm:tomato"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "container": {
+    "id": "minecraft:bowl",
+    "count": 1
+  },
+  "result": {
+    "id": "farm_and_charm:simple_tomato_soup",
+    "count": 1
+  }
+}

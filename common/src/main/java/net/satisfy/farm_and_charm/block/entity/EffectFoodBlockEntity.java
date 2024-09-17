@@ -2,9 +2,10 @@ package net.satisfy.farm_and_charm.block.entity;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -38,23 +39,23 @@ public class EffectFoodBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
-        this.effects = EffectFoodHelper.fromNbt(nbt != null ? nbt.getList(STORED_EFFECTS_KEY, 10) : new ListTag());
+    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundTag, provider);
+        this.effects = EffectFoodHelper.fromNbt(compoundTag.getList(STORED_EFFECTS_KEY, 10));
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
+    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
+        super.saveAdditional(compoundTag, provider);
         if (effects == null) {
             return;
         }
         ListTag nbtList = new ListTag();
         for (Pair<MobEffectInstance, Float> effect : effects) {
-            nbtList.add(EffectFoodHelper.createNbt((short) MobEffect.getId(effect.getFirst().getEffect()), effect));
+            nbtList.add(EffectFoodHelper.createNbt((short) BuiltInRegistries.MOB_EFFECT.asHolderIdMap().getId(effect.getFirst().getEffect()), effect));
 
         }
-        nbt.put(STORED_EFFECTS_KEY, nbtList);
+        compoundTag.put(STORED_EFFECTS_KEY, nbtList);
     }
 }
 

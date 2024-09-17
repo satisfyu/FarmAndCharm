@@ -3,10 +3,10 @@ package net.satisfy.farm_and_charm.compat.rei;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.satisfy.farm_and_charm.compat.rei.cooking.CookingPotCategory;
 import net.satisfy.farm_and_charm.compat.rei.cooking.CookingPotDisplay;
 import net.satisfy.farm_and_charm.compat.rei.doughing.CraftingBowlCategory;
@@ -51,7 +51,7 @@ public class Farm_And_CharmREIClientPlugin {
 
     }
 
-    public static List<Ingredient> ingredients(Recipe<Container> recipe, ItemStack stack) {
+    public static List<Ingredient> ingredients(Recipe<RecipeInput> recipe, ItemStack stack) {
         List<Ingredient> l = new ArrayList<>(recipe.getIngredients());
         l.add(0, Ingredient.of(stack.getItem()));
         return l;

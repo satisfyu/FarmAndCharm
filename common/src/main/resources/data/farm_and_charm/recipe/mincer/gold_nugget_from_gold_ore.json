@@ -1,0 +1,16 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:gold_ore"
+  },
+  "recipe_type": "METAL",
+  "result": {
+<<<<<<<< HEAD:common/src/main/resources/data/farm_and_charm/recipe/mincer/gold_nugget_from_gold_ore.json
+    "id": "minecraft:gold_nugget",
+    "count": 5
+========
+    "item": "minecraft:raw_gold",
+    "count": 3
+>>>>>>>> 1.21:common/src/main/resources/data/farm_and_charm/recipe/mincer/raw_gold_from_gold_ore.json
+  }
+}

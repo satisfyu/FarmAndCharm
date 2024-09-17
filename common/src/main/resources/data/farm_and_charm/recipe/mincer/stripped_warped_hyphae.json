@@ -1,0 +1,15 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:warped_hyphae"
+  },
+  "recipe_type": "WOOD",
+  "result": {
+<<<<<<<< HEAD:common/src/main/resources/data/farm_and_charm/recipe/mincer/stripped_crimson_wood.json
+    "id": "minecraft:stripped_crimson_stem",
+========
+    "item": "minecraft:stripped_warped_hyphae",
+>>>>>>>> 1.21:common/src/main/resources/data/farm_and_charm/recipe/mincer/stripped_warped_hyphae.json
+    "count": 1
+  }
+}

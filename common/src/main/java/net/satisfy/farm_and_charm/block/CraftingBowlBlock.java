@@ -1,5 +1,6 @@
 package net.satisfy.farm_and_charm.block;
 
+import com.mojang.serialization.MapCodec;
 import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
@@ -46,6 +48,7 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class CraftingBowlBlock extends BaseEntityBlock {
+    public static final MapCodec<CraftingBowlBlock> CODEC = simpleCodec(CraftingBowlBlock::new);
     public static final int STIRS_NEEDED = 50;
     public static final IntegerProperty STIRRING = IntegerProperty.create("stirring", 0, 32);
     public static final IntegerProperty STIRRED = IntegerProperty.create("stirred", 0, 100);
@@ -54,6 +57,11 @@ public class CraftingBowlBlock extends BaseEntityBlock {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(STIRRING, 0));
         this.registerDefaultState(this.stateDefinition.any().setValue(STIRRED, 0));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -87,7 +95,8 @@ public class CraftingBowlBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected @NotNull InteractionResult useWithoutItem(BlockState blockState, Level world, BlockPos pos, Player player, BlockHitResult blockHitResult) {
+        InteractionHand hand = blockHitResult.getDirection() == Direction.UP ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
         BlockEntity blockEntity = world.getBlockEntity(pos);
         ItemStack itemStack = player.getItemInHand(hand);
         if (blockEntity instanceof CraftingBowlBlockEntity bowlEntity) {
@@ -211,7 +220,7 @@ public class CraftingBowlBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.farm_and_charm.canbeplaced").withStyle(ChatFormatting.GRAY));
+    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+        list.add(Component.translatable("tooltip.farm_and_charm.canbeplaced").withStyle(ChatFormatting.GRAY));
     }
 }

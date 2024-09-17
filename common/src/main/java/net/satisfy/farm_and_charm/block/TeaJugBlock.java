@@ -46,7 +46,8 @@ public class TeaJugBlock extends FacingBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionHand hand = player.getUsedItemHand();
         ItemStack itemStack = player.getItemInHand(hand);
         if (itemStack.getItem() == Items.GLASS_BOTTLE && state.getValue(FILL) > 0) {
             ItemStack teaItemStack = new ItemStack(getTeaItem(state));
@@ -62,7 +63,7 @@ public class TeaJugBlock extends FacingBlock {
             }
             return InteractionResult.sidedSuccess(world.isClientSide);
         }
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useWithoutItem(state, world, pos, player, hit);
     }
 
 
@@ -105,8 +106,9 @@ public class TeaJugBlock extends FacingBlock {
         return Block.box(5, 0, 5, 11, 10, 11);
     }
 
+
     @Override
-    public void appendHoverText(ItemStack itemStack, BlockGetter world, List<Component> tooltip, TooltipFlag tooltipContext) {
-        tooltip.add(Component.translatable("tooltip.farm_and_charm.canbeplaced").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
+    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+        list.add(Component.translatable("tooltip.farm_and_charm.canbeplaced").withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
     }
 }

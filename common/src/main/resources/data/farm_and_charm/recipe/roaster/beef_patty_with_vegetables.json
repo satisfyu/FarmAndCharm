@@ -1,0 +1,31 @@
+{
+  "type": "farm_and_charm:roaster",
+  "ingredients": [
+    {
+      "item": "minecraft:beef"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "tag": "farm_and_charm:butter"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "tag": "farm_and_charm:cabbage"
+    }
+  ],
+  "container": {
+    "id": "minecraft:bowl",
+    "count": 1
+  },
+  "result": {
+    "id": "farm_and_charm:beef_patty_with_vegetables",
+    "count": 2
+  }
+}

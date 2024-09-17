@@ -1,0 +1,28 @@
+{
+  "type": "farm_and_charm:roaster",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:bacon"
+    },
+    {
+      "item": "farm_and_charm:bacon"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "tag": "farm_and_charm:butter"
+    }
+  ],
+  "container": {
+    "id": "minecraft:bowl",
+    "count": 1
+  },
+  "result": {
+    "id": "farm_and_charm:bacon_with_eggs",
+    "count": 3
+  }
+}

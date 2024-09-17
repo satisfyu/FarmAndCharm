@@ -1,9 +1,12 @@
 package net.satisfy.farm_and_charm.util;
 
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -43,9 +46,14 @@ public enum EquipmentTiers implements Tier {
     }
 
     @Override
-    public int getLevel() {
-        return this.level;
+    public @NotNull TagKey<Block> getIncorrectBlocksForDrops() { // I don't need to port this method because it is deprecated... right?
+        return BlockTags.INCORRECT_FOR_STONE_TOOL;
     }
+
+//    @Override
+//    public int getLevel() {
+//        return this.level;
+//    }
 
     @Override
     public int getEnchantmentValue() {

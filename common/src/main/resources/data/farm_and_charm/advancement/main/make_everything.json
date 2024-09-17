@@ -1,0 +1,479 @@
+{
+  "parent": "farm_and_charm:main/root",
+  "display": {
+    "icon": {
+      "count": 1,
+      "id": "farm_and_charm:stuffed_chicken"
+    },
+    "title": {
+      "translate": "advancement.farm_and_charm.make_everything"
+    },
+    "description": {
+      "translate": "advancement.farm_and_charm.make_everything.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 800,
+    "loot": [
+      "farm_and_charm:advancements/completionist"
+    ]
+  },
+  "criteria": {
+    "farm_and_charm:farmer_salad": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:farmer_salad"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:goulash": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:goulash"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:simple_tomato_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:simple_tomato_soup"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:barley_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:barley_soup"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:onion_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:onion_soup"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:potato_soup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:potato_soup"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:pasta_with_onion_sauce": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:pasta_with_onion_sauce"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:corn_grits": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:corn_grits"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:oatmeal_with_strawberries": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:oatmeal_with_strawberries"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:sausage_with_oat_patty": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:sausage_with_oat_patty"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:lamb_with_corn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:lamb_with_corn"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:beef_patty_with_vegetables": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:beef_patty_with_vegetables"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:barley_patties_with_potatoes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:barley_patties_with_potatoes"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:bacon_with_eggs": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:bacon_with_eggs"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:chicken_wrapped_in_bacon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:chicken_wrapped_in_bacon"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:cooked_salmon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:cooked_salmon"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:cooked_cod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:cooked_cod"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:roasted_chicken": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:roasted_chicken"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:oat_pancake": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:oat_pancake"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:roasted_corn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:roasted_corn"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:potato_with_roast_meat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:potato_with_roast_meat"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:baked_lamb_ham": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:baked_lamb_ham"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:farmers_breakfast": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:farmers_breakfast"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:stuffed_chicken": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:stuffed_chicken"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:stuffed_rabbit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:stuffed_rabbit"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:grandmothers_strawberry_cake": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:grandmothers_strawberry_cake"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:farmers_bread": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:farmers_bread"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:strawberry_tea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:strawberry_tea"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:nettle_tea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:nettle_tea"
+            ]
+          }
+        ]
+      }
+    },
+    "farm_and_charm:ribwort_tea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "farm_and_charm:ribwort_tea"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "farm_and_charm:farmer_salad"
+    ],
+    [
+      "farm_and_charm:goulash"
+    ],
+    [
+      "farm_and_charm:simple_tomato_soup"
+    ],
+    [
+      "farm_and_charm:barley_soup"
+    ],
+    [
+      "farm_and_charm:onion_soup"
+    ],
+    [
+      "farm_and_charm:potato_soup"
+    ],
+    [
+      "farm_and_charm:pasta_with_onion_sauce"
+    ],
+    [
+      "farm_and_charm:corn_grits"
+    ],
+    [
+      "farm_and_charm:oatmeal_with_strawberries"
+    ],
+    [
+      "farm_and_charm:sausage_with_oat_patty"
+    ],
+    [
+      "farm_and_charm:lamb_with_corn"
+    ],
+    [
+      "farm_and_charm:beef_patty_with_vegetables"
+    ],
+    [
+      "farm_and_charm:barley_patties_with_potatoes"
+    ],
+    [
+      "farm_and_charm:bacon_with_eggs"
+    ],
+    [
+      "farm_and_charm:chicken_wrapped_in_bacon"
+    ],
+    [
+      "farm_and_charm:cooked_salmon"
+    ],
+    [
+      "farm_and_charm:cooked_cod"
+    ],
+    [
+      "farm_and_charm:roasted_chicken"
+    ],
+    [
+      "farm_and_charm:oat_pancake"
+    ],
+    [
+      "farm_and_charm:roasted_corn"
+    ],
+    [
+      "farm_and_charm:potato_with_roast_meat"
+    ],
+    [
+      "farm_and_charm:baked_lamb_ham"
+    ],
+    [
+      "farm_and_charm:farmers_breakfast"
+    ],
+    [
+      "farm_and_charm:stuffed_chicken"
+    ],
+    [
+      "farm_and_charm:stuffed_rabbit"
+    ],
+    [
+      "farm_and_charm:grandmothers_strawberry_cake"
+    ],
+    [
+      "farm_and_charm:farmers_bread"
+    ],
+    [
+      "farm_and_charm:strawberry_tea"
+    ],
+    [
+      "farm_and_charm:nettle_tea"
+    ],
+    [
+      "farm_and_charm:ribwort_tea"
+    ]
+  ]
+}
