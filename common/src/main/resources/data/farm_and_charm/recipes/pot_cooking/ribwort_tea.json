@@ -1,0 +1,21 @@
+{
+  "type": "farm_and_charm:pot_cooking",
+  "ingredients": [
+    {
+      "tag": "farm_and_charm:water_bottles"
+    },
+    {
+      "item": "farm_and_charm:wild_ribwort"
+    },
+    {
+      "item": "farm_and_charm:wild_ribwort"
+    }
+  ],
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "item": "farm_and_charm:ribwort_tea",
+    "count": 1
+  }
+}

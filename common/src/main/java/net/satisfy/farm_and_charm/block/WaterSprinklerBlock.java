@@ -1,6 +1,5 @@
 package net.satisfy.farm_and_charm.block;
 
-import com.mojang.serialization.MapCodec;
 import de.cristelknight.doapi.common.registry.DoApiSoundEventRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,7 +22,6 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
 public class WaterSprinklerBlock extends BaseEntityBlock {
-    public static final MapCodec<WaterSprinklerBlock> CODEC = simpleCodec(WaterSprinklerBlock::new);
 
     private static final VoxelShape SHAPE = Shapes.or(
             Shapes.box(0.0625, 0, 0.0625, 0.9375, 0.0625, 0.9375),
@@ -36,11 +34,6 @@ public class WaterSprinklerBlock extends BaseEntityBlock {
 
     public WaterSprinklerBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:deepslate_iron_ore"
+  },
+  "recipe_type": "METAL",
+  "result": {
+    "item": "minecraft:raw_iron",
+    "count": 3
+  }
+}

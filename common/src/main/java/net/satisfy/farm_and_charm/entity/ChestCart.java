@@ -2,7 +2,7 @@ package net.satisfy.farm_and_charm.entity;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -20,7 +20,6 @@ import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -29,7 +28,7 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
     private static final int CONTAINER_SIZE = 27;
     private NonNullList<ItemStack> inventory;
     @Nullable
-    private ResourceKey<LootTable> lootTable;
+    private ResourceLocation lootTable;
     private long lootTableSeed;
 
     public ChestCart(EntityType<?> entityType, Level level) {
@@ -147,14 +146,13 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
     }
 
 
-    public @Nullable ResourceKey<LootTable> getLootTable() {
+    @Nullable
+    public ResourceLocation getLootTable() {
         return this.lootTable;
     }
 
-    @Override
-    public void setLootTable(@Nullable ResourceKey<LootTable> resourceKey) {
-        this.lootTable = resourceKey;
-
+    public void setLootTable(@Nullable ResourceLocation resourceLocation) {
+        this.lootTable = resourceLocation;
     }
 
     public long getLootTableSeed() {
@@ -180,13 +178,19 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
     @Override
     protected void addAdditionalSaveData(CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
-        this.addChestVehicleSaveData(compoundTag, this.registryAccess());
+        this.addChestVehicleSaveData(compoundTag);
     }
 
     @Override
     protected void readAdditionalSaveData(CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
-        this.readChestVehicleSaveData(compoundTag, this.registryAccess());
+        this.readChestVehicleSaveData(compoundTag);
+    }
+
+    // PASSENGER
+    @Override
+    public double getPassengersRidingOffset() {
+        return super.getPassengersRidingOffset() + this.getXRot();
     }
 
     protected double getPassengerXOffset(Entity entity) {
@@ -209,7 +213,7 @@ public class ChestCart extends CartEntity implements HasCustomInventoryScreen, C
     protected void positionRider(Entity entity, MoveFunction moveFunction) {
         if (this.hasPassenger(entity)) {
             double x = this.getPassengerXOffset(entity);
-            double y = 0.0;
+            double y = this.getPassengersRidingOffset() + entity.getMyRidingOffset();
 
             Vec3 xVec = new Vec3(x, 0.0, 0.0).yRot(-this.getYRot() * 0.017453292F - 1.5707964F);
             Vec3 yVec = new Vec3(0.0, y, 0.0).xRot(-this.getXRot() * 0.017453292F - 1.5707964F);

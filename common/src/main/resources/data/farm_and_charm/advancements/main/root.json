@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "farm_and_charm:scarecrow"
+    },
+    "title": {
+      "translate": "advancement.farm_and_charm.root"
+    },
+    "description": {
+      "translate": "advancement.farm_and_charm.root.desc"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "farm_and_charm:textures/block/fertilized_soil.png"
+  },
+  "criteria": {
+    "example_criterion": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "position": {
+          "x": {
+            "min": 1000000
+          }
+        }
+      }
+    }
+  }
+}

@@ -7,7 +7,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -50,7 +49,7 @@ public class FertilizerItem extends Item {
                 BlockPos targetPos = potentialPositions.remove(random.nextInt(potentialPositions.size()));
                 BlockState blockState = world.getBlockState(targetPos);
                 if (blockState.getBlock() instanceof BonemealableBlock bonemealableBlock) {
-                    if (bonemealableBlock.isValidBonemealTarget(world, targetPos, blockState)) {
+                    if (bonemealableBlock.isValidBonemealTarget(world, targetPos, blockState, false)) {
                         if (bonemealableBlock.isBonemealSuccess(world, world.random, targetPos, blockState)) {
                             bonemealableBlock.performBonemeal(serverWorld, world.random, targetPos, blockState);
                             serverWorld.sendParticles(ParticleTypes.HAPPY_VILLAGER, targetPos.getX() + 0.5, targetPos.getY() + 1.0, targetPos.getZ() + 0.5, 10, 0.5, 0.5, 0.5, 0.0);
@@ -75,7 +74,7 @@ public class FertilizerItem extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack itemStack, LivingEntity livingEntity) {
+    public int getUseDuration(ItemStack stack) {
         return 32;
     }
 

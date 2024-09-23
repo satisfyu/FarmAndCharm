@@ -1,0 +1,17 @@
+{
+  "type": "farm_and_charm:stove",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:beef"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    }
+  ],
+  "item": "farm_and_charm:potato_with_roast_meat",
+  "count": 2,
+  "experience": 0.5
+}

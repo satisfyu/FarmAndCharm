@@ -29,11 +29,11 @@ public class StoveDisplay extends BasicDisplay implements SimpleGridMenuDisplay 
     }
 
     public StoveDisplay(List<EntryIngredient> input, List<EntryIngredient> output, CompoundTag tag) {
-        this(input, output, RecipeManagerContext.getInstance().byId(tag, "location").value(), tag.getFloat("experience"));
+        this(input, output, RecipeManagerContext.getInstance().byId(tag, "location"), tag.getFloat("experience"));
     }
 
     public StoveDisplay(List<EntryIngredient> input, List<EntryIngredient> output, Recipe<?> recipe, float xp) {
-        super(input, output, Optional.empty());
+        super(input, output, Optional.ofNullable(recipe).map(Recipe::getId));
         this.xp = xp;
     }
 

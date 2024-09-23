@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:beef"
+  },
+  "recipe_type": "MEAT",
+  "result": {
+    "item": "farm_and_charm:minced_beef",
+    "count": 1
+  }
+}

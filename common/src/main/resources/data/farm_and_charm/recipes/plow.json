@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "UUU",
+    "## "
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "U": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "item": "farm_and_charm:plow",
+    "count": 1
+  }
+}

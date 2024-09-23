@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MincerCategory implements IRecipeCategory<MincerRecipe> {
     public static final RecipeType<MincerRecipe> MINCING_TYPE = RecipeType.create(FarmAndCharm.MOD_ID, "mincer", MincerRecipe.class);
-    public final static ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(FarmAndCharm.MOD_ID, "textures/gui/mincer.png");
+    public final static ResourceLocation TEXTURE = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/gui/mincer.png");
 
     private final IDrawable background;
     private final IDrawable icon;

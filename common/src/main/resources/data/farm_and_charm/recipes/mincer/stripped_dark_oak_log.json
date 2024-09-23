@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:dark_oak_log"
+  },
+  "recipe_type": "WOOD",
+  "result": {
+    "item": "minecraft:stripped_dark_oak_log",
+    "count": 1
+  }
+}

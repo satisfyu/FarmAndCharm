@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:warped_stem"
+  },
+  "recipe_type": "WOOD",
+  "result": {
+    "item": "minecraft:stripped_warped_stem",
+    "count": 1
+  }
+}

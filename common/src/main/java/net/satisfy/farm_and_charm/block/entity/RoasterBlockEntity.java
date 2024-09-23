@@ -1,7 +1,10 @@
 package net.satisfy.farm_and_charm.block.entity;
 
 import de.cristelknight.doapi.common.world.ImplementedInventory;
-import net.minecraft.core.*;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.ContainerHelper;
@@ -11,10 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -31,10 +31,9 @@ import net.satisfy.farm_and_charm.registry.TagRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
+import static net.minecraft.world.item.ItemStack.isSameItemSameTags;
 
 public class RoasterBlockEntity extends BlockEntity implements BlockEntityTicker<RoasterBlockEntity>, ImplementedInventory, MenuProvider {
     private static final int MAX_CAPACITY = 8, CONTAINER_SLOT = 6, OUTPUT_SLOT = 7, INGREDIENTS_AREA = 2 * 3;
@@ -80,18 +79,16 @@ public class RoasterBlockEntity extends BlockEntity implements BlockEntityTicker
         };
     }
 
-    @Override
-    protected void loadAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
-        super.loadAdditional(compoundTag, provider);
-        ContainerHelper.loadAllItems(compoundTag, inventory, provider);
-        roastingTime = compoundTag.getInt("RoastingTime");
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        ContainerHelper.loadAllItems(nbt, inventory);
+        roastingTime = nbt.getInt("RoastingTime");
     }
 
-    @Override
-    protected void saveAdditional(CompoundTag compoundTag, HolderLookup.Provider provider) {
-        super.saveAdditional(compoundTag, provider);
-        ContainerHelper.saveAllItems(compoundTag, inventory, provider);
-        compoundTag.putInt("RoastingTime", roastingTime);
+    protected void saveAdditional(CompoundTag nbt) {
+        super.saveAdditional(nbt);
+        ContainerHelper.saveAllItems(nbt, inventory);
+        nbt.putInt("RoastingTime", roastingTime);
     }
 
     public boolean isBeingBurned() {
@@ -104,7 +101,7 @@ public class RoasterBlockEntity extends BlockEntity implements BlockEntityTicker
         if (recipe == null || recipe.getResultItem(access).isEmpty()) return false;
         if (recipe instanceof RoasterRecipe roastingRecipe) {
             ItemStack outputSlotStack = getItem(OUTPUT_SLOT), containerSlotStack = getItem(CONTAINER_SLOT);
-            boolean isContainerCorrect = containerSlotStack.is(roastingRecipe.getContainer().getItem()), isOutputSlotCompatible = outputSlotStack.isEmpty() || ItemStack.isSameItemSameComponents(outputSlotStack, generateOutputItem(recipe, access)) && outputSlotStack.getCount() < outputSlotStack.getMaxStackSize();
+            boolean isContainerCorrect = containerSlotStack.is(roastingRecipe.getContainer().getItem()), isOutputSlotCompatible = outputSlotStack.isEmpty() || isSameItemSameTags(outputSlotStack, generateOutputItem(recipe, access)) && outputSlotStack.getCount() < outputSlotStack.getMaxStackSize();
             return isContainerCorrect && isOutputSlotCompatible;
         }
         return false;
@@ -164,17 +161,13 @@ public class RoasterBlockEntity extends BlockEntity implements BlockEntityTicker
             return;
         }
 
+        Recipe<?> recipe = world.getRecipeManager().getRecipeFor(RecipeTypeRegistry.ROASTER_RECIPE_TYPE.get(), this, world).orElse(null);
         if (level == null) throw new IllegalStateException("Null world not allowed");
-
-        RecipeManager recipeManager = level.getRecipeManager();
-        List<RecipeHolder<RoasterRecipe>> recipes = recipeManager.getAllRecipesFor(RecipeTypeRegistry.ROASTER_RECIPE_TYPE.get());
-        Optional<RoasterRecipe> recipe = Optional.ofNullable(getRecipe(recipes, inventory));
         RegistryAccess access = level.registryAccess();
-
-        if (recipe.isPresent() && canCraft(recipe.get(), access)) {
+        if (canCraft(recipe, access)) {
             if (++roastingTime >= MAX_ROASTING_TIME) {
                 roastingTime = 0;
-                craft(recipe.get(), access);
+                craft(recipe, access);
             }
             if (!state.getValue(RoasterBlock.ROASTING)) {
                 world.setBlock(pos, state.setValue(RoasterBlock.ROASTING, true), Block.UPDATE_ALL);
@@ -204,27 +197,5 @@ public class RoasterBlockEntity extends BlockEntity implements BlockEntityTicker
     @Nullable
     public AbstractContainerMenu createMenu(int syncId, Inventory inv, Player player) {
         return new RoasterGuiHandler(syncId, inv, this, delegate);
-    }
-
-    private RoasterRecipe getRecipe(List<RecipeHolder<RoasterRecipe>> recipes, NonNullList<ItemStack> inventory) {
-        recipeLoop:
-        for (RecipeHolder<RoasterRecipe> recipeHolder : recipes) {
-            RoasterRecipe recipe = recipeHolder.value();
-            for (Ingredient ingredient : recipe.getIngredients()) {
-                boolean ingredientFound = false;
-                for (int slotIndex = 1; slotIndex < inventory.size(); slotIndex++) {
-                    ItemStack slotItem = inventory.get(slotIndex);
-                    if (ingredient.test(slotItem)) {
-                        ingredientFound = true;
-                        break;
-                    }
-                }
-                if (!ingredientFound) {
-                    continue recipeLoop;
-                }
-            }
-            return recipe;
-        }
-        return null;
     }
 }

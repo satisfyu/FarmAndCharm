@@ -12,19 +12,17 @@ public class SatiationEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
             if (player.getFoodData().needsFood() || player.hasEffect(MobEffects.REGENERATION) || player.getFoodData().getSaturationLevel() <= 0f) {
-                return false;
+                return;
             }
             player.heal(1.0F + amplifier);
-            return true;
         }
-        return false;
     }
 
     @Override
-    public boolean shouldApplyEffectTickThisTick(int i, int j) {
-        return i % 40 == 0;
+    public boolean isDurationEffectTick(int duration, int amplifier) {
+        return duration % 40 == 0;
     }
 }

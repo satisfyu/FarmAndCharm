@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWA",
+    "CAW"
+  ],
+  "key": {
+    "W": {
+      "tag": "farm_and_charm:wheat"
+    },
+    "A": {
+      "item": "minecraft:apple"
+    },
+    "C": {
+      "item": "minecraft:carrot"
+    }
+  },
+  "result": {
+    "item": "farm_and_charm:horse_fodder",
+    "count": 1
+  }
+}

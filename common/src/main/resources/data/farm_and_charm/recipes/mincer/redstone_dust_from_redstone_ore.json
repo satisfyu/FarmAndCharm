@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:redstone_ore"
+  },
+  "recipe_type": "METAL",
+  "result": {
+    "item": "minecraft:redstone",
+    "count": 5
+  }
+}

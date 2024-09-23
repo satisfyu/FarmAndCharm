@@ -14,7 +14,7 @@ public class SustenanceEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.getCommandSenderWorld().isClientSide && entity instanceof Player player) {
             if (entity.tickCount % INTERVAL == 0) {
                 FoodData foodData = player.getFoodData();
@@ -25,11 +25,10 @@ public class SustenanceEffect extends MobEffect {
                 }
             }
         }
-        return true;
     }
 
     @Override
-    public boolean shouldApplyEffectTickThisTick(int i, int j) {
-        return i % INTERVAL == 0;
+    public boolean isDurationEffectTick(int duration, int amplifier) {
+        return duration % INTERVAL == 0;
     }
 }

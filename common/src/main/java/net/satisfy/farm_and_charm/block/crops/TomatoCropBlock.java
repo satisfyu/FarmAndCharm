@@ -98,8 +98,7 @@ public abstract class TomatoCropBlock extends Block {
     }
 
     @Override
-    protected @NotNull InteractionResult useWithoutItem(BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
-        InteractionHand interactionHand = player.getUsedItemHand();
+    public @NotNull InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         if (player.getItemInHand(interactionHand).is(Items.BONE_MEAL)) {
             return InteractionResult.PASS;
         }
@@ -108,7 +107,7 @@ public abstract class TomatoCropBlock extends Block {
             dropTomatoes(level, blockPos, blockState);
             return InteractionResult.sidedSuccess(level.isClientSide);
         } else {
-            return super.useWithoutItem(blockState, level, blockPos, player, blockHitResult);
+            return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
         }
     }
 

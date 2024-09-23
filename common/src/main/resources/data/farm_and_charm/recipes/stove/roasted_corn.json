@@ -1,0 +1,17 @@
+{
+  "type": "farm_and_charm:stove",
+  "ingredients": [
+    {
+      "tag": "farm_and_charm:corn"
+    },
+    {
+      "tag": "farm_and_charm:corn"
+    },
+    {
+      "tag": "farm_and_charm:butter"
+    }
+  ],
+  "item": "farm_and_charm:roasted_corn",
+  "count": 1,
+  "experience": 0.2
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "minecraft:copper_ingot"
+    },
+    "U": {
+      "item": "farm_and_charm:silo_wood"
+    }
+  },
+  "pattern": [
+    "###",
+    "#U#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "item": "farm_and_charm:silo_copper"
+  }
+}

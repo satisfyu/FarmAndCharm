@@ -14,6 +14,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.satisfy.farm_and_charm.registry.MobEffectRegistry;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class HorseFodderItem extends Item {
                     }
                     return InteractionResult.sidedSuccess(entity.getCommandSenderWorld().isClientSide);
                 }
-                horse.addEffect(new MobEffectInstance(MobEffectRegistry.HORSE_FODDER, 6000, 0));
+                horse.addEffect(new MobEffectInstance(MobEffectRegistry.HORSE_FODDER.get(), 6000, 0));
                 horse.heal(10.0F);
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);
@@ -50,7 +51,7 @@ public class HorseFodderItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> tooltip, TooltipFlag tooltipFlag) {
         tooltip.add(Component.translatable("tooltip.farm_and_charm.animal_fed_to_horse").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.farm_and_charm.horse_effect_1").withStyle(ChatFormatting.BLUE));
         tooltip.add(Component.translatable("tooltip.farm_and_charm.horse_effect_2").withStyle(ChatFormatting.BLUE));

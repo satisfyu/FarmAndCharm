@@ -1,0 +1,37 @@
+{
+  "parent": "farm_and_charm:main/find_wild_crops",
+  "criteria": {
+    "place_feeding_trough": {
+      "conditions": {
+        "location": [
+          {
+            "block": "farm_and_charm:feeding_trough",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.farm_and_charm.place_feeding_trough.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "farm_and_charm:feeding_trough"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.farm_and_charm.place_feeding_trough"
+    }
+  },
+  "requirements": [
+    [
+      "place_feeding_trough"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

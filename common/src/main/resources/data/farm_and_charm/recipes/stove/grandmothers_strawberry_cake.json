@@ -1,0 +1,17 @@
+{
+  "type": "farm_and_charm:stove",
+  "ingredients": [
+    {
+      "tag": "farm_and_charm:dough"
+    },
+    {
+      "tag": "farm_and_charm:strawberries"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "item": "farm_and_charm:grandmothers_strawberry_cake",
+  "count": 2,
+  "experience": 0.35
+}

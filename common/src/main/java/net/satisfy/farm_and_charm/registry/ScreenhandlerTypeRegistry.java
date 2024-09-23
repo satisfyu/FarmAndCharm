@@ -26,8 +26,5 @@ public class ScreenhandlerTypeRegistry {
     private static <T extends MenuType<?>> RegistrySupplier<T> create(String name, Supplier<T> type) {
         return MENU_TYPES.register(name, type);
     }
-
-
-
 }
 

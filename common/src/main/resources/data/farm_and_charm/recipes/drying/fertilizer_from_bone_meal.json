@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:drying",
+  "ingredient": {
+    "item": "minecraft:bone_meal"
+  },
+  "recipe_type": "MEAT",
+  "result": {
+    "item": "farm_and_charm:fertilizer",
+    "count": 1
+  }
+}

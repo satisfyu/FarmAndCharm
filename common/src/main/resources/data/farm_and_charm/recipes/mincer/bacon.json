@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:porkchop"
+  },
+  "recipe_type": "MEAT",
+  "result": {
+    "item": "farm_and_charm:bacon",
+    "count": 2
+  }
+}

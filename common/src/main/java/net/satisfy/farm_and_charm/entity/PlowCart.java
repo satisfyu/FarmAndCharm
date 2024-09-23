@@ -47,7 +47,7 @@ public class PlowCart extends CartEntity {
         if (groundBlockState.is(Blocks.FARMLAND)) {
             BlockPos abovePos = pos.above();
             BlockState aboveBlockState = serverLevel.getBlockState(abovePos);
-            if (aboveBlockState.is(BlockTags.SMALL_FLOWERS) || aboveBlockState.is(TagRegistry.WILD_CROPS) || aboveBlockState.is(BlockTags.TALL_FLOWERS) || aboveBlockState.is(Blocks.GRASS_BLOCK) || aboveBlockState.is(Blocks.TALL_GRASS)) {
+            if (aboveBlockState.is(BlockTags.SMALL_FLOWERS) || aboveBlockState.is(TagRegistry.WILD_CROPS) || aboveBlockState.is(BlockTags.TALL_FLOWERS) || aboveBlockState.is(Blocks.GRASS) || aboveBlockState.is(Blocks.TALL_GRASS)) {
                 destroyBlockWithParticles(serverLevel, abovePos, aboveBlockState);
             }
         }

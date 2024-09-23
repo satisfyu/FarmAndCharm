@@ -20,7 +20,7 @@ public class CookingPotGui extends AbstractRecipeBookGUIScreen<CookingPotGuiHand
     public static final int ARROW_Y = 14;
 
     static {
-        BACKGROUND = FarmAndCharmIdentifier.of("textures/gui/pot_gui.png");
+        BACKGROUND = new FarmAndCharmIdentifier("textures/gui/pot_gui.png");
     }
 
     public CookingPotGui(CookingPotGuiHandler handler, Inventory playerInventory, Component title) {

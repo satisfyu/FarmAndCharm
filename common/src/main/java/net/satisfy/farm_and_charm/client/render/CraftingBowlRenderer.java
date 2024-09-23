@@ -49,9 +49,9 @@ public class CraftingBowlRenderer implements BlockEntityRenderer<CraftingBowlBlo
 
         ResourceLocation location;
         if (blockEntity.getStirringProgress() >= CraftingBowlBlock.STIRS_NEEDED) {
-            location = ResourceLocation.fromNamespaceAndPath(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl_full.png");
+            location = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl_full.png");
         } else {
-            location = ResourceLocation.fromNamespaceAndPath(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl.png");
+            location = new ResourceLocation(FarmAndCharm.MOD_ID, "textures/entity/crafting_bowl.png");
         }
 
 

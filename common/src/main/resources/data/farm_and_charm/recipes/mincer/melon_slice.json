@@ -1,0 +1,11 @@
+{
+  "type": "farm_and_charm:mincer",
+  "ingredient": {
+    "item": "minecraft:melon"
+  },
+  "recipe_type": "WOOD",
+  "result": {
+    "item": "minecraft:melon_slice",
+    "count": 9
+  }
+}

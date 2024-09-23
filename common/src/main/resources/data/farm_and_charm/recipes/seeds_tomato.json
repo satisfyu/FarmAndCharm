@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "farm_and_charm:tomato"
+    }
+  ],
+  "result": {
+    "item": "farm_and_charm:tomato_seeds",
+    "count": 3
+  }
+}

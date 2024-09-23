@@ -49,8 +49,7 @@ public class FertilizedSoilBlock extends Block {
     }
 
     @Override
-    public @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        InteractionHand hand = player.getUsedItemHand();
+    public @NotNull InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (itemStack.getItem() == ObjectRegistry.PITCHFORK.get()) {
             int newSize = state.getValue(SIZE) - 1;
@@ -64,14 +63,14 @@ public class FertilizedSoilBlock extends Block {
                 spawnBreakParticles(level, pos, state);
                 level.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
-            itemStack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(itemStack));
+            itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
             return InteractionResult.SUCCESS;
         } else if (itemStack.getItem() instanceof HoeItem) {
             int currentSize = state.getValue(SIZE);
             if (currentSize == 3) {
                 level.setBlock(pos, ObjectRegistry.FERTILIZED_FARM_BLOCK.get().defaultBlockState(), 3);
                 if (!player.isCreative()) {
-                    itemStack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(itemStack));
+                    itemStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
                 }
                 level.playSound(null, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 return InteractionResult.SUCCESS;
@@ -96,7 +95,7 @@ public class FertilizedSoilBlock extends Block {
                         if (serverLevel.random.nextInt(100) < 20) {
                             BlockState blockState = serverLevel.getBlockState(pos);
                             Block block = blockState.getBlock();
-                            if (block instanceof BonemealableBlock bonemealableBlock && bonemealableBlock.isValidBonemealTarget(serverLevel, pos, blockState)) {
+                            if (block instanceof BonemealableBlock bonemealableBlock && bonemealableBlock.isValidBonemealTarget(serverLevel, pos, blockState, false)) {
                                 bonemealableBlock.performBonemeal(serverLevel, serverLevel.random, pos, blockState);
                             }
                         }

@@ -41,6 +41,7 @@ public abstract class CartEntity extends DrivableEntity {
 
     protected CartEntity(EntityType<?> entityType, Level level) {
         super(entityType, level);
+        this.setMaxUpStep(1.0F);
     }
 
     protected float wheelYOffset() {
@@ -254,7 +255,7 @@ public abstract class CartEntity extends DrivableEntity {
     }
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        builder.define(DATA_ID_DAMAGE, 0.0F);
+    protected void defineSynchedData() {
+        this.entityData.define(DATA_ID_DAMAGE, 0.0F);
     }
 }

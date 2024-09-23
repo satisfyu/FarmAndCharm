@@ -49,7 +49,7 @@ public class TomatoCropHeadBlock extends TomatoCropBlock implements Bonemealable
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean bl) {
         return true;
     }
 

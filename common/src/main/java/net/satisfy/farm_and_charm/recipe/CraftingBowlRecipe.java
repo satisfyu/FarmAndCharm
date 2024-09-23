@@ -1,30 +1,30 @@
 package net.satisfy.farm_and_charm.recipe;
 
-import com.mojang.serialization.DataResult;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.google.gson.JsonObject;
 import de.cristelknight.doapi.common.util.GeneralUtil;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.satisfy.farm_and_charm.registry.RecipeTypeRegistry;
-import net.satisfy.farm_and_charm.util.StreamCodecUtil;
 import org.jetbrains.annotations.NotNull;
 
-public class CraftingBowlRecipe implements Recipe<RecipeInput> {
+public class CraftingBowlRecipe implements Recipe<Container> {
+    final ResourceLocation id;
     private final NonNullList<Ingredient> inputs;
     private final ItemStack output;
     private final int outputCount;
 
-    public CraftingBowlRecipe(NonNullList<Ingredient> inputs, ItemStack output) {
+    public CraftingBowlRecipe(ResourceLocation id, NonNullList<Ingredient> inputs, ItemStack output, int outputCount) {
+        this.id = id;
         this.inputs = inputs;
         this.output = output;
-        this.outputCount = output.getCount();
+        this.outputCount = outputCount;
     }
 
     public int getOutputCount() {
@@ -33,9 +33,9 @@ public class CraftingBowlRecipe implements Recipe<RecipeInput> {
 
 
     @Override
-    public boolean matches(RecipeInput inventory, Level world) {
+    public boolean matches(Container inventory, Level world) {
         int nonEmptySlots = 0;
-        for (int i = 0; i < inventory.size(); i++) {
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
             if (!inventory.getItem(i).isEmpty()) {
                 nonEmptySlots++;
             }
@@ -44,7 +44,7 @@ public class CraftingBowlRecipe implements Recipe<RecipeInput> {
     }
 
     @Override
-    public @NotNull ItemStack assemble(RecipeInput recipeInput, HolderLookup.Provider provider) {
+    public @NotNull ItemStack assemble(Container container, RegistryAccess registryAccess) {
         return ItemStack.EMPTY;
     }
 
@@ -54,18 +54,16 @@ public class CraftingBowlRecipe implements Recipe<RecipeInput> {
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(HolderLookup.Provider provider) {
+    public @NotNull ItemStack getResultItem(RegistryAccess registryAccess) {
         ItemStack result = this.output.copy();
         result.setCount(this.outputCount);
         return result;
     }
 
-    public ItemStack getResultItem() {
-        return getResultItem(null);
-    }
 
+    @Override
     public @NotNull ResourceLocation getId() {
-        return RecipeTypeRegistry.CRAFTING_BOWL_RECIPE_TYPE.getId();
+        return id;
     }
 
     @Override
@@ -89,32 +87,33 @@ public class CraftingBowlRecipe implements Recipe<RecipeInput> {
     }
 
     public static class Serializer implements RecipeSerializer<CraftingBowlRecipe> {
-        public static final MapCodec<CraftingBowlRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                        Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").flatXmap(list -> {
-                            Ingredient[] ingredients = list.toArray(Ingredient[]::new);
-                            if (ingredients.length == 0) {
-                                return DataResult.error(() -> "No ingredients for shapeless recipe");
-                            }
-                            return DataResult.success(NonNullList.of(Ingredient.EMPTY, ingredients));
-                        }, DataResult::success).forGetter(CraftingBowlRecipe::getIngredients),
-                        ItemStack.CODEC.fieldOf("result").forGetter(CraftingBowlRecipe::getResultItem)
-                ).apply(instance, CraftingBowlRecipe::new)
-        );
-
-        public static final StreamCodec<RegistryFriendlyByteBuf, CraftingBowlRecipe> STREAM_CODEC = StreamCodec.composite(
-                StreamCodecUtil.nonNullList(Ingredient.CONTENTS_STREAM_CODEC, Ingredient.EMPTY), CraftingBowlRecipe::getIngredients,
-                ItemStack.STREAM_CODEC, CraftingBowlRecipe::getResultItem,
-                CraftingBowlRecipe::new
-        );
-
         @Override
-        public @NotNull MapCodec<CraftingBowlRecipe> codec() {
-            return CODEC;
+        public @NotNull CraftingBowlRecipe fromJson(ResourceLocation id, JsonObject json) {
+            NonNullList<Ingredient> ingredients = GeneralUtil.deserializeIngredients(GsonHelper.getAsJsonArray(json, "ingredients"));
+            JsonObject resultJson = GsonHelper.getAsJsonObject(json, "result");
+            ItemStack result = ShapedRecipe.itemStackFromJson(resultJson);
+            int count = GsonHelper.getAsInt(resultJson, "count", 1);
+            return new CraftingBowlRecipe(id, ingredients, result, count);
         }
 
         @Override
-        public @NotNull StreamCodec<RegistryFriendlyByteBuf, CraftingBowlRecipe> streamCodec() {
-            return STREAM_CODEC;
+        public @NotNull CraftingBowlRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+            int ingredientCount = buf.readVarInt();
+            NonNullList<Ingredient> ingredients = NonNullList.withSize(ingredientCount, Ingredient.EMPTY);
+            for (int i = 0; i < ingredientCount; i++) {
+                ingredients.set(i, Ingredient.fromNetwork(buf));
+            }
+            ItemStack result = buf.readItem();
+            int count = buf.readVarInt();
+            return new CraftingBowlRecipe(id, ingredients, result, count);
+        }
+
+        @Override
+        public void toNetwork(FriendlyByteBuf buf, CraftingBowlRecipe recipe) {
+            buf.writeVarInt(recipe.inputs.size());
+            recipe.inputs.forEach(ingredient -> ingredient.toNetwork(buf));
+            buf.writeItem(recipe.output);
+            buf.writeVarInt(recipe.outputCount);
         }
     }
 }

@@ -48,7 +48,6 @@ dependencies {
     modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}")
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
 
-
     modImplementation "maven.modrinth:do-api:${project.doapi_version}-fabric"
     modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_wood_api_version}"
     include(implementation("blue.endless:jankson:${jankson_version}"))
