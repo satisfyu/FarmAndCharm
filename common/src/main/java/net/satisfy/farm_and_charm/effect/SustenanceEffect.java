@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 
 public class SustenanceEffect extends MobEffect {
+    
     private static final int INTERVAL = 200;
 
     public SustenanceEffect() {
