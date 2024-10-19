@@ -117,8 +117,9 @@ public class EffectFoodHelper {
         for (int i = 0; i < list.size(); ++i) {
             CompoundTag nbtCompound = list.getCompound(i);
             MobEffect effect = MobEffect.byId(nbtCompound.getShort("id"));
-            assert effect != null;
-            effects.add(new Pair<>(new MobEffectInstance(effect, nbtCompound.getInt("duration"), nbtCompound.getInt("amplifier")), nbtCompound.getFloat("chance")));
+            if (effect != null) {
+                effects.add(new Pair<>(new MobEffectInstance(effect, nbtCompound.getInt("duration"), nbtCompound.getInt("amplifier")), nbtCompound.getFloat("chance")));
+            }
         }
         return effects;
     }
