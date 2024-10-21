@@ -4,6 +4,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.satisfy.farm_and_charm.FarmAndCharm;
+import net.satisfy.farm_and_charm.platform.neoforge.EffectRegisterImpl;
 import net.satisfy.farm_and_charm.registry.CompostableRegistry;
 
 @Mod(FarmAndCharm.MOD_ID)
@@ -11,6 +12,7 @@ public class FarmAndCharmNeoForge {
 
     public FarmAndCharmNeoForge(IEventBus modBus) {
         FarmAndCharm.init();
+        EffectRegisterImpl.MOB_EFFECTS.register(modBus);
         modBus.addListener(this::commonSetup);
     }
 

@@ -17,7 +17,6 @@ public class FarmAndCharm {
         MANAGER = Suppliers.memoize(() -> RegistrarManager.get(MOD_ID));
         ObjectRegistry.init();
         EntityTypeRegistry.init();
-        MobEffectRegistry.init();
         TabRegistry.init();
         ScreenhandlerTypeRegistry.init();
         RecipeTypeRegistry.init();
