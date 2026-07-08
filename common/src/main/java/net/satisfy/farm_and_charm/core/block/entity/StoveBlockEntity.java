@@ -310,7 +310,19 @@ public class StoveBlockEntity extends BlockEntity implements BlockEntityTicker<S
         }
 
         List<Integer> plannedSlots = getPlannedIngredientSlots(recipe, inventoryCopy);
-        return plannedSlots != null;
+        if (plannedSlots == null) {
+            return false;
+        }
+
+        // Ensure there are no extra ingredients present.
+        int occupiedIngredientSlots = 0;
+        for (int slot : INGREDIENT_SLOTS) {
+            if (!inventory.get(slot).isEmpty()) {
+                occupiedIngredientSlots++;
+            }
+        }
+
+        return occupiedIngredientSlots == recipe.getIngredients().size();
     }
 
     protected void craft(StoveRecipe recipe, RegistryAccess access) {
