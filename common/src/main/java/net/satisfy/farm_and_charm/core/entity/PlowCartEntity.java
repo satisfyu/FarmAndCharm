@@ -117,7 +117,7 @@ public class PlowCartEntity extends AbstractCartEntity {
 
     private void handlePlowServer() {
         BlockPos currentPos = this.blockPosition();
-        BlockPos[] positions = new BlockPos[]{currentPos.below(), currentPos.below().east()};
+        BlockPos[] positions = new BlockPos[]{currentPos, currentPos.below(), currentPos.east(), currentPos.below().east()};
 
         for (BlockPos blockPos : positions) {
             BlockState blockState = this.level().getBlockState(blockPos);
