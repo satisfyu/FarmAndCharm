@@ -84,8 +84,9 @@ public class ChickenCoopBlock extends BaseEntityBlock {
                 ChickenCoopBlockEntity.tick(lvl, pos, coop);
                 int eggCount = coop.getEggCount();
                 int stage = eggCount >= 7 ? 3 : eggCount >= 4 ? 2 : eggCount >= 1 ? 1 : 0;
-                if (lvl.getBlockState(pos).getValue(EGGS) != stage) {
-                    lvl.setBlock(pos, lvl.getBlockState(pos).setValue(EGGS, stage), Block.UPDATE_CLIENTS);
+                BlockState blockState = lvl.getBlockState(pos);
+                if (blockState.getBlock() instanceof ChickenCoopBlock && blockState.getValue(EGGS) != stage) {
+                    lvl.setBlock(pos, blockState.setValue(EGGS, stage), Block.UPDATE_CLIENTS);
                 }
             }
         };
