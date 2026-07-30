@@ -1,3 +1,22 @@
+[1.1.23]
+
+**Fixed**
+* Container GUIs no longer render the background twice, preventing overly dark backgrounds and improving compatibility with background blur mods such as Blur+. (Thanks to amiralimollaei)
+* Stove recipes now require an exact ingredient match, preventing unintended crafting results when extra ingredients are present. (Thanks to rumi-sh)
+* Resolved a duplication glitch affecting storage blocks when used with Sable from Create: Aeronautics. (Thanks to Daudeuf)
+* Removed an unnecessary `ItemStack` mixin, resolving compatibility issues with Create: Aeronautics and Sable. (Thanks to dynamiteOpanty)
+
+**Added**
+* Added Italian (`it_it`) localization. (Thanks to serenautilus)
+
+**Changed**
+* Added plural common tags (`c:flours` and `c:doughs`) while keeping the existing singular tags as legacy aliases for improved cross-mod compatibility. (Thanks to RooftopThinker)
+
+**Improved**
+* Improved Cattle Grid behavior by replacing the velocity-based restriction with collision walls, preventing mobs from getting permanently stuck while preserving its intended functionality. (Thanks to divaltor)
+
+***
+
 [1.1.22]
 
 **Fixed**

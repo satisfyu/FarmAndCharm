@@ -165,16 +165,24 @@ public class RoasterBlockEntity extends BlockEntity implements BlockEntityTicker
             }
         });
 
-        ItemStack containerSlotStack = getItem(CONTAINER_SLOT);
-        if (!containerSlotStack.isEmpty() && containerSlotStack.getItem().hasCraftingRemainingItem()) {
-            ItemStack containerRemainder = new ItemStack(Objects.requireNonNull(containerSlotStack.getItem().getCraftingRemainingItem()));
-            containerSlotStack.shrink(1);
-            if (containerSlotStack.isEmpty()) {
-                setItem(CONTAINER_SLOT, containerRemainder);
-            } else {
-                if (!tryInsertRemainder(containerRemainder)) {
-                    if (level != null) {
-                        Block.popResource(level, worldPosition, containerRemainder);
+        if (recipe instanceof RoasterRecipe roasterRecipe && !roasterRecipe.getContainer().isEmpty()) {
+            ItemStack containerSlotStack = getItem(CONTAINER_SLOT);
+            if (!containerSlotStack.isEmpty()) {
+                ItemStack containerRemainder = containerSlotStack.getItem().hasCraftingRemainingItem()
+                        ? new ItemStack(Objects.requireNonNull(containerSlotStack.getItem().getCraftingRemainingItem()))
+                        : ItemStack.EMPTY;
+
+                containerSlotStack.shrink(1);
+
+                if (!containerRemainder.isEmpty()) {
+                    if (containerSlotStack.isEmpty()) {
+                        setItem(CONTAINER_SLOT, containerRemainder);
+                    } else {
+                        if (!tryInsertRemainder(containerRemainder)) {
+                            if (level != null) {
+                                Block.popResource(level, worldPosition, containerRemainder);
+                            }
+                        }
                     }
                 }
             }

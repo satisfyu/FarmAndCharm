@@ -176,17 +176,25 @@ public class CookingPotBlockEntity extends BlockEntity implements BlockEntityTic
             }
         });
 
-        ItemStack containerSlotStack = getItem(CONTAINER_SLOT);
-        if (!containerSlotStack.isEmpty() && containerSlotStack.getItem().hasCraftingRemainingItem()) {
-            ItemStack containerRemainder = new ItemStack(Objects.requireNonNull(containerSlotStack.getItem().getCraftingRemainingItem()));
-            containerSlotStack.shrink(1);
-            if (containerSlotStack.isEmpty()) {
-                setItem(CONTAINER_SLOT, containerRemainder);
-            } else {
-                boolean inserted = tryInsertRemainder(containerRemainder);
-                if (!inserted) {
-                    if (level != null) {
-                        Block.popResource(level, worldPosition, containerRemainder);
+        if (recipe instanceof CookingPotRecipe cookingRecipe && cookingRecipe.isContainerRequired()) {
+            ItemStack containerSlotStack = getItem(CONTAINER_SLOT);
+            if (!containerSlotStack.isEmpty()) {
+                ItemStack containerRemainder = containerSlotStack.getItem().hasCraftingRemainingItem()
+                        ? new ItemStack(Objects.requireNonNull(containerSlotStack.getItem().getCraftingRemainingItem()))
+                        : ItemStack.EMPTY;
+
+                containerSlotStack.shrink(1);
+
+                if (!containerRemainder.isEmpty()) {
+                    if (containerSlotStack.isEmpty()) {
+                        setItem(CONTAINER_SLOT, containerRemainder);
+                    } else {
+                        boolean inserted = tryInsertRemainder(containerRemainder);
+                        if (!inserted) {
+                            if (level != null) {
+                                Block.popResource(level, worldPosition, containerRemainder);
+                            }
+                        }
                     }
                 }
             }

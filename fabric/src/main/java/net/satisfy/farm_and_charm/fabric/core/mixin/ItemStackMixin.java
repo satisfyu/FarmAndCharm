@@ -1,16 +1,16 @@
 package net.satisfy.farm_and_charm.fabric.core.mixin;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.satisfy.farm_and_charm.core.registry.MobEffectRegistry;
-import net.satisfy.farm_and_charm.core.registry.ObjectRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,17 +24,6 @@ public abstract class ItemStackMixin {
 
     @Shadow
     public abstract Item getItem();
-
-    @Inject(method = "getRarity", at = @At("RETURN"), cancellable = true)
-    private void farm_and_charm$modifyRarity(CallbackInfoReturnable<Rarity> cir) {
-        var farm_and_charm$stack = this.getItem().getDefaultInstance();
-        if (farm_and_charm$stack.is(ObjectRegistry.CHICKEN_COOP_ITEM.get())) {
-            CustomData data = farm_and_charm$stack.getOrDefault(DataComponents.BLOCK_ENTITY_DATA, CustomData.EMPTY);
-            if (data.copyTag() != null && data.contains("BlockEntityTag")) {
-                cir.setReturnValue(Rarity.COMMON);
-            }
-        }
-    }
 
     @Inject(method = "finishUsingItem", at = @At("RETURN"))
     private void addNourishmentAfterSoup(Level level, LivingEntity livingEntity, CallbackInfoReturnable<ItemStack> cir) {
