@@ -6,9 +6,10 @@
 * Resolved a duplication glitch affecting storage blocks when used with Sable from Create: Aeronautics. (Thanks to Daudeuf)
 * Removed an unnecessary `ItemStack` mixin, resolving compatibility issues with Create: Aeronautics and Sable. (Thanks to dynamiteOpanty)
 * Cooking Pot and Roaster no longer create infinite containers — empty glass bottles and bowls are now always consumed when required by recipes
-* Plows now correctly harvest crops when positioned entirely on farmland, fixing the issue where low-height farmland blocks prevented crop detection
+* Plows now use the block they are actually standing on, so they harvest crops while sitting fully on farmland and no longer till the soil underneath farmland
 * Chicken Coop no longer crashes the server when its block entity ticks after the block has been removed or replaced
-* Chickens no longer permanently stop searching for coops after their first attempt — they can now find new coops if the original is moved, deleted, or full
+* Chickens no longer get permanently stuck on a coop that was broken, moved, filled up or became unreachable — the outdated target is now discarded so they can look for another coop
+* Fixed a server crash caused by cart tracking becoming corrupted when a pulled cart detached mid-tick, for example when it got stuck against a block
 
 **Added**
 * Added Italian (`it_it`) localization. (Thanks to serenautilus)

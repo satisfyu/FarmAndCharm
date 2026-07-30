@@ -11,10 +11,6 @@ public interface ChickenCoopAccess {
 
     void farmAndCharm$clearCoopTarget();
 
-    boolean farmAndCharm$searchedForCoop();
-
-    void farmAndCharm$setSearchedForCoop(boolean searched);
-
     int farmAndCharm$getCoopCooldown();
 
     void farmAndCharm$setCoopCooldown(int ticks);

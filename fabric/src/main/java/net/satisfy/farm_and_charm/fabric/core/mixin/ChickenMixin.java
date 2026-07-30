@@ -28,8 +28,6 @@ public class ChickenMixin implements ChickenCoopAccess {
     @Unique
     private BlockPos farmAndCharm$coopTarget;
     @Unique
-    private boolean farmAndCharm$searchedForCoop = false;
-    @Unique
     private int farmAndCharm$coopCooldown = 0;
 
     @Override
@@ -48,16 +46,8 @@ public class ChickenMixin implements ChickenCoopAccess {
     }
 
     @Override
-    public boolean farmAndCharm$searchedForCoop() { return this.farmAndCharm$searchedForCoop;}
-
-    @Override
     public boolean farmAndCharm$hasCoopTarget() {
         return this.farmAndCharm$coopTarget != null;
-    }
-
-    @Override
-    public void farmAndCharm$setSearchedForCoop(boolean value) {
-        this.farmAndCharm$searchedForCoop = value;
     }
 
     @Override
@@ -117,7 +107,6 @@ public class ChickenMixin implements ChickenCoopAccess {
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
     private void farmAndCharm$saveCoopData(CompoundTag tag, CallbackInfo ci) {
         tag.putInt("CoopCooldown", farmAndCharm$coopCooldown);
-        tag.putBoolean("SearchedForCoop", farmAndCharm$searchedForCoop);
         if (farmAndCharm$coopTarget != null) {
             tag.putInt("CoopTargetX", farmAndCharm$coopTarget.getX());
             tag.putInt("CoopTargetY", farmAndCharm$coopTarget.getY());
@@ -129,9 +118,6 @@ public class ChickenMixin implements ChickenCoopAccess {
     private void farmAndCharm$loadCoopData(CompoundTag tag, CallbackInfo ci) {
         if (tag.contains("CoopCooldown")) {
             farmAndCharm$coopCooldown = tag.getInt("CoopCooldown");
-        }
-        if (tag.contains("SearchedForCoop")) {
-            farmAndCharm$searchedForCoop = tag.getBoolean("SearchedForCoop");
         }
         if (tag.contains("CoopTargetX") && tag.contains("CoopTargetY") && tag.contains("CoopTargetZ")) {
             int x = tag.getInt("CoopTargetX");

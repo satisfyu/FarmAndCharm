@@ -13,7 +13,10 @@ import net.satisfy.farm_and_charm.core.registry.ObjectRegistry;
 import java.util.EnumSet;
 
 public class ChickenGotoAndEnterCoopGoal extends Goal {
+    private static final int MAX_APPROACH_TICKS = 20 * 20;
+    private static final int RETRY_COOLDOWN = 20 * 30;
     private final Chicken chicken;
+    private int approachTicks;
 
     public ChickenGotoAndEnterCoopGoal(Chicken chicken) {
         this.chicken = chicken;
@@ -48,6 +51,7 @@ public class ChickenGotoAndEnterCoopGoal extends Goal {
 
     @Override
     public void start() {
+        approachTicks = 0;
         BlockPos coopPos = ((ChickenCoopAccess) chicken).farmAndCharm$getCoopTarget();
         if (coopPos != null) tryEnterCoop(coopPos);
     }
@@ -61,11 +65,18 @@ public class ChickenGotoAndEnterCoopGoal extends Goal {
             chicken.getNavigation().stop();
             return;
         }
+        if (++approachTicks > MAX_APPROACH_TICKS) {
+            ((ChickenCoopAccess) chicken).farmAndCharm$clearCoopTarget();
+            ((ChickenCoopAccess) chicken).farmAndCharm$setCoopCooldown(RETRY_COOLDOWN);
+            chicken.getNavigation().stop();
+            return;
+        }
         tryEnterCoop(coopPos);
     }
 
     @Override
     public void stop() {
+        approachTicks = 0;
         chicken.getNavigation().stop();
     }
 }
