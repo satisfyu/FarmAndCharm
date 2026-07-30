@@ -75,4 +75,10 @@ public class ChickenLocateCoopGoal extends Goal {
             chicken.getNavigation().moveTo(foundCoop.getX() + 0.5, foundCoop.getY() + 0.5, foundCoop.getZ() + 0.5, 1.0);
         }
     }
+
+    @Override
+    public void stop() {
+        ((ChickenCoopAccess) chicken).farmAndCharm$setSearchedForCoop(false);
+        foundCoop = null;
+    }
 }
