@@ -5,6 +5,8 @@
 * Stove recipes now require an exact ingredient match, preventing unintended crafting results when extra ingredients are present. (Thanks to rumi-sh)
 * Resolved a duplication glitch affecting storage blocks when used with Sable from Create: Aeronautics. (Thanks to Daudeuf)
 * Removed an unnecessary `ItemStack` mixin, resolving compatibility issues with Create: Aeronautics and Sable. (Thanks to dynamiteOpanty)
+* Cooking Pot and Roaster no longer create infinite containers — empty glass bottles and bowls are now always consumed when required by recipes
+* Plows now correctly harvest crops when positioned entirely on farmland, fixing the issue where low-height farmland blocks prevented crop detection
 
 **Added**
 * Added Italian (`it_it`) localization. (Thanks to serenautilus)
